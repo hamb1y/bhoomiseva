@@ -1,0 +1,37 @@
+---
+import Layout from '../components/Layout.astro';
+
+// Fetch images from /src/assets/images/ at build time
+const images = await Astro.glob('../../public/images/*');
+const imagePaths = images.map(image => {
+  const path = typeof image.default === 'string' ? image.default : image.default.src || image.url || '';
+  // Strip query parameters from the path
+  return path.split('?')[0];
+}).filter(path => path);
+const imageNames = imagePaths.map(path => path.split('/').pop());
+---
+
+<Layout>
+  <div class="content">
+    <h1>gallery</h1>
+    <div class="galleryGrid">
+      {imageNames.map(name => (
+        <div class="galleryCard" data-image={`/images/${name}`}>
+          <img src={`/images/${name}`} alt={name} />
+        </div>
+      ))}
+    </div>
+  </div>
+</Layout>
+
+<script>
+  document.querySelectorAll('.galleryCard').forEach(card => {
+    card.addEventListener('click', () => {
+      const url = card.dataset.image;
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = url.split('/').pop();
+      link.click();
+    });
+  });
+</script>

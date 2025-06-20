@@ -1,16 +1,68 @@
 ---
+import Layout from "../components/Layout.astro"
 
+interface Props {
+	pageTitle: 'Home Page 🏠'
+	pageIcon: '🌍'
+	pageDescription: 'Welcome to<br> Bhoomi Seva'
+}
+
+const { pageTitle, pageIcon, pageDescription } = Astro.props;
+console.log('2. home.astro - pageDescription received:', pageDescription);
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout>
+	<span class="pageQuote">
+		Let's give a better Earth to our children!
+	</span>
+
+	<span class="lineElementTitle">
+		what we do
+	</span>
+
+	<div class="cardCollection">
+		<div class="iconCard">
+
+		</div>
+		<div class="iconCard">
+			
+		</div>
+		<div class="iconCard">
+			
+		</div>
+	</div>
+
+	<div class="lineElement"></div>
+
+	<div class="coloredBlock">
+		<span class="blockTitle">Recent Events</span>
+		<span class="blockSubtitle">At Bhoomi Seva</span>
+		<h2>At Bhoomi Seva</h2>
+		<div class="cardCollection">
+			<div class="imageCard">
+
+			</div>
+			<div class="imageCard">
+				
+			</div>
+			<div class="imageCard">
+				
+			</div>
+		</div>
+	</div>
+	<span class="blockTitle">Ongoing Initatives</span>
+	<span class="blockSubtitle">At Bhoomi Seva</span>
+	<div class="cardCollection">
+		<hr>
+			<div class="imageCard">
+
+			</div>
+			<div class="imageCard">
+				
+			</div>
+			<div class="imageCard">
+				
+			</div>
+		</div>
+	</div>
+</Layout>

@@ -1,0 +1,157 @@
+/* General stuff (don't overpopulate this) */
+.bodyText {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+h1.title {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+/**/
+/* Dark mode light mode setup */
+:root {
+    --primary-color: #fff;
+    --secondary-color: #000;
+    --background-color: var(--primary-color);
+    --text-color: var(--secondary-color);
+    --accent-color: var(--secondary-color);
+}
+
+body:has(#dark:checked) {
+    --primary-color: #000;
+    --secondary-color: #fff;
+    --background-color: var(--primary-color);
+    --text-color: var(--secondary-color);
+    --accent-color: var(--secondary-color);
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+/**/
+
+/* CSS for ease-in transition entrance animations*/
+.entrance {
+  opacity: 0;
+  transform: translateY(50px);
+  animation: entranceAnim 0.6s ease-out forwards;
+}
+
+@keyframes entranceAnim {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/**/
+
+/*CSS for ThemeSwitcher component.*/
+
+/**/
+
+div.titleImage {
+  position: relative;
+  text-align: center;
+  color: #fff;
+  background-color: var(--background-color);
+  margin: 0;
+  padding: 0;
+}
+
+div.titleImage .onImage {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+div.titleImage img {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.galleryGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 2vw;
+  padding: 2vw;
+}
+
+.galleryCard {
+  background-color: var(--background-color);
+  border: 1px solid var(--secondary-color);
+  border-radius: 5%;
+  cursor: pointer;
+  overflow: hidden; /* Prevents border radius clipping issues */
+}
+
+.galleryCard:hover {
+  transform: scale(1.05);
+  transition: transform 0.2s ease-out;
+}
+
+.galleryCard img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 5%;
+}
+
+.navbar {
+  display: flex;
+  flex-direction: row;
+  gap: 2vw;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  position: fixed;
+  padding: 0;
+  gap: 0;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+}
+
+.navbar ul {
+  display: flex;
+  flex-direction: row;
+  gap: 2vw;
+  list-style-type: none;
+}
+
+.navbar ul li a {
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #fff;
+}
+
+.navbar ul li:hover {
+  transform: scale(1.05);
+  transition: transform 0.2s ease-out;
+}
+
+.navbar ul li a:hover {
+  text-decoration: underline;
+}
+
+.theme-switcher {
+  margin-left: 2vw;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}

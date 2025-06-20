@@ -1,0 +1,31 @@
+---
+import ThemeSwitcher from "./ThemeSwitcher.astro";
+
+interface Props {
+  pageTitle: string;
+  pageIcon: string;
+  pageDescription: string;
+}
+
+const { pageTitle, pageIcon, pageDescription } = Astro.props;
+console.log('2. header.astro - pageDescription received:', pageDescription);
+---
+<div class="titleImage entrance">
+		<div class="navbar">
+            <ul>
+                <li><a href="/">home</a></li>
+                <li><a href="/a">environment</a></li>
+                <li><a href="/">education</a></li>
+                <li><a href="/">orphanage support</a></li>
+                <li><a href="/">get involved</a></li>
+                <li><a href="/">donate</a></li>
+                <li><a href="/">contact us</a></li>
+                <li><a href="/">about us</a></li>
+            </ul>
+            <ThemeSwitcher />
+        </div>
+        <img src="https://www.w3schools.com/howto/img_snow_wide.jpg" alt="Image" />
+		<div class="injectAreaUnsafe onImage set:html={pageDescription}">
+        </div>
+        <h1 class="title onImage">Bhoomi Seva</h1>
+</div>
