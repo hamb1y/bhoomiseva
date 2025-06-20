@@ -38,10 +38,10 @@ While you can run and edit it on your local system, you can also go to https://b
 
  - Step 1: Download and install pnpm and git on your device.
 
- - Step 2: Execute to download this on your local system:<hr>
+ - Step 2: Execute to download this on your local system:\n
  `git clone https://github.com/hamb1y/bhoomiseva.git && cd bhoomiseva && pnpm i`
 
- - Step 3: Execute this to test/run:<hr>
+ - Step 3: Execute this to test/run:\n
  `pnpm dev`
 
  That's it! The site should be up and running now, and should be accessible on https://localhost:4321
