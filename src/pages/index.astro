@@ -1,0 +1,17 @@
+---
+import Layout from "../components/Layout.astro";
+import RecentBlogs from "../components/RecentBlogs.astro";
+---
+<Layout>
+    <h1>This is a test</h1>
+    <h2>This is a test</h2>
+    <h3>This is a test</h3>
+    <h4>This is a test</h4>
+    <h5>This is a test</h5>
+    <h6>This is a test</h6>
+    <p>This is a test</p>
+    <p class="sub">This is a test</p>
+
+    <h2><ul>Recent Blogs:</ul></h2>
+    <RecentBlogs n={4} collection="blog" />
+</Layout>

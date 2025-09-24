@@ -1,0 +1,41 @@
+---
+// src/components/RecentBlogs.astro
+
+import Card from "./Card.astro";
+
+export interface Props {
+  n?: number;
+}
+
+const { n = 5 } = Astro.props;
+
+// Glob all `.md` files in your `src/pages/blogs/` folder:
+const posts = await Astro.glob("../pages/blogs/*.md");
+
+// Map & filter—convert `frontmatter.date` to Number, drop invalid:
+const allPosts = posts
+  .map(p => ({
+    ...p,
+    frontmatter: {
+      ...p.frontmatter,
+      // If date is a string, coerce to number; if already number, keep it
+      date: Number(p.frontmatter.date)
+    }
+  }))
+  .filter(p => !Number.isNaN(p.frontmatter.date));
+
+// Sort (newest first) and take top `n`
+const sorted = allPosts
+  .sort((a, b) => b.frontmatter.date - a.frontmatter.date)
+  .slice(0, n);
+---
+<section class="recent-blogs">
+  {sorted.map(post => (
+    <Card
+      title={post.frontmatter.title}
+      date={post.frontmatter.date}
+      thumbnail={post.frontmatter.thumbnail}
+      url={post.url}
+    />
+  ))}
+</section>

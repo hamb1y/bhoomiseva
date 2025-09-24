@@ -1,0 +1,25 @@
+---
+// src/components/BlogGrid.astro
+import Card from "../components/Card.astro";
+const { posts } = Astro.props;
+---
+
+<section class="blog-grid">
+  {posts.map((post) => (
+    <Card
+      title={post.frontmatter.title}
+      date={post.frontmatter.date}
+      thumbnail={post.frontmatter.thumbnail}
+      url={post.url}
+    />
+  ))}
+</section>
+
+<style>
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  padding: 1rem;
+}
+</style>

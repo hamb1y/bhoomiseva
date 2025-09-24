@@ -1,0 +1,17 @@
+---
+// src/components/Card.astro
+const { title, date, thumbnail, url } = Astro.props;
+---
+
+<a href={url} class="card">
+  {thumbnail && (
+    <img src={thumbnail} alt={title} class="card-thumb" />
+  )}
+  <div class="card-content">
+    <h2 class="card-title">{title}</h2>
+    <p class="card-date">{new Date(date).toDateString()}</p>
+  </div>
+</a>
+
+
+
