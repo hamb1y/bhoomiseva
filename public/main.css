@@ -3,14 +3,20 @@
    ========================================================================== */
 
 @font-face {
-  font-family: "Lato";
-  src: url("/fonts/latoR.ttf");
-}
-
-@font-face {
   font-family: "Crete";
   src: url("/fonts/creteRoundR.ttf");
 }
+
+@font-face {
+  font-family: "Alan Sans";
+  src: url("/fonts/AlanSans-regularSt.ttf");
+}
+
+@font-face {
+  font-family: "Red Hat Display";
+  src: url("/fonts/RedHatDisplay-semiBSt.ttf");
+}
+
 
 /* ==========================================================================
    2. THEME VARIABLES
@@ -41,7 +47,7 @@ body:has(#dark:checked) {
 * {
   margin: 0;
   padding: 0;
-  font-family: "Lato", 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Alan Sans', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 body {
@@ -50,7 +56,7 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6, .title {
-  font-family: "Crete", serif;
+  font-family: 'Red Hat Display', serif;
   margin-bottom: 0.5rem;
 }
 
@@ -120,7 +126,7 @@ textarea,
   border-radius: 8px;
   background: var(--primary-color);
   color: var(--accent-color);
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: 'Alan Sans', sans-serif;
   font-size: 1.2rem;
   font-weight: 500;
   cursor: pointer;
@@ -219,14 +225,6 @@ header hr {
 .navbar a:hover {
   background: var(--accent-color);
   color: var(--primary-color);
-}
-
-/* ==========================================================================
-   8. THEME-SWITCHER ICONS & LOGOS
-   ========================================================================== */
-
-body:has(#dark:checked) img.icon {
-  filter: invert(100%);
 }
 
 body:has(#dark:checked) .logo-light {
