@@ -478,7 +478,7 @@ body:has(#light:checked) .logo-light {
     top: 0;
     left: 0;
     right: 0;
-    width: 100%;
+    width: auto;
     max-width: none;
     height: 100vh;
     background: rgba(255, 255, 255, 0.85);

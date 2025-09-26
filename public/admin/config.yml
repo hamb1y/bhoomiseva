@@ -28,11 +28,137 @@ collections:
         widget: "hidden"
         default: "/src/components/BlogLayout.astro"
 
-  - name: "editable"
-    label: "Editable Pages"
-    folder: "src/pages/editable"
+  - name: "about_us"
+    label: "About Us"
+    folder: "src/pages/editable/about-us"
     create: false
+    slug: "index"
+    format: "frontmatter"
+    extension: "md"
     fields:
+      - label: "Title"
+        name: "title"
+        widget: "string"
+      - label: "Body"
+        name: "body"
+        widget: "markdown"
+
+  - name: "contact"
+    label: "Contact"
+    folder: "src/pages/editable/contact"
+    create: false
+    slug: "index"
+    format: "frontmatter"
+    extension: "md"
+    fields:
+      - label: "Title"
+        name: "title"
+        widget: "string"
+      - label: "Body"
+        name: "body"
+        widget: "markdown"
+
+  - name: "donate"
+    label: "Donate"
+    folder: "src/pages/editable/donate"
+    create: false
+    slug: "index"
+    format: "frontmatter"
+    extension: "md"
+    fields:
+      - label: "Title"
+        name: "title"
+        widget: "string"
+      - label: "Body"
+        name: "body"
+        widget: "markdown"
+
+  - name: "education_fee_help"
+    label: "Fee Help"
+    folder: "src/pages/editable/education/fee-help"
+    create: false
+    slug: "index"
+    format: "frontmatter"
+    extension: "md"
+    fields:
+      - label: "Title"
+        name: "title"
+        widget: "string"
+      - label: "Body"
+        name: "body"
+        widget: "markdown"
+
+  - name: "education_jnv_coaching"
+    label: "JNV Coaching"
+    folder: "src/pages/editable/education/jnv-coaching"
+    create: false
+    slug: "index"
+    format: "frontmatter"
+    extension: "md"
+    fields:
+      - label: "Title"
+        name: "title"
+        widget: "string"
+      - label: "Body"
+        name: "body"
+        widget: "markdown"
+
+  - name: "education_orphanage_support"
+    label: "Orphanage Support"
+    folder: "src/pages/editable/education/orphanage-support"
+    create: false
+    slug: "index"
+    format: "frontmatter"
+    extension: "md"
+    fields:
+      - label: "Title"
+        name: "title"
+        widget: "string"
+      - label: "Body"
+        name: "body"
+        widget: "markdown"
+
+  - name: "environment_desi_cow_donation"
+    label: "Desi Cow Donation"
+    folder: "src/pages/editable/environment/desi-cow-donation"
+    create: false
+    slug: "index"
+    format: "frontmatter"
+    extension: "md"
+    fields:
+      - label: "Title"
+        name: "title"
+        widget: "string"
+      - label: "Body"
+        name: "body"
+        widget: "markdown"
+
+  - name: "environment_farmer_assistance"
+    label: "Farmer Assistance"
+    folder: "src/pages/editable/environment/farmer-assistance"
+    create: false
+    slug: "index"
+    format: "frontmatter"
+    extension: "md"
+    fields:
+      - label: "Title"
+        name: "title"
+        widget: "string"
+      - label: "Body"
+        name: "body"
+        widget: "markdown"
+
+  - name: "get_involved"
+    label: "Get Involved"
+    folder: "src/pages/editable/get-involved"
+    create: false
+    slug: "index"
+    format: "frontmatter"
+    extension: "md"
+    fields:
+      - label: "Title"
+        name: "title"
+        widget: "string"
       - label: "Body"
         name: "body"
         widget: "markdown"
