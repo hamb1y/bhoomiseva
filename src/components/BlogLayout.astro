@@ -2,7 +2,32 @@
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 
-const { title, date, thumbnail } = Astro.props;
+const { frontmatter = {} } = Astro.props;
+const { title, date, thumbnail } = frontmatter as {
+  title?: string;
+  date?: unknown;
+  thumbnail?: string;
+};
+
+const toDate = (value: unknown) => {
+  if (!value) return null;
+  if (value instanceof Date) return value;
+  if (typeof value === 'number') return new Date(value);
+  if (typeof value === 'string') {
+    const numericValue = Number(value);
+    if (!Number.isNaN(numericValue)) {
+      const numericDate = new Date(numericValue);
+      if (!Number.isNaN(numericDate.getTime())) return numericDate;
+    }
+
+    const parsedDate = new Date(value);
+    if (!Number.isNaN(parsedDate.getTime())) return parsedDate;
+  }
+
+  return null;
+};
+
+const publishedDate = toDate(date);
 ---
 
 <!DOCTYPE html>
@@ -18,7 +43,9 @@ const { title, date, thumbnail } = Astro.props;
     <main class="mainContent post-layout">
       <article>
         <h1>{title}</h1>
-        <p class="blog-date">{new Date(date).toDateString()}</p>
+        {publishedDate ? (
+          <p class="blog-date">{publishedDate.toDateString()}</p>
+        ) : null}
         {thumbnail && <img src={thumbnail} alt={title} class="blog-thumb" />}
         <slot />
       </article>

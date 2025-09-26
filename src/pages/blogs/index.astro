@@ -1,0 +1,31 @@
+---
+import Layout from "../../components/Layout.astro";
+import BlogGrid from "../../components/BlogGrid.astro";
+
+const posts = await Astro.glob("./*.md");
+
+const sorted = posts
+  .map((post) => {
+    const rawDate = post.frontmatter.date;
+    const parsedDate = rawDate instanceof Date ? rawDate : new Date(rawDate);
+    const timestamp = parsedDate.getTime();
+
+    return {
+      ...post,
+      frontmatter: {
+        ...post.frontmatter,
+        date: parsedDate,
+      },
+      timestamp,
+    };
+  })
+  .filter((post) => !Number.isNaN(post.timestamp))
+  .sort((a, b) => b.timestamp - a.timestamp)
+  .map(({ timestamp, ...rest }) => rest);
+---
+<Layout title="Blog">
+  <section class="blog-listing">
+    <h1>Blog</h1>
+    <BlogGrid posts={sorted} />
+  </section>
+</Layout>

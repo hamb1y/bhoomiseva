@@ -12,22 +12,26 @@ const { n = 5 } = Astro.props;
 // Glob all `.md` files in your `src/pages/blogs/` folder:
 const posts = await Astro.glob("../pages/blogs/*.md");
 
-// Map & filter—convert `frontmatter.date` to Number, drop invalid:
-const allPosts = posts
-  .map(p => ({
-    ...p,
-    frontmatter: {
-      ...p.frontmatter,
-      // If date is a string, coerce to number; if already number, keep it
-      date: Number(p.frontmatter.date)
-    }
-  }))
-  .filter(p => !Number.isNaN(p.frontmatter.date));
+// Normalize frontmatter dates so both numeric timestamps and ISO strings render correctly.
+const sorted = posts
+  .map((post) => {
+    const rawDate = post.frontmatter.date;
+    const parsedDate = rawDate instanceof Date ? rawDate : new Date(rawDate);
+    const timestamp = parsedDate.getTime();
 
-// Sort (newest first) and take top `n`
-const sorted = allPosts
-  .sort((a, b) => b.frontmatter.date - a.frontmatter.date)
-  .slice(0, n);
+    return {
+      ...post,
+      frontmatter: {
+        ...post.frontmatter,
+        date: parsedDate,
+      },
+      timestamp,
+    };
+  })
+  .filter((post) => !Number.isNaN(post.timestamp))
+  .sort((a, b) => b.timestamp - a.timestamp)
+  .slice(0, n)
+  .map(({ timestamp, ...rest }) => rest);
 ---
 <section class="recent-blogs">
   {sorted.map(post => (
