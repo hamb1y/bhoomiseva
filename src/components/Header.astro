@@ -13,13 +13,124 @@ import Button from "./Button.astro"
   <nav class="navbar" aria-hidden="false">
     <ul>
       <li><a href="/">Home</a></li>
-      <li><a href="/about">About Us</a></li>
-      <li><a href="/blogs">Blogs</a></li>
-      <li><a href="/editable/faq">FAQ</a></li>
-      <li><a href="/students">Student's Corner</a></li>
+      <li><a href="/blogs">About Us</a></li>
+      <li class="dropdown">
+        <a
+          href="/editable/faq"
+          class="dropdown-trigger"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+          FAQ
+        </a>
+        <ul class="dropdown-menu" aria-label="FAQ submenu">
+          <li><a href="/editable/faq">FAQ Home</a></li>
+          <li><a href="/editable/faq#paq">PAQ</a></li>
+        </ul>
+      </li>
+      <li><a href="/contact">Contact Us</a></li>
+      <li class="dropdown">
+        <a
+          href="/environment"
+          class="dropdown-trigger"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+          Environment
+        </a>
+        <ul class="dropdown-menu" aria-label="Environment submenu">
+          <li><a href="/environment/desi-cow-donation">Desi Cow Donation</a></li>
+          <li><a href="/environment/farmer-assistance">Farmer Assistance/Training</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a
+          href="/education"
+          class="dropdown-trigger"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+          Education
+        </a>
+        <ul class="dropdown-menu" aria-label="Education submenu">
+          <li><a href="/education/scholarships">Scholarships</a></li>
+          <li><a href="/education/orphanage-support">Orphanage Support</a></li>
+          <li><a href="/education/online-coaching">Free Online Coaching/Tuition</a></li>
+        </ul>
+      </li>
+      <li><a href="/get-involved">Get Involved</a></li>
+      <li><a href="/donate">Donate</a></li>
       <li><a href="https://dynatemp-testing.netlify.app/admin/index.html">Admin Login</a></li>
+      <li><ThemeSwitcher /></li>
+
     </ul>
   </nav>
 
-  <ThemeSwitcher />
+  
 </header>
+
+<script is:inline>
+  (() => {
+    const dropdowns = Array.from(document.querySelectorAll('.navbar .dropdown'));
+    if (!dropdowns.length) return;
+
+    const desktopQuery = window.matchMedia('(min-width: 821px)');
+
+    const closeDropdown = (dropdown) => {
+      dropdown.classList.remove('is-open');
+      const trigger = dropdown.querySelector('.dropdown-trigger');
+      if (trigger) {
+        trigger.setAttribute('aria-expanded', 'false');
+      }
+    };
+
+    const closeAll = (exception) => {
+      dropdowns.forEach((dropdown) => {
+        if (dropdown !== exception) {
+          closeDropdown(dropdown);
+        }
+      });
+    };
+
+    dropdowns.forEach((dropdown) => {
+      const trigger = dropdown.querySelector('.dropdown-trigger');
+      if (!trigger) return;
+
+      trigger.addEventListener('click', (event) => {
+        if (!desktopQuery.matches) {
+          return;
+        }
+
+        if (!dropdown.classList.contains('is-open')) {
+          event.preventDefault();
+          closeAll(dropdown);
+          dropdown.classList.add('is-open');
+          trigger.setAttribute('aria-expanded', 'true');
+        }
+      });
+
+      trigger.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') {
+          event.preventDefault();
+          closeDropdown(dropdown);
+          trigger.focus();
+        }
+      });
+    });
+
+    document.addEventListener('click', (event) => {
+      const target = event.target;
+      dropdowns.forEach((dropdown) => {
+        if (!dropdown.contains(target)) {
+          closeDropdown(dropdown);
+        }
+      });
+    });
+
+    desktopQuery.addEventListener('change', () => {
+      if (!desktopQuery.matches) {
+        closeAll();
+      }
+    });
+  })();
+</script>
