@@ -7,8 +7,8 @@ import Button from "./Button.astro"
 
   <label for="menu-toggle" class="hamburger" aria-label="Toggle navigation">&#9776;</label>
 
-  <img src="/images/logo.webp" alt="Logo light" height="80px" class="logo-light" />
-  <img src="/images/logo-dark.webp" alt="Logo dark" height="80px" class="logo-dark" />
+  <img src="/images/BhoomiSeva-LogoCore.webp" alt="Logo light" height="80px" class="logo-light" />
+  <img src="/images/BhoomiSeva-LogoCore.webp" alt="Logo dark" height="80px" class="logo-dark" />
 
   <nav class="navbar" aria-hidden="false">
     <ul>
@@ -31,7 +31,6 @@ import Button from "./Button.astro"
       <li><a href="/contact">Contact Us</a></li>
       <li class="dropdown">
         <a
-          href="/environment"
           class="dropdown-trigger"
           aria-haspopup="true"
           aria-expanded="false"
@@ -45,7 +44,6 @@ import Button from "./Button.astro"
       </li>
       <li class="dropdown">
         <a
-          href="/education"
           class="dropdown-trigger"
           aria-haspopup="true"
           aria-expanded="false"
@@ -84,6 +82,14 @@ import Button from "./Button.astro"
       }
     };
 
+    const openDropdown = (dropdown) => {
+      dropdown.classList.add('is-open');
+      const trigger = dropdown.querySelector('.dropdown-trigger');
+      if (trigger) {
+        trigger.setAttribute('aria-expanded', 'true');
+      }
+    };
+
     const closeAll = (exception) => {
       dropdowns.forEach((dropdown) => {
         if (dropdown !== exception) {
@@ -97,15 +103,24 @@ import Button from "./Button.astro"
       if (!trigger) return;
 
       trigger.addEventListener('click', (event) => {
-        if (!desktopQuery.matches) {
+        const isDesktop = desktopQuery.matches;
+        const isOpen = dropdown.classList.contains('is-open');
+
+        if (isDesktop) {
+          if (!isOpen) {
+            event.preventDefault();
+            closeAll(dropdown);
+            openDropdown(dropdown);
+          }
           return;
         }
 
-        if (!dropdown.classList.contains('is-open')) {
-          event.preventDefault();
+        event.preventDefault();
+        if (isOpen) {
+          closeDropdown(dropdown);
+        } else {
           closeAll(dropdown);
-          dropdown.classList.add('is-open');
-          trigger.setAttribute('aria-expanded', 'true');
+          openDropdown(dropdown);
         }
       });
 
@@ -132,5 +147,14 @@ import Button from "./Button.astro"
         closeAll();
       }
     });
+
+    const navToggle = document.querySelector('.nav-toggle');
+    if (navToggle) {
+      navToggle.addEventListener('change', () => {
+        if (!navToggle.checked) {
+          closeAll();
+        }
+      });
+    }
   })();
 </script>
