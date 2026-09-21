@@ -18,7 +18,15 @@ export interface Program {
   activities: Activity[];
   image?: string;
   imageAlt?: Localized;
+  imageCaption?: Localized;
+  imageFocal?: ImageFocal;
   gallery?: string[];
+}
+
+/** Payload focal point, as percentages (0–100). */
+export interface ImageFocal {
+  x: number;
+  y: number;
 }
 
 export interface Story {
@@ -34,6 +42,8 @@ export interface Story {
   body: Localized[];
   image?: string;
   imageAlt?: Localized;
+  imageCaption?: Localized;
+  imageFocal?: ImageFocal;
   /** A first-person testimonial or letter reproduced from the source. */
   quote?: {
     text: Localized;
@@ -48,6 +58,7 @@ export interface Person {
   role: Localized;
   bio: Localized;
   photo?: string;
+  photoFocal?: ImageFocal;
 }
 
 export interface Update {

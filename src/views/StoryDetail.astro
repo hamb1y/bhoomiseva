@@ -60,7 +60,6 @@ const jsonLd = {
       <p class="eyebrow">{lx(program.kicker, lang)}</p>
       <h1>{lx(story.title, lang)}</h1>
       <p class="summary">{lx(story.summary, lang)}</p>
-
       <p class="meta">
         {metaItems.map((item, i) => (
           <>
@@ -74,6 +73,7 @@ const jsonLd = {
         src={story.image}
         alt={story.imageAlt ? lx(story.imageAlt, lang) : lx(story.title, lang)}
         caption={story.imageAlt ? lx(story.imageAlt, lang) : lx(story.location, lang)}
+        focal={story.imageFocal}
         ratio="3 / 2"
         accent={program.accent}
       />

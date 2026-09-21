@@ -110,6 +110,12 @@ Living plan. Legend: `[ ]` todo · `[~]` in progress · `[x]` done.
 - **2026-09-21 (photos + stories)** — 21 real photographs downloaded and wired into story cards, story pages, programme headers, galleries, team bios and the home hero. Story archive expanded from 8 to 13 entries. 48 pages built.
 - **2026-09-21 (CMS + polish)** — Connected Payload CMS: full collection/global model with en/kn localisation, seed and pull scripts, and a data layer that resolves CMS content over the seed while always remaining buildable. Converted all images to WebP (originals kept). Removed the ledger/mono scaffolding and rebalanced page rhythm with photo-led rows, a full-bleed band and galleries. Rewrote SPEC, AGENTS, README and DESIGN.
 - **2026-09-21 (CMS verified)** — Actually installed and ran Payload 3.90.1 (it installs fine — the earlier "can't run it" was an unverified assumption). Booted the admin, created the first admin user via Payload's Local API, seeded all content and media, and pulled it back into the Astro site. Fixed five real bugs surfaced by running it (REST methods, `id`/`key` collision, seed mapping, generated-type casts, spurious sharp warning). `content:pull` now reuses the committed `public/images` library instead of duplicating media.
+- **2026-09-21 (editor workflow)** — Made adding a story a real workflow. Media now has **interactive focal point + crop** and named sizes; Stories gained a tabbed editor, auto-slug from title, **drafts**, a Preview button, sensible defaults and field descriptions. Added `src/lib/payload.ts` as the single Payload → site mapping, shared by the sync script. The sync now pulls only **published** documents and captures focal points, which the site applies via `object-position`. Verified end to end: focal round-trip, draft exclusion, and an arbitrary non-library image landing in `public/media/`.
+
+### Bugs found and fixed while building the workflow
+
+- `pkill -f "next dev"` matched its own shell command and killed the cleanup — use `pkill -f "[n]ext dev"`.
+- Wiping the SQLite file while the dev server was running corrupted the schema (`no such column: _status`); always stop the server before deleting the database.
 
 ### Known follow-ups
 

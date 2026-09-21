@@ -44,3 +44,8 @@ export function formatDate(value: string, lang: Lang): string {
 export function yearOf(value?: string): string | null {
   return value ? value.slice(0, 4) : null;
 }
+
+/** CSS `object-position` from a Payload focal point. */
+export function objectPosition(focal?: { x: number; y: number }): string {
+  return focal ? `${focal.x}% ${focal.y}%` : "50% 50%";
+}

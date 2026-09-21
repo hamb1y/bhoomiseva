@@ -23,15 +23,26 @@ bun run build
 
 ## Collections
 
-| Collection               | Maps to     | Notes                                                                                                   |
-| ------------------------ | ----------- | ------------------------------------------------------------------------------------------------------- |
-| `stories`                | `Story[]`   | title, slug, programme, date/period, location, summary, body paragraphs, image, quote, people, featured |
-| `programs`               | `Program[]` | the three programmes, their activities and galleries                                                    |
-| `team`                   | `Person[]`  | name, role, bio, photo, order                                                                           |
-| `updates`                | `Update[]`  | dated/period-labelled events                                                                            |
-| `media`                  | —           | image uploads with `alt` (localized) and a credit field                                                 |
-| `users`                  | —           | auth                                                                                                    |
-| `site-settings` (global) | `Site`      | contact, socials, payment, mission, vision, about, credit                                               |
+| Collection               | Maps to     | Notes                                                                                                       |
+| ------------------------ | ----------- | ----------------------------------------------------------------------------------------------------------- |
+| `stories`                | `Story[]`   | Tabbed editor (Story / Photo). Auto slug, **drafts**, focal point, Preview button.                          |
+| `programs`               | `Program[]` | The three programmes. Tabs: Content / Activities / Photos.                                                  |
+| `team`                   | `Person[]`  | name, role, bio, photo, order                                                                               |
+| `updates`                | `Update[]`  | Short dated events, shown as a timeline                                                                     |
+| `media`                  | —           | **Interactive uploads**: focal point + crop, `thumbnail`/`card`/`wide` sizes, localised `alt` and `caption` |
+| `users`                  | —           | auth                                                                                                        |
+| `site-settings` (global) | `Site`      | contact, socials, payment, mission, vision, about, credit                                                   |
+
+## Adding a story
+
+1. **Stories → Create new.**
+2. **Story tab:** title, summary, and one paragraph per row. Optionally a quote and the people named.
+3. **Photo tab:** upload any image or pick from the library, then open the image and **drag the focal point** to choose what stays in frame when the site crops it.
+4. **Sidebar:** slug (auto-filled from the title), programme, date or period, location.
+5. **Save Draft** while you work; **Publish** when ready.
+6. From the repo root: `bun run content:pull && bun run build`.
+
+Only published documents are pulled. The Preview button opens the story on the site, but it reflects the last sync — publish first.
 
 ## Localization
 

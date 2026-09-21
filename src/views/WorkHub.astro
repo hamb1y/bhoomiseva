@@ -5,6 +5,7 @@ import { useTranslations, localePath, lx } from "../i18n/utils";
 import { programs } from "../data/programs";
 import { storiesByProgram } from "../data/stories";
 import { programHref } from "../lib/paths";
+import { objectPosition } from "../utils/format";
 import CTABand from "../components/CTABand.astro";
 import { ArrowUpRight } from "lucide-astro";
 
@@ -32,6 +33,7 @@ const t = useTranslations(lang);
             class="thumb"
             src={p.image}
             alt={p.imageAlt ? lx(p.imageAlt, lang) : lx(p.title, lang)}
+            style={`object-position:${objectPosition(p.imageFocal)}`}
             loading="lazy"
             decoding="async"
           />

@@ -1,13 +1,31 @@
 import type { CollectionConfig } from "payload";
 
+const SITE_URL = () => process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:4321";
+
 export const Updates: CollectionConfig = {
   slug: "updates",
-  admin: { useAsTitle: "title", defaultColumns: ["title", "date", "period", "program", "kind"] },
+  labels: { singular: "Update", plural: "Updates" },
+  admin: {
+    useAsTitle: "title",
+    group: "Content",
+    defaultColumns: ["title", "date", "period", "program", "kind"],
+    description: "Short dated events, shown as a timeline on the Stories page.",
+    preview: () => `${SITE_URL()}/stories`,
+  },
   access: { read: () => true },
   fields: [
     { name: "title", type: "text", localized: true, required: true },
-    { name: "date", type: "text", admin: { description: "YYYY-MM or YYYY-MM-DD, if known." } },
-    { name: "period", type: "text", localized: true },
+    {
+      name: "date",
+      type: "text",
+      admin: { description: "YYYY-MM or YYYY-MM-DD, if known." },
+    },
+    {
+      name: "period",
+      type: "text",
+      localized: true,
+      admin: { description: "Used when there is no date, e.g. “Balipadyami”." },
+    },
     {
       name: "program",
       type: "select",

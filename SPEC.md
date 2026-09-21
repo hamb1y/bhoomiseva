@@ -45,8 +45,11 @@ Bhoomi Seva is a small, volunteer-led social initiative working with rural commu
 ```
 
 - **Content is CMS-first, seed-backed.** `src/data/*.ts` resolves to `src/data/generated/*` when content has been synced, and to `src/data/seed/*` otherwise. The site therefore always builds, with or without a CMS reachable.
+- **One mapping, one place.** `src/lib/payload.ts` converts Payload documents into the site's types. It is shared by the sync script and any future preview route, so the shape is defined once.
 - **The CMS is a separate app** (`cms/`). It is never bundled into the public site.
-- **Media** is uploaded to the CMS, then downloaded into `public/media/` by the sync script so the built site serves its own images.
+- **Media** is uploaded to the CMS, then resolved at sync time: images already in `public/images/` are reused, anything else is downloaded to `public/media/`.
+- **Images are interactive.** Media has focal point + crop enabled; the site applies the focal point with `object-position`, so one upload crops well at every aspect ratio.
+- **Stories are versioned.** Drafts can be saved without publishing; only published documents are pulled.
 
 ## 6. Information architecture
 
@@ -115,6 +118,22 @@ Encoded in AGENTS.md § Content and claims policy. Summary: keep documented work
 `src/data/generated/*` is a **build artifact and is intentionally empty in git**, so the committed site builds from the seed. Run `content:pull` when you want the build to reflect the CMS. The pull is a build step, not a runtime dependency.
 
 Verified end to end: seed → pull → build renders all 13 stories, 3 programmes, 4 people and the settings global from Payload.
+
+### Adding a story (editor workflow)
+
+1. **CMS → Stories → Create new.**
+2. **Story tab** — title, one-line summary, and paragraphs (one row each). Optionally a quote and the people named.
+3. **Photo tab** — upload _any_ image, or pick one already in the library. Then open the image and **drag the focal point** so the subject survives the 3:2 crop.
+4. **Sidebar** — the slug fills in from the title (edit if you want a different URL), then programme, date _or_ period, and location.
+5. **Save Draft** while working, **Publish** when it is ready.
+6. Run `bun run content:pull` then `bun run build` (or let the deploy pipeline do it). **Only published documents are pulled.**
+7. The **Preview** button opens the story on the site. It reflects the last sync, so publish before relying on it.
+
+Notes:
+
+- Cropping is handled on the site by `object-position` from the focal point, so one upload frames correctly at 3:2, 4:3 and square.
+- Uploaded images that are not already in the committed `public/images/` library are downloaded to `public/media/` at sync time. Any filename, size or format works.
+- Programme pages and the About page use the same pattern (tabs, upload fields, focal point).
 
 ## 10. Images
 

@@ -199,6 +199,7 @@ Allowed: colour/underline transitions on links, 2–6px translate on reveal (con
 Colour, type and layout above describe the rendered site; the words and images come from Payload CMS (see SPEC.md §5 and `cms/README.md`).
 
 - The design assumes **real photographs**. New content should ship with an image; the empty-frame fallback exists for gaps, not as a style.
+- **Focal points are respected.** Cropping is done in CSS via `object-position` from the CMS focal point, never by destructive pre-cropping — one upload frames correctly at 3:2, 4:3 and square.
 - Every story must carry a date or an explicit period, and a location.
 - Both locales should be filled in the CMS. A blank Kannada field silently falls back to English.
 - Editors adding a story should not need to touch code. If a content change requires a developer, the CMS model is wrong — extend it instead.

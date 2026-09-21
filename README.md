@@ -63,6 +63,17 @@ bun run build
 
 `cms:seed` uses Payload's Local API and creates the first admin user itself (`admin@bhoomiseva.local` / `changeme123` unless `SEED_ADMIN_EMAIL` / `SEED_ADMIN_PASSWORD` are set — **change the password**). It is idempotent: media already uploaded is reused.
 
+### Adding a story
+
+1. In the CMS, go to **Stories → Create new**.
+2. Fill in the **Story** tab: title, summary, and one row per paragraph.
+3. Open the **Photo** tab and upload any image, or pick one from the library. Then open the image and **drag the focal point** so the subject stays in frame when the site crops it.
+4. Set the **slug** (auto-filled from the title), programme, and either a date or a period — plus the location.
+5. **Save Draft** while you work, **Publish** when it is ready.
+6. Run `bun run content:pull && bun run build`, or let the deploy pipeline do it. Only published stories are pulled.
+
+Any image size or format works. Images already in `public/images/` are reused; anything else is downloaded to `public/media/` during the pull.
+
 See [`cms/README.md`](./cms/README.md) for collections, localisation and deployment.
 
 ## Project structure

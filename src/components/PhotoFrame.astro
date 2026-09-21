@@ -10,11 +10,23 @@ interface Props {
   caption?: string;
   /** Frame aspect ratio, e.g. "4 / 3", "3 / 2", "1 / 1". */
   ratio?: string;
+  /** Payload focal point (percent) — keeps the subject in frame when cropped. */
+  focal?: { x: number; y: number };
   accent?: Accent;
   class?: string;
 }
 
-const { src, alt = "", caption, ratio = "4 / 3", accent = "brand", class: className } = Astro.props;
+const {
+  src,
+  alt = "",
+  caption,
+  ratio = "4 / 3",
+  focal,
+  accent = "brand",
+  class: className,
+} = Astro.props;
+
+const objectPosition = focal ? `${focal.x}% ${focal.y}%` : "50% 50%";
 ---
 
 <figure class:list={["frame", `accent-${accent}`, className]}>
@@ -24,7 +36,7 @@ const { src, alt = "", caption, ratio = "4 / 3", accent = "brand", class: classN
       alt={alt}
       loading="lazy"
       decoding="async"
-      style={`aspect-ratio:${ratio};object-fit:cover;width:100%`}
+      style={`aspect-ratio:${ratio};object-fit:cover;object-position:${objectPosition};width:100%`}
     />
   ) : (
     <div

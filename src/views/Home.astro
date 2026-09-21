@@ -6,6 +6,7 @@ import { pick, site } from "../data/site";
 import { programs } from "../data/programs";
 import { stories, featuredStory } from "../data/stories";
 import { programHref } from "../lib/paths";
+import { objectPosition } from "../utils/format";
 import StoryCard from "../components/StoryCard.astro";
 import PhotoFrame from "../components/PhotoFrame.astro";
 import CTABand from "../components/CTABand.astro";
@@ -63,6 +64,7 @@ const jsonLd = {
               ? lx(featuredStory.imageAlt, lang)
               : lx(featuredStory.location, lang)
           }
+          focal={featuredStory.imageFocal}
           ratio="4 / 3"
           accent="farmers"
         />
@@ -93,6 +95,7 @@ const jsonLd = {
             <img
               src={p.image}
               alt={p.imageAlt ? lx(p.imageAlt, lang) : lx(p.title, lang)}
+              style={`object-position:${objectPosition(p.imageFocal)}`}
               loading="lazy"
               decoding="async"
             />

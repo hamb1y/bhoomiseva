@@ -60,6 +60,7 @@ src/
     types.ts     Story, Program, Person, Update, Site
   i18n/          ui.ts string dictionary, utils.ts helpers
   layouts/       BaseLayout.astro
+  lib/           nav.ts, paths.ts, payload.ts (Payload → site mapping)
   pages/         file-based routes; /kn/* mirrors the English routes
   styles/        tokens.css, global.css
   views/         page implementations, rendered by the thin route files
@@ -75,7 +76,10 @@ scripts/         optimize-images.mjs, pull-content.mjs, seed-cms.mjs
 - **Never edit `src/data/generated/*`** — it is overwritten by `content:pull`.
 - **`src/data/generated/*` is a build artifact.** It is intentionally empty in git; `content:pull` populates it. Do not commit pulled content unless you deliberately want the build to depend on it.
 - **Never edit `src/data/seed/*` to change live content** once the CMS is in use. Seed content is the fallback; the CMS is the source of truth.
-- If you add a field or collection, change it in **all four** places: `src/data/types.ts`, the Payload collection in `cms/collections/`, the mapping in `scripts/pull-content.mjs`, and (if needed) the seed in `src/data/seed/`.
+- If you add a field or collection, change it in **all four** places: `src/data/types.ts`, the Payload collection in `cms/collections/`, the mapping in `src/lib/payload.ts`, and (if needed) the seed in `src/data/seed/`.
+- **All Payload → site mapping lives in `src/lib/payload.ts`.** Do not duplicate it in the sync script or views.
+- Uploads carry a **focal point**; the site applies it with `object-position` (see `objectPosition()` in `src/utils/format.ts`). Do not hard-crop images in CSS.
+- **Drafts are not pulled.** Only published documents reach the site. Preview buttons point at the built page, not a live draft.
 - Content lives in data, not markup, so it can be translated and reused.
 
 ## Conventions

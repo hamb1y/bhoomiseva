@@ -1,7 +1,7 @@
 ---
 import type { Lang } from "../i18n/ui";
 import { useTranslations, localePath, lx } from "../i18n/utils";
-import { formatDate } from "../utils/format";
+import { formatDate, objectPosition } from "../utils/format";
 import { programById } from "../data/programs";
 import type { Story } from "../data/types";
 import { ArrowUpRight } from "lucide-astro";
@@ -31,6 +31,7 @@ const meta = story.date
       class="thumb"
       src={story.image}
       alt={story.imageAlt ? lx(story.imageAlt, lang) : ""}
+      style={`object-position:${objectPosition(story.imageFocal)}`}
       loading="lazy"
       decoding="async"
     />

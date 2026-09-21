@@ -6,6 +6,7 @@ import { pick, site } from "../data/site";
 import { team } from "../data/team";
 import CTABand from "../components/CTABand.astro";
 import PhotoFrame from "../components/PhotoFrame.astro";
+import { objectPosition } from "../utils/format";
 import { Info } from "lucide-astro";
 
 interface Props {
@@ -68,6 +69,7 @@ const t = useTranslations(lang);
                   class="avatar"
                   src={person.photo}
                   alt={person.name}
+                  style={`object-position:${objectPosition(person.photoFocal)}`}
                   loading="lazy"
                   decoding="async"
                 />

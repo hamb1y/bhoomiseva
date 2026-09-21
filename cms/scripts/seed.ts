@@ -125,6 +125,7 @@ async function main() {
       "stories",
       {
         ...s,
+        _status: "published",
         image: mediaId(s.image),
         body: s.body.map((paragraph) => ({ paragraph })),
         people: (s.people ?? []).map((name) => ({ name })),
