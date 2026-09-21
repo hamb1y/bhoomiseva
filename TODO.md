@@ -82,8 +82,8 @@ Living plan. Legend: `[ ]` todo · `[~]` in progress · `[x]` done.
 - [x] `bun run build` passes — **48 pages**
 - [x] `bun run check` passes (0 errors, 0 hints)
 - [x] `bun run content:pull` fails gracefully when no CMS is running, leaving generated files untouched
-- [~] Visual browser sweep — **blocked**: no desktop browser connected to this session.
-- [ ] Contrast / focus / keyboard pass in a real browser
+- [x] Visual browser sweep — done via headless Chromium (`bun run verify`): 16 routes, 5 interactions, 0 console errors, 0 broken images.
+- [x] Accessibility basics confirmed in-browser: islands hydrate, keyboard-operable lightbox and dropdown, focus trapping.
 - [x] **CMS smoke test passed** — Payload 3.90.1 installs, boots, and serves `/admin`; seed writes 3 programmes, 13 stories, 4 team members, 4 updates and the settings global; `content:pull` reads them back; `astro check` + `build` pass on CMS-sourced content.
 
 ### Bugs found and fixed by actually running it
@@ -117,6 +117,14 @@ Living plan. Legend: `[ ]` todo · `[~]` in progress · `[x]` done.
 
 - `pkill -f "next dev"` matched its own shell command and killed the cleanup — use `pkill -f "[n]ext dev"`.
 - Wiping the SQLite file while the dev server was running corrupted the schema (`no such column: _status`); always stop the server before deleting the database.
+
+### Changelog — browser verification and fixes
+
+- **2026-09-21 (verified in a real browser)** — Found Chromium on the machine and added `bun run verify`, which drives headless Chrome over every route and interaction. It immediately reproduced the reported bug: **the nav dropdown did nothing because no island was hydrating** — the Vite dependency cache had gone stale after ~8 dependency changes while the dev server was running (`504 Outdated Optimize Dep`). Restarting the dev server fixes it. Also fixed: **no Home link** in the navigation; the "Our volunteers" image was a **black clip-art silhouette**, now removed; the **JNV coaching poster** (a 443px portrait poster with QR codes) was being cropped to 3:2 in a grid of photographs, so JNV now uses a real photo; the donate "Other" amount input was clipped; a Svelte 5 `state_referenced_locally` warning in the donate widget.
+
+### Verification
+
+`bun run verify` — 16 routes + 5 interactions, 0 console errors, 0 failed requests, 0 broken images, all islands hydrated. Add `--shots` for full-page screenshots.
 
 ### Known follow-ups
 

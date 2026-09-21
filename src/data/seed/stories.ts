@@ -264,7 +264,7 @@ export const stories: Story[] = [
     program: "education",
     period: { en: "Ongoing", kn: "ನಡೆಯುತ್ತಿರುವ" },
     location: { en: "Online", kn: "ಆನ್‌ಲೈನ್" },
-    image: "/images/jnv-coaching.webp",
+    image: "/images/education-2.webp",
     imageAlt: {
       en: "Jawahar Navodaya Vidyalaya entrance coaching",
       kn: "ಜವಾಹರ್ ನವೋದಯ ವಿದ್ಯಾಲಯ ಪ್ರವೇಶ ತರಬೇತಿ",

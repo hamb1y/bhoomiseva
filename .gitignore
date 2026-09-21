@@ -38,3 +38,6 @@ cms/payload-types.ts
 # Media pulled from the CMS into the Astro site. The committed originals live
 # in public/images; CMS-synced files are build artifacts.
 public/media/
+
+# screenshots from `bun run verify --shots`
+.verify/

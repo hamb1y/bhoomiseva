@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { untrack } from "svelte";
+
   interface Cause {
     value: string;
     label: string;
@@ -42,8 +44,10 @@
     email: string;
   } = $props();
 
-  let cause = $state(causes[causes.length - 1]?.value ?? "any");
-  let amount = $state<number | null>(causes[causes.length - 1]?.amounts[1] ?? null);
+  // Props are static here, so read the default once without tracking.
+  const fallback = untrack(() => causes[causes.length - 1]);
+  let cause = $state(fallback?.value ?? "any");
+  let amount = $state<number | null>(fallback?.amounts[1] ?? null);
   let custom = $state("");
   let copied = $state(false);
 
@@ -226,7 +230,7 @@
   .custom {
     border: 0;
     background: transparent;
-    width: 5ch;
+    width: 7ch;
     padding: 0;
     font-family: var(--font-mono);
     font-size: var(--step--1);

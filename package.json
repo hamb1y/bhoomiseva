@@ -12,6 +12,7 @@
     "check": "astro check",
     "images": "bun run scripts/optimize-images.mjs",
     "logo": "bun run scripts/make-logo.mjs",
+    "verify": "bun run scripts/verify-site.mjs",
     "content:pull": "bun run scripts/pull-content.mjs",
     "cms:seed": "cd cms && bun run seed",
     "format": "prettier --write .",
@@ -39,6 +40,7 @@
     "@astrojs/check": "^0.9.10",
     "prettier": "^3.9.8",
     "prettier-plugin-astro": "^1.0.1",
-    "prettier-plugin-svelte": "^4.1.1"
+    "prettier-plugin-svelte": "^4.1.1",
+    "puppeteer-core": "^25.11.0"
   }
 }

@@ -7,6 +7,7 @@ export interface NavItem {
 }
 
 export const nav: NavItem[] = [
+  { key: "nav.home", href: "/" },
   {
     key: "nav.work",
     href: "/work",

@@ -37,8 +37,11 @@ bun run check          # astro check (types + diagnostics)
 bun run images         # regenerate WebP from public/images originals
 bun run content:pull   # sync content from Payload -> src/data/generated
 bun run cms:seed       # seed a running Payload instance (Local API; creates the admin user)
+bun run verify         # drive a real browser over every route + interaction
 bun run format         # prettier
 ```
+
+**If the interactive islands stop responding** (dropdown, lightbox, mobile nav), the Vite dependency cache is stale — this happens after changing dependencies while `astro dev` is running. Restart the dev server: the islands will hydrate again. `bun run verify` reports it as a hydration or 504 failure.
 
 The CMS is a separate app:
 
@@ -68,7 +71,8 @@ public/
   images/        committed WebP + originals
   media/         CMS-synced media (git-ignored)
 cms/             Payload 3 app (own package.json)
-scripts/         optimize-images.mjs, pull-content.mjs, seed-cms.mjs
+scripts/         optimize-images.mjs, make-logo.mjs, pull-content.mjs, verify-site.mjs
+cms/scripts/      seed.ts (Local API seeding)
 ```
 
 ## Content conventions

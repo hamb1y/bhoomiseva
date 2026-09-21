@@ -32,7 +32,12 @@ bun run images         # regenerate WebP from public/images originals
 bun run logo           # build logo assets from source artwork
 bun run content:pull   # sync content from the CMS
 bun run cms:seed       # push seed content into a running CMS
+bun run verify         # browser check: every route, island hydration, broken images
 ```
+
+`bun run verify` drives a real headless Chromium over all 16 routes plus the lightbox, nav dropdown, mobile nav, story filter and donate widget. It fails on hydration errors, console errors, 404s and broken images. Needs a Chromium binary — set `CHROME_PATH` if it isn't in a usual location. Add `--shots` to write full-page screenshots to `.verify/`.
+
+If the interactive islands stop responding after a dependency change, restart the dev server — Vite's cache has gone stale.
 
 ## Content and the CMS
 

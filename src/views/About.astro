@@ -5,7 +5,6 @@ import { useTranslations, lx } from "../i18n/utils";
 import { pick, site } from "../data/site";
 import { team } from "../data/team";
 import CTABand from "../components/CTABand.astro";
-import PhotoFrame from "../components/PhotoFrame.astro";
 import { objectPosition } from "../utils/format";
 import { Info } from "lucide-astro";
 import { existsSync } from "node:fs";
@@ -90,18 +89,9 @@ const hasLogo = existsSync("public/images/logo.webp");
   </section>
 
   <section class="community">
-    <div class="container community-grid">
-      <div>
-        <h2>{t("about.community")}</h2>
-        <p class="measure">{t("about.community.body")}</p>
-      </div>
-      <PhotoFrame
-        src="/images/team-volunteers.webp"
-        alt={lx({ en: "Bhoomi Seva volunteers", kn: "ಭೂಮಿ ಸೇವಾ ಸ್ವಯಂಸೇವಕರು" }, lang)}
-        caption={lx({ en: "Bhoomi Seva volunteers", kn: "ಭೂಮಿ ಸೇವಾ ಸ್ವಯಂಸೇವಕರು" }, lang)}
-        ratio="4 / 3"
-        accent="children"
-      />
+    <div class="container">
+      <h2>{t("about.community")}</h2>
+      <p class="measure">{t("about.community.body")}</p>
     </div>
   </section>
 
@@ -252,12 +242,6 @@ const hasLogo = existsSync("public/images/logo.webp");
     border-top: 1px solid var(--rule);
     padding-top: var(--s-6);
   }
-  .community-grid {
-    display: grid;
-    grid-template-columns: 1.2fr 0.8fr;
-    gap: clamp(2rem, 5vw, 4rem);
-    align-items: center;
-  }
   .community h2 {
     font-size: var(--step-2);
     margin: 0 0 var(--s-4);
@@ -267,8 +251,7 @@ const hasLogo = existsSync("public/images/logo.webp");
     margin: 0;
   }
   @media (max-width: 62rem) {
-    .mv-grid,
-    .community-grid {
+    .mv-grid {
       grid-template-columns: 1fr;
     }
     .people li {

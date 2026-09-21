@@ -34,6 +34,7 @@ export const ui = {
     "lightbox.prev": "Previous image",
     "lightbox.next": "Next image",
 
+    "nav.home": "Home",
     "nav.work": "Our Work",
     "nav.work.education": "Education",
     "nav.work.farmers": "Farmers & Environment",
@@ -219,6 +220,7 @@ export const ui = {
     "lightbox.prev": "ಹಿಂದಿನ ಚಿತ್ರ",
     "lightbox.next": "ಮುಂದಿನ ಚಿತ್ರ",
 
+    "nav.home": "ಮುಖಪುಟ",
     "nav.work": "ನಮ್ಮ ಕೆಲಸ",
     "nav.work.education": "ಶಿಕ್ಷಣ",
     "nav.work.farmers": "ರೈತರು ಮತ್ತು ಪರಿಸರ",

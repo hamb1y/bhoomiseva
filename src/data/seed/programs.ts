@@ -9,7 +9,7 @@ export const programs: Program[] = [
       en: "Students supported by the education programme",
       kn: "ಶಿಕ್ಷಣ ಕಾರ್ಯಕ್ರಮದಿಂದ ಬೆಂಬಲಿತ ವಿದ್ಯಾರ್ಥಿಗಳು",
     },
-    gallery: ["/images/education-2.webp", "/images/jnv-coaching.webp", "/images/vasanth.webp"],
+    gallery: ["/images/education-1.webp", "/images/education-2.webp", "/images/vasanth.webp"],
     kicker: { en: "Education", kn: "ಶಿಕ್ಷಣ" },
     title: { en: "Education", kn: "ಶಿಕ್ಷಣ" },
     summary: {
