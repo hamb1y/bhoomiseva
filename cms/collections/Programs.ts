@@ -6,10 +6,11 @@ export const Programs: CollectionConfig = {
   access: { read: () => true },
   fields: [
     {
-      name: "id",
+      name: "key",
       type: "select",
       required: true,
       unique: true,
+      admin: { description: "Stable identifier used by the site: education | farmers | children." },
       options: [
         { label: "Education", value: "education" },
         { label: "Farmers & Environment", value: "farmers" },

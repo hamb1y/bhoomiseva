@@ -83,7 +83,15 @@ Living plan. Legend: `[ ]` todo · `[~]` in progress · `[x]` done.
 - [x] `bun run content:pull` fails gracefully when no CMS is running, leaving generated files untouched
 - [~] Visual browser sweep — **blocked**: no desktop browser connected to this session.
 - [ ] Contrast / focus / keyboard pass in a real browser
-- [ ] Verify the CMS actually boots and seeds (needs a machine to run `cms/`)
+- [x] **CMS smoke test passed** — Payload 3.90.1 installs, boots, and serves `/admin`; seed writes 3 programmes, 13 stories, 4 team members, 4 updates and the settings global; `content:pull` reads them back; `astro check` + `build` pass on CMS-sourced content.
+
+### Bugs found and fixed by actually running it
+
+- REST route only exported `GET`, so all writes returned 405 — now exports GET/POST/PATCH/PUT/DELETE/OPTIONS.
+- The `programs` collection had a field literally named `id`, colliding with Payload's own ID column — renamed to `key`.
+- The seed passed `id` where Payload expected `key`, and passed `about` as bare strings where the array field expects `{ paragraph }` rows.
+- Generated TS inferred `string` for union fields and failed `astro check` — the generator now emits `as unknown as T`.
+- The "sharp not installed" warning is spurious; image sizes (`thumbnail`, `card`, `wide`) are generated correctly.
 
 ---
 
@@ -101,6 +109,7 @@ Living plan. Legend: `[ ]` todo · `[~]` in progress · `[x]` done.
 - **2026-09-21 (content revision)** — Scraped bhoomiseva.org directly. Replaced invented/clever section microcopy with plain headings and the organisation's own words. Real testimonials (Vasanth, Sanjana, Sree Raksha, Ram, Pushparaj) and Sunita's full Kannada letter reproduced in story pages. Story bodies expanded. Full activity lists added. Mission/vision use the original wording. Footer credits the original developers.
 - **2026-09-21 (photos + stories)** — 21 real photographs downloaded and wired into story cards, story pages, programme headers, galleries, team bios and the home hero. Story archive expanded from 8 to 13 entries. 48 pages built.
 - **2026-09-21 (CMS + polish)** — Connected Payload CMS: full collection/global model with en/kn localisation, seed and pull scripts, and a data layer that resolves CMS content over the seed while always remaining buildable. Converted all images to WebP (originals kept). Removed the ledger/mono scaffolding and rebalanced page rhythm with photo-led rows, a full-bleed band and galleries. Rewrote SPEC, AGENTS, README and DESIGN.
+- **2026-09-21 (CMS verified)** — Actually installed and ran Payload 3.90.1 (it installs fine — the earlier "can't run it" was an unverified assumption). Booted the admin, created the first admin user via Payload's Local API, seeded all content and media, and pulled it back into the Astro site. Fixed five real bugs surfaced by running it (REST methods, `id`/`key` collision, seed mapping, generated-type casts, spurious sharp warning). `content:pull` now reuses the committed `public/images` library instead of duplicating media.
 
 ### Known follow-ups
 

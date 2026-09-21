@@ -1,10 +1,10 @@
 import type { Story } from "../types";
 
 /**
- * Generated from Payload CMS by `bun run content:pull`.
- * Do not edit by hand — edits are overwritten on the next sync.
+ * Written by `bun run content:pull` from Payload CMS. This is a build artifact:
+ * it is intentionally empty in git so the site falls back to the hand-written
+ * seed in `src/data/seed/`.
  *
- * An empty array means "no CMS content synced yet", and the site falls back to
- * the hand-written seed in `src/data/seed/`.
+ * Do not edit by hand.
  */
 export const stories: Story[] = [];

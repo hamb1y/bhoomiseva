@@ -36,7 +36,7 @@ bun run build          # production build to dist/
 bun run check          # astro check (types + diagnostics)
 bun run images         # regenerate WebP from public/images originals
 bun run content:pull   # sync content from Payload -> src/data/generated
-bun run cms:seed       # push seed content into a running Payload instance
+bun run cms:seed       # seed a running Payload instance (Local API; creates the admin user)
 bun run format         # prettier
 ```
 
@@ -73,6 +73,7 @@ scripts/         optimize-images.mjs, pull-content.mjs, seed-cms.mjs
 ## Content conventions
 
 - **Never edit `src/data/generated/*`** — it is overwritten by `content:pull`.
+- **`src/data/generated/*` is a build artifact.** It is intentionally empty in git; `content:pull` populates it. Do not commit pulled content unless you deliberately want the build to depend on it.
 - **Never edit `src/data/seed/*` to change live content** once the CMS is in use. Seed content is the fallback; the CMS is the source of truth.
 - If you add a field or collection, change it in **all four** places: `src/data/types.ts`, the Payload collection in `cms/collections/`, the mapping in `scripts/pull-content.mjs`, and (if needed) the seed in `src/data/seed/`.
 - Content lives in data, not markup, so it can be translated and reused.

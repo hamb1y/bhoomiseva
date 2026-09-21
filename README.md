@@ -53,13 +53,15 @@ cp .env.example .env      # set PAYLOAD_SECRET
 bun dev                   # http://localhost:3000/admin
 ```
 
-Create the first admin user at `/admin`, then from the repository root:
+Then, from the repository root:
 
 ```bash
-PAYLOAD_EMAIL=you@example.com PAYLOAD_PASSWORD=... bun run cms:seed
-bun run content:pull
+bun run cms:seed      # creates the admin user, uploads media, seeds content
+bun run content:pull  # writes src/data/generated/* from the CMS
 bun run build
 ```
+
+`cms:seed` uses Payload's Local API and creates the first admin user itself (`admin@bhoomiseva.local` / `changeme123` unless `SEED_ADMIN_EMAIL` / `SEED_ADMIN_PASSWORD` are set — **change the password**). It is idempotent: media already uploaded is reused.
 
 See [`cms/README.md`](./cms/README.md) for collections, localisation and deployment.
 

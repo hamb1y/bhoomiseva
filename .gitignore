@@ -32,6 +32,8 @@ cms/.env
 cms/media/
 cms/*.db
 cms/*.db-*
+cms/next-env.d.ts
+cms/payload-types.ts
 
 # Media pulled from the CMS into the Astro site. The committed originals live
 # in public/images; CMS-synced files are build artifacts.

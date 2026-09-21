@@ -55,9 +55,16 @@ const asLocalized = (item, key) =>
     : { en: item?.[key] ?? "", kn: item?.[key] ?? "" };
 
 async function downloadMedia(media) {
-  if (!media || typeof media !== "object" || !media.url) return undefined;
+  if (!media || typeof media !== "object") return undefined;
+  const name = media.filename || (media.url ? basename(media.url) : undefined);
+  if (!name) return undefined;
+
+  // Prefer the committed asset library when the CMS is holding the same file —
+  // keeps the repo self-contained and avoids duplicating media.
+  if (existsSync(join("public/images", name))) return `/images/${name}`;
+
+  if (!media.url) return undefined;
   await mkdir(MEDIA_DIR, { recursive: true });
-  const name = basename(media.filename || media.url);
   const dest = join(MEDIA_DIR, name);
   if (existsSync(dest)) return `/media/${name}`;
   const res = await fetch(media.url.startsWith("http") ? media.url : `${URL_BASE}${media.url}`);
@@ -72,7 +79,7 @@ async function writeModule(file, importType, exportName, tsType, value) {
     `// GENERATED FILE — produced by \`bun run content:pull\` from Payload CMS.\n` +
     `// Do not edit by hand; your changes will be overwritten.\n` +
     `import type { ${importType} } from "../types";\n\n` +
-    `export const ${exportName}: ${tsType} = ${JSON.stringify(value, null, 2)};\n`;
+    `export const ${exportName}: ${tsType} = ${JSON.stringify(value, null, 2)} as unknown as ${tsType};\n`;
   await writeFile(join(OUT, file), body);
   console.log(`  ✓ ${file}`);
 }
@@ -122,7 +129,7 @@ async function main() {
       if (src) gallery.push(src);
     }
     programs.push({
-      id: d.id,
+      id: d.key,
       accent: d.accent,
       kicker: loc(d.kicker),
       title: loc(d.title),
@@ -199,7 +206,7 @@ async function main() {
     join(OUT, "site.ts"),
     `// GENERATED FILE — produced by \`bun run content:pull\` from Payload CMS.\n` +
       `import type { Site } from "../types";\n\n` +
-      `export const site: Site | null = ${JSON.stringify(site, null, 2)};\n`,
+      `export const site: Site | null = ${JSON.stringify(site, null, 2)} as unknown as Site;\n`,
   );
   console.log("  ✓ site.ts");
 

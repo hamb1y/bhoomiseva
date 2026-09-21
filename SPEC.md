@@ -106,13 +106,15 @@ Encoded in AGENTS.md § Content and claims policy. Summary: keep documented work
 
 ## 9. Content pipeline
 
-| Command                | What it does                                                                                                           |
-| ---------------------- | ---------------------------------------------------------------------------------------------------------------------- |
-| `bun run cms:seed`     | Pushes the seed content in `src/data/seed/*` into a running Payload instance (media + collections + global). Run once. |
-| `bun run content:pull` | Reads Payload and writes `src/data/generated/*.ts` + downloads media to `public/media/`.                               |
-| `bun run build`        | Builds the static site from whatever `src/data/*` resolves to.                                                         |
+| Command                | What it does                                                                                                                                                                     |
+| ---------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `bun run cms:seed`     | Uses Payload's Local API to create the first admin user, upload the WebP library to `media`, and write all collections + the `site-settings` global in both locales. Idempotent. |
+| `bun run content:pull` | Reads Payload and writes `src/data/generated/*.ts`. Reuses files already present in `public/images/`; anything else is downloaded to `public/media/`.                            |
+| `bun run build`        | Builds the static site from whatever `src/data/*` resolves to.                                                                                                                   |
 
-The pull is a build step, not a runtime dependency. CI can either reach a deployed CMS or build from committed generated files.
+`src/data/generated/*` is a **build artifact and is intentionally empty in git**, so the committed site builds from the seed. Run `content:pull` when you want the build to reflect the CMS. The pull is a build step, not a runtime dependency.
+
+Verified end to end: seed → pull → build renders all 13 stories, 3 programmes, 4 people and the settings global from Payload.
 
 ## 10. Images
 

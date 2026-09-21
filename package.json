@@ -12,7 +12,7 @@
     "check": "astro check",
     "images": "bun run scripts/optimize-images.mjs",
     "content:pull": "bun run scripts/pull-content.mjs",
-    "cms:seed": "bun run scripts/seed-cms.mjs",
+    "cms:seed": "cd cms && bun run seed",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "astro": "astro"
