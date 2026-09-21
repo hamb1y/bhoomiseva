@@ -35,5 +35,5 @@ export const site = {
 };
 
 export function pick(field: Localized, lang: "en" | "kn"): string {
-  return typeof field === "string" ? field : (lang === "kn" ? field.kn : field.en) ?? field.en;
+  return typeof field === "string" ? field : ((lang === "kn" ? field.kn : field.en) ?? field.en);
 }

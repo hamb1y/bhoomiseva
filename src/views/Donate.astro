@@ -71,14 +71,12 @@ const labels = {
   <section class="steps">
     <div class="container">
       <ol>
-        {
-          steps.map((step, i) => (
-            <li>
-              <span class="n">{String(i + 1).padStart(2, "0")}</span>
-              <span>{step}</span>
-            </li>
-          ))
-        }
+        {steps.map((step, i) => (
+          <li>
+            <span class="n">{String(i + 1).padStart(2, "0")}</span>
+            <span>{step}</span>
+          </li>
+        ))}
       </ol>
     </div>
   </section>
@@ -101,17 +99,20 @@ const labels = {
 
   <section class="accountability">
     <div class="container">
-      <p class="eyebrow">{lx({ en: "How we handle your donation", kn: "ನಿಮ್ಮ ದೇಣಿಗೆಯನ್ನು ನಾವು ಹೇಗೆ ನೋಡಿಕೊಳ್ಳುತ್ತೇವೆ" }, lang)}</p>
+      <p class="eyebrow">
+        {lx(
+          { en: "How we handle your donation", kn: "ನಿಮ್ಮ ದೇಣಿಗೆಯನ್ನು ನಾವು ಹೇಗೆ ನೋಡಿಕೊಳ್ಳುತ್ತೇವೆ" },
+          lang,
+        )}
+      </p>
       <p class="measure">
-        {
-          lx(
-            {
-              en: "Bhoomi Seva is small and volunteer-run, so every contribution is recorded by name and purpose and reported back to the donor. We do not use a payment gateway — transfers go directly to the organisation's UPI account, which keeps more of your money in the work.",
-              kn: "ಭೂಮಿ ಸೇವಾ ಸಣ್ಣ ಸಂಸ್ಥೆ; ಸ್ವಯಂಸೇವಕರೇ ನಡೆಸುತ್ತಾರೆ. ಆದ್ದರಿಂದ ಪ್ರತಿ ಕೊಡುಗೆಯನ್ನೂ ಹೆಸರು ಮತ್ತು ಉದ್ದೇಶದೊಂದಿಗೆ ದಾಖಲಿಸಿ, ದಾನಿಗೆ ಮಾಹಿತಿ ನೀಡುತ್ತೇವೆ. ನಾವು ಪಾವತಿ ಗೇಟ್‌ವೇ ಬಳಸುವುದಿಲ್ಲ — ಹಣ ನೇರವಾಗಿ ಸಂಸ್ಥೆಯ ಯುಪಿಐ ಖಾತೆಗೆ ಬರುತ್ತದೆ; ಇದರಿಂದ ನಿಮ್ಮ ಹೆಚ್ಚು ಹಣ ಕೆಲಸಕ್ಕೇ ಸಿಗುತ್ತದೆ.",
-            },
-            lang,
-          )
-        }
+        {lx(
+          {
+            en: "Bhoomi Seva is small and volunteer-run, so every contribution is recorded by name and purpose and reported back to the donor. We do not use a payment gateway — transfers go directly to the organisation's UPI account, which keeps more of your money in the work.",
+            kn: "ಭೂಮಿ ಸೇವಾ ಸಣ್ಣ ಸಂಸ್ಥೆ; ಸ್ವಯಂಸೇವಕರೇ ನಡೆಸುತ್ತಾರೆ. ಆದ್ದರಿಂದ ಪ್ರತಿ ಕೊಡುಗೆಯನ್ನೂ ಹೆಸರು ಮತ್ತು ಉದ್ದೇಶದೊಂದಿಗೆ ದಾಖಲಿಸಿ, ದಾನಿಗೆ ಮಾಹಿತಿ ನೀಡುತ್ತೇವೆ. ನಾವು ಪಾವತಿ ಗೇಟ್‌ವೇ ಬಳಸುವುದಿಲ್ಲ — ಹಣ ನೇರವಾಗಿ ಸಂಸ್ಥೆಯ ಯುಪಿಐ ಖಾತೆಗೆ ಬರುತ್ತದೆ; ಇದರಿಂದ ನಿಮ್ಮ ಹೆಚ್ಚು ಹಣ ಕೆಲಸಕ್ಕೇ ಸಿಗುತ್ತದೆ.",
+          },
+          lang,
+        )}
       </p>
     </div>
   </section>

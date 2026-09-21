@@ -26,7 +26,10 @@ export const programs: Program[] = [
         },
       },
       {
-        title: { en: "Free online tutoring and mentoring", kn: "ಉಚಿತ ಆನ್‌ಲೈನ್ ಪಾಠ ಮತ್ತು ಮಾರ್ಗದರ್ಶನ" },
+        title: {
+          en: "Free online tutoring and mentoring",
+          kn: "ಉಚಿತ ಆನ್‌ಲೈನ್ ಪಾಠ ಮತ್ತು ಮಾರ್ಗದರ್ಶನ",
+        },
         body: {
           en: "Volunteers teach and mentor students online, including subject-specific help such as the Chemistry tuition one student received alongside fee support.",
           kn: "ಸ್ವಯಂಸೇವಕರು ಆನ್‌ಲೈನ್‌ನಲ್ಲಿ ಪಾಠ ಮಾಡುತ್ತಾರೆ ಮತ್ತು ಮಾರ್ಗದರ್ಶನ ನೀಡುತ್ತಾರೆ. ಒಬ್ಬ ವಿದ್ಯಾರ್ಥಿಗೆ ಶುಲ್ಕ ಸಹಾಯದ ಜೊತೆಗೆ ಸಿಗುವ ರಸಾಯನಶಾಸ್ತ್ರದ ಪಾಠದಂತಹ ವಿಷಯ ಆಧಾರಿತ ನೆರವೂ ಇದರಲ್ಲಿ ಸೇರಿದೆ.",
@@ -43,7 +46,10 @@ export const programs: Program[] = [
         },
       },
       {
-        title: { en: "Guidance on external scholarships", kn: "ಹೊರಗಿನ ವಿದ್ಯಾರ್ಥಿವೇತನಗಳ ಬಗ್ಗೆ ಮಾರ್ಗದರ್ಶನ" },
+        title: {
+          en: "Guidance on external scholarships",
+          kn: "ಹೊರಗಿನ ವಿದ್ಯಾರ್ಥಿವೇತನಗಳ ಬಗ್ಗೆ ಮಾರ್ಗದರ್ಶನ",
+        },
         body: {
           en: "We help eligible students find and apply for scholarships offered by other organisations, not only support from Bhoomi Seva itself.",
           kn: "ಭೂಮಿ ಸೇವಾದ ಬೆಂಬಲ ಮಾತ್ರವಲ್ಲದೆ, ಬೇರೆ ಸಂಸ್ಥೆಗಳು ನೀಡುವ ವಿದ್ಯಾರ್ಥಿವೇತನಗಳನ್ನು ಅರ್ಹ ವಿದ್ಯಾರ್ಥಿಗಳು ಹುಡುಕಿ ಅರ್ಜಿ ಹಾಕಲು ನೆರವಾಗುತ್ತೇವೆ.",
@@ -76,7 +82,10 @@ export const programs: Program[] = [
     },
     activities: [
       {
-        title: { en: "Natural and organic farming training", kn: "ನೈಸರ್ಗಿಕ ಮತ್ತು ಸಾವಯವ ಕೃಷಿ ತರಬೇತಿ" },
+        title: {
+          en: "Natural and organic farming training",
+          kn: "ನೈಸರ್ಗಿಕ ಮತ್ತು ಸಾವಯವ ಕೃಷಿ ತರಬೇತಿ",
+        },
         body: {
           en: "Awareness sessions and hands-on training on natural and organic methods, including why soil organic matter and soil biology matter.",
           kn: "ನೈಸರ್ಗಿಕ ಮತ್ತು ಸಾವಯವ ಪದ್ಧತಿಗಳ ಬಗ್ಗೆ ಅರಿವು ಮತ್ತು ಪ್ರಾಯೋಗಿಕ ತರಬೇತಿ — ಮಣ್ಣಿನ ಸಾವಯವ ಅಂಶ ಮತ್ತು ಮಣ್ಣಿನ ಜೀವಿಗಳ ಮಹತ್ವ ಸೇರಿದಂತೆ.",

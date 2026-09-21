@@ -49,7 +49,7 @@
   }
 </script>
 
-<svelte:window onkeydown={onkeydown} />
+<svelte:window {onkeydown} />
 
 <button
   class="toggle"
@@ -136,7 +136,9 @@
   nav > ul > li > a {
     display: block;
     font-family: var(--font-display);
-    font-variation-settings: "opsz" 40, "WONK" 1;
+    font-variation-settings:
+      "opsz" 40,
+      "WONK" 1;
     font-size: var(--step-2);
     text-decoration: none;
     padding: var(--s-4) 0;

@@ -5,7 +5,13 @@ import { useTranslations, localePath, lx } from "../i18n/utils";
 import { site } from "../data/site";
 import { programs } from "../data/programs";
 import LeadForm from "../components/LeadForm.svelte";
-import { GraduationCap, Sprout, Home as HomeIcon, HeartHandshake, ArrowUpRight } from "lucide-astro";
+import {
+  GraduationCap,
+  Sprout,
+  Home as HomeIcon,
+  HeartHandshake,
+  ArrowUpRight,
+} from "lucide-astro";
 
 interface Props {
   lang: Lang;
@@ -62,12 +68,22 @@ const fields = [
   { name: "phone", label: t("form.phone"), type: "tel" as const },
   { name: "location", label: t("form.location") },
   { name: "skills", label: t("form.skills"), type: "textarea" as const },
-  { name: "availability", label: t("form.availability"), type: "select" as const, options: availability },
+  {
+    name: "availability",
+    label: t("form.availability"),
+    type: "select" as const,
+    options: availability,
+  },
   { name: "interest", label: t("form.interest"), type: "select" as const, options: interest },
 ];
 ---
 
-<BaseLayout lang={lang} path="/get-involved" title={t("nav.involved")} description={t("involved.lede")}>
+<BaseLayout
+  lang={lang}
+  path="/get-involved"
+  title={t("nav.involved")}
+  description={t("involved.lede")}
+>
   <section class="head">
     <div class="container">
       <p class="eyebrow">{t("involved.kicker")}</p>
@@ -79,24 +95,22 @@ const fields = [
   <section class="ways">
     <div class="container">
       <ul class="list">
-        {
-          ways.map(({ title, body, Icon, href, cta }, i) => (
-            <li>
-              <span class="n">{String(i + 1).padStart(2, "0")}</span>
-              <div class="way-main">
-                <h2>
-                  <Icon size={20} stroke-width={1.7} aria-hidden="true" />
-                  {title}
-                </h2>
-                <p>{body}</p>
-                <a class="more" href={href}>
-                  {cta}
-                  <ArrowUpRight size={15} stroke-width={1.7} aria-hidden="true" />
-                </a>
-              </div>
-            </li>
-          ))
-        }
+        {ways.map(({ title, body, Icon, href, cta }, i) => (
+          <li>
+            <span class="n">{String(i + 1).padStart(2, "0")}</span>
+            <div class="way-main">
+              <h2>
+                <Icon size={20} stroke-width={1.7} aria-hidden="true" />
+                {title}
+              </h2>
+              <p>{body}</p>
+              <a class="more" href={href}>
+                {cta}
+                <ArrowUpRight size={15} stroke-width={1.7} aria-hidden="true" />
+              </a>
+            </div>
+          </li>
+        ))}
       </ul>
     </div>
   </section>
@@ -105,7 +119,9 @@ const fields = [
     <div class="container vol-grid">
       <div>
         <p class="eyebrow">{t("involved.volunteer.title")}</p>
-        <h2>{lx({ en: "Tell us how you can help", kn: "ನೀವು ಹೇಗೆ ಸಹಾಯ ಮಾಡಬಲ್ಲಿರಿ ಎಂದು ಹೇಳಿ" }, lang)}</h2>
+        <h2>
+          {lx({ en: "Tell us how you can help", kn: "ನೀವು ಹೇಗೆ ಸಹಾಯ ಮಾಡಬಲ್ಲಿರಿ ಎಂದು ಹೇಳಿ" }, lang)}
+        </h2>
         <p class="measure">
           {lx(
             {

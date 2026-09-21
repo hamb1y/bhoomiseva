@@ -20,8 +20,12 @@ const t = useTranslations(lang);
       {body && <p class="body">{body}</p>}
     </div>
     <div class="actions">
-      <a class="btn btn--primary" href={localePath("/donate", lang)}>{t("cta.donate")}</a>
-      <a class="btn btn--outline" href={localePath("/get-involved", lang)}>{t("cta.volunteer")}</a>
+      <a class="btn btn--primary" href={localePath("/donate", lang)}>
+        {t("cta.donate")}
+      </a>
+      <a class="btn btn--outline" href={localePath("/get-involved", lang)}>
+        {t("cta.volunteer")}
+      </a>
     </div>
   </div>
 </section>

@@ -58,17 +58,15 @@ const photoCaption = {
     <div class="container">
       <p class="eyebrow">{lx({ en: "What this includes", kn: "ಇದರಲ್ಲಿ ಸೇರಿರುವುದು" }, lang)}</p>
       <ul class="list">
-        {
-          program.activities.map((a, i) => (
-            <li>
-              <span class="n">{String(i + 1).padStart(2, "0")}</span>
-              <div>
-                <h2>{lx(a.title, lang)}</h2>
-                <p>{lx(a.body, lang)}</p>
-              </div>
-            </li>
-          ))
-        }
+        {program.activities.map((a, i) => (
+          <li>
+            <span class="n">{String(i + 1).padStart(2, "0")}</span>
+            <div>
+              <h2>{lx(a.title, lang)}</h2>
+              <p>{lx(a.body, lang)}</p>
+            </div>
+          </li>
+        ))}
       </ul>
     </div>
   </section>
@@ -80,7 +78,9 @@ const photoCaption = {
       </div>
       {related.length ? (
         <div class="entries-grid">
-          {related.map((s) => <StoryCard story={s} lang={lang} showProgram={false} />)}
+          {related.map((s) => (
+            <StoryCard story={s} lang={lang} showProgram={false} />
+          ))}
         </div>
       ) : (
         <p class="empty">{t("work.noStories")}</p>
@@ -92,15 +92,16 @@ const photoCaption = {
     <div class="container">
       <p class="eyebrow">{t("work.otherProgrammes")}</p>
       <div class="other-grid">
-        {
-          others.map((p) => (
-            <a class:list={["other", `accent-${p.accent}`]} href={localePath(programHref(p.id), lang)}>
-              <span class="kicker">{lx(p.kicker, lang)}</span>
-              <span class="title">{lx(p.title, lang)}</span>
-              <ArrowUpRight size={18} stroke-width={1.6} aria-hidden="true" />
-            </a>
-          ))
-        }
+        {others.map((p) => (
+          <a
+            class:list={["other", `accent-${p.accent}`]}
+            href={localePath(programHref(p.id), lang)}
+          >
+            <span class="kicker">{lx(p.kicker, lang)}</span>
+            <span class="title">{lx(p.title, lang)}</span>
+            <ArrowUpRight size={18} stroke-width={1.6} aria-hidden="true" />
+          </a>
+        ))}
       </div>
     </div>
   </section>
@@ -201,7 +202,9 @@ const photoCaption = {
     border: 1px solid var(--rule);
     border-radius: var(--r-3);
     background: var(--paper-raised);
-    transition: border-color var(--dur-2) var(--ease-out), transform var(--dur-2) var(--ease-out);
+    transition:
+      border-color var(--dur-2) var(--ease-out),
+      transform var(--dur-2) var(--ease-out);
   }
   .other:hover {
     border-color: var(--accent);

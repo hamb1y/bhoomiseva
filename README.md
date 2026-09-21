@@ -6,14 +6,14 @@ Built as a fast, accessible, bilingual (English + Kannada) static site.
 
 ## Stack
 
-| | |
-|---|---|
-| Framework | [Astro](https://astro.build) (static output, islands) |
-| Interactive UI | [Svelte 5](https://svelte.dev) |
-| Icons | [Lucide](https://lucide.dev) (`lucide-svelte`) |
-| Styling | Vanilla CSS + design tokens |
-| Fonts | Self-hosted via [Fontsource](https://fontsource.org) |
-| Runtime / package manager | [Bun](https://bun.sh) |
+|                           |                                                       |
+| ------------------------- | ----------------------------------------------------- |
+| Framework                 | [Astro](https://astro.build) (static output, islands) |
+| Interactive UI            | [Svelte 5](https://svelte.dev)                        |
+| Icons                     | [Lucide](https://lucide.dev) (`lucide-svelte`)        |
+| Styling                   | Vanilla CSS + design tokens                           |
+| Fonts                     | Self-hosted via [Fontsource](https://fontsource.org)  |
+| Runtime / package manager | [Bun](https://bun.sh)                                 |
 
 ## Quick start
 

@@ -36,19 +36,17 @@ const mobileLinks = nav.map((item) => ({
 
     <nav class="primary" aria-label={t("nav.menu")}>
       <ul>
-        {
-          desktop.map((item) => (
-            <li>
-              <a
-                href={localePath(item.href, lang)}
-                class:list={{ active: isActive(item.href) }}
-                aria-current={isActive(item.href) ? "page" : undefined}
-              >
-                {t(item.key)}
-              </a>
-            </li>
-          ))
-        }
+        {desktop.map((item) => (
+          <li>
+            <a
+              href={localePath(item.href, lang)}
+              class:list={{ active: isActive(item.href) }}
+              aria-current={isActive(item.href) ? "page" : undefined}
+            >
+              {t(item.key)}
+            </a>
+          </li>
+        ))}
       </ul>
     </nav>
 
@@ -56,7 +54,9 @@ const mobileLinks = nav.map((item) => ({
       <a class="lang" href={localePath(path, otherLang)} aria-label={t("lang.switchAria")}>
         {t("lang.switch")}
       </a>
-      <a class="btn btn--primary donate" href={localePath("/donate", lang)}>{t("cta.donate")}</a>
+      <a class="btn btn--primary donate" href={localePath("/donate", lang)}>
+        {t("cta.donate")}
+      </a>
       <div class="mobile">
         <MobileNav
           client:load
@@ -98,7 +98,10 @@ const mobileLinks = nav.map((item) => ({
   }
   .name {
     font-family: var(--font-display);
-    font-variation-settings: "opsz" 30, "WONK" 1, "SOFT" 40;
+    font-variation-settings:
+      "opsz" 30,
+      "WONK" 1,
+      "SOFT" 40;
     font-weight: 600;
     font-size: var(--step-1);
     letter-spacing: -0.01em;

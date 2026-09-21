@@ -22,8 +22,18 @@ const recent = sorted.filter((s) => s.slug !== featuredStory.slug).slice(0, 3);
 
 const modelPieces = [
   { label: { en: "Education fees for their daughter", kn: "ಮಗಳ ಶಿಕ್ಷಣ ಶುಲ್ಕ" } },
-  { label: { en: "A desi cow for the family farm and dairy income", kn: "ಕುಟುಂಬದ ಜಮೀನು ಮತ್ತು ಹಾಲಿನ ಆದಾಯಕ್ಕೆ ದೇಸಿ ಹಸು" } },
-  { label: { en: "A sewing machine for additional household income", kn: "ಹೆಚ್ಚುವರಿ ಕುಟುಂಬ ಆದಾಯಕ್ಕೆ ಹೊಲಿಗೆ ಯಂತ್ರ" } },
+  {
+    label: {
+      en: "A desi cow for the family farm and dairy income",
+      kn: "ಕುಟುಂಬದ ಜಮೀನು ಮತ್ತು ಹಾಲಿನ ಆದಾಯಕ್ಕೆ ದೇಸಿ ಹಸು",
+    },
+  },
+  {
+    label: {
+      en: "A sewing machine for additional household income",
+      kn: "ಹೆಚ್ಚುವರಿ ಕುಟುಂಬ ಆದಾಯಕ್ಕೆ ಹೊಲಿಗೆ ಯಂತ್ರ",
+    },
+  },
 ];
 
 const jsonLd = {
@@ -51,7 +61,9 @@ const jsonLd = {
             {t("cta.donate")}
             <ArrowRight size={17} stroke-width={1.7} aria-hidden="true" />
           </a>
-          <a class="btn btn--outline" href={localePath("/stories", lang)}>{t("cta.readStories")}</a>
+          <a class="btn btn--outline" href={localePath("/stories", lang)}>
+            {t("cta.readStories")}
+          </a>
         </div>
       </div>
 
@@ -89,36 +101,39 @@ const jsonLd = {
   <!-- Pillars -->
   <section class="pillars">
     <div class="container">
-      <SectionHeading
-        kicker={t("home.pillars.kicker")}
-        title={t("home.pillars.title")}
-      />
+      <SectionHeading kicker={t("home.pillars.kicker")} title={t("home.pillars.title")} />
       <div class="program-list">
-        {
-          programs.map((p, i) => (
-            <article class:list={["program", `accent-${p.accent}`]}>
-              <div class="program-index">
-                <span class="num">{String(i + 1).padStart(2, "0")}</span>
-                <span class="kicker">{lx(p.kicker, lang)}</span>
-              </div>
-              <div class="program-main">
-                <h3>
-                  <a href={localePath(`/work/${p.id === "farmers" ? "farmers-environment" : p.id}`, lang)}>
-                    {lx(p.title, lang)}
-                  </a>
-                </h3>
-                <p>{lx(p.summary, lang)}</p>
+        {programs.map((p, i) => (
+          <article class:list={["program", `accent-${p.accent}`]}>
+            <div class="program-index">
+              <span class="num">{String(i + 1).padStart(2, "0")}</span>
+              <span class="kicker">{lx(p.kicker, lang)}</span>
+            </div>
+            <div class="program-main">
+              <h3>
                 <a
-                  class="more"
-                  href={localePath(`/work/${p.id === "farmers" ? "farmers-environment" : p.id}`, lang)}
+                  href={localePath(
+                    `/work/${p.id === "farmers" ? "farmers-environment" : p.id}`,
+                    lang,
+                  )}
                 >
-                  {t("cta.learnMore")}
-                  <ArrowUpRight size={15} stroke-width={1.7} aria-hidden="true" />
+                  {lx(p.title, lang)}
                 </a>
-              </div>
-            </article>
-          ))
-        }
+              </h3>
+              <p>{lx(p.summary, lang)}</p>
+              <a
+                class="more"
+                href={localePath(
+                  `/work/${p.id === "farmers" ? "farmers-environment" : p.id}`,
+                  lang,
+                )}
+              >
+                {t("cta.learnMore")}
+                <ArrowUpRight size={15} stroke-width={1.7} aria-hidden="true" />
+              </a>
+            </div>
+          </article>
+        ))}
       </div>
     </div>
   </section>
@@ -142,14 +157,12 @@ const jsonLd = {
         <h2>{t("home.model.title")}</h2>
         <p class="model-body">{t("home.model.body")}</p>
         <ul class="pieces">
-          {
-            modelPieces.map((piece) => (
-              <li>
-                <Check size={17} stroke-width={2} aria-hidden="true" />
-                <span>{lx(piece.label, lang)}</span>
-              </li>
-            ))
-          }
+          {modelPieces.map((piece) => (
+            <li>
+              <Check size={17} stroke-width={2} aria-hidden="true" />
+              <span>{lx(piece.label, lang)}</span>
+            </li>
+          ))}
         </ul>
         <a class="btn btn--text" href={localePath(`/stories/${featuredStory.slug}`, lang)}>
           {t("common.readEntry")}
@@ -170,7 +183,9 @@ const jsonLd = {
         </a>
       </div>
       <div class="recent-grid">
-        {recent.map((s) => <StoryCard story={s} lang={lang} />)}
+        {recent.map((s) => (
+          <StoryCard story={s} lang={lang} />
+        ))}
       </div>
     </div>
   </section>

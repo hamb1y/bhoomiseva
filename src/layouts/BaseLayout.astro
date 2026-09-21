@@ -21,10 +21,12 @@ interface Props {
   path: string;
   title?: string;
   description?: string;
+  /** Absolute or root-relative social image. Omitted until real assets exist. */
+  image?: string;
   jsonLd?: Record<string, unknown>;
 }
 
-const { lang, path, title, description, jsonLd } = Astro.props;
+const { lang, path, title, description, image, jsonLd } = Astro.props;
 const t = useTranslations(lang);
 
 const base = Astro.site ?? new URL("https://bhoomiseva.org");
@@ -57,14 +59,20 @@ const pageDescription = description ?? pick(site.shortDescription, lang);
     <meta property="og:description" content={pageDescription} />
     <meta property="og:url" content={canonical} />
     <meta property="og:locale" content={lang === "kn" ? "kn_IN" : "en_IN"} />
-    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:card" content={image ? "summary_large_image" : "summary"} />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={pageDescription} />
+    {image && <meta property="og:image" content={new URL(image, base).href} />}
+    {image && <meta name="twitter:image" content={new URL(image, base).href} />}
     <meta name="theme-color" content="#f3ecdf" />
 
-    {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
+    {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)}></script>}
   </head>
 
   <body>
-    <a class="skip" href="#main">{t("a11y.skip")}</a>
+    <a class="skip" href="#main">
+      {t("a11y.skip")}
+    </a>
     <Header lang={lang} />
     <main id="main">
       <slot />

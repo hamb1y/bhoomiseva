@@ -61,13 +61,13 @@ All content is typed in `src/data/*`. Translatable fields use `Localized`.
 type Localized = string | { en: string; kn?: string };
 ```
 
-| File | Type | Key fields |
-|---|---|---|
-| `site.ts` | `Site` | name, contact, socials, payment (with `verified` flag), mission, vision, shortDescription |
+| File          | Type        | Key fields                                                                                            |
+| ------------- | ----------- | ----------------------------------------------------------------------------------------------------- |
+| `site.ts`     | `Site`      | name, contact, socials, payment (with `verified` flag), mission, vision, shortDescription             |
 | `programs.ts` | `Program[]` | id (`education` \| `farmers` \| `children`), accent, kicker, title, summary, activities[], storyIds[] |
-| `stories.ts` | `Story[]` | slug, date, location, program, title, summary, body[], people[], featured |
-| `team.ts` | `Person[]` | name, role, bio, order |
-| `updates.ts` | `Update[]` | date, title, program, location, kind (`event` \| `donation` \| `milestone`) |
+| `stories.ts`  | `Story[]`   | slug, date, location, program, title, summary, body[], people[], featured                             |
+| `team.ts`     | `Person[]`  | name, role, bio, order                                                                                |
+| `updates.ts`  | `Update[]`  | date, title, program, location, kind (`event` \| `donation` \| `milestone`)                           |
 
 ### Stories required at launch
 
@@ -86,14 +86,14 @@ Encoded in AGENTS.md § Content and claims policy. Summary: keep documented work
 
 ## 7. Interactivity (Svelte islands)
 
-| Island | Purpose |
-|---|---|
-| `MobileNav` | Accessible mobile menu toggle |
-| `StoryFilter` | Filter the stories archive by programme and year |
-| `DonateWidget` | Cause selector, amount suggestions, UPI copy-to-clipboard, QR, confirmation instructions |
-| `VolunteerForm` | Skills, availability, location, areas of interest + validation |
-| `ContactForm` | Name, email, message + validation |
-| `Lightbox` | Captioned photo viewer |
+| Island          | Purpose                                                                                  |
+| --------------- | ---------------------------------------------------------------------------------------- |
+| `MobileNav`     | Accessible mobile menu toggle                                                            |
+| `StoryFilter`   | Filter the stories archive by programme and year                                         |
+| `DonateWidget`  | Cause selector, amount suggestions, UPI copy-to-clipboard, QR, confirmation instructions |
+| `VolunteerForm` | Skills, availability, location, areas of interest + validation                           |
+| `ContactForm`   | Name, email, message + validation                                                        |
+| `Lightbox`      | Captioned photo viewer                                                                   |
 
 Rules: content is server-rendered and visible without JS; islands hydrate only when needed; forms have real loading, success and error states (no happy-path-only UI).
 

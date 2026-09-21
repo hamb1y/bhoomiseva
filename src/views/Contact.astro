@@ -53,15 +53,21 @@ const fields = [
         <ul class="ledger">
           <li>
             <span class="label">{t("contact.email")}</span>
-            <a class="value" href={`mailto:${site.email}`}>{site.email}</a>
+            <a class="value" href={`mailto:${site.email}`}>
+              {site.email}
+            </a>
           </li>
           <li>
             <span class="label">{t("contact.phone")}</span>
-            <a class="value" href={`tel:${site.phoneHref}`}>{site.phone}</a>
+            <a class="value" href={`tel:${site.phoneHref}`}>
+              {site.phone}
+            </a>
           </li>
           <li>
             <span class="label">WhatsApp</span>
-            <a class="value" href={site.whatsapp}>+91 9900103178</a>
+            <a class="value" href={site.whatsapp}>
+              +91 9900103178
+            </a>
           </li>
           <li>
             <span class="label">{t("contact.socials")}</span>

@@ -66,55 +66,47 @@ const jsonLd = {
       <p class="summary">{lx(story.summary, lang)}</p>
 
       <ul class="ledger meta">
-        {
-          rows.map((row) => (
-            <li>
-              <span class="label">{row.label}</span>
-              <span class="value">{row.value}</span>
-            </li>
-          ))
-        }
+        {rows.map((row) => (
+          <li>
+            <span class="label">{row.label}</span>
+            <span class="value">{row.value}</span>
+          </li>
+        ))}
       </ul>
 
-      <PhotoFrame
-        caption={lx(story.location, lang)}
-        ratio="16 / 9"
-        accent={program.accent}
-      />
+      <PhotoFrame caption={lx(story.location, lang)} ratio="16 / 9" accent={program.accent} />
 
       <div class="body">
-        {story.body.map((p) => <p>{lx(p, lang)}</p>)}
+        {story.body.map((p) => (
+          <p>{lx(p, lang)}</p>
+        ))}
       </div>
 
-      {
-        story.people?.length ? (
-          <div class="people">
-            <p class="eyebrow">{t("story.people")}</p>
-            <ul>
-              {story.people.map((person) => (
-                <li>{person}</li>
-              ))}
-            </ul>
-          </div>
-        ) : null
-      }
+      {story.people?.length ? (
+        <div class="people">
+          <p class="eyebrow">{t("story.people")}</p>
+          <ul>
+            {story.people.map((person) => (
+              <li>{person}</li>
+            ))}
+          </ul>
+        </div>
+      ) : null}
     </div>
   </article>
 
-  {
-    related.length ? (
-      <section class="related">
-        <div class="container">
-          <h2>{t("common.relatedStories")}</h2>
-          <div class="related-grid">
-            {related.map((s) => (
-              <StoryCard story={s} lang={lang} />
-            ))}
-          </div>
+  {related.length ? (
+    <section class="related">
+      <div class="container">
+        <h2>{t("common.relatedStories")}</h2>
+        <div class="related-grid">
+          {related.map((s) => (
+            <StoryCard story={s} lang={lang} />
+          ))}
         </div>
-      </section>
-    ) : null
-  }
+      </div>
+    </section>
+  ) : null}
 
   <CTABand
     lang={lang}
@@ -164,7 +156,9 @@ const jsonLd = {
   }
   .body p:first-child::first-letter {
     font-family: var(--font-display);
-    font-variation-settings: "opsz" 80, "WONK" 1;
+    font-variation-settings:
+      "opsz" 80,
+      "WONK" 1;
     font-size: 3.4em;
     line-height: 0.82;
     float: left;

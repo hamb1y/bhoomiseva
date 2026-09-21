@@ -47,9 +47,7 @@
   let honeypot = $state("");
 
   function composeMessage(): string {
-    const lines = fields
-      .filter((f) => values[f.name])
-      .map((f) => `${f.label}: ${values[f.name]}`);
+    const lines = fields.filter((f) => values[f.name]).map((f) => `${f.label}: ${values[f.name]}`);
     return `[${formName}]\n${lines.join("\n")}`;
   }
 
@@ -110,8 +108,7 @@
           placeholder={field.placeholder ?? ""}
           rows="5"
           required={field.required}
-          aria-invalid={errors[field.name] ? "true" : undefined}
-        ></textarea>
+          aria-invalid={errors[field.name] ? "true" : undefined}></textarea>
       {:else if field.type === "select"}
         <select
           id={`${formName}-${field.name}`}

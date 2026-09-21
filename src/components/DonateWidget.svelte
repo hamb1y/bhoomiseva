@@ -96,7 +96,13 @@
     <div class="amounts">
       {#each activeCause?.amounts ?? [] as a (a)}
         <label class="chip chip--amount" class:active={!custom && amount === a}>
-          <input type="radio" name="amount" value={a} bind:group={amount} onchange={() => (custom = "")} />
+          <input
+            type="radio"
+            name="amount"
+            value={a}
+            bind:group={amount}
+            onchange={() => (custom = "")}
+          />
           <span>{format(a)}</span>
         </label>
       {/each}
@@ -125,7 +131,9 @@
       <p class="label">{labels.upi}</p>
       <div class="upi">
         <code>{upi}</code>
-        <button type="button" class="copy" onclick={copyUpi}>{copied ? labels.copied : labels.copy}</button>
+        <button type="button" class="copy" onclick={copyUpi}
+          >{copied ? labels.copied : labels.copy}</button
+        >
       </div>
       <p class="alt-methods">
         {labels.otherMethods}: Paytm {paytm} · Google Pay {gpay}
@@ -182,7 +190,9 @@
     padding: 0.5em 1em;
     cursor: pointer;
     background: var(--paper-raised);
-    transition: border-color var(--dur-1) var(--ease-out), background var(--dur-1) var(--ease-out);
+    transition:
+      border-color var(--dur-1) var(--ease-out),
+      background var(--dur-1) var(--ease-out);
   }
   .chip:hover {
     border-color: var(--ink-3);

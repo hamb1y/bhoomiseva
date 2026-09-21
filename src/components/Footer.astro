@@ -32,7 +32,11 @@ const socials = [
       <div class="col">
         <h2 class="head">{t("footer.explore")}</h2>
         <ul>
-          {explore.map((l) => <li><a href={l.href}>{l.label}</a></li>)}
+          {explore.map((l) => (
+            <li>
+              <a href={l.href}>{l.label}</a>
+            </li>
+          ))}
         </ul>
       </div>
 
@@ -63,22 +67,22 @@ const socials = [
       <div class="col">
         <h2 class="head">{t("footer.follow")}</h2>
         <ul>
-          {
-            socials.map(({ label, href, Icon }) => (
-              <li>
-                <a href={href}>
-                  <Icon size={15} stroke-width={1.6} aria-hidden="true" />
-                  {label}
-                </a>
-              </li>
-            ))
-          }
+          {socials.map(({ label, href, Icon }) => (
+            <li>
+              <a href={href}>
+                <Icon size={15} stroke-width={1.6} aria-hidden="true" />
+                {label}
+              </a>
+            </li>
+          ))}
         </ul>
       </div>
     </div>
 
     <div class="foot">
-      <span>© {year} {t("site.name")}</span>
+      <span>
+        © {year} {t("site.name")}
+      </span>
       <span class="note">{t("footer.legal")}</span>
     </div>
   </div>
@@ -99,7 +103,10 @@ const socials = [
   }
   .tagline {
     font-family: var(--font-display);
-    font-variation-settings: "opsz" 60, "WONK" 1, "SOFT" 40;
+    font-variation-settings:
+      "opsz" 60,
+      "WONK" 1,
+      "SOFT" 40;
     font-weight: 560;
     font-size: var(--step-3);
     line-height: 1.1;

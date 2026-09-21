@@ -47,23 +47,25 @@ const countTemplate = t("stories.count");
           years={years}
           countTemplate={countTemplate}
         />
-        <p class="count" data-count>{countTemplate.replace("{n}", String(sorted.length))}</p>
+        <p class="count" data-count>
+          {countTemplate.replace("{n}", String(sorted.length))}
+        </p>
       </div>
 
       <ul class="story-list">
-        {
-          sorted.map((s) => {
-            const year = yearOf(s.date) ?? "none";
-            return (
-              <li data-story data-program={s.program} data-year={year}>
-                <StoryCard story={s} lang={lang} />
-              </li>
-            );
-          })
-        }
+        {sorted.map((s) => {
+          const year = yearOf(s.date) ?? "none";
+          return (
+            <li data-story data-program={s.program} data-year={year}>
+              <StoryCard story={s} lang={lang} />
+            </li>
+          );
+        })}
       </ul>
 
-      <p class="empty" data-empty hidden>{t("stories.empty")}</p>
+      <p class="empty" data-empty hidden>
+        {t("stories.empty")}
+      </p>
     </div>
   </section>
 

@@ -27,52 +27,48 @@ const t = useTranslations(lang);
 
   <div class="container">
     <ul class="register">
-      {
-        programs.map((p, i) => (
-          <li class:list={["row", `accent-${p.accent}`]}>
-            <div class="idx">
-              <span class="num">{String(i + 1).padStart(2, "0")}</span>
-              <span class="kicker">{lx(p.kicker, lang)}</span>
+      {programs.map((p, i) => (
+        <li class:list={["row", `accent-${p.accent}`]}>
+          <div class="idx">
+            <span class="num">{String(i + 1).padStart(2, "0")}</span>
+            <span class="kicker">{lx(p.kicker, lang)}</span>
+          </div>
+          <div class="main">
+            <h2>
+              <a href={localePath(programHref(p.id), lang)}>{lx(p.title, lang)}</a>
+            </h2>
+            <p>{lx(p.summary, lang)}</p>
+            <div class="facts">
+              <span>
+                {lx(
+                  {
+                    en: `${p.activities.length} areas of work`,
+                    kn: `${p.activities.length} ಕೆಲಸದ ಕ್ಷೇತ್ರಗಳು`,
+                  },
+                  lang,
+                )}
+              </span>
+              <span>·</span>
+              <span>
+                {lx(
+                  {
+                    en: `${storiesByProgram(p.id).length} documented entries`,
+                    kn: `${storiesByProgram(p.id).length} ದಾಖಲಿತ ನಮೂದುಗಳು`,
+                  },
+                  lang,
+                )}
+              </span>
             </div>
-            <div class="main">
-              <h2><a href={localePath(programHref(p.id), lang)}>{lx(p.title, lang)}</a></h2>
-              <p>{lx(p.summary, lang)}</p>
-              <div class="facts">
-                <span>
-                  {lx(
-                    {
-                      en: `${p.activities.length} areas of work`,
-                      kn: `${p.activities.length} ಕೆಲಸದ ಕ್ಷೇತ್ರಗಳು`,
-                    },
-                    lang,
-                  )}
-                </span>
-                <span>·</span>
-                <span>
-                  {lx(
-                    {
-                      en: `${storiesByProgram(p.id).length} documented entries`,
-                      kn: `${storiesByProgram(p.id).length} ದಾಖಲಿತ ನಮೂದುಗಳು`,
-                    },
-                    lang,
-                  )}
-                </span>
-              </div>
-              <a class="more" href={localePath(programHref(p.id), lang)}>
-                {t("cta.learnMore")}
-                <ArrowUpRight size={15} stroke-width={1.7} aria-hidden="true" />
-              </a>
-            </div>
-            <div class="thumb">
-              <PhotoFrame
-                caption={lx(p.kicker, lang)}
-                ratio="1 / 1"
-                accent={p.accent}
-              />
-            </div>
-          </li>
-        ))
-      }
+            <a class="more" href={localePath(programHref(p.id), lang)}>
+              {t("cta.learnMore")}
+              <ArrowUpRight size={15} stroke-width={1.7} aria-hidden="true" />
+            </a>
+          </div>
+          <div class="thumb">
+            <PhotoFrame caption={lx(p.kicker, lang)} ratio="1 / 1" accent={p.accent} />
+          </div>
+        </li>
+      ))}
     </ul>
   </div>
 

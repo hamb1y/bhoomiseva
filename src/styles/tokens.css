@@ -30,7 +30,8 @@
 
   /* ---- Type ---- */
   --font-display: "Fraunces Variable", "Noto Serif Kannada", Georgia, "Times New Roman", serif;
-  --font-body: "Instrument Sans Variable", "Noto Sans Kannada", system-ui, -apple-system, sans-serif;
+  --font-body:
+    "Instrument Sans Variable", "Noto Sans Kannada", system-ui, -apple-system, sans-serif;
   --font-mono: "IBM Plex Mono", "Noto Sans Kannada", ui-monospace, "SFMono-Regular", monospace;
 
   --step--1: clamp(0.83rem, 0.8rem + 0.15vw, 0.9rem);
