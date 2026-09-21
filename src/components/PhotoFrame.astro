@@ -12,6 +12,9 @@ interface Props {
   ratio?: string;
   /** Payload focal point (percent) — keeps the subject in frame when cropped. */
   focal?: { x: number; y: number };
+  /** Make the image open in the lightbox. */
+  lightbox?: boolean;
+  lightboxGroup?: string;
   accent?: Accent;
   class?: string;
 }
@@ -22,22 +25,44 @@ const {
   caption,
   ratio = "4 / 3",
   focal,
+  lightbox = false,
+  lightboxGroup,
   accent = "brand",
   class: className,
 } = Astro.props;
 
 const objectPosition = focal ? `${focal.x}% ${focal.y}%` : "50% 50%";
+const captionText = caption ?? alt;
 ---
 
 <figure class:list={["frame", `accent-${accent}`, className]}>
   {src ? (
-    <img
-      src={src}
-      alt={alt}
-      loading="lazy"
-      decoding="async"
-      style={`aspect-ratio:${ratio};object-fit:cover;object-position:${objectPosition};width:100%`}
-    />
+    lightbox ? (
+      <button
+        type="button"
+        class="trigger"
+        data-lightbox={src}
+        data-lightbox-group={lightboxGroup}
+        data-caption={captionText}
+        aria-label={`${alt || captionText} — open larger`}
+      >
+        <img
+          src={src}
+          alt={alt}
+          loading="lazy"
+          decoding="async"
+          style={`aspect-ratio:${ratio};object-fit:cover;object-position:${objectPosition};width:100%`}
+        />
+      </button>
+    ) : (
+      <img
+        src={src}
+        alt={alt}
+        loading="lazy"
+        decoding="async"
+        style={`aspect-ratio:${ratio};object-fit:cover;object-position:${objectPosition};width:100%`}
+      />
+    )
   ) : (
     <div
       class="empty"
@@ -61,6 +86,17 @@ const objectPosition = focal ? `${focal.x}% ${focal.y}%` : "50% 50%";
   }
   img {
     display: block;
+  }
+  .trigger {
+    display: block;
+    width: 100%;
+    padding: 0;
+    border: 0;
+    background: none;
+    cursor: zoom-in;
+  }
+  .trigger:hover img {
+    opacity: 0.94;
   }
   .empty {
     display: grid;

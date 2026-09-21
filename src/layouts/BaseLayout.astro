@@ -14,6 +14,8 @@ import { useTranslations, localePath } from "../i18n/utils";
 import { pick, site } from "../data/site";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+import Lightbox from "../components/Lightbox.svelte";
+import { existsSync } from "node:fs";
 
 interface Props {
   lang: Lang;
@@ -36,6 +38,7 @@ const knUrl = new URL(localePath(path, "kn").replace(/^\/kn$/, "/kn/"), base).hr
 
 const pageTitle = title ? `${title} — ${site.name}` : `${site.name} — ${t("site.tagline")}`;
 const pageDescription = description ?? pick(site.shortDescription, lang);
+const hasLogoAssets = existsSync("public/apple-touch-icon.png");
 ---
 
 <!doctype html>
@@ -45,6 +48,8 @@ const pageDescription = description ?? pick(site.shortDescription, lang);
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    {hasLogoAssets && <link rel="icon" type="image/png" href="/favicon.png" />}
+    {hasLogoAssets && <link rel="apple-touch-icon" href="/apple-touch-icon.png" />}
 
     <title>{pageTitle}</title>
     <meta name="description" content={pageDescription} />
@@ -78,5 +83,11 @@ const pageDescription = description ?? pick(site.shortDescription, lang);
       <slot />
     </main>
     <Footer lang={lang} />
+    <Lightbox
+      client:idle
+      closeLabel={t("lightbox.close")}
+      prevLabel={t("lightbox.prev")}
+      nextLabel={t("lightbox.next")}
+    />
   </body>
 </html>

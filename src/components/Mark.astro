@@ -1,16 +1,26 @@
 ---
+import { existsSync } from "node:fs";
+
 interface Props {
   size?: number;
 }
+
 const { size = 26 } = Astro.props;
+// The real logo, once `bun run logo` has produced it. Falls back to the
+// hand-drawn mark so the header never shows a broken image.
+const hasLogo = existsSync("public/images/logo-mark.webp");
 ---
 
-<span class="mark" aria-hidden="true" style={`--size:${size}px`}>
-  <svg viewBox="0 0 24 24" fill="none">
-    <circle cx="12" cy="12" r="11" fill="var(--clay)" />
-    <path d="M3 15.6h18" stroke="var(--paper)" stroke-width="1.3" />
-    <circle cx="12" cy="9.6" r="1.7" fill="var(--paper)" />
-  </svg>
+<span class="mark" aria-hidden={hasLogo ? undefined : "true"} style={`--size:${size}px`}>
+  {hasLogo ? (
+    <img src="/images/logo-mark.webp" alt="" width={size} height={size} loading="eager" />
+  ) : (
+    <svg viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="11" fill="var(--clay)" />
+      <path d="M3 15.6h18" stroke="var(--paper)" stroke-width="1.3" />
+      <circle cx="12" cy="9.6" r="1.7" fill="var(--paper)" />
+    </svg>
+  )}
 </span>
 
 <style>
@@ -20,8 +30,10 @@ const { size = 26 } = Astro.props;
     height: var(--size);
     flex: none;
   }
-  svg {
+  svg,
+  img {
     width: 100%;
     height: 100%;
+    object-fit: contain;
   }
 </style>

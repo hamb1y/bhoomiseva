@@ -55,6 +55,8 @@ const photoCaption = {
         alt={program.imageAlt ? lx(program.imageAlt, lang) : lx(program.title, lang)}
         caption={program.imageAlt ? lx(program.imageAlt, lang) : lx(photoCaption, lang)}
         focal={program.imageFocal}
+        lightbox
+        lightboxGroup={program.id}
         ratio="4 / 3"
         accent={program.accent}
       />
@@ -82,7 +84,16 @@ const photoCaption = {
       <div class="container">
         <div class="gallery-grid">
           {program.gallery.map((src) => (
-            <img src={src} alt="" loading="lazy" decoding="async" />
+            <button
+              type="button"
+              class="gallery-item"
+              data-lightbox={src}
+              data-lightbox-group={program.id}
+              data-caption={lx(program.title, lang)}
+              aria-label={`${lx(program.title, lang)} — open larger`}
+            >
+              <img src={src} alt={lx(program.title, lang)} loading="lazy" decoding="async" />
+            </button>
           ))}
         </div>
       </div>
@@ -197,6 +208,16 @@ const photoCaption = {
     border: 1px solid var(--rule);
     border-radius: var(--r-2);
     background: var(--paper-sunk);
+  }
+  .gallery-item {
+    display: block;
+    padding: 0;
+    border: 0;
+    background: none;
+    cursor: zoom-in;
+  }
+  .gallery-item:hover img {
+    opacity: 0.94;
   }
 
   .entries-head h2 {

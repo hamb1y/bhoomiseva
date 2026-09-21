@@ -4,6 +4,7 @@ import { useTranslations, localePath } from "../i18n/utils";
 import { nav, barePath } from "../lib/nav";
 import Mark from "./Mark.astro";
 import MobileNav from "./MobileNav.svelte";
+import NavMenu from "./NavMenu.svelte";
 
 interface Props {
   lang: Lang;
@@ -36,17 +37,31 @@ const mobileLinks = nav.map((item) => ({
 
     <nav class="primary" aria-label={t("nav.menu")}>
       <ul>
-        {desktop.map((item) => (
-          <li>
-            <a
+        {desktop.map((item) =>
+          item.children?.length ? (
+            <NavMenu
+              client:load
+              label={t(item.key)}
               href={localePath(item.href, lang)}
-              class:list={{ active: isActive(item.href) }}
-              aria-current={isActive(item.href) ? "page" : undefined}
-            >
-              {t(item.key)}
-            </a>
-          </li>
-        ))}
+              active={isActive(item.href)}
+              menuLabel={`${t(item.key)} — ${t("nav.menu")}`}
+              items={item.children.map((child) => ({
+                label: t(child.key),
+                href: localePath(child.href, lang),
+              }))}
+            />
+          ) : (
+            <li>
+              <a
+                href={localePath(item.href, lang)}
+                class:list={{ active: isActive(item.href) }}
+                aria-current={isActive(item.href) ? "page" : undefined}
+              >
+                {t(item.key)}
+              </a>
+            </li>
+          ),
+        )}
       </ul>
     </nav>
 

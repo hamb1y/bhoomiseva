@@ -11,6 +11,7 @@
     "preview": "astro preview",
     "check": "astro check",
     "images": "bun run scripts/optimize-images.mjs",
+    "logo": "bun run scripts/make-logo.mjs",
     "content:pull": "bun run scripts/pull-content.mjs",
     "cms:seed": "cd cms && bun run seed",
     "format": "prettier --write .",

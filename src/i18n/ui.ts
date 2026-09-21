@@ -30,6 +30,9 @@ export const ui = {
     "common.relatedStories": "Related stories",
 
     "a11y.skip": "Skip to content",
+    "lightbox.close": "Close image",
+    "lightbox.prev": "Previous image",
+    "lightbox.next": "Next image",
 
     "nav.work": "Our Work",
     "nav.work.education": "Education",
@@ -212,6 +215,9 @@ export const ui = {
     "common.relatedStories": "ಸಂಬಂಧಿತ ಕಥೆಗಳು",
 
     "a11y.skip": "ವಿಷಯಕ್ಕೆ ಹೋಗಿ",
+    "lightbox.close": "ಚಿತ್ರ ಮುಚ್ಚಿ",
+    "lightbox.prev": "ಹಿಂದಿನ ಚಿತ್ರ",
+    "lightbox.next": "ಮುಂದಿನ ಚಿತ್ರ",
 
     "nav.work": "ನಮ್ಮ ಕೆಲಸ",
     "nav.work.education": "ಶಿಕ್ಷಣ",

@@ -52,7 +52,8 @@ Living plan. Legend: `[ ]` todo · `[~]` in progress · `[x]` done.
 - [x] Story filter (programme + year, progressive enhancement)
 - [x] Motion limited to transitions; honours `prefers-reduced-motion`
 - [x] Empty photo frames everywhere an asset is missing
-- [~] Lightbox — **deferred**: no real photographs exist yet. Add with the first real image set.
+- [x] Lightbox — `Lightbox.svelte` island, triggered by real `<button>` elements so it is keyboard operable. Wired into programme galleries and story photos, with prev/next, captions, Escape and focus trapping.
+- [x] Desktop nav dropdown — `NavMenu.svelte` uses the `children` already present in `nav.ts`; click/hover to open, Escape and outside-click to close.
 
 ## Phase 5 — SEO, assets, infra ✅ / deferrals
 
@@ -123,3 +124,5 @@ Living plan. Legend: `[ ]` todo · `[~]` in progress · `[x]` done.
 - [ ] **Photo consent** — confirm the organisation is happy to republish the photos and named stories from the old site.
 - [ ] **Kannada review** — all Kannada copy, especially content entered into the CMS.
 - [ ] **CMS smoke test** — run `cms/` and confirm seeding + pull round-trips correctly.
+- [ ] **Logo assets** — the supplied logo needs to be saved to disk, then `bun run logo <path>` produces `logo.webp`, `logo-mark.webp`, `favicon.png` and `apple-touch-icon.png`. The header and favicon switch over automatically once the files exist.
+- [ ] **Astro `<Image>`** — still served from `public/`; moving to `src/assets` would add responsive `srcset` and AVIF.
