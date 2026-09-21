@@ -4,6 +4,12 @@ export const programs: Program[] = [
   {
     id: "education",
     accent: "education",
+    image: "/images/education-1.jpg",
+    imageAlt: {
+      en: "Students supported by the education programme",
+      kn: "ಶಿಕ್ಷಣ ಕಾರ್ಯಕ್ರಮದಿಂದ ಬೆಂಬಲಿತ ವಿದ್ಯಾರ್ಥಿಗಳು",
+    },
+    gallery: ["/images/education-2.jpg", "/images/jnv-coaching.jpg", "/images/vasanth.jpg"],
     kicker: { en: "Education", kn: "ಶಿಕ್ಷಣ" },
     title: { en: "Education", kn: "ಶಿಕ್ಷಣ" },
     summary: {
@@ -57,6 +63,12 @@ export const programs: Program[] = [
   {
     id: "farmers",
     accent: "farmers",
+    image: "/images/farmer-training.jpg",
+    imageAlt: {
+      en: "Farmer training in natural farming at Chirantana School, Kabbalu",
+      kn: "ಚಿರಂತನ ಶಾಲೆ, ಕಬ್ಬಾಳಿನಲ್ಲಿ ನೈಸರ್ಗಿಕ ಕೃಷಿ ರೈತ ತರಬೇತಿ",
+    },
+    gallery: ["/images/farmer-training-2.jpg", "/images/cow-1.jpg", "/images/cow-donation.jpg"],
     kicker: { en: "Farmers & Environment", kn: "ರೈತರು ಮತ್ತು ಪರಿಸರ" },
     title: { en: "Farmers & Environment", kn: "ರೈತರು ಮತ್ತು ಪರಿಸರ" },
     summary: {
@@ -104,6 +116,18 @@ export const programs: Program[] = [
   {
     id: "children",
     accent: "children",
+    image: "/images/children-3.jpg",
+    imageAlt: {
+      en: "Children supported at a partner children's home",
+      kn: "ಪಾಲುದಾರ ಮಕ್ಕಳ ಮನೆಯಲ್ಲಿ ಬೆಂಬಲಿತ ಮಕ್ಕಳು",
+    },
+    gallery: [
+      "/images/children-1.jpg",
+      "/images/children-2.jpg",
+      "/images/children-4.jpg",
+      "/images/children-5.jpg",
+      "/images/meal-sponsor.jpg",
+    ],
     kicker: { en: "Children & Community", kn: "ಮಕ್ಕಳು ಮತ್ತು ಸಮುದಾಯ" },
     title: {
       en: "Orphanage and children's home support",

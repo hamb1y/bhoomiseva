@@ -13,6 +13,11 @@ export const stories: Story[] = [
       kn: "ಕಬ್ಬಾಳು ಸಮೀಪದ ಕುರುಬರಹಳ್ಳಿ ದೊಡ್ಡಿ, ಕನಕಪುರ",
     },
     featured: true,
+    image: "/images/cow-donation.jpg",
+    imageAlt: {
+      en: "Cow donation at Kabbalu, Kanakapura",
+      kn: "ಕಬ್ಬಾಳು, ಕನಕಪುರದಲ್ಲಿ ಹಸು ದಾನ",
+    },
     title: {
       en: "A cow, a sewing machine and school fees for a daughter",
       kn: "ಒಂದು ಹಸು, ಒಂದು ಹೊಲಿಗೆ ಯಂತ್ರ ಮತ್ತು ಮಗಳ ಶಾಲಾ ಶುಲ್ಕ",
@@ -63,6 +68,8 @@ export const stories: Story[] = [
       kn: "2020–21 ಮತ್ತು 2021–22 ಶೈಕ್ಷಣಿಕ ವರ್ಷಗಳು",
     },
     location: { en: "Karnataka", kn: "ಕರ್ನಾಟಕ" },
+    image: "/images/vasanth.jpg",
+    imageAlt: { en: "Vasanth V. C.", kn: "ವಸಂತ್ ವಿ. ಸಿ." },
     title: {
       en: "School fees and a scholarship across two academic years",
       kn: "ಎರಡು ಶೈಕ್ಷಣಿಕ ವರ್ಷಗಳ ಶಾಲಾ ಶುಲ್ಕ ಮತ್ತು ವಿದ್ಯಾರ್ಥಿವೇತನ",
@@ -99,6 +106,11 @@ export const stories: Story[] = [
     program: "education",
     period: { en: "2021–22 academic year", kn: "2021–22 ಶೈಕ್ಷಣಿಕ ವರ್ಷ" },
     location: { en: "Karnataka", kn: "ಕರ್ನಾಟಕ" },
+    image: "/images/education-1.jpg",
+    imageAlt: {
+      en: "Students supported by the education programme",
+      kn: "ಶಿಕ್ಷಣ ಕಾರ್ಯಕ್ರಮದಿಂದ ಬೆಂಬಲಿತ ವಿದ್ಯಾರ್ಥಿಗಳು",
+    },
     title: {
       en: "Three years of scholarships and online Chemistry tuition",
       kn: "ಮೂರು ವರ್ಷಗಳ ವಿದ್ಯಾರ್ಥಿವೇತನ ಮತ್ತು ಆನ್‌ಲೈನ್ ರಸಾಯನಶಾಸ್ತ್ರ ಪಾಠ",
@@ -134,6 +146,11 @@ export const stories: Story[] = [
     slug: "sree-raksha-r",
     program: "education",
     location: { en: "Bengaluru", kn: "ಬೆಂಗಳೂರು" },
+    image: "/images/education-2.jpg",
+    imageAlt: {
+      en: "Students supported by the education programme",
+      kn: "ಶಿಕ್ಷಣ ಕಾರ್ಯಕ್ರಮದಿಂದ ಬೆಂಬಲಿತ ವಿದ್ಯಾರ್ಥಿಗಳು",
+    },
     title: {
       en: "Engineering fees facilitated through Rotary Club",
       kn: "ರೋಟರಿ ಕ್ಲಬ್ ಮೂಲಕ ಎಂಜಿನಿಯರಿಂಗ್ ಶುಲ್ಕಕ್ಕೆ ನೆರವು",
@@ -169,6 +186,11 @@ export const stories: Story[] = [
     slug: "ram",
     program: "education",
     location: { en: "Bengaluru", kn: "ಬೆಂಗಳೂರು" },
+    image: "/images/scholarship-distribution.jpg",
+    imageAlt: {
+      en: "Scholarship and school-fee distribution",
+      kn: "ವಿದ್ಯಾರ್ಥಿವೇತನ ಮತ್ತು ಶಾಲಾ ಶುಲ್ಕ ವಿತರಣೆ",
+    },
     title: {
       en: "Engineering fees and help finding an internship",
       kn: "ಎಂಜಿನಿಯರಿಂಗ್ ಶುಲ್ಕ ಮತ್ತು ಇಂಟರ್ನ್‌ಶಿಪ್ ಹುಡುಕಲು ನೆರವು",
@@ -201,9 +223,121 @@ export const stories: Story[] = [
     people: ["Ram"],
   },
   {
+    slug: "scholarship-distribution",
+    program: "education",
+    period: { en: "Recurring", kn: "ಮರುಕಳಿಸುವ" },
+    location: { en: "Karnataka", kn: "ಕರ್ನಾಟಕ" },
+    image: "/images/scholarship-distribution.jpg",
+    imageAlt: {
+      en: "Scholarship and school-fee distribution to students",
+      kn: "ವಿದ್ಯಾರ್ಥಿಗಳಿಗೆ ವಿದ್ಯಾರ್ಥಿವೇತನ ಮತ್ತು ಶಾಲಾ ಶುಲ್ಕ ವಿತರಣೆ",
+    },
+    title: {
+      en: "Scholarship and school-fee distribution to students",
+      kn: "ವಿದ್ಯಾರ್ಥಿಗಳಿಗೆ ವಿದ್ಯಾರ್ಥಿವೇತನ ಮತ್ತು ಶಾಲಾ ಶುಲ್ಕ ವಿತರಣೆ",
+    },
+    summary: {
+      en: "Bhoomi Seva has identified deserving merit students to whom it provides a scholarship every year, along with guidance for their studies.",
+      kn: "ಭೂಮಿ ಸೇವಾ ಅರ್ಹ ಮೆರಿಟ್ ವಿದ್ಯಾರ್ಥಿಗಳನ್ನು ಗುರುತಿಸಿದ್ದು, ಅವರಿಗೆ ಪ್ರತಿ ವರ್ಷ ವಿದ್ಯಾರ್ಥಿವೇತನ ಮತ್ತು ಓದಿನ ಮಾರ್ಗದರ್ಶನ ನೀಡುತ್ತದೆ.",
+    },
+    body: [
+      {
+        en: "Bhoomi Seva has identified deserving merit students to whom it provides a scholarship every year, and it also provides guidance with their studies.",
+        kn: "ಭೂಮಿ ಸೇವಾ ಅರ್ಹ ಮೆರಿಟ್ ವಿದ್ಯಾರ್ಥಿಗಳನ್ನು ಗುರುತಿಸಿ, ಅವರಿಗೆ ಪ್ರತಿ ವರ್ಷ ವಿದ್ಯಾರ್ಥಿವೇತನ ನೀಡುತ್ತದೆ; ಜೊತೆಗೆ ಓದಿನ ಮಾರ್ಗದರ್ಶನವನ್ನೂ ನೀಡುತ್ತದೆ.",
+      },
+      {
+        en: "Merit students with aggregate marks of 80% and above have been identified for scholarships. They are facilitated with the scholarship every year until they complete their education. The 80% figure is the benchmark used when students were identified; selection also takes individual circumstances into account.",
+        kn: "80% ಮತ್ತು ಅದಕ್ಕಿಂತ ಹೆಚ್ಚು ಒಟ್ಟು ಅಂಕ ಪಡೆದ ಮೆರಿಟ್ ವಿದ್ಯಾರ್ಥಿಗಳನ್ನು ವಿದ್ಯಾರ್ಥಿವೇತನಕ್ಕಾಗಿ ಗುರುತಿಸಲಾಗಿದೆ. ಅವರ ಶಿಕ್ಷಣ ಪೂರ್ಣಗೊಳ್ಳುವವರೆಗೆ ಪ್ರತಿ ವರ್ಷ ವಿದ್ಯಾರ್ಥಿವೇತನ ನೀಡಲಾಗುತ್ತದೆ. 80% ಎಂಬುದು ಗುರುತಿಸುವಾಗ ಬಳಸಿದ ಮಾನದಂಡ; ಆಯ್ಕೆಯಲ್ಲಿ ವೈಯಕ್ತಿಕ ಪರಿಸ್ಥಿತಿಯನ್ನೂ ಪರಿಗಣಿಸಲಾಗುತ್ತದೆ.",
+      },
+      {
+        en: "Scholarships and school fees are distributed to students as a continuing activity rather than a single event, and the same students may be supported for several years in a row.",
+        kn: "ವಿದ್ಯಾರ್ಥಿವೇತನ ಮತ್ತು ಶಾಲಾ ಶುಲ್ಕವನ್ನು ಒಂದೇ ಕಾರ್ಯಕ್ರಮವಾಗಿ ಅಲ್ಲ, ಮುಂದುವರಿಯುವ ಚಟುವಟಿಕೆಯಾಗಿ ವಿದ್ಯಾರ್ಥಿಗಳಿಗೆ ನೀಡಲಾಗುತ್ತದೆ; ಒಬ್ಬರೇ ವಿದ್ಯಾರ್ಥಿಗಳಿಗೆ ಸತತವಾಗಿ ಹಲವು ವರ್ಷ ಬೆಂಬಲ ಸಿಗಬಹುದು.",
+      },
+      {
+        en: "The education programme also includes free online coaching for Class 10, coaching for the JNV Class 6 entrance examination, and guidance toward scholarship opportunities offered by other organisations.",
+        kn: "ಶಿಕ್ಷಣ ಕಾರ್ಯಕ್ರಮದಲ್ಲಿ 10ನೇ ತರಗತಿಗೆ ಉಚಿತ ಆನ್‌ಲೈನ್ ತರಬೇತಿ, ಜೆಎನ್‌ವಿ 6ನೇ ತರಗತಿ ಪ್ರವೇಶ ಪರೀಕ್ಷೆಯ ತರಬೇತಿ, ಮತ್ತು ಬೇರೆ ಸಂಸ್ಥೆಗಳ ವಿದ್ಯಾರ್ಥಿವೇತನ ಅವಕಾಶಗಳ ಬಗ್ಗೆ ಮಾರ್ಗದರ್ಶನವೂ ಸೇರಿವೆ.",
+      },
+    ],
+  },
+  {
+    slug: "jnv-class-6-coaching",
+    program: "education",
+    period: { en: "Ongoing", kn: "ನಡೆಯುತ್ತಿರುವ" },
+    location: { en: "Online", kn: "ಆನ್‌ಲೈನ್" },
+    image: "/images/jnv-coaching.jpg",
+    imageAlt: {
+      en: "Jawahar Navodaya Vidyalaya entrance coaching",
+      kn: "ಜವಾಹರ್ ನವೋದಯ ವಿದ್ಯಾಲಯ ಪ್ರವೇಶ ತರಬೇತಿ",
+    },
+    title: {
+      en: "Free online coaching for the JNV Class 6 entrance exam",
+      kn: "ಜೆಎನ್‌ವಿ 6ನೇ ತರಗತಿ ಪ್ರವೇಶ ಪರೀಕ್ಷೆಗೆ ಉಚಿತ ಆನ್‌ಲೈನ್ ತರಬೇತಿ",
+    },
+    summary: {
+      en: "Bhoomi Seva coaches Class 5 students for the Jawahar Navodaya Vidyalaya Class 6 admission test, online and open to all schools.",
+      kn: "ಭೂಮಿ ಸೇವಾ, ಜವಾಹರ್ ನವೋದಯ ವಿದ್ಯಾಲಯದ 6ನೇ ತರಗತಿ ಪ್ರವೇಶ ಪರೀಕ್ಷೆಗೆ 5ನೇ ತರಗತಿ ವಿದ್ಯಾರ್ಥಿಗಳಿಗೆ ಆನ್‌ಲೈನ್‌ನಲ್ಲಿ ತರಬೇತಿ ನೀಡುತ್ತದೆ; ಎಲ್ಲಾ ಶಾಲೆಗಳಿಗೂ ಮುಕ್ತ.",
+    },
+    body: [
+      {
+        en: "Bhoomi Seva coaches selected students from Class 5 for the Jawahar Navodaya Vidyalaya (JNV) Class 6 admission test.",
+        kn: "ಜವಾಹರ್ ನವೋದಯ ವಿದ್ಯಾಲಯದ (ಜೆಎನ್‌ವಿ) 6ನೇ ತರಗತಿ ಪ್ರವೇಶ ಪರೀಕ್ಷೆಗೆ, ಭೂಮಿ ಸೇವಾ 5ನೇ ತರಗತಿಯ ಆಯ್ದ ವಿದ್ಯಾರ್ಥಿಗಳಿಗೆ ತರಬೇತಿ ನೀಡುತ್ತದೆ.",
+      },
+      {
+        en: "The coaching is open for all students of Class 5 from all schools, not only to students already supported by Bhoomi Seva.",
+        kn: "ಈ ತರಬೇತಿ ಭೂಮಿ ಸೇವಾ ಈಗಾಗಲೇ ಬೆಂಬಲಿಸುತ್ತಿರುವ ವಿದ್ಯಾರ್ಥಿಗಳಿಗೆ ಮಾತ್ರವಲ್ಲ; ಎಲ್ಲಾ ಶಾಲೆಗಳ 5ನೇ ತರಗತಿಯ ಎಲ್ಲಾ ವಿದ್ಯಾರ್ಥಿಗಳಿಗೂ ಮುಕ್ತ.",
+      },
+      {
+        en: "Classes are held online, so students can attend from their own towns.",
+        kn: "ತರಗತಿಗಳು ಆನ್‌ಲೈನ್‌ನಲ್ಲಿ ನಡೆಯುವುದರಿಂದ, ವಿದ್ಯಾರ್ಥಿಗಳು ತಮ್ಮ ಊರಿನಿಂದಲೇ ಭಾಗವಹಿಸಬಹುದು.",
+      },
+      {
+        en: "JNV entrance coaching is one of the education programme's activities, alongside scholarships for merit students, free online coaching for Class 10, and guidance toward external scholarship opportunities.",
+        kn: "ಜೆಎನ್‌ವಿ ಪ್ರವೇಶ ತರಬೇತಿ, ಶಿಕ್ಷಣ ಕಾರ್ಯಕ್ರಮದ ಒಂದು ಚಟುವಟಿಕೆ — ಮೆರಿಟ್ ವಿದ್ಯಾರ್ಥಿಗಳಿಗೆ ವಿದ್ಯಾರ್ಥಿವೇತನ, 10ನೇ ತರಗತಿಗೆ ಉಚಿತ ಆನ್‌ಲೈನ್ ತರಬೇತಿ, ಮತ್ತು ಹೊರಗಿನ ವಿದ್ಯಾರ್ಥಿವೇತನಗಳ ಮಾರ್ಗದರ್ಶನದ ಜೊತೆಗೆ.",
+      },
+    ],
+  },
+  {
+    slug: "class-10-online-coaching",
+    program: "education",
+    period: { en: "Ongoing", kn: "ನಡೆಯುತ್ತಿರುವ" },
+    location: { en: "Online", kn: "ಆನ್‌ಲೈನ್" },
+    image: "/images/education-2.jpg",
+    imageAlt: {
+      en: "Online coaching session",
+      kn: "ಆನ್‌ಲೈನ್ ತರಬೇತಿ ಅವಧಿ",
+    },
+    title: {
+      en: "Online coaching for Class 10 students",
+      kn: "10ನೇ ತರಗತಿ ವಿದ್ಯಾರ್ಥಿಗಳಿಗೆ ಆನ್‌ಲೈನ್ ತರಬೇತಿ",
+    },
+    summary: {
+      en: "Bhoomi Seva began online coaching for a rural girl student in Class 10 and intends to continue the programme.",
+      kn: "ಭೂಮಿ ಸೇವಾ, 10ನೇ ತರಗತಿಯ ಓರ್ವ ಗ್ರಾಮೀಣ ವಿದ್ಯಾರ್ಥಿನಿಗೆ ಆನ್‌ಲೈನ್ ತರಬೇತಿ ಪ್ರಾರಂಭಿಸಿ, ಅದನ್ನು ಮುಂದುವರಿಸುವ ಉದ್ದೇಶ ಹೊಂದಿದೆ.",
+    },
+    body: [
+      {
+        en: "Bhoomi Seva began online coaching for a rural girl student studying in Class 10. The organisation intends to continue the coaching going forward.",
+        kn: "ಭೂಮಿ ಸೇವಾ, 10ನೇ ತರಗತಿಯಲ್ಲಿದ್ದ ಓರ್ವ ಗ್ರಾಮೀಣ ವಿದ್ಯಾರ್ಥಿನಿಗೆ ಆನ್‌ಲೈನ್ ತರಬೇತಿ ಪ್ರಾರಂಭಿಸಿತು. ಈ ತರಬೇತಿಯನ್ನು ಮುಂದುವರಿಸುವ ಉದ್ದೇಶ ಸಂಸ್ಥೆಯದ್ದು.",
+      },
+      {
+        en: "For one student, Bhoomi Seva also arranged online tuition specifically for Chemistry, in addition to paying her school fees.",
+        kn: "ಓರ್ವ ವಿದ್ಯಾರ್ಥಿನಿಗೆ, ಶಾಲಾ ಶುಲ್ಕ ಭರಿಸುವುದರ ಜೊತೆಗೆ, ರಸಾಯನಶಾಸ್ತ್ರಕ್ಕೆ ಪ್ರತ್ಯೇಕವಾಗಿ ಆನ್‌ಲೈನ್ ಪಾಠವನ್ನೂ ಭೂಮಿ ಸೇವಾ ವ್ಯವಸ್ಥೆ ಮಾಡಿತು.",
+      },
+      {
+        en: "Coaching is meant to add to fee support rather than replace it: the education programme provides scholarships and fees, coaching, JNV entrance preparation and guidance toward external scholarships together.",
+        kn: "ತರಬೇತಿ, ಶುಲ್ಕ ಸಹಾಯಕ್ಕೆ ಪೂರಕವೇ ಹೊರತು ಅದರ ಬದಲಿಯಲ್ಲ: ಶಿಕ್ಷಣ ಕಾರ್ಯಕ್ರಮ ವಿದ್ಯಾರ್ಥಿವೇತನ ಮತ್ತು ಶುಲ್ಕ, ತರಬೇತಿ, ಜೆಎನ್‌ವಿ ಪ್ರವೇಶ ತಯಾರಿ, ಮತ್ತು ಹೊರಗಿನ ವಿದ್ಯಾರ್ಥಿವೇತನಗಳ ಮಾರ್ಗದರ್ಶನ — ಎಲ್ಲವನ್ನೂ ಒಟ್ಟಿಗೆ ನೀಡುತ್ತದೆ.",
+      },
+    ],
+  },
+  {
     slug: "sri-krishnashraya",
     program: "children",
     location: { en: "Karnataka", kn: "ಕರ್ನಾಟಕ" },
+    image: "/images/children-1.jpg",
+    imageAlt: {
+      en: "Children at a partner children's home",
+      kn: "ಪಾಲುದಾರ ಮಕ್ಕಳ ಮನೆಯ ಮಕ್ಕಳು",
+    },
     title: {
       en: "Support for the children at Sri Krishnashraya Educational Trust",
       kn: "ಶ್ರೀ ಕೃಷ್ಣಾಶ್ರಯ ಎಜುಕೇಷನಲ್ ಟ್ರಸ್ಟ್‌ನ ಮಕ್ಕಳಿಗೆ ಬೆಂಬಲ",
@@ -220,10 +354,6 @@ export const stories: Story[] = [
       {
         en: "Support has covered the children's basic needs: food, education, clothing, medical needs and other emergency requirements. It has been given as needs came up over time, rather than as one isolated donation.",
         kn: "ಈ ಬೆಂಬಲ ಮಕ್ಕಳ ಮೂಲಭೂತ ಅಗತ್ಯಗಳನ್ನು ಒಳಗೊಂಡಿದೆ: ಆಹಾರ, ಶಿಕ್ಷಣ, ಬಟ್ಟೆ, ವೈದ್ಯಕೀಯ ಅಗತ್ಯಗಳು ಮತ್ತು ಇತರ ತುರ್ತು ಅಗತ್ಯಗಳು. ಇದು ಒಂದೇ ದಾನವಾಗಿ ಅಲ್ಲ, ಕಾಲಕಾಲಕ್ಕೆ ಅಗತ್ಯ ಬಂದಂತೆ ನೀಡಲಾಗಿದೆ.",
-      },
-      {
-        en: "A meal for the children was sponsored at the home during Balipadyami. A meal can be sponsored for around ₹6,000.",
-        kn: "ಬಲಿಪಾಡ್ಯಮಿಯಂದು ಈ ಮನೆಯ ಮಕ್ಕಳಿಗೆ ಒಂದು ಊಟವನ್ನು ಪ್ರಾಯೋಜಿಸಲಾಗಿತ್ತು. ಒಂದು ಊಟವನ್ನು ಸುಮಾರು ₹6,000ಕ್ಕೆ ಪ್ರಾಯೋಜಿಸಬಹುದು.",
       },
       {
         en: "The trust's founder and managing trustee has written to thank Lakshmi and all the supporters of Bhoomi Seva.",
@@ -243,12 +373,54 @@ export const stories: Story[] = [
     people: ["Pushparaj"],
   },
   {
+    slug: "balipadyami-meal",
+    program: "children",
+    period: { en: "Balipadyami", kn: "ಬಲಿಪಾಡ್ಯಮಿ" },
+    location: { en: "Sri Krishnashraya", kn: "ಶ್ರೀ ಕೃಷ್ಣಾಶ್ರಯ" },
+    image: "/images/meal-sponsor.jpg",
+    imageAlt: {
+      en: "A sponsored meal at Sri Krishnashraya orphanage",
+      kn: "ಶ್ರೀ ಕೃಷ್ಣಾಶ್ರಯ ಅನಾಥಾಶ್ರಮದಲ್ಲಿ ಪ್ರಾಯೋಜಿಸಿದ ಊಟ",
+    },
+    title: {
+      en: "A meal sponsored for the children during Balipadyami",
+      kn: "ಬಲಿಪಾಡ್ಯಮಿಯಂದು ಮಕ್ಕಳಿಗೆ ಪ್ರಾಯೋಜಿಸಿದ ಊಟ",
+    },
+    summary: {
+      en: "Bhoomi Seva sponsored a meal for the children at Sri Krishnashraya Educational Trust during Balipadyami.",
+      kn: "ಬಲಿಪಾಡ್ಯಮಿಯಂದು ಭೂಮಿ ಸೇವಾ, ಶ್ರೀ ಕೃಷ್ಣಾಶ್ರಯ ಎಜುಕೇಷನಲ್ ಟ್ರಸ್ಟ್‌ನ ಮಕ್ಕಳಿಗೆ ಒಂದು ಊಟವನ್ನು ಪ್ರಾಯೋಜಿಸಿತು.",
+    },
+    body: [
+      {
+        en: "During Balipadyami, the day after Deepavali, Bhoomi Seva sponsored a meal for the children at Sri Krishnashraya Educational Trust.",
+        kn: "ದೀಪಾವಳಿಯ ಮರುದಿನದ ಬಲಿಪಾಡ್ಯಮಿಯಂದು, ಶ್ರೀ ಕೃಷ್ಣಾಶ್ರಯ ಎಜುಕೇಷನಲ್ ಟ್ರಸ್ಟ್‌ನ ಮಕ್ಕಳಿಗೆ ಭೂಮಿ ಸೇವಾ ಒಂದು ಊಟವನ್ನು ಪ್ರಾಯೋಜಿಸಿತು.",
+      },
+      {
+        en: "A meal for the children of a home can be sponsored for around ₹6,000.",
+        kn: "ಒಂದು ಮನೆಯ ಮಕ್ಕಳಿಗೆ ಊಟವನ್ನು ಸುಮಾರು ₹6,000ಕ್ಕೆ ಪ್ರಾಯೋಜಿಸಬಹುದು.",
+      },
+      {
+        en: "Meals are one of several kinds of support Bhoomi Seva provides to children's homes, along with school and college fees, laptops, bicycles, clothing, stationery, furniture, LPG cylinders, and medical and emergency help.",
+        kn: "ಊಟ, ಭೂಮಿ ಸೇವಾ ಮಕ್ಕಳ ಮನೆಗಳಿಗೆ ನೀಡುವ ಹಲವು ರೀತಿಯ ಬೆಂಬಲಗಳಲ್ಲಿ ಒಂದು — ಶಾಲಾ ಮತ್ತು ಕಾಲೇಜು ಶುಲ್ಕ, ಲ್ಯಾಪ್‌ಟಾಪ್, ಸೈಕಲ್, ಬಟ್ಟೆ, ಲೇಖನ ಸಾಮಗ್ರಿ, ಪೀಠೋಪಕರಣ, ಎಲ್‌ಪಿಜಿ ಸಿಲಿಂಡರ್, ಮತ್ತು ವೈದ್ಯಕೀಯ ಹಾಗೂ ತುರ್ತು ಸಹಾಯದ ಜೊತೆಗೆ.",
+      },
+      {
+        en: "If you would like to sponsor a meal, contact Bhoomi Seva and add “OrphanageMeal” in the payment comment.",
+        kn: "ನೀವು ಊಟವನ್ನು ಪ್ರಾಯೋಜಿಸಲು ಬಯಸಿದರೆ, ಭೂಮಿ ಸೇವಾವನ್ನು ಸಂಪರ್ಕಿಸಿ ಮತ್ತು ಪಾವತಿ ಕಾಮೆಂಟ್‌ನಲ್ಲಿ “OrphanageMeal” ಎಂದು ಸೇರಿಸಿ.",
+      },
+    ],
+  },
+  {
     slug: "farmer-training-kabbalu-2023",
     program: "farmers",
     date: "2023-07",
     location: {
       en: "Chirantana School, Kabbalu, Kanakapura",
       kn: "ಚಿರಂತನ ಶಾಲೆ, ಕಬ್ಬಾಳು, ಕನಕಪುರ",
+    },
+    image: "/images/farmer-training.jpg",
+    imageAlt: {
+      en: "Farmer training at Chirantana School, Kabbalu",
+      kn: "ಚಿರಂತನ ಶಾಲೆ, ಕಬ್ಬಾಳಿನಲ್ಲಿ ರೈತ ತರಬೇತಿ",
     },
     title: {
       en: "Farmer training in natural farming at Chirantana School, Kabbalu",
@@ -286,11 +458,53 @@ export const stories: Story[] = [
     ],
   },
   {
+    slug: "desi-cow-donation",
+    program: "farmers",
+    period: { en: "Ongoing", kn: "ನಡೆಯುತ್ತಿರುವ" },
+    location: { en: "Kanakapura and Mandya", kn: "ಕನಕಪುರ ಮತ್ತು ಮಂಡ್ಯ" },
+    image: "/images/cow-1.jpg",
+    imageAlt: {
+      en: "Desi cows kept for natural farming",
+      kn: "ನೈಸರ್ಗಿಕ ಕೃಷಿಗಾಗಿ ಸಾಕಿದ ದೇಸಿ ಹಸುಗಳು",
+    },
+    title: {
+      en: "Why Bhoomi Seva donates desi cows",
+      kn: "ಭೂಮಿ ಸೇವಾ ದೇಸಿ ಹಸುಗಳನ್ನು ಏಕೆ ದಾನ ಮಾಡುತ್ತದೆ",
+    },
+    summary: {
+      en: "Desi cows are required for natural farming. Bhoomi Seva donates them to marginal farmers who do not have one, giving the family both farm inputs and milk income.",
+      kn: "ನೈಸರ್ಗಿಕ ಕೃಷಿಗೆ ದೇಸಿ ಹಸು ಅಗತ್ಯ. ಹಸು ಇಲ್ಲದ ಸಣ್ಣ ರೈತರಿಗೆ ಭೂಮಿ ಸೇವಾ ದೇಸಿ ಹಸುಗಳನ್ನು ದಾನ ಮಾಡಿ, ಕುಟುಂಬಕ್ಕೆ ಕೃಷಿ ಒಳಸುರಿಗಳು ಮತ್ತು ಹಾಲಿನ ಆದಾಯ ಎರಡನ್ನೂ ನೀಡುತ್ತದೆ.",
+    },
+    body: [
+      {
+        en: "Desi cows are required by farmers in order to pursue natural farming on their farms. Bhoomi Seva therefore helps marginal farmers who do not have a desi cow by donating one.",
+        kn: "ತಮ್ಮ ಜಮೀನಿನಲ್ಲಿ ನೈಸರ್ಗಿಕ ಕೃಷಿ ಮಾಡಲು ರೈತರಿಗೆ ದೇಸಿ ಹಸು ಅಗತ್ಯ. ಆದ್ದರಿಂದ ದೇಸಿ ಹಸು ಇಲ್ಲದ ಸಣ್ಣ ರೈತರಿಗೆ ಭೂಮಿ ಸೇವಾ ಒಂದು ಹಸುವನ್ನು ದಾನ ಮಾಡಿ ನೆರವಾಗುತ್ತದೆ.",
+      },
+      {
+        en: "Cow dung and cow urine are used in farm-made natural-farming preparations and composting. A cow therefore gives the household a recurring on-farm input rather than something that has to be bought every season.",
+        kn: "ಸೆಗಣಿ ಮತ್ತು ಗಂಜಲ, ಜಮೀನಿನಲ್ಲೇ ತಯಾರಿಸುವ ನೈಸರ್ಗಿಕ ಕೃಷಿ ತಯಾರಿಕೆಗಳಲ್ಲಿ ಮತ್ತು ಗೊಬ್ಬರ ತಯಾರಿಯಲ್ಲಿ ಬಳಕೆಯಾಗುತ್ತವೆ. ಆದ್ದರಿಂದ ಹಸು, ಪ್ರತಿ ಹಂಗಾಮಿನಲ್ಲೂ ಖರೀದಿಸಬೇಕಾದ ವಸ್ತುವಿನ ಬದಲು, ಕುಟುಂಬಕ್ಕೆ ಮರುಕಳಿಸುವ ಜಮೀನಿನ ಒಳಸುರಿಗಳನ್ನು ನೀಡುತ್ತದೆ.",
+      },
+      {
+        en: "It also helps farmers earn additional income by selling milk.",
+        kn: "ಜೊತೆಗೆ, ಹಾಲು ಮಾರುವ ಮೂಲಕ ರೈತರಿಗೆ ಹೆಚ್ಚುವರಿ ಆದಾಯ ಗಳಿಸಲು ಸಹಾಯ ಮಾಡುತ್ತದೆ.",
+      },
+      {
+        en: "Two cases are recorded on this site: a desi cow given to Sunita Kumara Swamy's family at Kurubarahalli Doddi near Kabbalu, and a cow identified for Sannamma, a woman farmer in Kothhathi Hobli, Mandya district, whose outcome is not confirmed in our records.",
+        kn: "ಈ ತಾಣದಲ್ಲಿ ಎರಡು ಪ್ರಕರಣಗಳು ದಾಖಲಾಗಿವೆ: ಕಬ್ಬಾಳು ಸಮೀಪದ ಕುರುಬರಹಳ್ಳಿ ದೊಡ್ಡಿಯ ಸುನೀತ ಕುಮಾರ ಸ್ವಾಮಿ ಅವರ ಕುಟುಂಬಕ್ಕೆ ನೀಡಿದ ದೇಸಿ ಹಸು, ಮತ್ತು ಮಂಡ್ಯ ಜಿಲ್ಲೆಯ ಕೊತ್ತತ್ತಿ ಹೋಬಳಿಯ ಮಹಿಳಾ ರೈತೆ ಸನ್ನಮ್ಮ ಅವರಿಗೆ ಗುರುತಿಸಿದ ಹಸು — ಇದರ ಫಲಿತಾಂಶ ನಮ್ಮ ದಾಖಲೆಯಲ್ಲಿ ದೃಢವಾಗಿಲ್ಲ.",
+      },
+    ],
+  },
+  {
     slug: "sannamma-mandya",
     program: "farmers",
     location: {
       en: "Kothhathi Hobli, Mandya district",
       kn: "ಕೊತ್ತತ್ತಿ ಹೋಬಳಿ, ಮಂಡ್ಯ ಜಿಲ್ಲೆ",
+    },
+    image: "/images/cow-2.jpg",
+    imageAlt: {
+      en: "Desi cows kept for natural farming",
+      kn: "ನೈಸರ್ಗಿಕ ಕೃಷಿಗಾಗಿ ಸಾಕಿದ ದೇಸಿ ಹಸುಗಳು",
     },
     title: {
       en: "A desi cow identified for a woman farmer in Mandya",

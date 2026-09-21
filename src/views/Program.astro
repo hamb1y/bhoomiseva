@@ -50,7 +50,13 @@ const photoCaption = {
         <h1>{lx(program.title, lang)}</h1>
         <p class="lede measure">{lx(program.lede, lang)}</p>
       </div>
-      <PhotoFrame caption={lx(photoCaption, lang)} ratio="4 / 3" accent={program.accent} />
+      <PhotoFrame
+        src={program.image}
+        alt={program.imageAlt ? lx(program.imageAlt, lang) : lx(program.title, lang)}
+        caption={program.imageAlt ? lx(program.imageAlt, lang) : lx(photoCaption, lang)}
+        ratio="4 / 3"
+        accent={program.accent}
+      />
     </div>
   </section>
 
@@ -70,6 +76,19 @@ const photoCaption = {
       </ul>
     </div>
   </section>
+
+  {program.gallery?.length ? (
+    <section class="gallery">
+      <div class="container">
+        <p class="eyebrow">{lx({ en: "Photos", kn: "ಫೋಟೋಗಳು" }, lang)}</p>
+        <div class="gallery-grid">
+          {program.gallery.map((src) => (
+            <img src={src} alt="" loading="lazy" decoding="async" />
+          ))}
+        </div>
+      </div>
+    </section>
+  ) : null}
 
   <section class="entries">
     <div class="container">
@@ -168,6 +187,25 @@ const photoCaption = {
     margin: 0;
     color: var(--ink-2);
     max-width: 60ch;
+  }
+
+  .gallery .container {
+    border-top: 1px solid var(--rule);
+    padding-top: var(--s-6);
+  }
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+    gap: var(--s-4);
+    margin-top: var(--s-5);
+  }
+  .gallery-grid img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border: 1px solid var(--rule);
+    border-radius: var(--r-2);
+    background: var(--paper-sunk);
   }
 
   .entries-head h2 {

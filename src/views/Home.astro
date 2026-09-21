@@ -53,10 +53,17 @@ const jsonLd = {
 
       <aside class="feature">
         <PhotoFrame
-          caption={lx(
-            { en: "Photo to be added: Sunita's family", kn: "ಫೋಟೋ ಸೇರಿಸಬೇಕಿದೆ: ಸುನೀತ ಅವರ ಕುಟುಂಬ" },
-            lang,
-          )}
+          src={featuredStory.image}
+          alt={
+            featuredStory.imageAlt
+              ? lx(featuredStory.imageAlt, lang)
+              : lx(featuredStory.title, lang)
+          }
+          caption={
+            featuredStory.imageAlt
+              ? lx(featuredStory.imageAlt, lang)
+              : lx(featuredStory.location, lang)
+          }
           ratio="4 / 3"
           accent="farmers"
         />
@@ -110,8 +117,16 @@ const jsonLd = {
   <section class="model">
     <div class="container model-grid">
       <PhotoFrame
+        src="/images/cow-2.jpg"
+        alt={lx(
+          { en: "Desi cows kept for natural farming", kn: "ನೈಸರ್ಗಿಕ ಕೃಷಿಗಾಗಿ ಸಾಕಿದ ದೇಸಿ ಹಸುಗಳು" },
+          lang,
+        )}
         caption={lx(
-          { en: "Photo to be added: the family's farm", kn: "ಫೋಟೋ ಸೇರಿಸಬೇಕಿದೆ: ಕುಟುಂಬದ ಜಮೀನು" },
+          {
+            en: "Desi cows are required for natural farming",
+            kn: "ನೈಸರ್ಗಿಕ ಕೃಷಿಗೆ ದೇಸಿ ಹಸು ಅಗತ್ಯ",
+          },
           lang,
         )}
         ratio="3 / 4"

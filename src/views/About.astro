@@ -63,6 +63,15 @@ const t = useTranslations(lang);
           <li>
             <span class="n">{String(i + 1).padStart(2, "0")}</span>
             <div class="who">
+              {person.photo && (
+                <img
+                  class="avatar"
+                  src={person.photo}
+                  alt={person.name}
+                  loading="lazy"
+                  decoding="async"
+                />
+              )}
               <h3>{person.name}</h3>
               <p class="role">{lx(person.role, lang)}</p>
             </div>
@@ -80,7 +89,9 @@ const t = useTranslations(lang);
         <p class="measure">{t("about.community.body")}</p>
       </div>
       <PhotoFrame
-        caption={lx({ en: "Volunteers and supporters", kn: "ಸ್ವಯಂಸೇವಕರು ಮತ್ತು ಬೆಂಬಲಿಗರು" }, lang)}
+        src="/images/team-volunteers.jpg"
+        alt={lx({ en: "Bhoomi Seva volunteers", kn: "ಭೂಮಿ ಸೇವಾ ಸ್ವಯಂಸೇವಕರು" }, lang)}
+        caption={lx({ en: "Bhoomi Seva volunteers", kn: "ಭೂಮಿ ಸೇವಾ ಸ್ವಯಂಸೇವಕರು" }, lang)}
         ratio="4 / 3"
         accent="children"
       />
@@ -198,6 +209,15 @@ const t = useTranslations(lang);
     font-family: var(--font-mono);
     font-size: var(--step--1);
     color: var(--clay);
+  }
+  .avatar {
+    width: 4.5rem;
+    height: 4.5rem;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 1px solid var(--rule);
+    margin-bottom: var(--s-3);
+    background: var(--paper-sunk);
   }
   .who h3 {
     font-size: var(--step-1);

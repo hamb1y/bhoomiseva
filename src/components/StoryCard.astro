@@ -26,6 +26,15 @@ const meta = story.date
 ---
 
 <article class:list={["card", `accent-${program?.accent ?? "brand"}`, { lead }]}>
+  {story.image && (
+    <img
+      class="thumb"
+      src={story.image}
+      alt={story.imageAlt ? lx(story.imageAlt, lang) : ""}
+      loading="lazy"
+      decoding="async"
+    />
+  )}
   <div class="meta">
     <span class="date">{meta ?? t("common.dateUnknown")}</span>
     {showProgram && <span class="prog">{lx(program?.kicker ?? "", lang)}</span>}
@@ -51,6 +60,14 @@ const meta = story.date
     padding-block: var(--s-5);
     border-top: 1px solid var(--rule);
     position: relative;
+  }
+  .thumb {
+    width: 100%;
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+    border: 1px solid var(--rule);
+    border-radius: var(--r-2);
+    background: var(--paper-sunk);
   }
   .meta {
     display: flex;

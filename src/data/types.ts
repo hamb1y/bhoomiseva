@@ -16,6 +16,9 @@ export interface Program {
   summary: Localized;
   lede: Localized;
   activities: Activity[];
+  image?: string;
+  imageAlt?: Localized;
+  gallery?: string[];
 }
 
 export interface Story {
@@ -29,6 +32,8 @@ export interface Story {
   title: Localized;
   summary: Localized;
   body: Localized[];
+  image?: string;
+  imageAlt?: Localized;
   /** A first-person testimonial or letter reproduced from the source. */
   quote?: {
     text: Localized;
@@ -42,6 +47,7 @@ export interface Person {
   name: string;
   role: Localized;
   bio: Localized;
+  photo?: string;
 }
 
 export interface Update {

@@ -3,6 +3,7 @@ import type { Person } from "./types";
 export const team: Person[] = [
   {
     name: "Lakshmi C. Karle",
+    photo: "/images/team-lakshmi.jpg",
     role: { en: "Volunteer / Adviser", kn: "ಸ್ವಯಂಸೇವಕಿ / ಸಲಹೆಗಾರ್ತಿ" },
     bio: {
       en: "Lakshmi is a social worker focused on rural development, children's education, natural farming, agroforestry and environmental restoration. Alongside her social work, she has around two decades of experience as a software engineer in the IT industry.",
@@ -11,6 +12,7 @@ export const team: Person[] = [
   },
   {
     name: "Shubhashri C. G.",
+    photo: "/images/team-shubhashri.jpg",
     role: { en: "Consultant, Education", kn: "ಸಲಹೆಗಾರ್ತಿ, ಶಿಕ್ಷಣ" },
     bio: {
       en: "Shubhashri teaches, coaches and mentors students through Bhoomi Seva and helps coordinate initiatives. She previously spent around a decade as a software engineer and now works in graphic design, web development and online tutoring.",
@@ -19,6 +21,7 @@ export const team: Person[] = [
   },
   {
     name: "Manukumar V.",
+    photo: "/images/team-manukumar.jpg",
     role: {
       en: "Consultant, Organic Farming & Agroforestry",
       kn: "ಸಲಹೆಗಾರ, ಸಾವಯವ ಕೃಷಿ ಮತ್ತು ಕೃಷಿ ಅರಣ್ಯ",
@@ -30,6 +33,7 @@ export const team: Person[] = [
   },
   {
     name: "Shashidhara A. S.",
+    photo: "/images/team-shashidhara.jpg",
     role: {
       en: "Consultant, Farmer Connect & Social Media",
       kn: "ಸಲಹೆಗಾರ, ರೈತ ಸಂಪರ್ಕ ಮತ್ತು ಸಾಮಾಜಿಕ ಜಾಲತಾಣ",
