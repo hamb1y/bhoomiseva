@@ -1,9 +1,8 @@
 import type { Story } from "./types";
 
 /**
- * Every entry is dated or given an explicit period where the source documents
- * one. `sannamma-mandya` is deliberately labelled outcome-unknown — do not
- * present it as a completed donation.
+ * Dated where the source documents a date. `sannamma-mandya` is deliberately
+ * labelled outcome-unknown — do not present it as a completed donation.
  */
 export const stories: Story[] = [
   {
@@ -15,32 +14,46 @@ export const stories: Story[] = [
     },
     featured: true,
     title: {
-      en: "A cow, a sewing machine, and school fees for a daughter",
-      kn: "ಒಂದು ಹಸು, ಒಂದು ಹೊಲಿಗೆ ಯಂತ್ರ, ಮತ್ತು ಮಗಳ ಶಾಲಾ ಶುಲ್ಕ",
+      en: "A cow, a sewing machine and school fees for a daughter",
+      kn: "ಒಂದು ಹಸು, ಒಂದು ಹೊಲಿಗೆ ಯಂತ್ರ ಮತ್ತು ಮಗಳ ಶಾಲಾ ಶುಲ್ಕ",
     },
     summary: {
-      en: "A farming family from Kurubarahalli Doddi near Kabbalu received three kinds of support at once: education assistance for their daughter, a desi cow for the family's farm and dairy income, and a sewing machine for additional household income.",
-      kn: "ಕಬ್ಬಾಳು ಸಮೀಪದ ಕುರುಬರಹಳ್ಳಿ ದೊಡ್ಡಿಯ ಒಂದು ಕೃಷಿ ಕುಟುಂಬಕ್ಕೆ ಒಂದೇ ಸಲ ಮೂರು ರೀತಿಯ ಬೆಂಬಲ ಸಿಕ್ಕಿತು: ಮಗಳ ಶಿಕ್ಷಣಕ್ಕೆ ಸಹಾಯ, ಕುಟುಂಬದ ಜಮೀನು ಮತ್ತು ಹಾಲಿನ ಆದಾಯಕ್ಕೆ ಒಂದು ದೇಸಿ ಹಸು, ಮತ್ತು ಹೆಚ್ಚುವರಿ ಕುಟುಂಬ ಆದಾಯಕ್ಕೆ ಒಂದು ಹೊಲಿಗೆ ಯಂತ್ರ.",
+      en: "Sunita Kumara Swamy's family at Kurubarahalli Doddi near Kabbalu received education support for their daughter, a desi cow, and a sewing machine — three kinds of help at once.",
+      kn: "ಕಬ್ಬಾಳು ಸಮೀಪದ ಕುರುಬರಹಳ್ಳಿ ದೊಡ್ಡಿಯ ಸುನೀತ ಕುಮಾರ ಸ್ವಾಮಿ ಅವರ ಕುಟುಂಬಕ್ಕೆ ಮಗಳ ಶಿಕ್ಷಣಕ್ಕೆ ನೆರವು, ಒಂದು ದೇಸಿ ಹಸು, ಮತ್ತು ಒಂದು ಹೊಲಿಗೆ ಯಂತ್ರ ಸಿಕ್ಕಿತು — ಒಂದೇ ಸಲ ಮೂರು ರೀತಿಯ ಸಹಾಯ.",
     },
     body: [
       {
-        en: "The family lives at Kurubarahalli Doddi near Kabbalu and earns income by keeping cows and selling milk to a dairy. Like many small farming households, they were going through a difficult stretch, and their daughter's school fees were becoming hard to manage.",
-        kn: "ಈ ಕುಟುಂಬ ಕಬ್ಬಾಳು ಸಮೀಪದ ಕುರುಬರಹಳ್ಳಿ ದೊಡ್ಡಿಯಲ್ಲಿ ವಾಸಿಸುತ್ತದೆ. ಹಸು ಸಾಕಿ ಹಾಲನ್ನು ಡೇರಿಗೆ ಮಾರುವುದೇ ಇವರ ಆದಾಯದ ದಾರಿ. ಬಹಳಷ್ಟು ಸಣ್ಣ ರೈತ ಕುಟುಂಬಗಳಂತೆ ಇವರಿಗೂ ಆರ್ಥಿಕ ಸಂಕಷ್ಟದ ಸಮಯ ಬಂದಿತ್ತು; ಮಗಳ ಶಾಲಾ ಶುಲ್ಕ ಭರಿಸುವುದು ಕಷ್ಟವಾಗಿತ್ತು.",
+        en: "Sunita Kumara Swamy's family lives at Kurubarahalli Doddi near Kabbalu, and earns its living by keeping cows and selling milk to the dairy. Like many small farming households, they were going through a difficult stretch, and paying the school fees for their daughter had become hard to manage.",
+        kn: "ಸುನೀತ ಕುಮಾರ ಸ್ವಾಮಿ ಅವರ ಕುಟುಂಬ ಕಬ್ಬಾಳು ಸಮೀಪದ ಕುರುಬರಹಳ್ಳಿ ದೊಡ್ಡಿಯಲ್ಲಿ ವಾಸಿಸುತ್ತದೆ. ಹಸು ಸಾಕಿ ಹಾಲನ್ನು ಡೇರಿಗೆ ಮಾರುವುದೇ ಅವರ ಜೀವನೋಪಾಯ. ಬಹಳಷ್ಟು ಸಣ್ಣ ರೈತ ಕುಟುಂಬಗಳಂತೆ ಇವರಿಗೂ ಆರ್ಥಿಕ ಸಂಕಷ್ಟದ ಸಮಯ ಬಂದಿತ್ತು; ಮಗಳ ಶಾಲಾ ಶುಲ್ಕ ಭರಿಸುವುದು ಕಷ್ಟವಾಗಿತ್ತು.",
       },
       {
-        en: "Bhoomi Seva helped with the daughter's education, and the family also received a desi cow. The cow supports the household's farming and dairy income, and it is the same kind of animal we donate to farmers who want to move toward natural farming.",
-        kn: "ಮಗಳ ಶಿಕ್ಷಣಕ್ಕೆ ಭೂಮಿ ಸೇವಾ ನೆರವಾಯಿತು; ಜೊತೆಗೆ ಕುಟುಂಬಕ್ಕೆ ಒಂದು ದೇಸಿ ಹಸುವನ್ನೂ ನೀಡಲಾಯಿತು. ಆ ಹಸು ಕುಟುಂಬದ ಕೃಷಿ ಮತ್ತು ಹಾಲಿನ ಆದಾಯಕ್ಕೆ ಆಧಾರ. ನೈಸರ್ಗಿಕ ಕೃಷಿಯತ್ತ ಸಾಗಲು ಇಚ್ಛಿಸುವ ರೈತರಿಗೆ ನಾವು ನೀಡುವ ಅದೇ ಬಗೆಯ ಪ್ರಾಣಿ ಇದು.",
+        en: "Bhoomi Seva gave their daughter a scholarship and helped with the fee payment, so that her education could continue. Scholarship support of this kind is meant to continue every year until the student finishes their education.",
+        kn: "ಮಗಳಿಗೆ ಭೂಮಿ ಸೇವಾ ವಿದ್ಯಾರ್ಥಿವೇತನ ನೀಡಿತು ಮತ್ತು ಶುಲ್ಕ ಭರಿಸಲು ನೆರವಾಯಿತು, ಇದರಿಂದ ಅವಳ ಓದು ಮುಂದುವರಿಯಿತು. ಈ ರೀತಿಯ ವಿದ್ಯಾರ್ಥಿವೇತನವು ವಿದ್ಯಾರ್ಥಿ ತನ್ನ ಶಿಕ್ಷಣ ಪೂರ್ಣಗೊಳಿಸುವವರೆಗೆ ಪ್ರತಿ ವರ್ಷ ಮುಂದುವರಿಯಬೇಕು ಎಂಬುದು ಉದ್ದೇಶ.",
       },
       {
-        en: "Alongside the cow, the family received a sewing machine, so that the household had a second, steadier source of income alongside milk.",
-        kn: "ಹಸುವಿನ ಜೊತೆಗೆ ಕುಟುಂಬಕ್ಕೆ ಒಂದು ಹೊಲಿಗೆ ಯಂತ್ರವನ್ನೂ ನೀಡಲಾಯಿತು — ಹಾಲಿನ ಆದಾಯದ ಜೊತೆಗೆ ಇನ್ನೊಂದು ಸ್ಥಿರ ಆದಾಯದ ದಾರಿ ಸಿಗಲಿ ಎಂದು.",
+        en: "The family also received a desi cow. A cow is not only a source of milk income: for a household moving toward natural farming, cow dung and cow urine are the farm-made inputs that natural-farming preparations are built on. This is why Bhoomi Seva donates desi cows to marginal farmers who do not have one.",
+        kn: "ಕುಟುಂಬಕ್ಕೆ ಒಂದು ದೇಸಿ ಹಸುವನ್ನೂ ನೀಡಲಾಯಿತು. ಹಸು ಕೇವಲ ಹಾಲಿನ ಆದಾಯದ ಮೂಲವಲ್ಲ: ನೈಸರ್ಗಿಕ ಕೃಷಿಯತ್ತ ಸಾಗುವ ಕುಟುಂಬಕ್ಕೆ ಸೆಗಣಿ ಮತ್ತು ಗಂಜಲ, ಜಮೀನಿನಲ್ಲೇ ತಯಾರಿಸುವ ನೈಸರ್ಗಿಕ ಕೃಷಿ ತಯಾರಿಕೆಗಳ ಮೂಲ ವಸ್ತುಗಳು. ಆದ್ದರಿಂದಲೇ ಹಸು ಇಲ್ಲದ ಸಣ್ಣ ರೈತರಿಗೆ ಭೂಮಿ ಸೇವಾ ದೇಸಿ ಹಸುಗಳನ್ನು ದಾನ ಮಾಡುತ್ತದೆ.",
       },
       {
-        en: "This is the clearest picture of how we try to work. Rather than treating a family as a single-programme case, we respond to what is actually needed: here, a child's schooling, an animal, and a means of earning.",
-        kn: "ನಾವು ಹೇಗೆ ಕೆಲಸ ಮಾಡಲು ಪ್ರಯತ್ನಿಸುತ್ತೇವೆ ಎಂಬುದಕ್ಕೆ ಇದು ಸ್ಪಷ್ಟ ಉದಾಹರಣೆ. ಒಂದು ಕುಟುಂಬವನ್ನು ಒಂದೇ ಕಾರ್ಯಕ್ರಮದ ಪ್ರಕರಣವೆಂದು ನೋಡುವ ಬದಲು, ಅವರಿಗೆ ನಿಜವಾಗಿ ಏನು ಬೇಕೋ ಅದಕ್ಕೆ ಸ್ಪಂದಿಸುತ್ತೇವೆ: ಇಲ್ಲಿ ಮಗುವಿನ ಶಿಕ್ಷಣ, ಒಂದು ಪ್ರಾಣಿ, ಮತ್ತು ಆದಾಯದ ಒಂದು ದಾರಿ.",
+        en: "Alongside the cow, the family received a sewing machine, so that the household would have a second source of income and not depend on milk sales alone.",
+        kn: "ಹಸುವಿನ ಜೊತೆಗೆ ಕುಟುಂಬಕ್ಕೆ ಒಂದು ಹೊಲಿಗೆ ಯಂತ್ರವನ್ನೂ ನೀಡಲಾಯಿತು — ಹಾಲಿನ ಮಾರಾಟವೊಂದನ್ನೇ ಅವಲಂಬಿಸದೆ ಇನ್ನೊಂದು ಆದಾಯದ ದಾರಿ ಸಿಗಲಿ ಎಂದು.",
+      },
+      {
+        en: "The family later wrote a letter in Kannada about what the support meant to them. It is reproduced in full below, and it is probably a truer account of this work than anything we could write ourselves.",
+        kn: "ಈ ಬೆಂಬಲ ತಮಗೆ ಏನು ಎಂದು ಕುಟುಂಬದವರು ನಂತರ ಕನ್ನಡದಲ್ಲಿ ಒಂದು ಪತ್ರ ಬರೆದಿದ್ದಾರೆ. ಅದನ್ನು ಕೆಳಗೆ ಪೂರ್ಣವಾಗಿ ನೀಡಲಾಗಿದೆ; ಈ ಕೆಲಸದ ಬಗ್ಗೆ ನಮ್ಮಿಂದ ಯಾವುದೇ ವಿವರಣೆಗಿಂತ ಅದು ನಿಜವಾದ ದಾಖಲೆ.",
       },
     ],
-    people: ["Sunita Kumaraswamy"],
+    quote: {
+      attribution: {
+        en: "Sunita Kumara Swamy, Kurubarahalli Doddi",
+        kn: "ಸುನೀತ ಕುಮಾರ ಸ್ವಾಮಿ, ಕುರುಬರಹಳ್ಳಿ ದೊಡ್ಡಿ",
+      },
+      text: {
+        en: "Welcome to all who see this letter! My name is Sunita Kumara Swamy. Our town is Kurubarahalli Doddi, next to Kabbalu. We are farmers; we keep cows and sell the milk to the dairy to make a living. We were in a lot of difficulty. Paying school fees had become hard. Lakshmi Madam gave our daughter a scholarship and helped with her studies. She also gave us a desi cow, since we were struggling. We are keeping the cow so that it helps us educate our children. She gave us a sewing machine free of cost, so that it would help our life. In all, Bhoomi Seva has become a light in our lives.",
+        kn: "ಈ ಪತ್ರ ನೋಡುವ ಎಲ್ಲರಿಗೂ ನನ್ನ ಪ್ರೀತಿಯ ಸ್ವಾಗತ! ನನ್ನ ಹೆಸರು ಸುನೀತ ಕುಮಾರ ಸ್ವಾಮಿ. ನಮ್ಮ ಊರು ಕಬ್ಬಾಳು ಪಕ್ಕ ಕುರುಬರಹಳ್ಳಿದೊಡ್ಡಿ. ನಾವು ರೈತರು ಸೀಮೆ ಹಸು ಸಾಕಿ ಹಾಲನ್ನು ಡೈರಿಗೆ ಹಾಕೊಂಡು ಜೀವನ ಸಾಗಿಸೋದು. ತುಂಬಾ ಕಷ್ಟದಲ್ಲಿ ಇದ್ವಿ. ಸ್ಕೂಲ್‌ಗೆ fees ಕಟ್ಟೋದು ಕಷ್ಟ ಆಗಿತ್ತು. ಲಕ್ಷ್ಮಿ ಮೇಡಮ್ ಅವ್ರು ನಮ್ಮ ಮಗಳಿಗೆ ಸ್ಕಾಲರ್‌ಶಿಪ್ ಕೊಟ್ಟು ಅವಳ ವಿದ್ಯಾಭ್ಯಾಸಕ್ಕೆ ಸಹಾಯ ಮಾಡಿದ್ರು. ನಮ್‌ಗೆ ಕಷ್ಟ ಅಂತ ದೇಸಿ ಹಸುನ ನಮ್‌ಗೆ ಕೊಡ್ಸಿದಾರೆ. ಮಕ್ಳುನ ಓದಿಸಕ್ಕೆ ಸಹಾಯ ಆಗುತ್ತೆ ಅಂತ ಹಸು ನ ಸಾಕ್ತ ಇದ್ದೀವಿ. ನಮಗೆ ಸೀವಿಂಗ್ ಮೆಷಿನ್ free ಆಗಿ ಕೊಡ್ಸಿದಾರೆ ನಮ್ಮ ಜೀವನಕ್ಕೆ ಸಹಾಯ ಆಗ್ಲಿ ಅಂತ. ಒಟ್ನಲ್ಲಿ ಭೂಮಿ ಸೇವಾ ನಮ್‌ಗೆ ಬೆಳಕಾಗಿ ಬಂದಿದೆ.",
+      },
+    },
+    people: ["Sunita Kumara Swamy"],
   },
   {
     slug: "vasanth-v-c",
@@ -51,23 +64,34 @@ export const stories: Story[] = [
     },
     location: { en: "Karnataka", kn: "ಕರ್ನಾಟಕ" },
     title: {
-      en: "Scholarship support across two academic years",
-      kn: "ಎರಡು ಶೈಕ್ಷಣಿಕ ವರ್ಷಗಳ ವಿದ್ಯಾರ್ಥಿವೇತನ ಬೆಂಬಲ",
+      en: "School fees and a scholarship across two academic years",
+      kn: "ಎರಡು ಶೈಕ್ಷಣಿಕ ವರ್ಷಗಳ ಶಾಲಾ ಶುಲ್ಕ ಮತ್ತು ವಿದ್ಯಾರ್ಥಿವೇತನ",
     },
     summary: {
-      en: "Vasanth V. C. received scholarship and school-fee support from Bhoomi Seva across multiple academic years, helping his family keep him in a good school.",
-      kn: "ವಸಂತ್ ವಿ. ಸಿ. ಅವರಿಗೆ ಭೂಮಿ ಸೇವಾದಿಂದ ಹಲವು ಶೈಕ್ಷಣಿಕ ವರ್ಷಗಳ ವಿದ್ಯಾರ್ಥಿವೇತನ ಮತ್ತು ಶಾಲಾ ಶುಲ್ಕ ಬೆಂಬಲ ಸಿಕ್ಕಿತು; ಉತ್ತಮ ಶಾಲೆಯಲ್ಲಿ ಅವರ ಓದು ಮುಂದುವರಿಯಲು ಇದು ನೆರವಾಯಿತು.",
+      en: "Vasanth V. C. received a scholarship during 2020–21 at Chirantana School and had his school fees paid for 2021–22 at Samsidh Mother Teresa International School.",
+      kn: "ವಸಂತ್ ವಿ. ಸಿ. ಅವರಿಗೆ 2020–21ರಲ್ಲಿ ಚಿರಂತನ ಶಾಲೆಯಲ್ಲಿ ವಿದ್ಯಾರ್ಥಿವೇತನ ಸಿಕ್ಕಿತು, ಮತ್ತು 2021–22ರಲ್ಲಿ ಸ್ಯಾಮ್‌ಸಿದ್ ಮದರ್ ತೆರೇಸಾ ಇಂಟರ್‌ನ್ಯಾಷನಲ್ ಸ್ಕೂಲ್‌ನ ಶಾಲಾ ಶುಲ್ಕ ಭರಿಸಲಾಯಿತು.",
     },
     body: [
       {
-        en: "Vasanth was in Grade 9 at Samsidh Mother Teresa International School when Bhoomi Seva paid his school fees for the 2021–22 academic year. He had earlier received scholarship support during 2020–21, while studying at Chirantana School.",
-        kn: "2021–22 ಶೈಕ್ಷಣಿಕ ವರ್ಷದಲ್ಲಿ ಭೂಮಿ ಸೇವಾ ಅವರ ಶಾಲಾ ಶುಲ್ಕ ಭರಿಸಿದಾಗ, ವಸಂತ್ ಸ್ಯಾಮ್‌ಸಿದ್ ಮದರ್ ತೆರೇಸಾ ಇಂಟರ್‌ನ್ಯಾಷನಲ್ ಸ್ಕೂಲ್‌ನಲ್ಲಿ 9ನೇ ತರಗತಿಯಲ್ಲಿದ್ದರು. ಅದಕ್ಕೂ ಮೊದಲು, 2020–21ರಲ್ಲಿ ಚಿರಂತನ ಶಾಲೆಯಲ್ಲಿ ಓದುತ್ತಿದ್ದಾಗ ಅವರಿಗೆ ವಿದ್ಯಾರ್ಥಿವೇತನ ಸಿಕ್ಕಿತ್ತು.",
+        en: "Vasanth V. C. was a Grade 9 student at Samsidh Mother Teresa International School when Bhoomi Seva paid his school fees for the 2021–2022 academic year.",
+        kn: "2021–2022 ಶೈಕ್ಷಣಿಕ ವರ್ಷದ ಶಾಲಾ ಶುಲ್ಕ ಭೂಮಿ ಸೇವಾ ಭರಿಸಿದಾಗ, ವಸಂತ್ ವಿ. ಸಿ. ಸ್ಯಾಮ್‌ಸಿದ್ ಮದರ್ ತೆರೇಸಾ ಇಂಟರ್‌ನ್ಯಾಷನಲ್ ಸ್ಕೂಲ್‌ನಲ್ಲಿ 9ನೇ ತರಗತಿಯಲ್ಲಿದ್ದರು.",
       },
       {
-        en: "In his own words, the support helped his parents place him in a good school and continue his education.",
-        kn: "ಅವರದೇ ಮಾತಿನಲ್ಲಿ ಹೇಳುವುದಾದರೆ, ಈ ಬೆಂಬಲದಿಂದ ಅವರ ಪೋಷಕರು ಅವರನ್ನು ಒಳ್ಳೆಯ ಶಾಲೆಯಲ್ಲಿ ಸೇರಿಸಿ ಓದು ಮುಂದುವರಿಸಲು ಸಾಧ್ಯವಾಯಿತು.",
+        en: "He had also received scholarship support during 2020–2021, while he was studying at Chirantana School. Support of this kind is recurring: it is meant to continue until the student completes their education, not to be a single payment.",
+        kn: "ಅದಕ್ಕೂ ಮೊದಲು, 2020–2021ರಲ್ಲಿ ಚಿರಂತನ ಶಾಲೆಯಲ್ಲಿ ಓದುತ್ತಿದ್ದಾಗ ಅವರಿಗೆ ವಿದ್ಯಾರ್ಥಿವೇತನ ಸಿಕ್ಕಿತ್ತು. ಈ ರೀತಿಯ ಬೆಂಬಲ ಮರುಕಳಿಸುತ್ತದೆ: ಒಂದೇ ಕಂತಿನ ಪಾವತಿಯಲ್ಲ, ವಿದ್ಯಾರ್ಥಿ ಶಿಕ್ಷಣ ಮುಗಿಸುವವರೆಗೆ ಮುಂದುವರಿಯಬೇಕು.",
+      },
+      {
+        en: "In his own words, the support is what allowed his parents to put him into a good school.",
+        kn: "ಅವರದೇ ಮಾತಿನಲ್ಲಿ ಹೇಳುವುದಾದರೆ, ಈ ಬೆಂಬಲದಿಂದಲೇ ಅವರ ಪೋಷಕರು ಅವರನ್ನು ಒಳ್ಳೆಯ ಶಾಲೆಯಲ್ಲಿ ಸೇರಿಸಲು ಸಾಧ್ಯವಾಯಿತು.",
       },
     ],
+    quote: {
+      attribution: { en: "Vasanth V. C., student", kn: "ವಸಂತ್ ವಿ. ಸಿ., ವಿದ್ಯಾರ್ಥಿ" },
+      text: {
+        en: "I am V. C. Vasanth, of grade 9, studying in Samsidh Mother Teresa International School. I am very thankful that the Bhoomi Seva charity organisation has helped me by paying my school fees for this academic year (2021–2022), and by providing a scholarship during the last academic year (2020–2021) while I was studying in Chirantana School. Because of this, my parents are able to put me into a good school. I will do my best in my studies and make my parents proud.",
+        kn: "ನಾನು ವಿ. ಸಿ. ವಸಂತ್, ಸ್ಯಾಮ್‌ಸಿದ್ ಮದರ್ ತೆರೇಸಾ ಇಂಟರ್‌ನ್ಯಾಷನಲ್ ಸ್ಕೂಲ್‌ನಲ್ಲಿ 9ನೇ ತರಗತಿ ಓದುತ್ತಿದ್ದೇನೆ. ಈ ಶೈಕ್ಷಣಿಕ ವರ್ಷದ (2021–2022) ಶಾಲಾ ಶುಲ್ಕ ಭರಿಸಿ, ಮತ್ತು ಕಳೆದ ಶೈಕ್ಷಣಿಕ ವರ್ಷದಲ್ಲಿ (2020–2021) ನಾನು ಚಿರಂತನ ಶಾಲೆಯಲ್ಲಿ ಓದುತ್ತಿದ್ದಾಗ ವಿದ್ಯಾರ್ಥಿವೇತನ ನೀಡಿ ಭೂಮಿ ಸೇವಾ ಸಂಸ್ಥೆ ನನಗೆ ಸಹಾಯ ಮಾಡಿದ್ದಕ್ಕೆ ನಾನು ತುಂಬಾ ಕೃತಜ್ಞ. ಇದರಿಂದ ನನ್ನ ಪೋಷಕರು ನನ್ನನ್ನು ಒಳ್ಳೆಯ ಶಾಲೆಯಲ್ಲಿ ಸೇರಿಸಲು ಸಾಧ್ಯವಾಯಿತು. ನಾನು ಓದಿನಲ್ಲಿ ನನ್ನ ಕೈಲಾದಷ್ಟು ಉತ್ತಮ ಪ್ರದರ್ಶನ ನೀಡಿ ಪೋಷಕರಿಗೆ ಹೆಮ್ಮೆ ತರುತ್ತೇನೆ.",
+      },
+    },
     people: ["Vasanth V. C."],
   },
   {
@@ -76,23 +100,34 @@ export const stories: Story[] = [
     period: { en: "2021–22 academic year", kn: "2021–22 ಶೈಕ್ಷಣಿಕ ವರ್ಷ" },
     location: { en: "Karnataka", kn: "ಕರ್ನಾಟಕ" },
     title: {
-      en: "Three years of support, and online Chemistry tuition",
-      kn: "ಮೂರು ವರ್ಷಗಳ ಬೆಂಬಲ, ಮತ್ತು ಆನ್‌ಲೈನ್ ರಸಾಯನಶಾಸ್ತ್ರ ಪಾಠ",
+      en: "Three years of scholarships and online Chemistry tuition",
+      kn: "ಮೂರು ವರ್ಷಗಳ ವಿದ್ಯಾರ್ಥಿವೇತನ ಮತ್ತು ಆನ್‌ಲೈನ್ ರಸಾಯನಶಾಸ್ತ್ರ ಪಾಠ",
     },
     summary: {
-      en: "Sanjana K. S. received multi-year scholarship and school-fee assistance, along with online Chemistry tuition arranged through Bhoomi Seva.",
-      kn: "ಸಂಜನಾ ಕೆ. ಎಸ್. ಅವರಿಗೆ ಹಲವು ವರ್ಷಗಳ ವಿದ್ಯಾರ್ಥಿವೇತನ ಮತ್ತು ಶಾಲಾ ಶುಲ್ಕ ಸಹಾಯ ಸಿಕ್ಕಿತು; ಜೊತೆಗೆ ಭೂಮಿ ಸೇವಾ ವ್ಯವಸ್ಥೆ ಮಾಡಿದ ಆನ್‌ಲೈನ್ ರಸಾಯನಶಾಸ್ತ್ರ ಪಾಠವೂ ಸಿಕ್ಕಿತು.",
+      en: "Sanjana K. S. received scholarships for three years, had her school fees paid for 2021–22, and was given online Chemistry tuition arranged by Bhoomi Seva.",
+      kn: "ಸಂಜನಾ ಕೆ. ಎಸ್. ಅವರಿಗೆ ಮೂರು ವರ್ಷಗಳ ವಿದ್ಯಾರ್ಥಿವೇತನ ಸಿಕ್ಕಿತು, 2021–22ರ ಶಾಲಾ ಶುಲ್ಕ ಭರಿಸಲಾಯಿತು, ಮತ್ತು ಭೂಮಿ ಸೇವಾ ವ್ಯವಸ್ಥೆ ಮಾಡಿದ ಆನ್‌ಲೈನ್ ರಸಾಯನಶಾಸ್ತ್ರ ಪಾಠ ನೀಡಲಾಯಿತು.",
     },
     body: [
       {
-        en: "Sanjana was studying in Grade 10 at Blossom School when Bhoomi Seva helped pay her school fees for 2021–22. She had received scholarship support for three years.",
-        kn: "ಭೂಮಿ ಸೇವಾ 2021–22ರ ಶಾಲಾ ಶುಲ್ಕ ಭರಿಸಲು ನೆರವಾದಾಗ ಸಂಜನಾ ಬ್ಲಾಸಮ್ ಶಾಲೆಯಲ್ಲಿ 10ನೇ ತರಗತಿಯಲ್ಲಿದ್ದರು. ಅವರಿಗೆ ಮೂರು ವರ್ಷಗಳಿಂದ ವಿದ್ಯಾರ್ಥಿವೇತನ ಸಿಕ್ಕಿತ್ತು.",
+        en: "Sanjana K. S. was studying in Grade 10 at Blossom School when Bhoomi Seva helped pay her school fees for 2021–22.",
+        kn: "ಭೂಮಿ ಸೇವಾ 2021–22ರ ಶಾಲಾ ಶುಲ್ಕ ಭರಿಸಲು ನೆರವಾದಾಗ, ಸಂಜನಾ ಕೆ. ಎಸ್. ಬ್ಲಾಸಮ್ ಶಾಲೆಯಲ್ಲಿ 10ನೇ ತರಗತಿಯಲ್ಲಿದ್ದರು.",
       },
       {
-        en: "Bhoomi Seva also arranged online Chemistry tuition, the kind of subject-specific help that fee support alone cannot provide.",
-        kn: "ಜೊತೆಗೆ ಭೂಮಿ ಸೇವಾ ಆನ್‌ಲೈನ್ ರಸಾಯನಶಾಸ್ತ್ರ ಪಾಠವನ್ನೂ ವ್ಯವಸ್ಥೆ ಮಾಡಿತು — ಶುಲ್ಕ ಸಹಾಯ ಒಂದೇ ನೀಡಲಾಗದ, ವಿಷಯಕ್ಕೆ ಸಂಬಂಧಿಸಿದ ನೆರವು.",
+        en: "She had already been receiving scholarship support for three years.",
+        kn: "ಅಷ್ಟರಲ್ಲಾಗಲೇ ಅವರಿಗೆ ಮೂರು ವರ್ಷಗಳಿಂದ ವಿದ್ಯಾರ್ಥಿವೇತನ ಸಿಗುತ್ತಿತ್ತು.",
+      },
+      {
+        en: "Bhoomi Seva also arranged online tuition in Chemistry for her. Alongside fee support, subject-specific teaching is part of how the education programme works.",
+        kn: "ಜೊತೆಗೆ ಭೂಮಿ ಸೇವಾ ಅವರಿಗೆ ಆನ್‌ಲೈನ್ ರಸಾಯನಶಾಸ್ತ್ರ ಪಾಠವನ್ನೂ ವ್ಯವಸ್ಥೆ ಮಾಡಿತು. ಶುಲ್ಕ ಸಹಾಯದ ಜೊತೆಗೆ, ವಿಷಯಕ್ಕೆ ಸಂಬಂಧಿಸಿದ ಪಾಠವೂ ಶಿಕ್ಷಣ ಕಾರ್ಯಕ್ರಮದ ಒಂದು ಭಾಗ.",
       },
     ],
+    quote: {
+      attribution: { en: "Sanjana K. S., student", kn: "ಸಂಜನಾ ಕೆ. ಎಸ್., ವಿದ್ಯಾರ್ಥಿನಿ" },
+      text: {
+        en: "I am Sanjana K. S., of grade 10, studying in Blossom School. I am very thankful that the Bhoomi Seva charity organisation has helped me by paying my school fees for this academic year (2021–2022) and by providing scholarships for 3 years. Also, the organisation helped me by giving online tuition for Chemistry. I am very thankful to both Lakshmi mam and the tuition mam. I will do my best in my studies.",
+        kn: "ನಾನು ಸಂಜನಾ ಕೆ. ಎಸ್., ಬ್ಲಾಸಮ್ ಶಾಲೆಯಲ್ಲಿ 10ನೇ ತರಗತಿ ಓದುತ್ತಿದ್ದೇನೆ. ಈ ಶೈಕ್ಷಣಿಕ ವರ್ಷದ (2021–2022) ಶಾಲಾ ಶುಲ್ಕ ಭರಿಸಿ, ಮತ್ತು ಮೂರು ವರ್ಷಗಳ ವಿದ್ಯಾರ್ಥಿವೇತನ ನೀಡಿ ಭೂಮಿ ಸೇವಾ ಸಂಸ್ಥೆ ನನಗೆ ಸಹಾಯ ಮಾಡಿದ್ದಕ್ಕೆ ನಾನು ತುಂಬಾ ಕೃತಜ್ಞ. ಜೊತೆಗೆ, ರಸಾಯನಶಾಸ್ತ್ರದ ಆನ್‌ಲೈನ್ ಪಾಠ ನೀಡಿ ಸಹಾಯ ಮಾಡಿದೆ. ಲಕ್ಷ್ಮಿ ಮೇಡಂ ಮತ್ತು ಪಾಠ ಮೇಡಂ ಇಬ್ಬರಿಗೂ ನಾನು ತುಂಬಾ ಕೃತಜ್ಞ. ನಾನು ಓದಿನಲ್ಲಿ ನನ್ನ ಕೈಲಾದಷ್ಟು ಉತ್ತಮ ಪ್ರದರ್ಶನ ನೀಡುತ್ತೇನೆ.",
+      },
+    },
     people: ["Sanjana K. S."],
   },
   {
@@ -100,23 +135,34 @@ export const stories: Story[] = [
     program: "education",
     location: { en: "Bengaluru", kn: "ಬೆಂಗಳೂರು" },
     title: {
-      en: "Engineering studies supported through Rotary Club",
-      kn: "ರೋಟರಿ ಕ್ಲಬ್ ಮೂಲಕ ಎಂಜಿನಿಯರಿಂಗ್ ಓದಿಗೆ ಬೆಂಬಲ",
+      en: "Engineering fees facilitated through Rotary Club",
+      kn: "ರೋಟರಿ ಕ್ಲಬ್ ಮೂಲಕ ಎಂಜಿನಿಯರಿಂಗ್ ಶುಲ್ಕಕ್ಕೆ ನೆರವು",
     },
     summary: {
-      en: "Sree Raksha R., a computer science engineering student, received education funding facilitated through Rotary Club, helping her continue her degree.",
-      kn: "ಕಂಪ್ಯೂಟರ್ ಸೈನ್ಸ್ ಎಂಜಿನಿಯರಿಂಗ್ ವಿದ್ಯಾರ್ಥಿನಿ ಶ್ರೀ ರಕ್ಷಾ ಆರ್. ಅವರಿಗೆ ರೋಟರಿ ಕ್ಲಬ್ ಮೂಲಕ ಶಿಕ್ಷಣ ಧನಸಹಾಯ ಸಂಯೋಜಿಸಲಾಯಿತು; ಇದು ಅವರ ಪದವಿ ಓದು ಮುಂದುವರಿಯಲು ನೆರವಾಯಿತು.",
+      en: "Sree Raksha R., a computer science engineering student at BNMIT, received ₹25,000 per year toward her studies through Rotary Club.",
+      kn: "ಬಿಎನ್‌ಎಂಐಟಿಯ ಕಂಪ್ಯೂಟರ್ ಸೈನ್ಸ್ ಎಂಜಿನಿಯರಿಂಗ್ ವಿದ್ಯಾರ್ಥಿನಿ ಶ್ರೀ ರಕ್ಷಾ ಆರ್. ಅವರ ಓದಿಗೆ ರೋಟರಿ ಕ್ಲಬ್ ಮೂಲಕ ವರ್ಷಕ್ಕೆ ₹25,000 ಸಿಕ್ಕಿತು.",
     },
     body: [
       {
-        en: "Sree Raksha was in her second year of Computer Science Engineering at BNMIT when she received education funding of ₹25,000 per year, arranged through Rotary Club.",
-        kn: "ರೋಟರಿ ಕ್ಲಬ್ ಮೂಲಕ ವರ್ಷಕ್ಕೆ ₹25,000 ಶಿಕ್ಷಣ ಧನಸಹಾಯ ಸಿಕ್ಕಾಗ, ಶ್ರೀ ರಕ್ಷಾ ಬಿಎನ್‌ಎಂಐಟಿಯಲ್ಲಿ ಕಂಪ್ಯೂಟರ್ ಸೈನ್ಸ್ ಎಂಜಿನಿಯರಿಂಗ್‌ನ ಎರಡನೇ ವರ್ಷದಲ್ಲಿದ್ದರು.",
+        en: "Sree Raksha R. was in her second year of Computer Science Engineering at BNMIT when she received education funding of ₹25,000 per year.",
+        kn: "ವರ್ಷಕ್ಕೆ ₹25,000 ಶಿಕ್ಷಣ ಧನಸಹಾಯ ಸಿಕ್ಕಾಗ, ಶ್ರೀ ರಕ್ಷಾ ಆರ್. ಬಿಎನ್‌ಎಂಐಟಿಯಲ್ಲಿ ಕಂಪ್ಯೂಟರ್ ಸೈನ್ಸ್ ಎಂಜಿನಿಯರಿಂಗ್‌ನ ಎರಡನೇ ವರ್ಷದಲ್ಲಿದ್ದರು.",
       },
       {
-        en: "We note the distinction deliberately: the yearly contribution was facilitated through Rotary Club, not paid directly from Bhoomi Seva's own funds. Our part was to help connect a student in need with a funder who could stay with her through her degree.",
-        kn: "ಈ ವ್ಯತ್ಯಾಸವನ್ನು ನಾವು ಉದ್ದೇಶಪೂರ್ವಕವಾಗಿ ಸ್ಪಷ್ಟಪಡಿಸುತ್ತೇವೆ: ವಾರ್ಷಿಕ ಧನಸಹಾಯ ರೋಟರಿ ಕ್ಲಬ್ ಮೂಲಕ ಸಂಯೋಜಿಸಲ್ಪಟ್ಟದ್ದು, ಭೂಮಿ ಸೇವಾದ ಸ್ವಂತ ನಿಧಿಯಿಂದ ನೇರವಾಗಿ ನೀಡಿದ್ದಲ್ಲ. ಅಗತ್ಯವಿರುವ ವಿದ್ಯಾರ್ಥಿನಿಯನ್ನು, ಪದವಿ ಮುಗಿಯುವವರೆಗೆ ಜೊತೆಗಿರಬಲ್ಲ ಧನಸಹಾಯದಾತರೊಂದಿಗೆ ಜೋಡಿಸುವುದು ನಮ್ಮ ಪಾತ್ರ.",
+        en: "The yearly contribution was made through Rotary Club, not paid directly from Bhoomi Seva's own funds. This distinction matters, and we keep it: Bhoomi Seva's part was to connect a student who needed support with a funder who could stay with her through her degree.",
+        kn: "ವಾರ್ಷಿಕ ಧನಸಹಾಯ ರೋಟರಿ ಕ್ಲಬ್ ಮೂಲಕ ಬಂದದ್ದು, ಭೂಮಿ ಸೇವಾದ ಸ್ವಂತ ನಿಧಿಯಿಂದ ನೇರವಾಗಿ ಅಲ್ಲ. ಈ ವ್ಯತ್ಯಾಸ ಮುಖ್ಯ, ಮತ್ತು ಅದನ್ನು ನಾವು ಸ್ಪಷ್ಟವಾಗಿ ಉಳಿಸಿಕೊಳ್ಳುತ್ತೇವೆ: ಅಗತ್ಯವಿರುವ ವಿದ್ಯಾರ್ಥಿನಿಯನ್ನು, ಪದವಿ ಮುಗಿಯುವವರೆಗೆ ಜೊತೆಗಿರಬಲ್ಲ ಧನಸಹಾಯದಾತರೊಂದಿಗೆ ಜೋಡಿಸುವುದು ಭೂಮಿ ಸೇವಾದ ಪಾತ್ರ.",
+      },
+      {
+        en: "She writes that the financial support is what helped her continue her studies.",
+        kn: "ಈ ಆರ್ಥಿಕ ಬೆಂಬಲವೇ ತಮ್ಮ ಓದು ಮುಂದುವರಿಸಲು ನೆರವಾಯಿತು ಎಂದು ಅವರು ಬರೆದಿದ್ದಾರೆ.",
       },
     ],
+    quote: {
+      attribution: { en: "Sree Raksha R., student", kn: "ಶ್ರೀ ರಕ್ಷಾ ಆರ್., ವಿದ್ಯಾರ್ಥಿನಿ" },
+      text: {
+        en: "I am Sree Raksha R., studying 2nd year Computer Science Engineering at BNMIT. Lakshmi ma'am, I would like to thank you for your contribution of ₹25,000 per year through Rotary Club. Your financial support is helping me to continue my studies. The generous support of individuals like you is helping students like me to build our careers. Thank you again for your support.",
+        kn: "ನಾನು ಶ್ರೀ ರಕ್ಷಾ ಆರ್., ಬಿಎನ್‌ಎಂಐಟಿಯಲ್ಲಿ ಕಂಪ್ಯೂಟರ್ ಸೈನ್ಸ್ ಎಂಜಿನಿಯರಿಂಗ್ ಎರಡನೇ ವರ್ಷ ಓದುತ್ತಿದ್ದೇನೆ. ಲಕ್ಷ್ಮಿ ಮೇಡಂ, ರೋಟರಿ ಕ್ಲಬ್ ಮೂಲಕ ವರ್ಷಕ್ಕೆ ₹25,000 ನೀಡಿದ ನಿಮ್ಮ ಕೊಡುಗೆಗೆ ನಾನು ಕೃತಜ್ಞಳು. ನಿಮ್ಮ ಆರ್ಥಿಕ ಬೆಂಬಲ ನನ್ನ ಓದು ಮುಂದುವರಿಸಲು ನೆರವಾಗುತ್ತಿದೆ. ನಿಮ್ಮಂತಹವರ ಉದಾರ ಬೆಂಬಲ ನಮ್ಮಂತಹ ವಿದ್ಯಾರ್ಥಿಗಳ ವೃತ್ತಿ ನಿರ್ಮಾಣಕ್ಕೆ ಸಹಾಯ ಮಾಡುತ್ತಿದೆ. ಮತ್ತೊಮ್ಮೆ ನಿಮ್ಮ ಬೆಂಬಲಕ್ಕೆ ಧನ್ಯವಾದ.",
+      },
+    },
     people: ["Sree Raksha R."],
   },
   {
@@ -124,23 +170,34 @@ export const stories: Story[] = [
     program: "education",
     location: { en: "Bengaluru", kn: "ಬೆಂಗಳೂರು" },
     title: {
-      en: "From engineering fees to a course internship",
-      kn: "ಎಂಜಿನಿಯರಿಂಗ್ ಶುಲ್ಕದಿಂದ ಕೋರ್ಸ್ ಇಂಟರ್ನ್‌ಶಿಪ್‌ವರೆಗೆ",
+      en: "Engineering fees and help finding an internship",
+      kn: "ಎಂಜಿನಿಯರಿಂಗ್ ಶುಲ್ಕ ಮತ್ತು ಇಂಟರ್ನ್‌ಶಿಪ್ ಹುಡುಕಲು ನೆರವು",
     },
     summary: {
-      en: "Ram, a Computer Science and Engineering student, received financial and mentoring support, including help finding a course-related internship.",
-      kn: "ಕಂಪ್ಯೂಟರ್ ಸೈನ್ಸ್ ಮತ್ತು ಎಂಜಿನಿಯರಿಂಗ್ ವಿದ್ಯಾರ್ಥಿ ರಾಮ್ ಅವರಿಗೆ ಆರ್ಥಿಕ ಮತ್ತು ಮಾರ್ಗದರ್ಶನ ಬೆಂಬಲ ಸಿಕ್ಕಿತು; ಕೋರ್ಸ್‌ಗೆ ಸಂಬಂಧಿಸಿದ ಇಂಟರ್ನ್‌ಶಿಪ್ ಹುಡುಕಲು ಸಹಾಯ ಸೇರಿದಂತೆ.",
+      en: "Ram, a Computer Science and Engineering student at New Horizon College of Engineering, received financial support and help getting the internship his course required.",
+      kn: "ನ್ಯೂ ಹೊರೈಜನ್ ಕಾಲೇಜ್ ಆಫ್ ಎಂಜಿನಿಯರಿಂಗ್‌ನ ಕಂಪ್ಯೂಟರ್ ಸೈನ್ಸ್ ಮತ್ತು ಎಂಜಿನಿಯರಿಂಗ್ ವಿದ್ಯಾರ್ಥಿ ರಾಮ್ ಅವರಿಗೆ ಆರ್ಥಿಕ ಬೆಂಬಲ ಮತ್ತು ಕೋರ್ಸ್‌ಗೆ ಬೇಕಿದ್ದ ಇಂಟರ್ನ್‌ಶಿಪ್ ಪಡೆಯಲು ನೆರವು ಸಿಕ್ಕಿತು.",
     },
     body: [
       {
-        en: "Ram was in his third year of Computer Science and Engineering at New Horizon College of Engineering when he received financial support toward completing his studies.",
-        kn: "ನ್ಯೂ ಹೊರೈಜನ್ ಕಾಲೇಜ್ ಆಫ್ ಎಂಜಿನಿಯರಿಂಗ್‌ನಲ್ಲಿ ಕಂಪ್ಯೂಟರ್ ಸೈನ್ಸ್ ಮತ್ತು ಎಂಜಿನಿಯರಿಂಗ್‌ನ ಮೂರನೇ ವರ್ಷದಲ್ಲಿದ್ದಾಗ, ಓದು ಪೂರೈಸಲು ರಾಮ್ ಅವರಿಗೆ ಆರ್ಥಿಕ ಬೆಂಬಲ ಸಿಕ್ಕಿತು.",
+        en: "Ram was in his third year of Computer Science and Engineering at New Horizon College of Engineering, and received financial support toward completing his engineering course.",
+        kn: "ನ್ಯೂ ಹೊರೈಜನ್ ಕಾಲೇಜ್ ಆಫ್ ಎಂಜಿನಿಯರಿಂಗ್‌ನಲ್ಲಿ ಕಂಪ್ಯೂಟರ್ ಸೈನ್ಸ್ ಮತ್ತು ಎಂಜಿನಿಯರಿಂಗ್‌ನ ಮೂರನೇ ವರ್ಷದಲ್ಲಿದ್ದ ರಾಮ್ ಅವರಿಗೆ, ಎಂಜಿನಿಯರಿಂಗ್ ಕೋರ್ಸ್ ಪೂರೈಸಲು ಆರ್ಥಿಕ ಬೆಂಬಲ ಸಿಕ್ಕಿತು.",
       },
       {
-        en: "He also received help finding an internship at Alorica India Pvt. Ltd., which his course required. We mention this as a documented example, not a standing promise: internship assistance depends on the student and what is available at the time.",
-        kn: "ಅವರ ಕೋರ್ಸ್‌ಗೆ ಕಡ್ಡಾಯವಾಗಿದ್ದ ಇಂಟರ್ನ್‌ಶಿಪ್ ಅನ್ನು ಅಲೋರಿಕಾ ಇಂಡಿಯಾ ಪ್ರೈವೇಟ್ ಲಿಮಿಟೆಡ್‌ನಲ್ಲಿ ಹುಡುಕಲು ಸಹಾಯವೂ ಸಿಕ್ಕಿತು. ಇದನ್ನು ನಾವು ದಾಖಲಿತ ಉದಾಹರಣೆಯಾಗಿ ಹೇಳುತ್ತೇವೆ, ಶಾಶ್ವತ ಭರವಸೆಯಾಗಿ ಅಲ್ಲ: ಇಂಟರ್ನ್‌ಶಿಪ್ ನೆರವು ವಿದ್ಯಾರ್ಥಿ ಮತ್ತು ಆ ಸಮಯದಲ್ಲಿ ಲಭ್ಯವಿರುವ ಅವಕಾಶಗಳನ್ನು ಅವಲಂಬಿಸಿದೆ.",
+        en: "Bhoomi Seva also helped him get an internship at Alorica India Pvt. Ltd., which his course required in order to be completed.",
+        kn: "ಕೋರ್ಸ್ ಪೂರ್ಣಗೊಳಿಸಲು ಕಡ್ಡಾಯವಾಗಿದ್ದ ಇಂಟರ್ನ್‌ಶಿಪ್ ಅನ್ನು ಅಲೋರಿಕಾ ಇಂಡಿಯಾ ಪ್ರೈವೇಟ್ ಲಿಮಿಟೆಡ್‌ನಲ್ಲಿ ಪಡೆಯಲು ಭೂಮಿ ಸೇವಾ ನೆರವಾಯಿತು.",
+      },
+      {
+        en: "This is recorded as a specific documented case, not a standing promise. Internship assistance depends on the student and on what is available at the time.",
+        kn: "ಇದನ್ನು ಒಂದು ನಿರ್ದಿಷ್ಟ ದಾಖಲಿತ ಪ್ರಕರಣವಾಗಿ ದಾಖಲಿಸಲಾಗಿದೆ, ಶಾಶ್ವತ ಭರವಸೆಯಾಗಿ ಅಲ್ಲ. ಇಂಟರ್ನ್‌ಶಿಪ್ ನೆರವು ವಿದ್ಯಾರ್ಥಿ ಮತ್ತು ಆ ಸಮಯದಲ್ಲಿ ಲಭ್ಯವಿರುವ ಅವಕಾಶಗಳನ್ನು ಅವಲಂಬಿಸಿದೆ.",
       },
     ],
+    quote: {
+      attribution: { en: "Ram, student", kn: "ರಾಮ್, ವಿದ್ಯಾರ್ಥಿ" },
+      text: {
+        en: "I am Ram, studying in 3rd year Computer Science and Engineering at New Horizon College of Engineering. I would like to thank you for your generous financial support to help me achieve my dream of completing my engineering. Also, thanks for your support in getting an internship at Alorica India Private Ltd., which is required to complete the current engineering course. You have gone the extra mile whenever I have reached out to you for any support. No words are enough to convey my heartfelt gratitude. I hope and pray I can return this favour someday by supporting other children like me through you.",
+        kn: "ನಾನು ರಾಮ್, ನ್ಯೂ ಹೊರೈಜನ್ ಕಾಲೇಜ್ ಆಫ್ ಎಂಜಿನಿಯರಿಂಗ್‌ನಲ್ಲಿ ಕಂಪ್ಯೂಟರ್ ಸೈನ್ಸ್ ಮತ್ತು ಎಂಜಿನಿಯರಿಂಗ್ ಮೂರನೇ ವರ್ಷ ಓದುತ್ತಿದ್ದೇನೆ. ನನ್ನ ಎಂಜಿನಿಯರಿಂಗ್ ಪೂರ್ಣಗೊಳಿಸುವ ಕನಸು ನನಸಾಗಲು ಉದಾರ ಆರ್ಥಿಕ ಬೆಂಬಲ ನೀಡಿದ್ದಕ್ಕೆ ನಾನು ಕೃತಜ್ಞ. ಜೊತೆಗೆ, ಈ ಕೋರ್ಸ್ ಪೂರ್ಣಗೊಳಿಸಲು ಬೇಕಾದ ಅಲೋರಿಕಾ ಇಂಡಿಯಾ ಪ್ರೈವೇಟ್ ಲಿಮಿಟೆಡ್‌ನ ಇಂಟರ್ನ್‌ಶಿಪ್ ಪಡೆಯಲು ನೀಡಿದ ಸಹಾಯಕ್ಕೂ ಧನ್ಯವಾದ. ಯಾವುದೇ ಸಹಾಯಕ್ಕಾಗಿ ನಾನು ಕೇಳಿದಾಗಲೆಲ್ಲ ನೀವು ಹೆಚ್ಚಿನ ಶ್ರಮ ವಹಿಸಿದ್ದೀರಿ. ನನ್ನ ಹೃತ್ಪೂರ್ವಕ ಕೃತಜ್ಞತೆಯನ್ನು ವ್ಯಕ್ತಪಡಿಸಲು ಪದಗಳು ಸಾಲವು. ನಿಮ್ಮ ಮೂಲಕ ನನ್ನಂತಹ ಇತರ ಮಕ್ಕಳಿಗೆ ಸಹಾಯ ಮಾಡಿ, ಒಂದು ದಿನ ಈ ಋಣ ತೀರಿಸಲು ನಾನು ಆಶಿಸುತ್ತೇನೆ, ಪ್ರಾರ್ಥಿಸುತ್ತೇನೆ.",
+      },
+    },
     people: ["Ram"],
   },
   {
@@ -148,27 +205,41 @@ export const stories: Story[] = [
     program: "children",
     location: { en: "Karnataka", kn: "ಕರ್ನಾಟಕ" },
     title: {
-      en: "Supporting children at Sri Krishnashraya",
-      kn: "ಶ್ರೀ ಕೃಷ್ಣಾಶ್ರಯದ ಮಕ್ಕಳಿಗೆ ಬೆಂಬಲ",
+      en: "Support for the children at Sri Krishnashraya Educational Trust",
+      kn: "ಶ್ರೀ ಕೃಷ್ಣಾಶ್ರಯ ಎಜುಕೇಷನಲ್ ಟ್ರಸ್ಟ್‌ನ ಮಕ್ಕಳಿಗೆ ಬೆಂಬಲ",
     },
     summary: {
-      en: "Bhoomi Seva has supported children at Sri Krishnashraya Educational Trust over time — food, education, clothing, medical needs and emergencies — including a meal sponsored during Balipadyami.",
-      kn: "ಶ್ರೀ ಕೃಷ್ಣಾಶ್ರಯ ಎಜುಕೇಷನಲ್ ಟ್ರಸ್ಟ್‌ನ ಮಕ್ಕಳಿಗೆ ಭೂಮಿ ಸೇವಾ ಕಾಲಕಾಲಕ್ಕೆ ಬೆಂಬಲ ನೀಡಿದೆ — ಆಹಾರ, ಶಿಕ್ಷಣ, ಬಟ್ಟೆ, ವೈದ್ಯಕೀಯ ಅಗತ್ಯಗಳು ಮತ್ತು ತುರ್ತು ಸಂದರ್ಭಗಳು; ಬಲಿಪಾಡ್ಯಮಿಯಂದು ಪ್ರಾಯೋಜಿಸಿದ ಊಟ ಸೇರಿದಂತೆ.",
+      en: "Bhoomi Seva has supported the children at Sri Krishnashraya with food, education, clothing, medical needs and emergency requirements, including a meal sponsored during Balipadyami.",
+      kn: "ಭೂಮಿ ಸೇವಾ ಶ್ರೀ ಕೃಷ್ಣಾಶ್ರಯದ ಮಕ್ಕಳಿಗೆ ಆಹಾರ, ಶಿಕ್ಷಣ, ಬಟ್ಟೆ, ವೈದ್ಯಕೀಯ ಅಗತ್ಯಗಳು ಮತ್ತು ತುರ್ತು ಅಗತ್ಯಗಳಿಗೆ ಬೆಂಬಲ ನೀಡಿದೆ; ಬಲಿಪಾಡ್ಯಮಿಯಂದು ಪ್ರಾಯೋಜಿಸಿದ ಊಟ ಸೇರಿದಂತೆ.",
     },
     body: [
       {
-        en: "Sri Krishnashraya Educational Trust is one of the children's homes we work with. Support has included food, education costs, clothing, medical needs and emergency requirements — practical help as needs came up, rather than a single donation.",
-        kn: "ನಾವು ಕೆಲಸ ಮಾಡುವ ಮಕ್ಕಳ ಮನೆಗಳಲ್ಲಿ ಶ್ರೀ ಕೃಷ್ಣಾಶ್ರಯ ಎಜುಕೇಷನಲ್ ಟ್ರಸ್ಟ್ ಒಂದು. ಆಹಾರ, ಶಿಕ್ಷಣ ವೆಚ್ಚ, ಬಟ್ಟೆ, ವೈದ್ಯಕೀಯ ಮತ್ತು ತುರ್ತು ಅಗತ್ಯಗಳಿಗೆ ಸಹಾಯ ಸೇರಿದೆ — ಒಂದೇ ದಾನವಾಗಿ ಅಲ್ಲ, ಅಗತ್ಯ ಬಂದಂತೆ ನೀಡಿದ ಪ್ರಾಯೋಗಿಕ ನೆರವು.",
+        en: "Sri Krishnashraya Educational Trust is one of the children's homes Bhoomi Seva works with.",
+        kn: "ಭೂಮಿ ಸೇವಾ ಕೆಲಸ ಮಾಡುವ ಮಕ್ಕಳ ಮನೆಗಳಲ್ಲಿ ಶ್ರೀ ಕೃಷ್ಣಾಶ್ರಯ ಎಜುಕೇಷನಲ್ ಟ್ರಸ್ಟ್ ಒಂದು.",
       },
       {
-        en: "Pushparaj, the founder and managing trustee, has thanked Lakshmi and Bhoomi Seva's supporters for the assistance.",
-        kn: "ಸ್ಥಾಪಕ ಮತ್ತು ವ್ಯವಸ್ಥಾಪಕ ಟ್ರಸ್ಟಿ ಪುಷ್ಪರಾಜ್ ಅವರು ಈ ಸಹಾಯಕ್ಕಾಗಿ ಲಕ್ಷ್ಮಿ ಮತ್ತು ಭೂಮಿ ಸೇವಾದ ಬೆಂಬಲಿಗರಿಗೆ ಕೃತಜ್ಞತೆ ಸಲ್ಲಿಸಿದ್ದಾರೆ.",
+        en: "Support has covered the children's basic needs: food, education, clothing, medical needs and other emergency requirements. It has been given as needs came up over time, rather than as one isolated donation.",
+        kn: "ಈ ಬೆಂಬಲ ಮಕ್ಕಳ ಮೂಲಭೂತ ಅಗತ್ಯಗಳನ್ನು ಒಳಗೊಂಡಿದೆ: ಆಹಾರ, ಶಿಕ್ಷಣ, ಬಟ್ಟೆ, ವೈದ್ಯಕೀಯ ಅಗತ್ಯಗಳು ಮತ್ತು ಇತರ ತುರ್ತು ಅಗತ್ಯಗಳು. ಇದು ಒಂದೇ ದಾನವಾಗಿ ಅಲ್ಲ, ಕಾಲಕಾಲಕ್ಕೆ ಅಗತ್ಯ ಬಂದಂತೆ ನೀಡಲಾಗಿದೆ.",
       },
       {
-        en: "We also sponsored a meal at Sri Krishnashraya during Balipadyami.",
-        kn: "ಬಲಿಪಾಡ್ಯಮಿಯಂದು ಶ್ರೀ ಕೃಷ್ಣಾಶ್ರಯದಲ್ಲಿ ಒಂದು ಊಟವನ್ನೂ ಪ್ರಾಯೋಜಿಸಿದ್ದೇವೆ.",
+        en: "A meal for the children was sponsored at the home during Balipadyami. A meal can be sponsored for around ₹6,000.",
+        kn: "ಬಲಿಪಾಡ್ಯಮಿಯಂದು ಈ ಮನೆಯ ಮಕ್ಕಳಿಗೆ ಒಂದು ಊಟವನ್ನು ಪ್ರಾಯೋಜಿಸಲಾಗಿತ್ತು. ಒಂದು ಊಟವನ್ನು ಸುಮಾರು ₹6,000ಕ್ಕೆ ಪ್ರಾಯೋಜಿಸಬಹುದು.",
+      },
+      {
+        en: "The trust's founder and managing trustee has written to thank Lakshmi and all the supporters of Bhoomi Seva.",
+        kn: "ಟ್ರಸ್ಟ್‌ನ ಸ್ಥಾಪಕ ಮತ್ತು ವ್ಯವಸ್ಥಾಪಕ ಟ್ರಸ್ಟಿ, ಲಕ್ಷ್ಮಿ ಮತ್ತು ಭೂಮಿ ಸೇವಾದ ಎಲ್ಲಾ ಬೆಂಬಲಿಗರಿಗೆ ಕೃತಜ್ಞತೆ ತಿಳಿಸಿ ಪತ್ರ ಬರೆದಿದ್ದಾರೆ.",
       },
     ],
+    quote: {
+      attribution: {
+        en: "Pushparaj, Founder and Managing Trustee, Sri Krishnashraya Educational Trust",
+        kn: "ಪುಷ್ಪರಾಜ್, ಸ್ಥಾಪಕ ಮತ್ತು ವ್ಯವಸ್ಥಾಪಕ ಟ್ರಸ್ಟಿ, ಶ್ರೀ ಕೃಷ್ಣಾಶ್ರಯ ಎಜುಕೇಷನಲ್ ಟ್ರಸ್ಟ್",
+      },
+      text: {
+        en: "We would like to say our most sincere thanks to the Bhoomi Seva organisation. They have been supporting the Krishnashraya home kids and helping with their basic needs like food, education, cloth, medical and other emergency requirements of the kids. Once again, we would like to thank Lakshmi Madam and all the other supporters from the Bhoomi Seva organisation for helping and supporting us.",
+        kn: "ಭೂಮಿ ಸೇವಾ ಸಂಸ್ಥೆಗೆ ನಮ್ಮ ಹೃತ್ಪೂರ್ವಕ ಕೃತಜ್ಞತೆಗಳನ್ನು ತಿಳಿಸಲು ಬಯಸುತ್ತೇವೆ. ಅವರು ಕೃಷ್ಣಾಶ್ರಯ ಮನೆಯ ಮಕ್ಕಳಿಗೆ ಬೆಂಬಲ ನೀಡುತ್ತಿದ್ದಾರೆ ಮತ್ತು ಆಹಾರ, ಶಿಕ್ಷಣ, ಬಟ್ಟೆ, ವೈದ್ಯಕೀಯ ಮತ್ತು ಇತರ ತುರ್ತು ಅಗತ್ಯಗಳಂತಹ ಮೂಲಭೂತ ಅಗತ್ಯಗಳಲ್ಲಿ ಸಹಾಯ ಮಾಡುತ್ತಿದ್ದಾರೆ. ಲಕ್ಷ್ಮಿ ಮೇಡಂ ಮತ್ತು ಭೂಮಿ ಸೇವಾ ಸಂಸ್ಥೆಯ ಎಲ್ಲಾ ಬೆಂಬಲಿಗರಿಗೆ ಮತ್ತೊಮ್ಮೆ ಧನ್ಯವಾದಗಳು.",
+      },
+    },
     people: ["Pushparaj"],
   },
   {
@@ -180,25 +251,37 @@ export const stories: Story[] = [
       kn: "ಚಿರಂತನ ಶಾಲೆ, ಕಬ್ಬಾಳು, ಕನಕಪುರ",
     },
     title: {
-      en: "Farmer training at Chirantana School, Kabbalu",
-      kn: "ಚಿರಂತನ ಶಾಲೆ, ಕಬ್ಬಾಳಿನಲ್ಲಿ ರೈತ ತರಬೇತಿ",
+      en: "Farmer training in natural farming at Chirantana School, Kabbalu",
+      kn: "ಚಿರಂತನ ಶಾಲೆ, ಕಬ್ಬಾಳಿನಲ್ಲಿ ನೈಸರ್ಗಿಕ ಕೃಷಿ ರೈತ ತರಬೇತಿ",
     },
     summary: {
-      en: "A natural-farming awareness and training session for farmers, held in July 2023 at Chirantana School in Kabbalu, Kanakapura.",
-      kn: "ಜುಲೈ 2023ರಲ್ಲಿ ಕನಕಪುರದ ಕಬ್ಬಾಳಿನ ಚಿರಂತನ ಶಾಲೆಯಲ್ಲಿ ರೈತರಿಗಾಗಿ ನಡೆಸಿದ ನೈಸರ್ಗಿಕ ಕೃಷಿ ಅರಿವು ಮತ್ತು ತರಬೇತಿ ಕಾರ್ಯಕ್ರಮ.",
+      en: "A training session on natural and organic farming and agroforestry, held in July 2023 at Chirantana School, Kabbalu, Kanakapura.",
+      kn: "ಜುಲೈ 2023ರಲ್ಲಿ ಕನಕಪುರದ ಕಬ್ಬಾಳಿನ ಚಿರಂತನ ಶಾಲೆಯಲ್ಲಿ ನಡೆಸಿದ ನೈಸರ್ಗಿಕ ಮತ್ತು ಸಾವಯವ ಕೃಷಿ ಹಾಗೂ ಕೃಷಿ ಅರಣ್ಯದ ತರಬೇತಿ ಕಾರ್ಯಕ್ರಮ.",
     },
     body: [
       {
-        en: "In July 2023 we organised a farmer training session at Chirantana School, Kabbalu, in Kanakapura. It covered the benefits of natural and organic farming and agroforestry, concerns about long-term reliance on chemical fertilisers, and practical ways for farmers to transition.",
-        kn: "ಜುಲೈ 2023ರಲ್ಲಿ ಕನಕಪುರದ ಕಬ್ಬಾಳಿನ ಚಿರಂತನ ಶಾಲೆಯಲ್ಲಿ ರೈತ ತರಬೇತಿ ಕಾರ್ಯಕ್ರಮ ನಡೆಸಿದೆವು. ನೈಸರ್ಗಿಕ ಮತ್ತು ಸಾವಯವ ಕೃಷಿ ಹಾಗೂ ಕೃಷಿ ಅರಣ್ಯದ ಲಾಭಗಳು, ರಾಸಾಯನಿಕ ಗೊಬ್ಬರಗಳ ದೀರ್ಘಕಾಲೀನ ಅವಲಂಬನೆಯ ಕುರಿತು ಆತಂಕಗಳು, ಮತ್ತು ರೈತರು ಬದಲಾವಣೆ ಮಾಡಿಕೊಳ್ಳುವ ಪ್ರಾಯೋಗಿಕ ದಾರಿಗಳನ್ನು ಇದರಲ್ಲಿ ಚರ್ಚಿಸಲಾಯಿತು.",
+        en: "Bhoomi Seva organises farmer training in natural and organic farming and agroforestry, with the intention of holding it every year in July or August.",
+        kn: "ಭೂಮಿ ಸೇವಾ ಪ್ರತಿ ವರ್ಷ ಜುಲೈ ಅಥವಾ ಆಗಸ್ಟ್‌ನಲ್ಲಿ ನೈಸರ್ಗಿಕ ಮತ್ತು ಸಾವಯವ ಕೃಷಿ ಹಾಗೂ ಕೃಷಿ ಅರಣ್ಯದ ರೈತ ತರಬೇತಿಯನ್ನು ಆಯೋಜಿಸುವ ಉದ್ದೇಶ ಹೊಂದಿದೆ.",
       },
       {
-        en: "We used examples and videos from farmers who had already made the change, so that those considering it could see what happened to other farmers' livelihoods afterwards.",
-        kn: "ಈಗಾಗಲೇ ಬದಲಾವಣೆ ಮಾಡಿಕೊಂಡ ರೈತರ ಉದಾಹರಣೆಗಳು ಮತ್ತು ವೀಡಿಯೊಗಳನ್ನು ಬಳಸಿದೆವು, ಇದರಿಂದ ಪರಿಗಣಿಸುತ್ತಿರುವವರು ಬೇರೆ ರೈತರ ಜೀವನೋಪಾಯದಲ್ಲಿ ಏನಾಯಿತು ಎಂದು ನೋಡಲು ಸಾಧ್ಯವಾಯಿತು.",
+        en: "The session recorded here was held in July 2023 at Chirantana School, Kabbalu, Kanakapura, to spread awareness about organic farming among farmers.",
+        kn: "ಇಲ್ಲಿ ದಾಖಲಿಸಿರುವ ಕಾರ್ಯಕ್ರಮ, ರೈತರಲ್ಲಿ ಸಾವಯವ ಕೃಷಿಯ ಬಗ್ಗೆ ಅರಿವು ಮೂಡಿಸಲು ಜುಲೈ 2023ರಲ್ಲಿ ಕನಕಪುರದ ಕಬ್ಬಾಳಿನ ಚಿರಂತನ ಶಾಲೆಯಲ್ಲಿ ನಡೆಯಿತು.",
       },
       {
-        en: "Farmer-awareness work is intended to continue, though we do not claim a fixed annual schedule. This entry records the July 2023 session as it happened.",
-        kn: "ರೈತ ಅರಿವಿನ ಕೆಲಸ ಮುಂದುವರಿಯಬೇಕೆಂಬ ಉದ್ದೇಶವಿದೆ; ಆದರೆ ನಿಗದಿತ ವಾರ್ಷಿಕ ವೇಳಾಪಟ್ಟಿ ಇದೆ ಎಂದು ನಾವು ಹೇಳುವುದಿಲ್ಲ. ಈ ನಮೂದು ಜುಲೈ 2023ರ ಕಾರ್ಯಕ್ರಮವನ್ನು ಅದು ನಡೆದಂತೆ ದಾಖಲಿಸುತ್ತದೆ.",
+        en: "The training builds awareness among farmers about the benefits of organic farming and agroforestry, and about how continuous use of chemical fertilisers reduces yield over a period of time. It explains that natural farming practised for more than a couple of years can produce yields above those obtained from chemical fertilisers.",
+        kn: "ಸಾವಯವ ಕೃಷಿ ಮತ್ತು ಕೃಷಿ ಅರಣ್ಯದ ಪ್ರಯೋಜನಗಳ ಬಗ್ಗೆ, ಮತ್ತು ರಾಸಾಯನಿಕ ಗೊಬ್ಬರಗಳ ನಿರಂತರ ಬಳಕೆಯಿಂದ ಕಾಲಕ್ರಮೇಣ ಇಳುವರಿ ಕಡಿಮೆಯಾಗುವ ಬಗ್ಗೆ ತರಬೇತಿ ರೈತರಲ್ಲಿ ಅರಿವು ಮೂಡಿಸುತ್ತದೆ. ಎರಡು ವರ್ಷಗಳಿಗಿಂತ ಹೆಚ್ಚು ಕಾಲ ನೈಸರ್ಗಿಕ ಕೃಷಿ ಮಾಡಿದರೆ ರಾಸಾಯನಿಕ ಗೊಬ್ಬರಕ್ಕಿಂತ ಹೆಚ್ಚು ಇಳುವರಿ ಸಿಗಬಹುದು ಎಂಬುದನ್ನೂ ವಿವರಿಸುತ್ತದೆ.",
+      },
+      {
+        en: "It also gives farmers practical guidance on how to switch to organic farming or agroforestry.",
+        kn: "ಸಾವಯವ ಕೃಷಿ ಅಥವಾ ಕೃಷಿ ಅರಣ್ಯಕ್ಕೆ ಹೇಗೆ ಬದಲಾಯಿಸಿಕೊಳ್ಳುವುದು ಎಂಬ ಪ್ರಾಯೋಗಿಕ ಮಾರ್ಗದರ್ಶನವನ್ನೂ ನೀಡುತ್ತದೆ.",
+      },
+      {
+        en: "Training material cites farmer income increases of 300–800% over 3–8 years. This figure comes from case studies the organisation shares; results vary by crop, soil, climate and farming practice.",
+        kn: "ತರಬೇತಿ ಸಾಮಗ್ರಿಯಲ್ಲಿ 3–8 ವರ್ಷಗಳಲ್ಲಿ ರೈತರ ಆದಾಯ 300–800% ಹೆಚ್ಚಾಗಬಹುದು ಎಂದು ಉಲ್ಲೇಖವಿದೆ. ಈ ಅಂಕಿ ಸಂಸ್ಥೆ ಹಂಚಿಕೊಳ್ಳುವ ಪ್ರಕರಣ ಅಧ್ಯಯನಗಳಿಂದ ಬಂದದ್ದು; ಫಸಲು, ಮಣ್ಣು, ಹವಾಮಾನ ಮತ್ತು ಕೃಷಿ ಪದ್ಧತಿಯನ್ನು ಅನುಸರಿಸಿ ಫಲಿತಾಂಶ ಬದಲಾಗುತ್ತದೆ.",
+      },
+      {
+        en: "Videos and information from model farmers are used, so that farmers considering the switch can see how other farmers' lives changed after it.",
+        kn: "ಬದಲಾವಣೆ ಬಗ್ಗೆ ಯೋಚಿಸುತ್ತಿರುವ ರೈತರು, ಬೇರೆ ರೈತರ ಜೀವನ ಹೇಗೆ ಬದಲಾಯಿತು ಎಂದು ನೋಡಲು ಮಾದರಿ ರೈತರ ವೀಡಿಯೊ ಮತ್ತು ಮಾಹಿತಿಯನ್ನು ಬಳಸಲಾಗುತ್ತದೆ.",
       },
     ],
   },
@@ -210,21 +293,25 @@ export const stories: Story[] = [
       kn: "ಕೊತ್ತತ್ತಿ ಹೋಬಳಿ, ಮಂಡ್ಯ ಜಿಲ್ಲೆ",
     },
     title: {
-      en: "A cow identified for a woman farmer in Mandya",
-      kn: "ಮಂಡ್ಯದ ಮಹಿಳಾ ರೈತರೊಬ್ಬರಿಗೆ ಗುರುತಿಸಿದ ಹಸು",
+      en: "A desi cow identified for a woman farmer in Mandya",
+      kn: "ಮಂಡ್ಯದ ಮಹಿಳಾ ರೈತರೊಬ್ಬರಿಗೆ ಗುರುತಿಸಿದ ದೇಸಿ ಹಸು",
     },
     summary: {
-      en: "Sannamma, a woman farmer from Kothhathi Hobli who wanted to practise organic farming, was identified as a farmer who needed a desi cow. Our records do not confirm the outcome of this case.",
-      kn: "ಸಾವಯವ ಕೃಷಿ ಮಾಡಲು ಇಚ್ಛಿಸಿದ, ಮಂಡ್ಯ ಜಿಲ್ಲೆಯ ಕೊತ್ತತ್ತಿ ಹೋಬಳಿಯ ಮಹಿಳಾ ರೈತೆ ಸನ್ನಮ್ಮ ಅವರಿಗೆ ದೇಸಿ ಹಸು ಬೇಕಿತ್ತು ಎಂದು ಗುರುತಿಸಲಾಗಿತ್ತು. ಈ ಪ್ರಕರಣದ ಅಂತಿಮ ಫಲಿತಾಂಶ ನಮ್ಮ ದಾಖಲೆಯಲ್ಲಿ ದೃಢವಾಗಿಲ್ಲ.",
+      en: "Sannamma, a woman farmer from Kothhathi Hobli who wanted to practise organic farming, was identified as a farmer who needed a desi cow. The outcome is not confirmed in our records.",
+      kn: "ಸಾವಯವ ಕೃಷಿ ಮಾಡಲು ಬಯಸಿದ ಮಂಡ್ಯ ಜಿಲ್ಲೆಯ ಕೊತ್ತತ್ತಿ ಹೋಬಳಿಯ ಮಹಿಳಾ ರೈತೆ ಸನ್ನಮ್ಮ ಅವರಿಗೆ ದೇಸಿ ಹಸು ಬೇಕಿತ್ತು ಎಂದು ಗುರುತಿಸಲಾಗಿತ್ತು. ಫಲಿತಾಂಶ ನಮ್ಮ ದಾಖಲೆಯಲ್ಲಿ ದೃಢವಾಗಿಲ್ಲ.",
     },
     body: [
       {
-        en: "Sannamma comes from a poor family in Kothhathi Hobli, Mandya district, and wanted to practise organic farming on her land. She needed a desi cow for that purpose.",
-        kn: "ಸನ್ನಮ್ಮ ಮಂಡ್ಯ ಜಿಲ್ಲೆಯ ಕೊತ್ತತ್ತಿ ಹೋಬಳಿಯ ಬಡ ಕುಟುಂಬದವರು. ತಮ್ಮ ಜಮೀನಿನಲ್ಲಿ ಸಾವಯವ ಕೃಷಿ ಮಾಡಲು ಅವರು ಬಯಸಿದ್ದರು; ಅದಕ್ಕಾಗಿ ದೇಸಿ ಹಸು ಬೇಕಿತ್ತು.",
+        en: "Sannamma is a woman farmer from Kothhathi Hobli, Mandya district. She comes from a poor family and would like to practise organic farming on her farm.",
+        kn: "ಸನ್ನಮ್ಮ ಮಂಡ್ಯ ಜಿಲ್ಲೆಯ ಕೊತ್ತತ್ತಿ ಹೋಬಳಿಯ ಮಹಿಳಾ ರೈತೆ. ಬಡ ಕುಟುಂಬದವರಾದ ಅವರು, ತಮ್ಮ ಜಮೀನಿನಲ್ಲಿ ಸಾವಯವ ಕೃಷಿ ಮಾಡಲು ಬಯಸುತ್ತಾರೆ.",
       },
       {
-        en: "This case is recorded here as a historical initiative. We are keeping it honest: our records do not confirm whether the cow donation was completed, so we do not present it as a completed donation.",
-        kn: "ಈ ಪ್ರಕರಣವನ್ನು ಇಲ್ಲಿ ಐತಿಹಾಸಿಕ ಉಪಕ್ರಮವಾಗಿ ದಾಖಲಿಸಿದ್ದೇವೆ. ಪ್ರಾಮಾಣಿಕವಾಗಿರಲು: ಹಸು ದಾನ ಪೂರ್ಣಗೊಂಡಿತೇ ಎಂದು ನಮ್ಮ ದಾಖಲೆ ದೃಢಪಡಿಸುವುದಿಲ್ಲ; ಆದ್ದರಿಂದ ಅದನ್ನು ಪೂರ್ಣಗೊಂಡ ದಾನವೆಂದು ನಾವು ಪ್ರಸ್ತುತಪಡಿಸುವುದಿಲ್ಲ.",
+        en: "She needed a desi cow in order to do so, because desi cows are required to practise natural farming.",
+        kn: "ನೈಸರ್ಗಿಕ ಕೃಷಿ ಮಾಡಲು ದೇಸಿ ಹಸು ಅಗತ್ಯವಾದ್ದರಿಂದ, ಅದಕ್ಕಾಗಿ ಅವರಿಗೆ ಒಂದು ದೇಸಿ ಹಸು ಬೇಕಿತ್ತು.",
+      },
+      {
+        en: "This case is recorded as it was published: as an initiative rather than a completed donation. The records available do not confirm whether the cow donation was completed, so it is not presented here as done.",
+        kn: "ಈ ಪ್ರಕರಣವನ್ನು ಪ್ರಕಟವಾದಂತೆಯೇ ದಾಖಲಿಸಲಾಗಿದೆ: ಪೂರ್ಣಗೊಂಡ ದಾನವಾಗಿ ಅಲ್ಲ, ಒಂದು ಉಪಕ್ರಮವಾಗಿ. ಹಸು ದಾನ ಪೂರ್ಣಗೊಂಡಿತೇ ಎಂದು ಲಭ್ಯವಿರುವ ದಾಖಲೆ ದೃಢಪಡಿಸುವುದಿಲ್ಲ, ಆದ್ದರಿಂದ ಅದನ್ನು ಇಲ್ಲಿ ಪೂರ್ಣಗೊಂಡಿದೆ ಎಂದು ಪ್ರಸ್ತುತಪಡಿಸಿಲ್ಲ.",
       },
     ],
     people: ["Sannamma"],

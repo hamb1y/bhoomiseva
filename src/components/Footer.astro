@@ -85,6 +85,7 @@ const socials = [
       </span>
       <span class="note">{t("footer.legal")}</span>
     </div>
+    <p class="credit">{site.credit}</p>
   </div>
 </footer>
 
@@ -159,6 +160,12 @@ const socials = [
     align-items: baseline;
     border-top: 1px solid var(--rule);
     padding-top: var(--s-5);
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    color: var(--ink-3);
+  }
+  .credit {
+    margin: var(--s-4) 0 0;
     font-family: var(--font-mono);
     font-size: var(--step--1);
     color: var(--ink-3);

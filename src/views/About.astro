@@ -24,6 +24,14 @@ const t = useTranslations(lang);
     </div>
   </section>
 
+  <section class="intro">
+    <div class="container narrow">
+      {site.about.map((p) => (
+        <p>{pick(p, lang)}</p>
+      ))}
+    </div>
+  </section>
+
   <section class="mv">
     <div class="container mv-grid">
       <div class="mv-block">
@@ -99,6 +107,19 @@ const t = useTranslations(lang);
     margin-top: var(--s-5);
     font-size: var(--step-1);
     color: var(--ink-2);
+  }
+
+  .intro {
+    padding-bottom: var(--s-7);
+  }
+  .intro p {
+    margin: 0 0 var(--s-5);
+    color: var(--ink-2);
+    font-size: var(--step-1);
+    line-height: 1.6;
+  }
+  .intro p:last-child {
+    margin-bottom: 0;
   }
 
   .mv .container {

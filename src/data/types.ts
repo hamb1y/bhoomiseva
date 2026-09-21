@@ -29,6 +29,11 @@ export interface Story {
   title: Localized;
   summary: Localized;
   body: Localized[];
+  /** A first-person testimonial or letter reproduced from the source. */
+  quote?: {
+    text: Localized;
+    attribution: Localized;
+  };
   people?: string[];
   featured?: boolean;
 }

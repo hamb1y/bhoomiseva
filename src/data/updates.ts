@@ -1,8 +1,8 @@
 import type { Update } from "./types";
 
 /**
- * A dated archive. Entries without a documented date carry a `period` label
- * instead of an invented date.
+ * Dated events from the existing site. Entries without a documented date carry
+ * a `period` label instead of an invented date.
  */
 export const updates: Update[] = [
   {
@@ -10,8 +10,8 @@ export const updates: Update[] = [
     program: "farmers",
     kind: "event",
     title: {
-      en: "Farmer training on natural farming at Chirantana School, Kabbalu",
-      kn: "ಚಿರಂತನ ಶಾಲೆ, ಕಬ್ಬಾಳಿನಲ್ಲಿ ನೈಸರ್ಗಿಕ ಕೃಷಿ ರೈತ ತರಬೇತಿ",
+      en: "Farmers' training in natural and organic farming",
+      kn: "ನೈಸರ್ಗಿಕ ಮತ್ತು ಸಾವಯವ ಕೃಷಿಯಲ್ಲಿ ರೈತರ ತರಬೇತಿ",
     },
     location: {
       en: "Chirantana School, Kabbalu, Kanakapura",
@@ -23,28 +23,28 @@ export const updates: Update[] = [
     kind: "donation",
     period: { en: "Balipadyami", kn: "ಬಲಿಪಾಡ್ಯಮಿ" },
     title: {
-      en: "A meal sponsored for children at Sri Krishnashraya",
-      kn: "ಶ್ರೀ ಕೃಷ್ಣಾಶ್ರಯದ ಮಕ್ಕಳಿಗೆ ಪ್ರಾಯೋಜಿಸಿದ ಊಟ",
+      en: "Meal sponsored at Sri Krishnashraya orphanage",
+      kn: "ಶ್ರೀ ಕೃಷ್ಣಾಶ್ರಯ ಅನಾಥಾಶ್ರಮದಲ್ಲಿ ಪ್ರಾಯೋಜಿಸಿದ ಊಟ",
     },
     location: { en: "Sri Krishnashraya", kn: "ಶ್ರೀ ಕೃಷ್ಣಾಶ್ರಯ" },
   },
   {
     program: "farmers",
     kind: "donation",
-    period: { en: "Recorded initiative", kn: "ದಾಖಲಿತ ಉಪಕ್ರಮ" },
+    period: { en: "Recorded event", kn: "ದಾಖಲಿತ ಕಾರ್ಯಕ್ರಮ" },
     title: {
-      en: "Desi cow support for a woman farmer near Kabbalu",
-      kn: "ಕಬ್ಬಾಳು ಸಮೀಪದ ಮಹಿಳಾ ರೈತರಿಗೆ ದೇಸಿ ಹಸು ಬೆಂಬಲ",
+      en: "Cow donation to a woman farmer, Sunitha from Kabbalu",
+      kn: "ಕಬ್ಬಾಳಿನ ಮಹಿಳಾ ರೈತೆ ಸುನೀತಾ ಅವರಿಗೆ ಹಸು ದಾನ",
     },
     location: { en: "Kabbalu, Kanakapura", kn: "ಕಬ್ಬಾಳು, ಕನಕಪುರ" },
   },
   {
     program: "education",
     kind: "milestone",
-    period: { en: "Recurring", kn: "ಮರುಕಳಿಸುವ" },
+    period: { en: "Every year", kn: "ಪ್ರತಿ ವರ್ಷ" },
     title: {
-      en: "Scholarships and school fees paid for Bhoomi Seva students",
-      kn: "ಭೂಮಿ ಸೇವಾ ವಿದ್ಯಾರ್ಥಿಗಳಿಗೆ ವಿದ್ಯಾರ್ಥಿವೇತನ ಮತ್ತು ಶಾಲಾ ಶುಲ್ಕ",
+      en: "Scholarship and school-fee payment for Bhoomi Seva students",
+      kn: "ಭೂಮಿ ಸೇವಾ ವಿದ್ಯಾರ್ಥಿಗಳಿಗೆ ವಿದ್ಯಾರ್ಥಿವೇತನ ಮತ್ತು ಶಾಲಾ ಶುಲ್ಕ ಪಾವತಿ",
     },
     location: { en: "Karnataka", kn: "ಕರ್ನಾಟಕ" },
   },

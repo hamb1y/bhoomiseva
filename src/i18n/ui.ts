@@ -1,5 +1,5 @@
 /**
- * UI string dictionary — English + Kannada.
+ * UI strings — English + Kannada.
  *
  * Long-form page content lives in src/data/*, where each field can carry
  * `{ en, kn }`; a missing `kn` falls back to `en`.
@@ -17,17 +17,17 @@ export type Lang = keyof typeof languages;
 export const ui = {
   en: {
     "site.name": "Bhoomi Seva",
-    "site.tagline": "Let's give a better Earth to our children.",
+    "site.tagline": "Let's give a better Earth to our children!",
     "site.description":
       "A volunteer-led initiative supporting rural communities in Karnataka through education, natural farming and practical support for children in need.",
 
-    "common.readEntry": "Read this entry",
+    "common.readEntry": "Read this story",
     "common.dateUnknown": "Date not recorded",
     "common.backToStories": "All stories",
     "common.dated": "Dated",
     "common.programme": "Programme",
     "common.location": "Location",
-    "common.relatedStories": "Related entries",
+    "common.relatedStories": "Related stories",
 
     "a11y.skip": "Skip to content",
 
@@ -48,53 +48,38 @@ export const ui = {
     "cta.volunteer": "Volunteer with us",
     "cta.contact": "Contact us",
     "cta.readStories": "Read our stories",
-    "cta.learnMore": "Learn more",
+    "cta.learnMore": "Read more",
     "cta.allStories": "All stories",
     "cta.whatsapp": "Message us on WhatsApp",
     "cta.exploreWork": "Explore our work",
 
-    "pillar.education.kicker": "Education",
-    "pillar.education.title": "Helping students stay in school and move forward",
-    "pillar.education.summary":
-      "Scholarships and education fees, free online tutoring, JNV entrance coaching, mentoring and guidance toward external scholarship opportunities.",
-    "pillar.farmers.kicker": "Farmers & Environment",
-    "pillar.farmers.title": "Stronger farms, healthier soil, resilient livelihoods",
-    "pillar.farmers.summary":
-      "Training and practical guidance in natural and organic farming and agroforestry, plus desi cows for selected marginal farmers.",
-    "pillar.children.kicker": "Children & Community",
-    "pillar.children.title": "Practical support where it is needed",
-    "pillar.children.summary":
-      "Meals, education expenses, laptops, bicycles, clothes, stationery, LPG cylinders, medical and emergency support through children's homes.",
-
     "home.hero.kicker": "Volunteer-led · Karnataka",
-    "home.hero.lede":
-      "We work directly with rural families and farmers, one practical intervention at a time — from a student's school fees to farmer training or a desi cow that supports a family's farm and dairy income.",
-    "home.pillars.kicker": "What we do",
-    "home.pillars.title": "Three kinds of support, often for the same family",
+    "home.pillars.kicker": "Our work",
+    "home.pillars.title": "What we do",
     "home.model.kicker": "How we work",
-    "home.model.title": "One family, three interventions",
+    "home.model.title": "A cow, a sewing machine and school fees",
     "home.model.body":
-      "A farming family at Kurubarahalli Doddi near Kabbalu needed more than one thing at once. Their daughter's school fees were becoming hard to manage, the household relied on a single source of income, and they wanted to farm differently. Bhoomi Seva helped with all three: education fees, a desi cow, and a sewing machine.",
-    "home.updates.kicker": "From the field",
-    "home.updates.title": "Recent entries",
-    "home.impact.kicker": "Stand with us",
-    "home.impact.title": "Your support reaches a specific student, farmer or child",
+      "Sunita Kumara Swamy's family at Kurubarahalli Doddi near Kabbalu needed more than one thing at once. Their daughter's school fees had become hard to pay, and the household was running on a single source of income. Bhoomi Seva helped with three: a scholarship and fee payment for their daughter, a desi cow for the family's farm and dairy income, and a sewing machine for a second income.",
+    "home.updates.kicker": "Stories and updates",
+    "home.updates.title": "Recent stories",
+    "home.impact.kicker": "Support our work",
+    "home.impact.title": "Donate or volunteer",
     "home.impact.body":
-      "Every contribution is recorded and acknowledged. Tell us which programme matters to you, or let us use it where it is needed most.",
+      "Contributions are recorded and acknowledged. Tell us which programme you want to support, or let us use it where it is needed most.",
 
     "work.kicker": "Our work",
-    "work.title": "Three programmes, one community",
+    "work.title": "Our programmes",
     "work.lede":
-      "Our work sits in three areas. They often overlap: the same family may receive education support, livelihood help and practical assistance at once.",
+      "Bhoomi Seva works in three areas: education, farmers and the environment, and support for children's homes. They often overlap — the same family may receive education support, livelihood help and practical assistance at the same time.",
     "work.activities": "What this includes",
-    "work.stories": "Entries from this programme",
+    "work.stories": "Stories from this programme",
     "work.otherProgrammes": "Other programmes",
-    "work.noStories": "Entries from this programme are being added.",
+    "work.noStories": "Stories from this programme are being added.",
 
-    "stories.kicker": "Stories & updates",
-    "stories.title": "Field notes",
+    "stories.kicker": "Archive",
+    "stories.title": "Stories and updates",
     "stories.lede":
-      "Documented work, dated and located. Some entries are recent; others are kept as archive.",
+      "Documented work from Bhoomi Seva, dated and located where the records allow. Some entries are recent; others are kept as archive.",
     "stories.filter.programme": "Programme",
     "stories.filter.year": "Year",
     "stories.filter.all": "All",
@@ -105,38 +90,39 @@ export const ui = {
     "story.people": "People",
     "story.place": "Place",
     "story.period": "Period",
+    "story.quoteLabel": "In their own words",
 
     "about.kicker": "About us",
-    "about.title": "A small organisation, working at a human scale",
+    "about.title": "About Bhoomi Seva",
     "about.lede":
-      "Bhoomi Seva began from a simple desire to help where practical support can make a real difference. Our work focuses mainly on rural communities and brings together volunteers, donors, teachers, farmers and local organisations.",
+      "Bhoomi Seva is a volunteer-led social initiative working with rural communities in Karnataka. It runs education support, farmer training and desi cow donations, and practical support for children's homes.",
     "about.mission": "Mission",
     "about.vision": "Vision",
     "about.team": "The people",
     "about.team.lede":
       "Bhoomi Seva is run by volunteers and advisers who also work and live outside the organisation.",
-    "about.community": "Our community",
+    "about.community": "Our volunteers",
     "about.community.body":
-      "Bhoomi Seva is supported by a community of around 100 volunteers and donors, including volunteers who teach, mentor and coordinate programmes.",
+      "Bhoomi Seva has a group of volunteers who teach, coach and mentor underprivileged students. It also has around 95–110 volunteers who donate in support of various initiatives.",
     "about.disclaimer":
-      "We try to keep this page honest. Where something is small-scale, or has been done once, we say so.",
+      "We try to keep this page accurate. Where something is small-scale, or was done once, we say so.",
 
     "involved.kicker": "Get involved",
-    "involved.title": "There are a few ways to help",
+    "involved.title": "Get involved",
     "involved.lede":
-      "You can teach, mentor, coordinate, give useful goods, or fund a specific programme. Every bit of it reaches a named student, farmer or child.",
+      "You can teach, mentor, coordinate, give goods, or fund a specific programme. Every bit of it reaches a student, farmer or child.",
     "involved.volunteer.title": "Volunteer",
     "involved.volunteer.body":
-      "Teach students online, mentor young people, support farmer programmes, or help coordinate initiatives online and on the ground.",
+      "We have volunteering opportunities in online teaching, and in online or offline coordination for various initiatives. Contact us to know more.",
     "involved.goods.title": "Donate goods",
     "involved.goods.body":
-      "Laptops, bicycles, clothing, footwear, stationery, furniture and LPG cylinders are needed by the children's homes we support. Tell us what you have and we will match it to a need.",
-    "involved.give.title": "Give money",
+      "Laptops, bicycles, used clothes, footwear, stationery, furniture and LPG cylinders are needed by the children's homes we support. Tell us what you have and we will match it to a need.",
+    "involved.give.title": "Donate money",
     "involved.give.body":
-      "Fund education, farmer support, a desi cow or a meal. You can earmark your contribution for a specific purpose.",
+      "Fund education, farmer support, a desi cow or an orphanage meal. You can add the purpose while transferring the amount.",
     "involved.follow.title": "Follow along",
     "involved.follow.body":
-      "Join the WhatsApp group or follow us on social media to hear about new work.",
+      "Join the Bhoomi Seva WhatsApp group or support us on Facebook to hear about new work.",
 
     "form.name": "Your name",
     "form.email": "Email address",
@@ -155,37 +141,37 @@ export const ui = {
     "form.orContact": "Prefer not to use a form?",
 
     "donate.kicker": "Donate",
-    "donate.title": "Choose where your contribution goes",
+    "donate.title": "Donate to Bhoomi Seva",
     "donate.lede":
-      "We keep donations simple: choose a cause, transfer using UPI, and send us a short confirmation so we can thank you and report back.",
-    "donate.cause": "Choose a cause",
-    "donate.amount": "Suggested amount",
+      "If you want your donation to be used for a specific purpose, add CowDonation / Education / FarmersSupport / OrphanageMeal / Any in the comment while transferring the amount.",
+    "donate.cause": "Choose a purpose",
+    "donate.amount": "Amount",
     "donate.upi": "UPI ID",
     "donate.copy": "Copy",
     "donate.copied": "Copied",
-    "donate.qr": "Scan to pay",
+    "donate.qr": "QR code",
     "donate.qr.alt": "Payment QR code",
     "donate.or": "or",
-    "donate.step1": "Choose a cause and amount",
-    "donate.step2": "Transfer by UPI and add the cause in the payment note",
+    "donate.step1": "Choose a purpose and an amount",
+    "donate.step2": "Transfer by UPI, Paytm or Google Pay",
     "donate.step3": "Send us the confirmation so we can acknowledge it",
     "donate.confirm.title": "After you transfer",
     "donate.confirm.body":
-      "Please send us a message with the amount and the cause you chose. This is how we record and acknowledge every contribution.",
+      "You can get confirmation of your transferred amount by sending a WhatsApp message to Bhoomi Seva (+91 9900103178), or by emailing bhoomiseva.org@gmail.com. We record every contribution by name and purpose.",
     "donate.unverified":
-      "We are confirming that the payment details below are current. Please message us before transferring, or ask us for the latest details.",
+      "We are confirming that the payment details below are still current. Please message us before transferring, or ask us for the latest details.",
     "donate.otherMethods": "Other ways to pay",
-    "donate.causeNote": "Add the cause to the payment note so we can allocate it correctly.",
+    "donate.causeNote": "Add the purpose in the payment comment so we can allocate it correctly.",
     "donate.qrPending": "Payment QR placeholder — replace with the current QR before launch.",
 
-    "cause.education": "Education & scholarships",
+    "cause.education": "Education",
     "cause.farmers": "Farmer support",
-    "cause.cow": "Desi cow donation",
-    "cause.children": "Children's home / meals",
-    "cause.any": "Use where it is needed most",
+    "cause.cow": "Cow donation",
+    "cause.children": "Orphanage meal",
+    "cause.any": "Any",
 
     "contact.kicker": "Contact",
-    "contact.title": "Write to us",
+    "contact.title": "Contact us",
     "contact.lede":
       "Ask about a programme, offer to volunteer, or tell us about a student or family who needs support.",
     "contact.email": "Email",
@@ -213,17 +199,17 @@ export const ui = {
 
   kn: {
     "site.name": "ಭೂಮಿ ಸೇವಾ",
-    "site.tagline": "ನಮ್ಮ ಮಕ್ಕಳಿಗೆ ಉತ್ತಮ ಭೂಮಿಯನ್ನು ನೀಡೋಣ.",
+    "site.tagline": "ನಮ್ಮ ಮಕ್ಕಳಿಗೆ ಉತ್ತಮ ಭೂಮಿಯನ್ನು ನೀಡೋಣ!",
     "site.description":
       "ಶಿಕ್ಷಣ, ನೈಸರ್ಗಿಕ ಕೃಷಿ ಮತ್ತು ಅಗತ್ಯವಿರುವ ಮಕ್ಕಳಿಗೆ ಪ್ರಾಯೋಗಿಕ ಬೆಂಬಲದ ಮೂಲಕ ಕರ್ನಾಟಕದ ಗ್ರಾಮೀಣ ಸಮುದಾಯಗಳಿಗೆ ನೆರವು ನೀಡುವ ಸ್ವಯಂಸೇವಕರ ಉಪಕ್ರಮ.",
 
-    "common.readEntry": "ಈ ನಮೂದನ್ನು ಓದಿ",
+    "common.readEntry": "ಈ ಕಥೆಯನ್ನು ಓದಿ",
     "common.dateUnknown": "ದಿನಾಂಕ ದಾಖಲಾಗಿಲ್ಲ",
     "common.backToStories": "ಎಲ್ಲಾ ಕಥೆಗಳು",
     "common.dated": "ದಿನಾಂಕ",
     "common.programme": "ಕಾರ್ಯಕ್ರಮ",
     "common.location": "ಸ್ಥಳ",
-    "common.relatedStories": "ಸಂಬಂಧಿತ ನಮೂದುಗಳು",
+    "common.relatedStories": "ಸಂಬಂಧಿತ ಕಥೆಗಳು",
 
     "a11y.skip": "ವಿಷಯಕ್ಕೆ ಹೋಗಿ",
 
@@ -244,53 +230,38 @@ export const ui = {
     "cta.volunteer": "ನಮ್ಮೊಂದಿಗೆ ಸ್ವಯಂಸೇವೆ ಮಾಡಿ",
     "cta.contact": "ನಮ್ಮನ್ನು ಸಂಪರ್ಕಿಸಿ",
     "cta.readStories": "ನಮ್ಮ ಕಥೆಗಳನ್ನು ಓದಿ",
-    "cta.learnMore": "ಇನ್ನಷ್ಟು ತಿಳಿಯಿರಿ",
+    "cta.learnMore": "ಇನ್ನಷ್ಟು ಓದಿ",
     "cta.allStories": "ಎಲ್ಲಾ ಕಥೆಗಳು",
     "cta.whatsapp": "ವಾಟ್ಸಾಪ್‌ನಲ್ಲಿ ಸಂದೇಶ ಕಳುಹಿಸಿ",
     "cta.exploreWork": "ನಮ್ಮ ಕೆಲಸ ನೋಡಿ",
 
-    "pillar.education.kicker": "ಶಿಕ್ಷಣ",
-    "pillar.education.title": "ವಿದ್ಯಾರ್ಥಿಗಳು ಶಾಲೆಯಲ್ಲಿ ಉಳಿದು ಮುಂದೆ ಸಾಗಲು ನೆರವು",
-    "pillar.education.summary":
-      "ವಿದ್ಯಾರ್ಥಿವೇತನ ಮತ್ತು ಶಿಕ್ಷಣ ಶುಲ್ಕ, ಉಚಿತ ಆನ್‌ಲೈನ್ ಪಾಠ, ಜೆಎನ್‌ವಿ ಪ್ರವೇಶ ತರಬೇತಿ, ಮಾರ್ಗದರ್ಶನ ಮತ್ತು ಹೊರಗಿನ ವಿದ್ಯಾರ್ಥಿವೇತನ ಅವಕಾಶಗಳ ಬಗ್ಗೆ ದಾರಿ ತೋರಿಸುವುದು.",
-    "pillar.farmers.kicker": "ರೈತರು ಮತ್ತು ಪರಿಸರ",
-    "pillar.farmers.title": "ಬಲವಾದ ಜಮೀನು, ಆರೋಗ್ಯಕರ ಮಣ್ಣು, ಸ್ಥಿರ ಜೀವನೋಪಾಯ",
-    "pillar.farmers.summary":
-      "ನೈಸರ್ಗಿಕ ಮತ್ತು ಸಾವಯವ ಕೃಷಿ ಹಾಗೂ ಕೃಷಿ ಅರಣ್ಯದಲ್ಲಿ ತರಬೇತಿ ಮತ್ತು ಪ್ರಾಯೋಗಿಕ ಮಾರ್ಗದರ್ಶನ, ಜೊತೆಗೆ ಆಯ್ದ ಸಣ್ಣ ರೈತರಿಗೆ ದೇಸಿ ಹಸುಗಳು.",
-    "pillar.children.kicker": "ಮಕ್ಕಳು ಮತ್ತು ಸಮುದಾಯ",
-    "pillar.children.title": "ಅಗತ್ಯವಿರುವಲ್ಲಿ ಪ್ರಾಯೋಗಿಕ ಬೆಂಬಲ",
-    "pillar.children.summary":
-      "ಮಕ್ಕಳ ಮನೆಗಳ ಮೂಲಕ ಊಟ, ಶಿಕ್ಷಣ ವೆಚ್ಚ, ಲ್ಯಾಪ್‌ಟಾಪ್, ಸೈಕಲ್, ಬಟ್ಟೆ, ಲೇಖನ ಸಾಮಗ್ರಿ, ಎಲ್‌ಪಿಜಿ ಸಿಲಿಂಡರ್, ವೈದ್ಯಕೀಯ ಮತ್ತು ತುರ್ತು ಸಹಾಯ.",
-
     "home.hero.kicker": "ಸ್ವಯಂಸೇವಕರ ಉಪಕ್ರಮ · ಕರ್ನಾಟಕ",
-    "home.hero.lede":
-      "ನಾವು ಗ್ರಾಮೀಣ ಕುಟುಂಬಗಳು ಮತ್ತು ರೈತರೊಂದಿಗೆ ನೇರವಾಗಿ ಕೆಲಸ ಮಾಡುತ್ತೇವೆ — ಒಂದು ವಿದ್ಯಾರ್ಥಿಯ ಶಾಲಾ ಶುಲ್ಕದಿಂದ ಹಿಡಿದು ರೈತ ತರಬೇತಿ ಅಥವಾ ಕುಟುಂಬದ ಜಮೀನು ಮತ್ತು ಹಾಲಿನ ಆದಾಯಕ್ಕೆ ನೆರವಾಗುವ ದೇಸಿ ಹಸುವಿನವರೆಗೆ.",
-    "home.pillars.kicker": "ನಾವು ಏನು ಮಾಡುತ್ತೇವೆ",
-    "home.pillars.title": "ಮೂರು ರೀತಿಯ ಬೆಂಬಲ, ಹಲವು ಬಾರಿ ಒಂದೇ ಕುಟುಂಬಕ್ಕೆ",
+    "home.pillars.kicker": "ನಮ್ಮ ಕೆಲಸ",
+    "home.pillars.title": "ನಾವು ಏನು ಮಾಡುತ್ತೇವೆ",
     "home.model.kicker": "ನಾವು ಹೇಗೆ ಕೆಲಸ ಮಾಡುತ್ತೇವೆ",
-    "home.model.title": "ಒಂದು ಕುಟುಂಬ, ಮೂರು ನೆರವುಗಳು",
+    "home.model.title": "ಒಂದು ಹಸು, ಒಂದು ಹೊಲಿಗೆ ಯಂತ್ರ ಮತ್ತು ಶಾಲಾ ಶುಲ್ಕ",
     "home.model.body":
-      "ಕಬ್ಬಾಳು ಸಮೀಪದ ಕುರುಬರಹಳ್ಳಿ ದೊಡ್ಡಿಯ ಒಂದು ಕೃಷಿ ಕುಟುಂಬಕ್ಕೆ ಒಂದಕ್ಕಿಂತ ಹೆಚ್ಚು ಬೇಕಿತ್ತು. ಮಗಳ ಶಾಲಾ ಶುಲ್ಕ ಭರಿಸುವುದು ಕಷ್ಟವಾಗಿತ್ತು, ಕುಟುಂಬ ಒಂದೇ ಆದಾಯದ ಮೂಲವನ್ನು ಅವಲಂಬಿಸಿತ್ತು, ಮತ್ತು ಅವರು ಬೇರೆ ರೀತಿಯಲ್ಲಿ ಕೃಷಿ ಮಾಡಲು ಬಯಸಿದ್ದರು. ಭೂಮಿ ಸೇವಾ ಮೂರಕ್ಕೂ ನೆರವಾಯಿತು: ಶಿಕ್ಷಣ ಶುಲ್ಕ, ಒಂದು ದೇಸಿ ಹಸು, ಮತ್ತು ಒಂದು ಹೊಲಿಗೆ ಯಂತ್ರ.",
-    "home.updates.kicker": "ಜಮೀನಿನಿಂದ",
-    "home.updates.title": "ಇತ್ತೀಚಿನ ನಮೂದುಗಳು",
-    "home.impact.kicker": "ನಮ್ಮೊಂದಿಗೆ ನಿಲ್ಲಿ",
-    "home.impact.title": "ನಿಮ್ಮ ಬೆಂಬಲವು ನಿರ್ದಿಷ್ಟ ವಿದ್ಯಾರ್ಥಿ, ರೈತ ಅಥವಾ ಮಗುವನ್ನು ತಲುಪುತ್ತದೆ",
+      "ಕಬ್ಬಾಳು ಸಮೀಪದ ಕುರುಬರಹಳ್ಳಿ ದೊಡ್ಡಿಯ ಸುನೀತ ಕುಮಾರ ಸ್ವಾಮಿ ಅವರ ಕುಟುಂಬಕ್ಕೆ ಒಂದಕ್ಕಿಂತ ಹೆಚ್ಚು ಬೇಕಿತ್ತು. ಮಗಳ ಶಾಲಾ ಶುಲ್ಕ ಭರಿಸುವುದು ಕಷ್ಟವಾಗಿತ್ತು, ಮತ್ತು ಕುಟುಂಬ ಒಂದೇ ಆದಾಯದ ಮೂಲದ ಮೇಲೆ ನಡೆಯುತ್ತಿತ್ತು. ಭೂಮಿ ಸೇವಾ ಮೂರಕ್ಕೂ ನೆರವಾಯಿತು: ಮಗಳಿಗೆ ವಿದ್ಯಾರ್ಥಿವೇತನ ಮತ್ತು ಶುಲ್ಕ ಪಾವತಿ, ಕುಟುಂಬದ ಜಮೀನು ಮತ್ತು ಹಾಲಿನ ಆದಾಯಕ್ಕೆ ಒಂದು ದೇಸಿ ಹಸು, ಮತ್ತು ಇನ್ನೊಂದು ಆದಾಯಕ್ಕೆ ಒಂದು ಹೊಲಿಗೆ ಯಂತ್ರ.",
+    "home.updates.kicker": "ಕಥೆಗಳು ಮತ್ತು ಮಾಹಿತಿ",
+    "home.updates.title": "ಇತ್ತೀಚಿನ ಕಥೆಗಳು",
+    "home.impact.kicker": "ನಮ್ಮ ಕೆಲಸಕ್ಕೆ ಬೆಂಬಲ",
+    "home.impact.title": "ದೇಣಿಗೆ ನೀಡಿ ಅಥವಾ ಸ್ವಯಂಸೇವೆ ಮಾಡಿ",
     "home.impact.body":
-      "ಪ್ರತಿ ಕೊಡುಗೆಯನ್ನೂ ದಾಖಲಿಸಿ ಕೃತಜ್ಞತೆ ಸಲ್ಲಿಸುತ್ತೇವೆ. ಯಾವ ಕಾರ್ಯಕ್ರಮ ನಿಮಗೆ ಮುಖ್ಯವೋ ಅದನ್ನು ಹೇಳಿ, ಅಥವಾ ಅಗತ್ಯವಿರುವಲ್ಲಿ ಬಳಸಲು ನಮಗೆ ಬಿಡಿ.",
+      "ಪ್ರತಿ ಕೊಡುಗೆಯನ್ನೂ ದಾಖಲಿಸಿ ಕೃತಜ್ಞತೆ ಸಲ್ಲಿಸುತ್ತೇವೆ. ಯಾವ ಕಾರ್ಯಕ್ರಮಕ್ಕೆ ಬೆಂಬಲ ನೀಡಬೇಕೋ ಹೇಳಿ, ಅಥವಾ ಅಗತ್ಯವಿರುವಲ್ಲಿ ಬಳಸಲು ನಮಗೆ ಬಿಡಿ.",
 
     "work.kicker": "ನಮ್ಮ ಕೆಲಸ",
-    "work.title": "ಮೂರು ಕಾರ್ಯಕ್ರಮಗಳು, ಒಂದೇ ಸಮುದಾಯ",
+    "work.title": "ನಮ್ಮ ಕಾರ್ಯಕ್ರಮಗಳು",
     "work.lede":
-      "ನಮ್ಮ ಕೆಲಸ ಮೂರು ಕ್ಷೇತ್ರಗಳಲ್ಲಿದೆ. ಅವು ಹಲವು ಬಾರಿ ಒಂದಕ್ಕೊಂದು ಬೆರೆಯುತ್ತವೆ: ಒಂದೇ ಕುಟುಂಬಕ್ಕೆ ಶಿಕ್ಷಣ ಬೆಂಬಲ, ಜೀವನೋಪಾಯ ನೆರವು ಮತ್ತು ಪ್ರಾಯೋಗಿಕ ಸಹಾಯ ಒಟ್ಟಿಗೆ ಸಿಗಬಹುದು.",
+      "ಭೂಮಿ ಸೇವಾ ಮೂರು ಕ್ಷೇತ್ರಗಳಲ್ಲಿ ಕೆಲಸ ಮಾಡುತ್ತದೆ: ಶಿಕ್ಷಣ, ರೈತರು ಮತ್ತು ಪರಿಸರ, ಮತ್ತು ಮಕ್ಕಳ ಮನೆಗಳಿಗೆ ಬೆಂಬಲ. ಇವು ಹಲವು ಬಾರಿ ಒಂದಕ್ಕೊಂದು ಬೆರೆಯುತ್ತವೆ — ಒಂದೇ ಕುಟುಂಬಕ್ಕೆ ಶಿಕ್ಷಣ ಬೆಂಬಲ, ಜೀವನೋಪಾಯ ನೆರವು ಮತ್ತು ಪ್ರಾಯೋಗಿಕ ಸಹಾಯ ಒಟ್ಟಿಗೆ ಸಿಗಬಹುದು.",
     "work.activities": "ಇದರಲ್ಲಿ ಸೇರಿರುವುದು",
-    "work.stories": "ಈ ಕಾರ್ಯಕ್ರಮದ ನಮೂದುಗಳು",
+    "work.stories": "ಈ ಕಾರ್ಯಕ್ರಮದ ಕಥೆಗಳು",
     "work.otherProgrammes": "ಇತರ ಕಾರ್ಯಕ್ರಮಗಳು",
-    "work.noStories": "ಈ ಕಾರ್ಯಕ್ರಮದ ನಮೂದುಗಳನ್ನು ಸೇರಿಸುತ್ತಿದ್ದೇವೆ.",
+    "work.noStories": "ಈ ಕಾರ್ಯಕ್ರಮದ ಕಥೆಗಳನ್ನು ಸೇರಿಸುತ್ತಿದ್ದೇವೆ.",
 
-    "stories.kicker": "ಕಥೆಗಳು ಮತ್ತು ಮಾಹಿತಿ",
-    "stories.title": "ಜಮೀನಿನ ಟಿಪ್ಪಣಿಗಳು",
+    "stories.kicker": "ಸಂಗ್ರಹ",
+    "stories.title": "ಕಥೆಗಳು ಮತ್ತು ಮಾಹಿತಿ",
     "stories.lede":
-      "ದಾಖಲಿತ ಕೆಲಸ, ದಿನಾಂಕ ಮತ್ತು ಸ್ಥಳದೊಂದಿಗೆ. ಕೆಲವು ನಮೂದುಗಳು ಇತ್ತೀಚಿನವು; ಇನ್ನು ಕೆಲವು ಸಂಗ್ರಹವಾಗಿ ಉಳಿದಿವೆ.",
+      "ಭೂಮಿ ಸೇವಾದ ದಾಖಲಿತ ಕೆಲಸ, ದಾಖಲೆ ಇರುವಲ್ಲಿ ದಿನಾಂಕ ಮತ್ತು ಸ್ಥಳದೊಂದಿಗೆ. ಕೆಲವು ನಮೂದುಗಳು ಇತ್ತೀಚಿನವು; ಇನ್ನು ಕೆಲವು ಸಂಗ್ರಹವಾಗಿ ಉಳಿದಿವೆ.",
     "stories.filter.programme": "ಕಾರ್ಯಕ್ರಮ",
     "stories.filter.year": "ವರ್ಷ",
     "stories.filter.all": "ಎಲ್ಲಾ",
@@ -301,38 +272,39 @@ export const ui = {
     "story.people": "ವ್ಯಕ್ತಿಗಳು",
     "story.place": "ಸ್ಥಳ",
     "story.period": "ಅವಧಿ",
+    "story.quoteLabel": "ಅವರದೇ ಮಾತಿನಲ್ಲಿ",
 
     "about.kicker": "ನಮ್ಮ ಬಗ್ಗೆ",
-    "about.title": "ಮನುಷ್ಯರ ಗಾತ್ರದಲ್ಲಿ ಕೆಲಸ ಮಾಡುವ ಸಣ್ಣ ಸಂಸ್ಥೆ",
+    "about.title": "ಭೂಮಿ ಸೇವಾ ಬಗ್ಗೆ",
     "about.lede":
-      "ಪ್ರಾಯೋಗಿಕ ಬೆಂಬಲ ನಿಜವಾದ ಬದಲಾವಣೆ ತರಬಲ್ಲಲ್ಲಿ ಸಹಾಯ ಮಾಡುವ ಸರಳ ಬಯಕೆಯಿಂದ ಭೂಮಿ ಸೇವಾ ಪ್ರಾರಂಭವಾಯಿತು. ನಮ್ಮ ಕೆಲಸ ಮುಖ್ಯವಾಗಿ ಗ್ರಾಮೀಣ ಸಮುದಾಯಗಳ ಮೇಲೆ ಕೇಂದ್ರೀಕೃತವಾಗಿದ್ದು, ಸ್ವಯಂಸೇವಕರು, ದಾನಿಗಳು, ಶಿಕ್ಷಕರು, ರೈತರು ಮತ್ತು ಸ್ಥಳೀಯ ಸಂಸ್ಥೆಗಳನ್ನು ಒಟ್ಟುಗೂಡಿಸುತ್ತದೆ.",
+      "ಭೂಮಿ ಸೇವಾ ಕರ್ನಾಟಕದ ಗ್ರಾಮೀಣ ಸಮುದಾಯಗಳೊಂದಿಗೆ ಕೆಲಸ ಮಾಡುವ ಸ್ವಯಂಸೇವಕರ ಸಾಮಾಜಿಕ ಉಪಕ್ರಮ. ಇದು ಶಿಕ್ಷಣ ಬೆಂಬಲ, ರೈತ ತರಬೇತಿ ಮತ್ತು ದೇಸಿ ಹಸು ದಾನ, ಮತ್ತು ಮಕ್ಕಳ ಮನೆಗಳಿಗೆ ಪ್ರಾಯೋಗಿಕ ಸಹಾಯ ನಡೆಸುತ್ತದೆ.",
     "about.mission": "ಧ್ಯೇಯ",
     "about.vision": "ದೃಷ್ಟಿ",
     "about.team": "ಜನರು",
     "about.team.lede":
       "ಭೂಮಿ ಸೇವಾವನ್ನು ಸ್ವಯಂಸೇವಕರು ಮತ್ತು ಸಲಹೆಗಾರರು ನಡೆಸುತ್ತಾರೆ; ಅವರು ಸಂಸ್ಥೆಯ ಹೊರಗೆಯೂ ಕೆಲಸ ಮಾಡುತ್ತಾರೆ ಮತ್ತು ಬದುಕುತ್ತಾರೆ.",
-    "about.community": "ನಮ್ಮ ಸಮುದಾಯ",
+    "about.community": "ನಮ್ಮ ಸ್ವಯಂಸೇವಕರು",
     "about.community.body":
-      "ಭೂಮಿ ಸೇವಾಗೆ ಸುಮಾರು 100 ಸ್ವಯಂಸೇವಕರು ಮತ್ತು ದಾನಿಗಳ ಬೆಂಬಲವಿದೆ; ಪಾಠ ಮಾಡುವ, ಮಾರ್ಗದರ್ಶನ ನೀಡುವ ಮತ್ತು ಕಾರ್ಯಕ್ರಮಗಳನ್ನು ಸಂಯೋಜಿಸುವ ಸ್ವಯಂಸೇವಕರು ಇದರಲ್ಲಿ ಸೇರಿದ್ದಾರೆ.",
+      "ಭೂಮಿ ಸೇವಾದಲ್ಲಿ ವಿದ್ಯಾರ್ಥಿಗಳಿಗೆ ಪಾಠ ಮಾಡುವ, ತರಬೇತಿ ಮತ್ತು ಮಾರ್ಗದರ್ಶನ ನೀಡುವ ಸ್ವಯಂಸೇವಕರ ಗುಂಪಿದೆ. ಜೊತೆಗೆ ವಿವಿಧ ಉಪಕ್ರಮಗಳಿಗೆ ದೇಣಿಗೆ ನೀಡುವ ಸುಮಾರು 95–110 ಸ್ವಯಂಸೇವಕರೂ ಇದ್ದಾರೆ.",
     "about.disclaimer":
-      "ಈ ಪುಟವನ್ನು ಪ್ರಾಮಾಣಿಕವಾಗಿ ಇಟ್ಟುಕೊಳ್ಳಲು ನಾವು ಪ್ರಯತ್ನಿಸುತ್ತೇವೆ. ಏನಾದರೂ ಸಣ್ಣ ಪ್ರಮಾಣದ್ದಾಗಿದ್ದರೆ, ಅಥವಾ ಒಮ್ಮೆ ಮಾತ್ರ ಮಾಡಿದ್ದಾಗಿದ್ದರೆ, ಅದನ್ನು ನಾವು ಸ್ಪಷ್ಟವಾಗಿ ಹೇಳುತ್ತೇವೆ.",
+      "ಈ ಪುಟವನ್ನು ನಿಖರವಾಗಿ ಇಟ್ಟುಕೊಳ್ಳಲು ನಾವು ಪ್ರಯತ್ನಿಸುತ್ತೇವೆ. ಏನಾದರೂ ಸಣ್ಣ ಪ್ರಮಾಣದ್ದಾಗಿದ್ದರೆ, ಅಥವಾ ಒಮ್ಮೆ ಮಾತ್ರ ಮಾಡಿದ್ದಾಗಿದ್ದರೆ, ಅದನ್ನು ನಾವು ಸ್ಪಷ್ಟವಾಗಿ ಹೇಳುತ್ತೇವೆ.",
 
     "involved.kicker": "ಭಾಗಿಯಾಗಿ",
-    "involved.title": "ಸಹಾಯ ಮಾಡಲು ಕೆಲವು ದಾರಿಗಳಿವೆ",
+    "involved.title": "ಭಾಗಿಯಾಗಿ",
     "involved.lede":
-      "ನೀವು ಪಾಠ ಮಾಡಬಹುದು, ಮಾರ್ಗದರ್ಶನ ನೀಡಬಹುದು, ಸಂಯೋಜನೆ ಮಾಡಬಹುದು, ಉಪಯುಕ್ತ ವಸ್ತುಗಳನ್ನು ನೀಡಬಹುದು, ಅಥವಾ ಒಂದು ನಿರ್ದಿಷ್ಟ ಕಾರ್ಯಕ್ರಮಕ್ಕೆ ಹಣ ನೀಡಬಹುದು. ಇದರ ಪ್ರತಿಯೊಂದು ಭಾಗವೂ ಒಬ್ಬ ಹೆಸರಿನ ವಿದ್ಯಾರ್ಥಿ, ರೈತ ಅಥವಾ ಮಗುವನ್ನು ತಲುಪುತ್ತದೆ.",
+      "ನೀವು ಪಾಠ ಮಾಡಬಹುದು, ಮಾರ್ಗದರ್ಶನ ನೀಡಬಹುದು, ಸಂಯೋಜನೆ ಮಾಡಬಹುದು, ವಸ್ತುಗಳನ್ನು ನೀಡಬಹುದು, ಅಥವಾ ಒಂದು ನಿರ್ದಿಷ್ಟ ಕಾರ್ಯಕ್ರಮಕ್ಕೆ ಹಣ ನೀಡಬಹುದು. ಇದರ ಪ್ರತಿಯೊಂದು ಭಾಗವೂ ಒಬ್ಬ ವಿದ್ಯಾರ್ಥಿ, ರೈತ ಅಥವಾ ಮಗುವನ್ನು ತಲುಪುತ್ತದೆ.",
     "involved.volunteer.title": "ಸ್ವಯಂಸೇವೆ",
     "involved.volunteer.body":
-      "ವಿದ್ಯಾರ್ಥಿಗಳಿಗೆ ಆನ್‌ಲೈನ್‌ನಲ್ಲಿ ಪಾಠ ಮಾಡಿ, ಯುವಕರಿಗೆ ಮಾರ್ಗದರ್ಶನ ನೀಡಿ, ರೈತ ಕಾರ್ಯಕ್ರಮಗಳಿಗೆ ನೆರವಾಗಿ, ಅಥವಾ ಆನ್‌ಲೈನ್ ಮತ್ತು ಸ್ಥಳೀಯವಾಗಿ ಉಪಕ್ರಮಗಳ ಸಂಯೋಜನೆಯಲ್ಲಿ ಸಹಾಯ ಮಾಡಿ.",
+      "ಆನ್‌ಲೈನ್ ಪಾಠ, ಮತ್ತು ವಿವಿಧ ಉಪಕ್ರಮಗಳಿಗೆ ಆನ್‌ಲೈನ್ ಅಥವಾ ಸ್ಥಳೀಯ ಸಂಯೋಜನೆಯಲ್ಲಿ ಸ್ವಯಂಸೇವೆ ಮಾಡುವ ಅವಕಾಶಗಳಿವೆ. ಹೆಚ್ಚಿನ ಮಾಹಿತಿಗೆ ನಮ್ಮನ್ನು ಸಂಪರ್ಕಿಸಿ.",
     "involved.goods.title": "ವಸ್ತುಗಳ ದಾನ",
     "involved.goods.body":
-      "ನಾವು ಬೆಂಬಲಿಸುವ ಮಕ್ಕಳ ಮನೆಗಳಿಗೆ ಲ್ಯಾಪ್‌ಟಾಪ್, ಸೈಕಲ್, ಬಟ್ಟೆ, ಪಾದರಕ್ಷೆ, ಲೇಖನ ಸಾಮಗ್ರಿ, ಪೀಠೋಪಕರಣ ಮತ್ತು ಎಲ್‌ಪಿಜಿ ಸಿಲಿಂಡರ್‌ಗಳ ಅಗತ್ಯವಿದೆ. ನಿಮ್ಮ ಬಳಿ ಏನಿದೆ ಎಂದು ಹೇಳಿ; ಅದನ್ನು ಒಂದು ಅಗತ್ಯಕ್ಕೆ ಹೊಂದಿಸುತ್ತೇವೆ.",
+      "ನಾವು ಬೆಂಬಲಿಸುವ ಮಕ್ಕಳ ಮನೆಗಳಿಗೆ ಲ್ಯಾಪ್‌ಟಾಪ್, ಸೈಕಲ್, ಹಳೆಯ ಬಟ್ಟೆ, ಪಾದರಕ್ಷೆ, ಲೇಖನ ಸಾಮಗ್ರಿ, ಪೀಠೋಪಕರಣ ಮತ್ತು ಎಲ್‌ಪಿಜಿ ಸಿಲಿಂಡರ್‌ಗಳ ಅಗತ್ಯವಿದೆ. ನಿಮ್ಮ ಬಳಿ ಏನಿದೆ ಎಂದು ಹೇಳಿ; ಅದನ್ನು ಒಂದು ಅಗತ್ಯಕ್ಕೆ ಹೊಂದಿಸುತ್ತೇವೆ.",
     "involved.give.title": "ಹಣ ನೀಡಿ",
     "involved.give.body":
-      "ಶಿಕ್ಷಣ, ರೈತ ಬೆಂಬಲ, ಒಂದು ದೇಸಿ ಹಸು ಅಥವಾ ಒಂದು ಊಟಕ್ಕೆ ನೆರವಾಗಿ. ನಿಮ್ಮ ಕೊಡುಗೆಯನ್ನು ಒಂದು ನಿರ್ದಿಷ್ಟ ಉದ್ದೇಶಕ್ಕೆ ಮೀಸಲಿಡಬಹುದು.",
+      "ಶಿಕ್ಷಣ, ರೈತ ಬೆಂಬಲ, ಒಂದು ದೇಸಿ ಹಸು ಅಥವಾ ಒಂದು ಅನಾಥಾಶ್ರಮದ ಊಟಕ್ಕೆ ನೆರವಾಗಿ. ಹಣ ವರ್ಗಾಯಿಸುವಾಗ ಉದ್ದೇಶವನ್ನು ಸೇರಿಸಬಹುದು.",
     "involved.follow.title": "ನಮ್ಮೊಂದಿಗೆ ಇರಿ",
     "involved.follow.body":
-      "ಹೊಸ ಕೆಲಸಗಳ ಮಾಹಿತಿಗಾಗಿ ವಾಟ್ಸಾಪ್ ಗುಂಪಿಗೆ ಸೇರಿ ಅಥವಾ ಸಾಮಾಜಿಕ ಜಾಲತಾಣಗಳಲ್ಲಿ ನಮ್ಮನ್ನು ಅನುಸರಿಸಿ.",
+      "ಹೊಸ ಕೆಲಸಗಳ ಮಾಹಿತಿಗಾಗಿ ಭೂಮಿ ಸೇವಾ ವಾಟ್ಸಾಪ್ ಗುಂಪಿಗೆ ಸೇರಿ ಅಥವಾ ಫೇಸ್‌ಬುಕ್‌ನಲ್ಲಿ ನಮಗೆ ಬೆಂಬಲ ನೀಡಿ.",
 
     "form.name": "ನಿಮ್ಮ ಹೆಸರು",
     "form.email": "ಇಮೇಲ್ ವಿಳಾಸ",
@@ -351,37 +323,37 @@ export const ui = {
     "form.orContact": "ಅಫಾರ್ಮ್ ಬಳಸಲು ಇಷ್ಟವಿಲ್ಲವೇ?",
 
     "donate.kicker": "ದೇಣಿಗೆ",
-    "donate.title": "ನಿಮ್ಮ ಕೊಡುಗೆ ಎಲ್ಲಿಗೆ ಹೋಗಬೇಕೆಂದು ಆರಿಸಿ",
+    "donate.title": "ಭೂಮಿ ಸೇವಾಗೆ ದೇಣಿಗೆ",
     "donate.lede":
-      "ದೇಣಿಗೆಯನ್ನು ಸರಳವಾಗಿಡುತ್ತೇವೆ: ಒಂದು ಉದ್ದೇಶ ಆರಿಸಿ, ಯುಪಿಐ ಮೂಲಕ ಹಣ ವರ್ಗಾಯಿಸಿ, ಮತ್ತು ಸಣ್ಣ ದೃಢೀಕರಣವನ್ನು ನಮಗೆ ಕಳುಹಿಸಿ — ನಾವು ಕೃತಜ್ಞತೆ ಸಲ್ಲಿಸಿ ಮಾಹಿತಿ ನೀಡಲು.",
-    "donate.cause": "ಒಂದು ಉದ್ದೇಶ ಆರಿಸಿ",
-    "donate.amount": "ಸೂಚಿತ ಮೊತ್ತ",
+      "ನಿಮ್ಮ ದೇಣಿಗೆ ಒಂದು ನಿರ್ದಿಷ್ಟ ಉದ್ದೇಶಕ್ಕೆ ಬಳಕೆಯಾಗಬೇಕೆಂದಿದ್ದರೆ, ಹಣ ವರ್ಗಾಯಿಸುವಾಗ CowDonation / Education / FarmersSupport / OrphanageMeal / Any ಎಂದು ಕಾಮೆಂಟ್‌ನಲ್ಲಿ ಸೇರಿಸಿ.",
+    "donate.cause": "ಉದ್ದೇಶ ಆರಿಸಿ",
+    "donate.amount": "ಮೊತ್ತ",
     "donate.upi": "ಯುಪಿಐ ಐಡಿ",
     "donate.copy": "ನಕಲಿಸಿ",
     "donate.copied": "ನಕಲಾಗಿದೆ",
-    "donate.qr": "ಪಾವತಿಸಲು ಸ್ಕ್ಯಾನ್ ಮಾಡಿ",
+    "donate.qr": "ಕ್ಯೂಆರ್ ಕೋಡ್",
     "donate.qr.alt": "ಪಾವತಿ ಕ್ಯೂಆರ್ ಕೋಡ್",
     "donate.or": "ಅಥವಾ",
     "donate.step1": "ಒಂದು ಉದ್ದೇಶ ಮತ್ತು ಮೊತ್ತ ಆರಿಸಿ",
-    "donate.step2": "ಯುಪಿಐ ಮೂಲಕ ವರ್ಗಾಯಿಸಿ, ಪಾವತಿ ಟಿಪ್ಪಣಿಯಲ್ಲಿ ಉದ್ದೇಶ ಬರೆಯಿರಿ",
+    "donate.step2": "ಯುಪಿಐ, ಪೇಟಿಎಂ ಅಥವಾ ಗೂಗಲ್ ಪೇ ಮೂಲಕ ವರ್ಗಾಯಿಸಿ",
     "donate.step3": "ದೃಢೀಕರಣವನ್ನು ನಮಗೆ ಕಳುಹಿಸಿ",
     "donate.confirm.title": "ವರ್ಗಾವಣೆಯ ನಂತರ",
     "donate.confirm.body":
-      "ಮೊತ್ತ ಮತ್ತು ನೀವು ಆರಿಸಿದ ಉದ್ದೇಶದೊಂದಿಗೆ ನಮಗೆ ಒಂದು ಸಂದೇಶ ಕಳುಹಿಸಿ. ಪ್ರತಿ ಕೊಡುಗೆಯನ್ನು ದಾಖಲಿಸಿ ಕೃತಜ್ಞತೆ ಸಲ್ಲಿಸುವುದು ಹೀಗೆ.",
+      "ನಿಮ್ಮ ವರ್ಗಾವಣೆಯ ದೃಢೀಕರಣವನ್ನು ಭೂಮಿ ಸೇವಾಗೆ (+91 9900103178) ವಾಟ್ಸಾಪ್ ಸಂದೇಶ ಕಳುಹಿಸಿ ಪಡೆಯಬಹುದು, ಅಥವಾ bhoomiseva.org@gmail.com ಗೆ ಇಮೇಲ್ ಮಾಡಬಹುದು. ಪ್ರತಿ ಕೊಡುಗೆಯನ್ನೂ ಹೆಸರು ಮತ್ತು ಉದ್ದೇಶದೊಂದಿಗೆ ದಾಖಲಿಸುತ್ತೇವೆ.",
     "donate.unverified":
       "ಕೆಳಗಿನ ಪಾವತಿ ವಿವರಗಳು ಇನ್ನೂ ಜಾರಿಯಲ್ಲಿವೆಯೇ ಎಂದು ನಾವು ದೃಢಪಡಿಸುತ್ತಿದ್ದೇವೆ. ಹಣ ವರ್ಗಾಯಿಸುವ ಮೊದಲು ನಮಗೆ ಸಂದೇಶ ಕಳುಹಿಸಿ, ಅಥವಾ ಇತ್ತೀಚಿನ ವಿವರಗಳನ್ನು ಕೇಳಿ.",
     "donate.otherMethods": "ಪಾವತಿಸಲು ಇತರ ದಾರಿಗಳು",
-    "donate.causeNote": "ಸರಿಯಾಗಿ ಹಂಚಲು ಪಾವತಿ ಟಿಪ್ಪಣಿಯಲ್ಲಿ ಉದ್ದೇಶವನ್ನು ಸೇರಿಸಿ.",
+    "donate.causeNote": "ಸರಿಯಾಗಿ ಹಂಚಲು ಪಾವತಿ ಕಾಮೆಂಟ್‌ನಲ್ಲಿ ಉದ್ದೇಶವನ್ನು ಸೇರಿಸಿ.",
     "donate.qrPending": "ಪಾವತಿ ಕ್ಯೂಆರ್ ತಾತ್ಕಾಲಿಕ — ಪ್ರಕಟಣೆಗೆ ಮೊದಲು ಇತ್ತೀಚಿನ ಕ್ಯೂಆರ್ ಸೇರಿಸಿ.",
 
-    "cause.education": "ಶಿಕ್ಷಣ ಮತ್ತು ವಿದ್ಯಾರ್ಥಿವೇತನ",
+    "cause.education": "ಶಿಕ್ಷಣ",
     "cause.farmers": "ರೈತ ಬೆಂಬಲ",
-    "cause.cow": "ದೇಸಿ ಹಸು ದಾನ",
-    "cause.children": "ಮಕ್ಕಳ ಮನೆ / ಊಟ",
+    "cause.cow": "ಹಸು ದಾನ",
+    "cause.children": "ಅನಾಥಾಶ್ರಮದ ಊಟ",
     "cause.any": "ಅಗತ್ಯವಿರುವಲ್ಲಿ ಬಳಸಿ",
 
     "contact.kicker": "ಸಂಪರ್ಕ",
-    "contact.title": "ನಮಗೆ ಬರೆಯಿರಿ",
+    "contact.title": "ನಮ್ಮನ್ನು ಸಂಪರ್ಕಿಸಿ",
     "contact.lede":
       "ಒಂದು ಕಾರ್ಯಕ್ರಮದ ಬಗ್ಗೆ ಕೇಳಿ, ಸ್ವಯಂಸೇವೆ ಮಾಡಲು ಹೇಳಿ, ಅಥವಾ ಬೆಂಬಲ ಬೇಕಿರುವ ವಿದ್ಯಾರ್ಥಿ ಅಥವಾ ಕುಟುಂಬದ ಬಗ್ಗೆ ತಿಳಿಸಿ.",
     "contact.email": "ಇಮೇಲ್",
