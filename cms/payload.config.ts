@@ -9,7 +9,8 @@ import { Media } from "./collections/Media";
 import { Stories } from "./collections/Stories";
 import { Programs } from "./collections/Programs";
 import { Team } from "./collections/Team";
-import { Updates } from "./collections/Updates";
+import { Events } from "./collections/Events";
+import { Blogs } from "./collections/Blogs";
 import { SiteSettings } from "./globals/SiteSettings";
 
 const filename = fileURLToPath(import.meta.url);
@@ -22,7 +23,7 @@ export default buildConfig({
     user: Users.slug,
     importMap: { baseDir: path.resolve(dirname) },
   },
-  collections: [Users, Media, Stories, Programs, Team, Updates],
+  collections: [Users, Media, Stories, Events, Blogs, Programs, Team],
   globals: [SiteSettings],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || "CHANGE_ME_BEFORE_USE",

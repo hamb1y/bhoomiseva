@@ -28,7 +28,8 @@ bun run build
 | `stories`                | `Story[]`   | Tabbed editor (Story / Photo). Auto slug, **drafts**, focal point, Preview button.                          |
 | `programs`               | `Program[]` | The three programmes. Tabs: Content / Activities / Photos.                                                  |
 | `team`                   | `Person[]`  | name, role, bio, photo, order                                                                               |
-| `updates`                | `Update[]`  | Short dated events, shown as a timeline                                                                     |
+| `events`                 | `Entry[]`   | Dated event records. Same tabbed editor pattern as Stories.                                                 |
+| `blogs`                  | `Blog[]`    | One collection with a **Donor / Donee** selector; shared layout, split by the nav dropdown and a filter.    |
 | `media`                  | —           | **Interactive uploads**: focal point + crop, `thumbnail`/`card`/`wide` sizes, localised `alt` and `caption` |
 | `users`                  | —           | auth                                                                                                        |
 | `site-settings` (global) | `Site`      | contact, socials, payment, mission, vision, about, credit                                                   |

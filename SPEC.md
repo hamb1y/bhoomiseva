@@ -61,6 +61,13 @@ Bhoomi Seva is a small, volunteer-led social initiative working with rural commu
   /work/children
 /stories/                 Stories & updates (filterable archive)
   /stories/[slug]         Individual story (13 entries)
+/events/                  Dated event records (filterable by programme + year)
+  /events/[slug]          Individual event
+/blogs/                   Blogs hub — All / Donor / Donee
+  /blogs/donors/          Donor blogs
+  /blogs/donors/[slug]    Individual donor post
+  /blogs/donees/          Donee blogs
+  /blogs/donees/[slug]    Individual donee post
 /about                    Mission, vision, team, volunteers
 /get-involved             Volunteer, donate goods, socials
 /donate                   Cause selector + UPI/QR + confirmation
@@ -68,7 +75,7 @@ Bhoomi Seva is a small, volunteer-led social initiative working with rural commu
 /404
 ```
 
-Kannada mirror at `/kn/*` for every route. **48 pages** built.
+Kannada mirror at `/kn/*` for every route. **64 pages** built.
 
 ## 7. Content model
 
@@ -88,13 +95,18 @@ interface Site    { name; contact; socials; payment; mission; vision; shortDescr
 
 | CMS             | Type        | Notes                                                   |
 | --------------- | ----------- | ------------------------------------------------------- |
-| `stories`       | `Story[]`   | 13 documented entries                                   |
+| `stories`       | `Story[]`   | 13 documented narrative entries                         |
+| `events`        | `Entry[]`   | dated event records, 4 seeded                           |
+| `blogs`         | `Blog[]`    | one collection; `kind` is `donor` or `donee`            |
 | `programs`      | `Program[]` | three programmes with activities and galleries          |
 | `team`          | `Person[]`  | four people                                             |
-| `updates`       | `Update[]`  | dated / period-labelled events                          |
-| `media`         | —           | uploads with localised `alt` and a credit field         |
+| `media`         | —           | uploads with localised `alt`, caption and focal point   |
 | `users`         | —           | auth                                                    |
 | `site-settings` | `Site`      | global: contact, socials, payment, mission/vision/about |
+
+### Shared entry shape
+
+Events and blogs share one view model, `Entry`: title, summary, body, date/period, optional location, programme, author, image and focal point. They therefore share `EntryCard`, `EntryIndex` (with `EntryFilter`) and `EntryDetail`. Blogs are split by audience — `kind: "donor" | "donee"` — surfaced through the Blogs nav dropdown and a segmented filter on the hub. Stories keep their own richer shape (programme narrative plus testimonial).
 
 ### Content rules
 

@@ -1,0 +1,39 @@
+---
+import EntryIndex from "../../../../views/EntryIndex.astro";
+import { blogsByKind } from "../../../../data/blogs";
+import { useTranslations } from "../../../../i18n/utils";
+
+const KINDS = {
+  donors: "donor",
+  donees: "donee",
+} as const;
+
+export function getStaticPaths() {
+  return [{ params: { kind: "donors" } }, { params: { kind: "donees" } }];
+}
+
+const lang = "kn" as const;
+const t = useTranslations(lang);
+const { kind } = Astro.params as { kind: keyof typeof KINDS };
+const slug = KINDS[kind];
+const entries = blogsByKind(slug);
+
+const title = slug === "donor" ? t("blogs.donors.title") : t("blogs.donees.title");
+const lede = slug === "donor" ? t("blogs.donors.lede") : t("blogs.donees.lede");
+const empty = slug === "donor" ? t("blogs.donors.empty") : t("blogs.donees.empty");
+---
+
+<EntryIndex
+  lang={lang}
+  path={`/blogs/${kind}`}
+  basePath={`/blogs/${kind}`}
+  entries={entries}
+  kicker={t("blogs.kicker")}
+  title={title}
+  lede={lede}
+  pageTitle={title}
+  emptyMessage={empty}
+  kinds={[]}
+  showAuthor
+  showYear
+/>

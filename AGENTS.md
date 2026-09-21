@@ -60,7 +60,7 @@ src/
     seed/        hand-written source content (the fallback)
     generated/   written by `bun run content:pull` — never edit by hand
     *.ts         resolvers: generated content wins, seed is the fallback
-    types.ts     Story, Program, Person, Update, Site
+    types.ts     Story, Entry (events + blogs), Blog, Program, Person, Site
   i18n/          ui.ts string dictionary, utils.ts helpers
   layouts/       BaseLayout.astro
   lib/           nav.ts, paths.ts, payload.ts (Payload → site mapping)

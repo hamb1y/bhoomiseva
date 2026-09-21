@@ -1,0 +1,143 @@
+---
+import type { Lang } from "../i18n/ui";
+import { useTranslations, localePath, lx } from "../i18n/utils";
+import { formatDate } from "../utils/format";
+import { programById } from "../data/programs";
+import type { Entry } from "../data/types";
+import { objectPosition } from "../utils/format";
+import { ArrowUpRight } from "lucide-astro";
+
+interface Props {
+  entry: Entry;
+  lang: Lang;
+  basePath: string;
+  showProgram?: boolean;
+  showAuthor?: boolean;
+}
+
+const { entry, lang, basePath, showProgram = true, showAuthor = false } = Astro.props;
+const t = useTranslations(lang);
+const program = entry.program ? programById(entry.program) : undefined;
+const href = localePath(`${basePath}/${entry.slug}`, lang);
+
+const meta = entry.date
+  ? formatDate(entry.date, lang)
+  : entry.period
+    ? lx(entry.period, lang)
+    : null;
+---
+
+<article class:list={["card", `accent-${program?.accent ?? "brand"}`]}>
+  {entry.image && (
+    <img
+      class="thumb"
+      src={entry.image}
+      alt={entry.imageAlt ? lx(entry.imageAlt, lang) : ""}
+      style={`object-position:${objectPosition(entry.imageFocal)}`}
+      loading="lazy"
+      decoding="async"
+    />
+  )}
+
+  <div class="meta">
+    <span class="date">{meta ?? t("common.dateUnknown")}</span>
+    {showAuthor && entry.author && <span class="author">{entry.author}</span>}
+    {showProgram && program && <span class="prog">{lx(program.kicker, lang)}</span>}
+  </div>
+
+  <h3 class="title">
+    <a href={href}>
+      {lx(entry.title, lang)}
+      <ArrowUpRight size={17} stroke-width={1.6} aria-hidden="true" />
+    </a>
+  </h3>
+
+  <p class="summary">{lx(entry.summary, lang)}</p>
+
+  {entry.location && <p class="place">{lx(entry.location, lang)}</p>}
+</article>
+
+<style>
+  .card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-3);
+    padding-block: var(--s-5);
+    border-top: 1px solid var(--rule);
+    position: relative;
+  }
+  .thumb {
+    width: 100%;
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+    border: 1px solid var(--rule);
+    border-radius: var(--r-2);
+    background: var(--paper-sunk);
+  }
+  .meta {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--s-3);
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    color: var(--ink-3);
+  }
+  .date {
+    color: var(--ink-2);
+  }
+  .author {
+    color: var(--ink-2);
+  }
+  .prog {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+  .prog::before {
+    content: "";
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--accent);
+    flex: none;
+  }
+  .title {
+    margin: 0;
+    font-size: var(--step-2);
+    line-height: 1.12;
+  }
+  .title a {
+    text-decoration: none;
+    display: inline;
+    background-image: linear-gradient(currentColor, currentColor);
+    background-repeat: no-repeat;
+    background-position: 0 100%;
+    background-size: 0% 1px;
+    transition: background-size var(--dur-2) var(--ease-out);
+  }
+  .title a:hover {
+    background-size: 100% 1px;
+  }
+  .title svg {
+    display: inline-block;
+    vertical-align: baseline;
+    margin-left: 0.15em;
+    color: var(--accent);
+    transition: transform var(--dur-2) var(--ease-out);
+  }
+  .title a:hover svg {
+    transform: translate(2px, -2px);
+  }
+  .summary {
+    margin: 0;
+    color: var(--ink-2);
+    max-width: 60ch;
+  }
+  .place {
+    margin: 0;
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    color: var(--ink-3);
+  }
+</style>

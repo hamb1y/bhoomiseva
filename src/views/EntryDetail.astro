@@ -1,0 +1,263 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import type { Lang } from "../i18n/ui";
+import { useTranslations, lx } from "../i18n/utils";
+import { formatDate } from "../utils/format";
+import { programById } from "../data/programs";
+import type { Entry } from "../data/types";
+import EntryCard from "../components/EntryCard.astro";
+import PhotoFrame from "../components/PhotoFrame.astro";
+import CTABand from "../components/CTABand.astro";
+import { ArrowLeft } from "lucide-astro";
+
+interface Props {
+  lang: Lang;
+  path: string;
+  basePath: string;
+  entry: Entry;
+  accent?: string;
+  backHref: string;
+  backLabel: string;
+  relatedLabel: string;
+  related: Entry[];
+  showProgram?: boolean;
+  showAuthor?: boolean;
+}
+
+const {
+  lang,
+  path,
+  basePath,
+  entry,
+  accent,
+  backHref,
+  backLabel,
+  relatedLabel,
+  related,
+  showProgram = true,
+  showAuthor = false,
+} = Astro.props;
+
+const t = useTranslations(lang);
+const program = entry.program ? programById(entry.program) : undefined;
+const accentClass = accent ?? program?.accent ?? "brand";
+
+const dateLabel = entry.date
+  ? formatDate(entry.date, lang)
+  : entry.period
+    ? lx(entry.period, lang)
+    : t("common.dateUnknown");
+
+const metaItems = [
+  showAuthor && entry.author ? entry.author : null,
+  showProgram && program ? lx(program.kicker, lang) : null,
+  dateLabel,
+  entry.location ? lx(entry.location, lang) : null,
+].filter(Boolean) as string[];
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: lx(entry.title, "en"),
+  description: lx(entry.summary, "en"),
+  inLanguage: lang,
+  author: entry.author ? { "@type": "Person", name: entry.author } : undefined,
+};
+---
+
+<BaseLayout
+  lang={lang}
+  path={path}
+  title={lx(entry.title, lang)}
+  description={lx(entry.summary, lang)}
+  jsonLd={jsonLd}
+>
+  <article class:list={["entry", `accent-${accentClass}`]} data-lang={lang}>
+    <div class="container narrow">
+      <a class="back" href={backHref}>
+        <ArrowLeft size={15} stroke-width={1.7} aria-hidden="true" />
+        {backLabel}
+      </a>
+
+      {entry.author && showAuthor && <p class="eyebrow">{entry.author}</p>}
+      {!showAuthor && program && <p class="eyebrow">{lx(program.kicker, lang)}</p>}
+      <h1>{lx(entry.title, lang)}</h1>
+      <p class="summary">{lx(entry.summary, lang)}</p>
+
+      <p class="meta">
+        {metaItems.map((item, i) => (
+          <>
+            {i > 0 && <span class="sep">·</span>}
+            <span>{item}</span>
+          </>
+        ))}
+      </p>
+
+      <PhotoFrame
+        src={entry.image}
+        alt={entry.imageAlt ? lx(entry.imageAlt, lang) : lx(entry.title, lang)}
+        caption={entry.imageAlt ? lx(entry.imageAlt, lang) : ""}
+        focal={entry.imageFocal}
+        lightbox
+        ratio="3 / 2"
+        accent={accentClass as any}
+      />
+
+      <div class="body">
+        {entry.body.map((p) => (
+          <p>{lx(p, lang)}</p>
+        ))}
+      </div>
+
+      {entry.quote ? (
+        <figure class="quote">
+          <p class="quote-label">{t("story.quoteLabel")}</p>
+          <blockquote>{lx(entry.quote.text, lang)}</blockquote>
+          <figcaption>— {lx(entry.quote.attribution, lang)}</figcaption>
+        </figure>
+      ) : null}
+
+      {entry.people?.length ? (
+        <p class="people">
+          <span class="people-label">{t("story.people")}:</span> {entry.people.join(", ")}
+        </p>
+      ) : null}
+    </div>
+  </article>
+
+  {related.length ? (
+    <section class="related">
+      <div class="container">
+        <h2>{relatedLabel}</h2>
+        <div class="related-grid">
+          {related.map((r) => (
+            <EntryCard
+              entry={r}
+              lang={lang}
+              basePath={basePath}
+              showProgram={showProgram}
+              showAuthor={showAuthor}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+  ) : null}
+
+  <CTABand
+    lang={lang}
+    kicker={t("home.impact.kicker")}
+    title={t("home.impact.title")}
+    body={t("home.impact.body")}
+  />
+</BaseLayout>
+
+<style>
+  .entry {
+    padding-top: var(--s-6);
+  }
+  .back {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    text-decoration: none;
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    color: var(--ink-2);
+    margin-bottom: var(--s-6);
+  }
+  .back:hover {
+    color: var(--accent);
+  }
+  h1 {
+    margin: var(--s-4) 0 0;
+  }
+  .summary {
+    font-size: var(--step-1);
+    color: var(--ink-2);
+    margin: var(--s-5) 0 var(--s-6);
+  }
+  .meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 0 0 var(--s-7);
+    font-size: var(--step--1);
+    color: var(--ink-3);
+  }
+  .sep {
+    color: var(--rule-strong);
+  }
+  .body {
+    margin-top: var(--s-7);
+    display: grid;
+    gap: var(--s-5);
+    font-size: var(--step-1);
+    line-height: 1.65;
+  }
+  .body p {
+    margin: 0;
+  }
+  [data-lang="en"] .body p:first-child::first-letter {
+    font-family: var(--font-display);
+    font-variation-settings:
+      "opsz" 80,
+      "WONK" 1;
+    font-size: 3.4em;
+    line-height: 0.82;
+    float: left;
+    padding: 0.06em 0.12em 0 0;
+    color: var(--accent);
+  }
+  .quote {
+    margin: var(--s-7) 0 0;
+    padding: var(--s-5) 0 0 var(--s-5);
+    border-top: 1px solid var(--rule-strong);
+    border-left: 3px solid var(--accent);
+  }
+  .quote-label {
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    margin: 0 0 var(--s-3);
+  }
+  .quote blockquote {
+    margin: 0;
+    font-family: var(--font-display);
+    font-variation-settings:
+      "opsz" 30,
+      "WONK" 1,
+      "SOFT" 40;
+    font-size: var(--step-1);
+    line-height: 1.5;
+    color: var(--ink);
+  }
+  .quote figcaption {
+    margin-top: var(--s-4);
+    font-size: var(--step--1);
+    color: var(--ink-2);
+  }
+  .people {
+    margin: var(--s-6) 0 0;
+    font-size: var(--step--1);
+    color: var(--ink-2);
+  }
+  .people-label {
+    color: var(--ink-3);
+  }
+  .related .container {
+    border-top: 1px solid var(--rule-strong);
+    padding-top: var(--s-6);
+  }
+  .related h2 {
+    font-size: var(--step-2);
+    margin-bottom: var(--s-6);
+  }
+  .related-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr));
+    gap: var(--s-6) var(--s-7);
+  }
+</style>

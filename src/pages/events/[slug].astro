@@ -1,0 +1,27 @@
+---
+import EntryDetail from "../../views/EntryDetail.astro";
+import { events, eventBySlug } from "../../data/events";
+import { useTranslations, localePath } from "../../i18n/utils";
+import type { Entry } from "../../data/types";
+
+export function getStaticPaths() {
+  return events.map((entry) => ({ params: { slug: entry.slug } }));
+}
+
+const lang = "en" as const;
+const t = useTranslations(lang);
+const { slug } = Astro.params;
+const entry = eventBySlug(slug!) as Entry;
+const related = events.filter((e) => e.slug !== entry.slug).slice(0, 2);
+---
+
+<EntryDetail
+  lang={lang}
+  path={`/events/${entry.slug}`}
+  basePath="/events"
+  entry={entry}
+  backHref={localePath("/events", lang)}
+  backLabel={t("events.title")}
+  relatedLabel={t("events.related")}
+  related={related}
+/>

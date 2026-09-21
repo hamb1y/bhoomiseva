@@ -61,6 +61,37 @@ export interface Person {
   photoFocal?: ImageFocal;
 }
 
+/**
+ * A generic dated entry, used by events and blogs.
+ * Stories keep their own richer shape (programme narrative + testimonial).
+ */
+export interface Entry {
+  slug: string;
+  title: Localized;
+  summary: Localized;
+  body: Localized[];
+  date?: string;
+  period?: Localized;
+  location?: Localized;
+  program?: ProgramId;
+  author?: string;
+  authorRole?: Localized;
+  image?: string;
+  imageAlt?: Localized;
+  imageFocal?: ImageFocal;
+  quote?: {
+    text: Localized;
+    attribution: Localized;
+  };
+  people?: string[];
+  featured?: boolean;
+}
+
+export type Event = Entry;
+
+export type BlogKind = "donor" | "donee";
+export type Blog = Entry & { kind: BlogKind };
+
 export interface Update {
   /** ISO date where documented; omit when only a period is known. */
   date?: string;

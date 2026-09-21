@@ -1,14 +1,14 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import type { Lang } from "../i18n/ui";
-import { useTranslations, lx } from "../i18n/utils";
+import { useTranslations, localePath, lx } from "../i18n/utils";
 import { stories } from "../data/stories";
-import { updates } from "../data/updates";
-import { programs, programById } from "../data/programs";
-import { yearOf, formatDate } from "../utils/format";
+import { programs } from "../data/programs";
+import { yearOf } from "../utils/format";
 import StoryCard from "../components/StoryCard.astro";
 import StoryFilter from "../components/StoryFilter.svelte";
 import CTABand from "../components/CTABand.astro";
+import { ArrowUpRight } from "lucide-astro";
 
 interface Props {
   lang: Lang;
@@ -72,18 +72,16 @@ const countTemplate = t("stories.count");
 
   <section class="events">
     <div class="container">
-      <h2 class="events-title">
-        {lx({ en: "Events and ongoing work", kn: "ಕಾರ್ಯಕ್ರಮಗಳು ಮತ್ತು ನಡೆಯುತ್ತಿರುವ ಕೆಲಸ" }, lang)}
-      </h2>
-      <ul class="timeline">
-        {updates.map((u) => (
-          <li class:list={[`accent-${programById(u.program)?.accent ?? "brand"}`]}>
-            <span class="when">{u.date ? formatDate(u.date, lang) : lx(u.period ?? "", lang)}</span>
-            <span class="what">{lx(u.title, lang)}</span>
-            <span class="where">{lx(u.location, lang)}</span>
-          </li>
-        ))}
-      </ul>
+      <div class="events-cta">
+        <div>
+          <h2 class="events-title">{t("events.title")}</h2>
+          <p>{t("events.lede")}</p>
+        </div>
+        <a class="btn btn--outline" href={localePath("/events", lang)}>
+          {t("cta.allEvents")}
+          <ArrowUpRight size={16} stroke-width={1.7} aria-hidden="true" />
+        </a>
+      </div>
     </div>
   </section>
 
@@ -141,40 +139,20 @@ const countTemplate = t("stories.count");
     border-top: 1px solid var(--rule);
     padding-top: var(--s-6);
   }
+  .events-cta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: end;
+    justify-content: space-between;
+    gap: var(--s-5);
+  }
   .events-title {
     font-size: var(--step-2);
-    margin: 0 0 var(--s-5);
+    margin: 0 0 var(--s-3);
   }
-  .timeline {
-    list-style: none;
-    padding: 0;
+  .events-cta p {
     margin: 0;
-  }
-  .timeline li {
-    display: grid;
-    grid-template-columns: 12rem 1fr 16rem;
-    gap: var(--s-4);
-    align-items: baseline;
-    padding-block: var(--s-4);
-    border-bottom: 1px solid var(--rule);
-  }
-  .when {
-    font-family: var(--font-mono);
-    font-size: var(--step--1);
-    color: var(--accent, var(--clay));
-  }
-  .what {
-    color: var(--ink);
-  }
-  .where {
-    font-family: var(--font-mono);
-    font-size: var(--step--1);
-    color: var(--ink-3);
-  }
-  @media (max-width: 46rem) {
-    .timeline li {
-      grid-template-columns: 1fr;
-      gap: var(--s-1);
-    }
+    color: var(--ink-2);
+    max-width: 52ch;
   }
 </style>

@@ -13,8 +13,9 @@ import { getPayload } from "payload";
 import config from "../payload.config";
 import { programs } from "../../src/data/seed/programs";
 import { stories } from "../../src/data/seed/stories";
+import { events } from "../../src/data/seed/events";
+import { blogs } from "../../src/data/seed/blogs";
 import { team } from "../../src/data/seed/team";
-import { updates } from "../../src/data/seed/updates";
 import { site } from "../../src/data/seed/site";
 
 const dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -144,9 +145,33 @@ async function main() {
     );
   }
 
-  console.log("\nUpdates");
-  for (const u of updates) {
-    await createLocalized("updates", u, `updates/${JSON.stringify(u.title).slice(0, 40)}`);
+  console.log("\nEvents");
+  for (const e of events) {
+    await createLocalized(
+      "events",
+      {
+        ...e,
+        _status: "published",
+        image: mediaId(e.image),
+        body: e.body.map((paragraph) => ({ paragraph })),
+        people: (e.people ?? []).map((name) => ({ name })),
+      },
+      `events/${e.slug}`,
+    );
+  }
+
+  console.log("\nBlogs");
+  for (const b of blogs) {
+    await createLocalized(
+      "blogs",
+      {
+        ...b,
+        _status: "published",
+        image: mediaId(b.image),
+        body: b.body.map((paragraph) => ({ paragraph })),
+      },
+      `blogs/${b.kind}/${b.slug}`,
+    );
   }
 
   console.log("\nSite settings");

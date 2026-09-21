@@ -1,0 +1,25 @@
+---
+import EntryIndex from "../../views/EntryIndex.astro";
+import { events } from "../../data/events";
+import { programs } from "../../data/programs";
+import { useTranslations, lx } from "../../i18n/utils";
+
+const lang = "en" as const;
+const t = useTranslations(lang);
+const programOptions = programs.map((p) => ({ value: p.id, label: lx(p.kicker, lang) }));
+---
+
+<EntryIndex
+  lang={lang}
+  path="/events"
+  basePath="/events"
+  entries={events}
+  kicker={t("events.kicker")}
+  title={t("events.title")}
+  lede={t("events.lede")}
+  pageTitle={t("nav.events")}
+  emptyMessage={t("events.empty")}
+  programs={programOptions}
+  showProgram
+  showYear
+/>

@@ -124,7 +124,23 @@ Living plan. Legend: `[ ]` todo · `[~]` in progress · `[x]` done.
 
 ### Verification
 
-`bun run verify` — 16 routes + 5 interactions, 0 console errors, 0 failed requests, 0 broken images, all islands hydrated. Add `--shots` for full-page screenshots.
+`bun run verify` — 22 routes + 5 interactions, 0 console errors, 0 failed requests, 0 broken images, all islands hydrated. Add `--shots` for full-page screenshots.
+
+### Changelog — events and blogs
+
+- **2026-09-21 (events + blogs)** — Added two sections beyond stories:
+  - **Events** (`/events`, `/events/[slug]`): dated records of things that happened, filterable by programme and year, with 4 seeded entries. Replaces the old `updates` timeline, which was removed to avoid duplicating the same happenings in two places.
+  - **Blogs** (`/blogs`, `/blogs/donors`, `/blogs/donors/[slug]`, `/blogs/donees`, `/blogs/donees/[slug]`): donor and donee blogs are the **same shape and layout**, differing only by a `kind` flag. They are split by a **Blogs nav dropdown** and a segmented **All / Donor / Donee** filter. Stored in one Payload `blogs` collection with a Donor/Donee selector.
+  - Events and blogs share one implementation: `EntryCard`, `EntryIndex`, `EntryFilter`, `EntryDetail`, driven by a common `Entry` view model. 64 pages built (was 48).
+  - Seeded events carry real content migrated from the old updates. **Blogs are intentionally empty** — I will not invent donor or beneficiary posts. Add them in the CMS.
+  - Verified end to end: seeded the CMS, created a temporary donor post and donee post, pulled them, and confirmed both render in the right sections and filter correctly. Test posts were then deleted.
+
+### Bugs found and fixed by verifying
+
+- An empty `quote: {}` was being mapped as a real quote, so any story without a testimonial crashed the page with `Cannot read properties of undefined (reading 'en')`. Now guarded.
+- `loc()` emitted `{ en: null }` for unset localised fields; it now normalises to `undefined`.
+- `.empty { display: flex }` overrode the `hidden` attribute, so "No entries yet" showed on populated pages. Fixed globally with `[hidden] { display: none !important }`.
+- The blogs hub used its own lede as the empty-state message (copy-paste).
 
 ### Known follow-ups
 

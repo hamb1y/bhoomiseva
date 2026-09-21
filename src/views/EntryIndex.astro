@@ -1,0 +1,193 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import type { Lang } from "../i18n/ui";
+import { useTranslations } from "../i18n/utils";
+import { yearOf } from "../utils/format";
+import type { Entry } from "../data/types";
+import EntryCard from "../components/EntryCard.astro";
+import EntryFilter from "../components/EntryFilter.svelte";
+import CTABand from "../components/CTABand.astro";
+import { Clock } from "lucide-astro";
+
+interface FilterOption {
+  value: string;
+  label: string;
+}
+
+interface Props {
+  lang: Lang;
+  path: string;
+  basePath: string;
+  entries: Entry[];
+  kicker: string;
+  title: string;
+  lede: string;
+  pageTitle?: string;
+  emptyMessage: string;
+  kinds?: FilterOption[];
+  kindLabel?: string;
+  programs?: FilterOption[];
+  /** For mixed lists: base path per entry kind, e.g. { donor: "/blogs/donors" }. */
+  kindPaths?: Record<string, string>;
+  showProgram?: boolean;
+  showAuthor?: boolean;
+  showYear?: boolean;
+  ctaKicker?: string;
+  ctaTitle?: string;
+  ctaBody?: string;
+}
+
+const {
+  lang,
+  path,
+  basePath,
+  entries,
+  kicker,
+  title,
+  lede,
+  pageTitle,
+  emptyMessage,
+  kinds = [],
+  kindLabel = "",
+  programs = [],
+  kindPaths,
+  showProgram = false,
+  showAuthor = false,
+  showYear = false,
+  ctaKicker,
+  ctaTitle,
+  ctaBody,
+} = Astro.props;
+
+const t = useTranslations(lang);
+
+const sorted = [...entries].sort((a, b) => (b.date ?? "").localeCompare(a.date ?? ""));
+const years = Array.from(new Set(entries.map((e) => yearOf(e.date)).filter(Boolean) as string[]))
+  .sort()
+  .reverse()
+  .map((y) => ({ value: y, label: y }));
+
+const countTemplate = t("stories.count");
+const hasFilter = kinds.length > 0 || programs.length > 0 || showYear;
+const isEmpty = entries.length === 0;
+---
+
+<BaseLayout lang={lang} path={path} title={pageTitle ?? title} description={lede}>
+  <section class="head">
+    <div class="container">
+      <p class="eyebrow">{kicker}</p>
+      <h1>{title}</h1>
+      <p class="lede measure">{lede}</p>
+    </div>
+  </section>
+
+  <section class="archive">
+    <div class="container">
+      {hasFilter && !isEmpty && (
+        <div class="controls">
+          <EntryFilter
+            client:load
+            kinds={kinds}
+            programs={programs}
+            years={showYear ? years : []}
+            kindLabel={kindLabel}
+            programLabel={t("stories.filter.programme")}
+            yearLabel={t("stories.filter.year")}
+            allLabel={t("stories.filter.all")}
+            countTemplate={countTemplate}
+          />
+          <p class="count" data-count>
+            {countTemplate.replace("{n}", String(sorted.length))}
+          </p>
+        </div>
+      )}
+
+      {isEmpty ? (
+        <p class="empty">
+          <Clock size={18} strokeWidth={1.6} aria-hidden="true" />
+          {emptyMessage}
+        </p>
+      ) : (
+        <>
+          <ul class="entry-list">
+            {sorted.map((entry) => (
+              <li
+                data-entry
+                data-kind={(entry as any).kind ?? ""}
+                data-program={entry.program ?? ""}
+                data-year={yearOf(entry.date) ?? "none"}
+              >
+                <EntryCard
+                  entry={entry}
+                  lang={lang}
+                  basePath={kindPaths?.[(entry as any).kind] ?? basePath}
+                  showProgram={showProgram}
+                  showAuthor={showAuthor}
+                />
+              </li>
+            ))}
+          </ul>
+          <p class="empty" data-empty hidden>
+            {emptyMessage}
+          </p>
+        </>
+      )}
+    </div>
+  </section>
+
+  <CTABand
+    lang={lang}
+    kicker={ctaKicker ?? t("home.impact.kicker")}
+    title={ctaTitle ?? t("home.impact.title")}
+    body={ctaBody ?? t("home.impact.body")}
+  />
+</BaseLayout>
+
+<style>
+  .head {
+    padding-bottom: var(--s-7);
+  }
+  h1 {
+    margin: var(--s-4) 0 0;
+  }
+  .lede {
+    margin-top: var(--s-5);
+    font-size: var(--step-1);
+    color: var(--ink-2);
+  }
+  .archive .container {
+    border-top: 1px solid var(--rule-strong);
+    padding-top: var(--s-5);
+  }
+  .controls {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: end;
+    gap: var(--s-5);
+    margin-bottom: var(--s-6);
+  }
+  .count {
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    color: var(--ink-3);
+    margin: 0;
+  }
+  .entry-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 24rem), 1fr));
+    gap: var(--s-6) var(--s-7);
+  }
+  .empty {
+    display: flex;
+    align-items: center;
+    gap: var(--s-3);
+    color: var(--ink-2);
+    padding-block: var(--s-7);
+    margin: 0;
+    max-width: 52ch;
+  }
+</style>

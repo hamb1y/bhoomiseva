@@ -1,0 +1,28 @@
+---
+import EntryIndex from "../../../views/EntryIndex.astro";
+import { blogs } from "../../../data/blogs";
+import { useTranslations } from "../../../i18n/utils";
+
+const lang = "kn" as const;
+const t = useTranslations(lang);
+---
+
+<EntryIndex
+  lang={lang}
+  path="/blogs"
+  basePath="/blogs"
+  entries={blogs}
+  kicker={t("blogs.kicker")}
+  title={t("blogs.title")}
+  lede={t("blogs.lede")}
+  pageTitle={t("nav.blogs")}
+  emptyMessage={t("blogs.empty")}
+  kinds={[
+    { value: "donor", label: t("blogs.donors.title") },
+    { value: "donee", label: t("blogs.donees.title") },
+  ]}
+  kindLabel={t("nav.blogs")}
+  kindPaths={{ donor: "/blogs/donors", donee: "/blogs/donees" }}
+  showAuthor
+  showYear
+/>

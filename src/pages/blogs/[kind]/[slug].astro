@@ -1,0 +1,40 @@
+---
+import EntryDetail from "../../../views/EntryDetail.astro";
+import { blogs, blogsByKind, blogBySlug } from "../../../data/blogs";
+import { useTranslations, localePath } from "../../../i18n/utils";
+import type { Blog, BlogKind } from "../../../data/types";
+
+const KIND_OF = { donors: "donor", donees: "donee" } as const;
+
+export function getStaticPaths() {
+  const kindOf: Record<string, string> = { donors: "donor", donees: "donee" };
+  return blogs.flatMap((blog) =>
+    Object.entries(kindOf)
+      .filter(([, k]) => k === blog.kind)
+      .map(([kind]) => ({ params: { kind, slug: blog.slug } })),
+  );
+}
+
+const lang = "en" as const;
+const t = useTranslations(lang);
+const { kind, slug } = Astro.params as { kind: keyof typeof KIND_OF; slug: string };
+const blogKind = KIND_OF[kind] as BlogKind;
+const entry = blogBySlug(slug) as Blog;
+const related = blogsByKind(blogKind)
+  .filter((b) => b.slug !== entry.slug)
+  .slice(0, 2);
+
+const title = blogKind === "donor" ? t("blogs.donors.title") : t("blogs.donees.title");
+---
+
+<EntryDetail
+  lang={lang}
+  path={`/blogs/${kind}/${entry.slug}`}
+  basePath={`/blogs/${kind}`}
+  entry={entry}
+  backHref={localePath(`/blogs/${kind}`, lang)}
+  backLabel={title}
+  relatedLabel={t("blogs.related")}
+  related={related}
+  showAuthor
+/>

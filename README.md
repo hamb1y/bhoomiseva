@@ -69,6 +69,16 @@ bun run build
 
 `cms:seed` uses Payload's Local API and creates the first admin user itself (`admin@bhoomiseva.local` / `changeme123` unless `SEED_ADMIN_EMAIL` / `SEED_ADMIN_PASSWORD` are set — **change the password**). It is idempotent: media already uploaded is reused.
 
+### Sections
+
+| Path       | What it is                                                                                                              |
+| ---------- | ----------------------------------------------------------------------------------------------------------------------- |
+| `/stories` | Long-form narratives, each with a programme and testimonial                                                             |
+| `/events`  | Short dated records — training, distributions, donations, meals                                                         |
+| `/blogs`   | Writing from people involved. Split into **Donor blogs** and **Donee blogs** by the nav dropdown and a segmented filter |
+
+Events and both blog kinds share one implementation (`EntryCard`, `EntryIndex`, `EntryDetail`) — they differ only by route, labels and, for blogs, a `kind` flag.
+
 ### Adding a story
 
 1. In the CMS, go to **Stories → Create new**.

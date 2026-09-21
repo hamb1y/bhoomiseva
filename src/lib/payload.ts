@@ -7,7 +7,16 @@
  * Raw documents are typed loosely on purpose: this module must not depend on
  * Payload's generated types, so the Astro build stays independent of the CMS.
  */
-import type { Activity, Story, Program, Person, Update, Site, ImageFocal } from "../data/types";
+import type {
+  Activity,
+  Blog,
+  Entry,
+  Story,
+  Program,
+  Person,
+  Site,
+  ImageFocal,
+} from "../data/types";
 import type { Localized } from "../i18n/utils";
 
 export type RawDoc = Record<string, any>;
@@ -16,7 +25,14 @@ export type ResolveMedia = (media: any) => string | undefined;
 /** A text field: `{ en, kn }` (locale=all) or a plain string. */
 export function loc(value: any): Localized | undefined {
   if (value == null) return undefined;
-  return value;
+  if (typeof value === "string") return value;
+  if (typeof value === "object") {
+    const en = value.en ?? undefined;
+    const kn = value.kn ?? undefined;
+    if (en == null && kn == null) return undefined;
+    return { en: en ?? "", ...(kn == null ? {} : { kn }) };
+  }
+  return undefined;
 }
 
 /** Pull the focal point off a Payload upload relationship. */
@@ -42,6 +58,7 @@ function zipLocalizedArray<T>(value: any, read: (item: any) => T): T[] {
 export function mapStory(d: RawDoc, resolveMedia: ResolveMedia): Story {
   const image = resolveMedia(d.image);
   const f = focal(d.image);
+  const quoteText = d.quote?.text ? loc(d.quote.text) : undefined;
   return {
     slug: d.slug,
     program: d.program,
@@ -58,9 +75,7 @@ export function mapStory(d: RawDoc, resolveMedia: ResolveMedia): Story {
     ...(f ? { imageFocal: f } : {}),
     ...(d.imageAlt ? { imageAlt: loc(d.imageAlt) } : {}),
     ...(d.image?.caption ? { imageCaption: loc(d.image.caption) } : {}),
-    ...(d.quote?.text
-      ? { quote: { text: loc(d.quote.text), attribution: loc(d.quote.attribution) } }
-      : {}),
+    ...(quoteText ? { quote: { text: quoteText, attribution: loc(d.quote.attribution) } } : {}),
     ...(d.people?.length ? { people: d.people.map((p: any) => p.name) } : {}),
     ...(d.featured ? { featured: true } : {}),
   } as unknown as Story;
@@ -100,15 +115,35 @@ export function mapPerson(d: RawDoc, resolveMedia: ResolveMedia): Person {
   } as unknown as Person;
 }
 
-export function mapUpdate(d: RawDoc): Update {
+export function mapEntry(d: RawDoc, resolveMedia: ResolveMedia): Entry {
+  const image = resolveMedia(d.image);
+  const f = focal(d.image);
+  const quoteText = d.quote?.text ? loc(d.quote.text) : undefined;
   return {
+    slug: d.slug,
     ...(d.date ? { date: d.date } : {}),
     ...(d.period ? { period: loc(d.period) } : {}),
+    ...(d.location ? { location: loc(d.location) } : {}),
+    ...(d.program ? { program: d.program } : {}),
+    ...(d.author ? { author: d.author } : {}),
+    ...(d.authorRole ? { authorRole: loc(d.authorRole) } : {}),
     title: loc(d.title),
-    program: d.program,
-    location: loc(d.location),
-    kind: d.kind,
-  } as Update;
+    summary: loc(d.summary),
+    body: zipLocalizedArray<Localized>(d.body, (it) => ({
+      en: it.en?.paragraph ?? "",
+      kn: it.kn?.paragraph ?? it.en?.paragraph ?? "",
+    })),
+    ...(image ? { image } : {}),
+    ...(f ? { imageFocal: f } : {}),
+    ...(d.imageAlt ? { imageAlt: loc(d.imageAlt) } : {}),
+    ...(quoteText ? { quote: { text: quoteText, attribution: loc(d.quote.attribution) } } : {}),
+    ...(d.people?.length ? { people: d.people.map((p: any) => p.name) } : {}),
+    ...(d.featured ? { featured: true } : {}),
+  } as unknown as Entry;
+}
+
+export function mapBlog(d: RawDoc, resolveMedia: ResolveMedia): Blog {
+  return { ...mapEntry(d, resolveMedia), kind: d.kind ?? "donor" } as Blog;
 }
 
 export function mapSite(s: RawDoc): Site {

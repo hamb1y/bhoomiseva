@@ -18,6 +18,15 @@ export const nav: NavItem[] = [
     ],
   },
   { key: "nav.stories", href: "/stories" },
+  { key: "nav.events", href: "/events" },
+  {
+    key: "nav.blogs",
+    href: "/blogs",
+    children: [
+      { key: "nav.blogs.donors", href: "/blogs/donors" },
+      { key: "nav.blogs.donees", href: "/blogs/donees" },
+    ],
+  },
   { key: "nav.about", href: "/about" },
   { key: "nav.involved", href: "/get-involved" },
   { key: "nav.contact", href: "/contact" },

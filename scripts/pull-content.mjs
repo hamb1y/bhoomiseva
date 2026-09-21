@@ -15,9 +15,10 @@ import { join, basename } from "node:path";
 
 import {
   mapStory,
+  mapEntry,
+  mapBlog,
   mapProgram,
   mapPerson,
-  mapUpdate,
   mapSite,
   payloadClient,
 } from "../src/lib/payload.ts";
@@ -102,8 +103,13 @@ async function main() {
     .map((d) => mapPerson(d, resolveMedia));
   await writeModule("team.ts", "Person", "team", "Person[]", team);
 
-  const updates = published(await client.collections("updates")).map(mapUpdate);
-  await writeModule("updates.ts", "Update", "updates", "Update[]", updates);
+  const events = published(await client.collections("events")).map((d) =>
+    mapEntry(d, resolveMedia),
+  );
+  await writeModule("events.ts", "Entry", "events", "Entry[]", events);
+
+  const blogs = published(await client.collections("blogs")).map((d) => mapBlog(d, resolveMedia));
+  await writeModule("blogs.ts", "Blog", "blogs", "Blog[]", blogs);
 
   const settings = mapSite(await client.global("site-settings"));
   await writeFile(
@@ -115,7 +121,8 @@ async function main() {
   console.log("  ✓ site.ts");
 
   console.log(
-    `\nDone. ${stories.length} stories, ${programs.length} programmes, ${team.length} people, ${updates.length} updates.`,
+    `\nDone. ${stories.length} stories, ${events.length} events, ${blogs.length} blog posts, ` +
+      `${programs.length} programmes, ${team.length} people.`,
   );
 }
 
