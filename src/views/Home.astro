@@ -1,0 +1,378 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import type { Lang } from "../i18n/ui";
+import { useTranslations, localePath, lx } from "../i18n/utils";
+import { pick, site } from "../data/site";
+import { programs } from "../data/programs";
+import { stories, featuredStory } from "../data/stories";
+import SectionHeading from "../components/SectionHeading.astro";
+import StoryCard from "../components/StoryCard.astro";
+import PhotoFrame from "../components/PhotoFrame.astro";
+import CTABand from "../components/CTABand.astro";
+import { ArrowUpRight, ArrowRight, Check } from "lucide-astro";
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const sorted = [...stories].sort((a, b) => (b.date ?? "").localeCompare(a.date ?? ""));
+const recent = sorted.filter((s) => s.slug !== featuredStory.slug).slice(0, 3);
+
+const modelPieces = [
+  { label: { en: "Education fees for their daughter", kn: "ಮಗಳ ಶಿಕ್ಷಣ ಶುಲ್ಕ" } },
+  { label: { en: "A desi cow for the family farm and dairy income", kn: "ಕುಟುಂಬದ ಜಮೀನು ಮತ್ತು ಹಾಲಿನ ಆದಾಯಕ್ಕೆ ದೇಸಿ ಹಸು" } },
+  { label: { en: "A sewing machine for additional household income", kn: "ಹೆಚ್ಚುವರಿ ಕುಟುಂಬ ಆದಾಯಕ್ಕೆ ಹೊಲಿಗೆ ಯಂತ್ರ" } },
+];
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "NGO",
+  name: site.name,
+  email: site.email,
+  telephone: site.phone,
+  url: "https://bhoomiseva.org",
+  description: pick(site.shortDescription, "en"),
+  areaServed: "Karnataka, India",
+};
+---
+
+<BaseLayout lang={lang} path="/" jsonLd={jsonLd}>
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container grid">
+      <div class="lede">
+        <p class="eyebrow">{t("home.hero.kicker")}</p>
+        <h1>{t("site.tagline")}</h1>
+        <p class="hero-body">{t("home.hero.lede")}</p>
+        <div class="hero-cta">
+          <a class="btn btn--primary" href={localePath("/donate", lang)}>
+            {t("cta.donate")}
+            <ArrowRight size={17} stroke-width={1.7} aria-hidden="true" />
+          </a>
+          <a class="btn btn--outline" href={localePath("/stories", lang)}>{t("cta.readStories")}</a>
+        </div>
+      </div>
+
+      <aside class="feature">
+        <PhotoFrame
+          caption={lx(
+            {
+              en: "Kurubarahalli Doddi near Kabbalu — the family's farm",
+              kn: "ಕಬ್ಬಾಳು ಸಮೀಪದ ಕುರುಬರಹಳ್ಳಿ ದೊಡ್ಡಿ — ಕುಟುಂಬದ ಜಮೀನು",
+            },
+            lang,
+          )}
+          ratio="4 / 3"
+          accent="farmers"
+        />
+        <div class="feature-body">
+          <p class="meta">
+            <span>{lx(featuredStory.location, lang)}</span>
+          </p>
+          <h2>
+            <a href={localePath(`/stories/${featuredStory.slug}`, lang)}>
+              {lx(featuredStory.title, lang)}
+            </a>
+          </h2>
+          <p class="feature-sum">{lx(featuredStory.summary, lang)}</p>
+          <a class="more" href={localePath(`/stories/${featuredStory.slug}`, lang)}>
+            {t("common.readEntry")}
+            <ArrowUpRight size={15} stroke-width={1.7} aria-hidden="true" />
+          </a>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- Pillars -->
+  <section class="pillars">
+    <div class="container">
+      <SectionHeading
+        kicker={t("home.pillars.kicker")}
+        title={t("home.pillars.title")}
+      />
+      <div class="program-list">
+        {
+          programs.map((p, i) => (
+            <article class:list={["program", `accent-${p.accent}`]}>
+              <div class="program-index">
+                <span class="num">{String(i + 1).padStart(2, "0")}</span>
+                <span class="kicker">{lx(p.kicker, lang)}</span>
+              </div>
+              <div class="program-main">
+                <h3>
+                  <a href={localePath(`/work/${p.id === "farmers" ? "farmers-environment" : p.id}`, lang)}>
+                    {lx(p.title, lang)}
+                  </a>
+                </h3>
+                <p>{lx(p.summary, lang)}</p>
+                <a
+                  class="more"
+                  href={localePath(`/work/${p.id === "farmers" ? "farmers-environment" : p.id}`, lang)}
+                >
+                  {t("cta.learnMore")}
+                  <ArrowUpRight size={15} stroke-width={1.7} aria-hidden="true" />
+                </a>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- How we work -->
+  <section class="model">
+    <div class="container model-grid">
+      <PhotoFrame
+        caption={lx(
+          {
+            en: "Sunita's family, Kurubarahalli Doddi",
+            kn: "ಸುನೀತಾ ಅವರ ಕುಟುಂಬ, ಕುರುಬರಹಳ್ಳಿ ದೊಡ್ಡಿ",
+          },
+          lang,
+        )}
+        ratio="3 / 4"
+        accent="farmers"
+      />
+      <div class="model-copy">
+        <p class="eyebrow">{t("home.model.kicker")}</p>
+        <h2>{t("home.model.title")}</h2>
+        <p class="model-body">{t("home.model.body")}</p>
+        <ul class="pieces">
+          {
+            modelPieces.map((piece) => (
+              <li>
+                <Check size={17} stroke-width={2} aria-hidden="true" />
+                <span>{lx(piece.label, lang)}</span>
+              </li>
+            ))
+          }
+        </ul>
+        <a class="btn btn--text" href={localePath(`/stories/${featuredStory.slug}`, lang)}>
+          {t("common.readEntry")}
+          <ArrowRight size={16} stroke-width={1.7} aria-hidden="true" />
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Recent entries -->
+  <section class="recent">
+    <div class="container">
+      <div class="recent-head">
+        <SectionHeading kicker={t("home.updates.kicker")} title={t("home.updates.title")} />
+        <a class="btn btn--text all" href={localePath("/stories", lang)}>
+          {t("cta.allStories")}
+          <ArrowRight size={16} stroke-width={1.7} aria-hidden="true" />
+        </a>
+      </div>
+      <div class="recent-grid">
+        {recent.map((s) => <StoryCard story={s} lang={lang} />)}
+      </div>
+    </div>
+  </section>
+
+  <CTABand
+    lang={lang}
+    kicker={t("home.impact.kicker")}
+    title={t("home.impact.title")}
+    body={t("home.impact.body")}
+  />
+</BaseLayout>
+
+<style>
+  .hero {
+    padding-block: clamp(2.5rem, 6vw, 5rem) clamp(3rem, 7vw, 6rem);
+  }
+  .hero .grid {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: clamp(2rem, 5vw, 4.5rem);
+    align-items: start;
+  }
+  h1 {
+    margin: var(--s-4) 0 0;
+    max-width: 14ch;
+    font-size: clamp(2.6rem, 1.9rem + 3.6vw, 4.6rem);
+  }
+  .hero-body {
+    margin: var(--s-5) 0 0;
+    font-size: var(--step-1);
+    color: var(--ink-2);
+    max-width: 44ch;
+  }
+  .hero-cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s-3);
+    margin-top: var(--s-6);
+  }
+  .feature {
+    display: grid;
+    gap: var(--s-4);
+    padding-top: var(--s-2);
+  }
+  .feature-body {
+    display: grid;
+    gap: var(--s-2);
+  }
+  .feature .meta {
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    color: var(--ink-3);
+    margin: 0;
+  }
+  .feature h2 {
+    font-size: var(--step-2);
+    margin: 0;
+  }
+  .feature h2 a {
+    text-decoration: none;
+  }
+  .feature h2 a:hover {
+    color: var(--clay);
+  }
+  .feature-sum {
+    margin: 0;
+    color: var(--ink-2);
+  }
+
+  /* Pillars */
+  .program-list {
+    display: grid;
+    gap: 0;
+  }
+  .program {
+    display: grid;
+    grid-template-columns: 15rem 1fr;
+    gap: var(--s-6);
+    padding-block: var(--s-6);
+    border-top: 1px solid var(--rule);
+  }
+  .program:last-child {
+    border-bottom: 1px solid var(--rule);
+  }
+  .program-index {
+    display: flex;
+    gap: var(--s-4);
+    align-items: baseline;
+  }
+  .num {
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    color: var(--accent);
+  }
+  .kicker {
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+  }
+  .program-main h3 {
+    margin: 0 0 var(--s-3);
+    font-size: var(--step-2);
+    max-width: 24ch;
+  }
+  .program-main h3 a {
+    text-decoration: none;
+  }
+  .program-main h3 a:hover {
+    color: var(--accent);
+  }
+  .program-main > p {
+    margin: 0 0 var(--s-4);
+    color: var(--ink-2);
+    max-width: 58ch;
+  }
+
+  /* Model */
+  .model {
+    background: var(--leaf-wash);
+    border-block: 1px solid var(--rule);
+  }
+  .model-grid {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: center;
+  }
+  .model-copy h2 {
+    margin: var(--s-3) 0 var(--s-4);
+    max-width: 18ch;
+  }
+  .model-body {
+    color: var(--ink-2);
+    max-width: 52ch;
+    margin: 0;
+  }
+  .pieces {
+    list-style: none;
+    padding: 0;
+    margin: var(--s-6) 0;
+    display: grid;
+    gap: var(--s-3);
+  }
+  .pieces li {
+    display: flex;
+    gap: var(--s-3);
+    align-items: flex-start;
+    border-top: 1px solid color-mix(in oklab, var(--leaf) 22%, transparent);
+    padding-top: var(--s-3);
+  }
+  .pieces svg {
+    color: var(--leaf);
+    flex: none;
+    margin-top: 0.28em;
+  }
+
+  /* Recent */
+  .recent-head {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: var(--s-5);
+    flex-wrap: wrap;
+  }
+  .recent-head :global(.sec-head) {
+    margin-bottom: var(--s-5);
+    flex: 1 1 24rem;
+  }
+  .all {
+    margin-bottom: var(--s-5);
+  }
+  .recent-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
+    gap: var(--s-6) var(--s-7);
+  }
+
+  .more {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    text-decoration: none;
+    font-weight: 550;
+    color: var(--ink);
+  }
+  .more:hover {
+    color: var(--clay);
+  }
+
+  @media (max-width: 62rem) {
+    .hero .grid,
+    .model-grid,
+    .program {
+      grid-template-columns: 1fr;
+    }
+    .program {
+      gap: var(--s-4);
+    }
+    .feature {
+      max-width: 34rem;
+    }
+  }
+</style>

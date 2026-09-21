@@ -1,0 +1,229 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import type { Lang } from "../i18n/ui";
+import { useTranslations, lx } from "../i18n/utils";
+import { pick, site } from "../data/site";
+import { team } from "../data/team";
+import CTABand from "../components/CTABand.astro";
+import PhotoFrame from "../components/PhotoFrame.astro";
+import { Info } from "lucide-astro";
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<BaseLayout lang={lang} path="/about" title={t("nav.about")} description={t("about.lede")}>
+  <section class="head">
+    <div class="container">
+      <p class="eyebrow">{t("about.kicker")}</p>
+      <h1>{t("about.title")}</h1>
+      <p class="lede measure">{t("about.lede")}</p>
+    </div>
+  </section>
+
+  <section class="mv">
+    <div class="container mv-grid">
+      <div class="mv-block">
+        <p class="eyebrow">{t("about.mission")}</p>
+        <p class="mv-text">{pick(site.mission, lang)}</p>
+      </div>
+      <div class="mv-block">
+        <p class="eyebrow">{t("about.vision")}</p>
+        <p class="mv-text">{pick(site.vision, lang)}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="team">
+    <div class="container">
+      <div class="team-head">
+        <div>
+          <h2>{t("about.team")}</h2>
+          <p class="sub measure">{t("about.team.lede")}</p>
+        </div>
+        <div class="aside measure">
+          <Info size={18} stroke-width={1.6} aria-hidden="true" />
+          <p>{t("about.disclaimer")}</p>
+        </div>
+      </div>
+
+      <ul class="people">
+        {
+          team.map((person, i) => (
+            <li>
+              <span class="n">{String(i + 1).padStart(2, "0")}</span>
+              <div class="who">
+                <h3>{person.name}</h3>
+                <p class="role">{lx(person.role, lang)}</p>
+              </div>
+              <p class="bio">{lx(person.bio, lang)}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="community">
+    <div class="container community-grid">
+      <div>
+        <h2>{t("about.community")}</h2>
+        <p class="measure">{t("about.community.body")}</p>
+      </div>
+      <PhotoFrame
+        caption={lx(
+          { en: "Volunteers and supporters", kn: "ಸ್ವಯಂಸೇವಕರು ಮತ್ತು ಬೆಂಬಲಿಗರು" },
+          lang,
+        )}
+        ratio="4 / 3"
+        accent="children"
+      />
+    </div>
+  </section>
+
+  <CTABand
+    lang={lang}
+    kicker={t("involved.kicker")}
+    title={t("involved.title")}
+    body={t("involved.lede")}
+  />
+</BaseLayout>
+
+<style>
+  .head {
+    padding-bottom: var(--s-7);
+  }
+  h1 {
+    margin: var(--s-4) 0 0;
+    max-width: 18ch;
+  }
+  .lede {
+    margin-top: var(--s-5);
+    font-size: var(--step-1);
+    color: var(--ink-2);
+  }
+
+  .mv .container {
+    border-top: 1px solid var(--rule-strong);
+    padding-top: var(--s-6);
+  }
+  .mv-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(2rem, 5vw, 4rem);
+  }
+  .mv-text {
+    font-family: var(--font-display);
+    font-variation-settings: "opsz" 40, "WONK" 1, "SOFT" 40;
+    font-size: var(--step-1);
+    line-height: 1.35;
+    margin: var(--s-4) 0 0;
+  }
+
+  .team-head {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: start;
+    gap: var(--s-6);
+    border-top: 1px solid var(--rule-strong);
+    padding-top: var(--s-3);
+  }
+  .team-head h2 {
+    font-size: var(--step-3);
+    margin: 0;
+  }
+  .sub {
+    color: var(--ink-2);
+    margin-top: var(--s-3);
+  }
+  .aside {
+    display: flex;
+    gap: var(--s-3);
+    max-width: 30rem;
+    border: 1px solid var(--rule);
+    border-radius: var(--r-2);
+    background: var(--turmeric-wash);
+    padding: var(--s-4);
+  }
+  .aside svg {
+    flex: none;
+    color: var(--turmeric);
+    margin-top: 0.2em;
+  }
+  .aside p {
+    margin: 0;
+    font-size: var(--step--1);
+    color: var(--ink-2);
+  }
+
+  .people {
+    list-style: none;
+    margin: var(--s-7) 0 0;
+    padding: 0;
+  }
+  .people li {
+    display: grid;
+    grid-template-columns: 3rem 15rem 1fr;
+    gap: var(--s-5);
+    padding-block: var(--s-5);
+    border-top: 1px solid var(--rule);
+  }
+  .people li:last-child {
+    border-bottom: 1px solid var(--rule);
+  }
+  .n {
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    color: var(--clay);
+  }
+  .who h3 {
+    font-size: var(--step-1);
+    margin: 0;
+  }
+  .role {
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    color: var(--ink-3);
+    margin: var(--s-2) 0 0;
+  }
+  .bio {
+    margin: 0;
+    color: var(--ink-2);
+    max-width: 60ch;
+  }
+
+  .community .container {
+    border-top: 1px solid var(--rule);
+    padding-top: var(--s-6);
+  }
+  .community-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: center;
+  }
+  .community h2 {
+    font-size: var(--step-2);
+    margin: 0 0 var(--s-4);
+  }
+  .community p {
+    color: var(--ink-2);
+    margin: 0;
+  }
+  @media (max-width: 62rem) {
+    .mv-grid,
+    .community-grid {
+      grid-template-columns: 1fr;
+    }
+    .people li {
+      grid-template-columns: 3rem 1fr;
+    }
+    .bio {
+      grid-column: 2;
+    }
+  }
+</style>

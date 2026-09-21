@@ -1,0 +1,179 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import type { Lang } from "../i18n/ui";
+import { useTranslations, localePath, lx } from "../i18n/utils";
+import { programs } from "../data/programs";
+import { storiesByProgram } from "../data/stories";
+import { programHref } from "../lib/paths";
+import PhotoFrame from "../components/PhotoFrame.astro";
+import CTABand from "../components/CTABand.astro";
+import { ArrowUpRight } from "lucide-astro";
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<BaseLayout lang={lang} path="/work" title={t("nav.work")} description={t("work.lede")}>
+  <section class="head">
+    <div class="container">
+      <p class="eyebrow">{t("work.kicker")}</p>
+      <h1>{t("work.title")}</h1>
+      <p class="lede measure">{t("work.lede")}</p>
+    </div>
+  </section>
+
+  <div class="container">
+    <ul class="register">
+      {
+        programs.map((p, i) => (
+          <li class:list={["row", `accent-${p.accent}`]}>
+            <div class="idx">
+              <span class="num">{String(i + 1).padStart(2, "0")}</span>
+              <span class="kicker">{lx(p.kicker, lang)}</span>
+            </div>
+            <div class="main">
+              <h2><a href={localePath(programHref(p.id), lang)}>{lx(p.title, lang)}</a></h2>
+              <p>{lx(p.summary, lang)}</p>
+              <div class="facts">
+                <span>
+                  {lx(
+                    {
+                      en: `${p.activities.length} areas of work`,
+                      kn: `${p.activities.length} ಕೆಲಸದ ಕ್ಷೇತ್ರಗಳು`,
+                    },
+                    lang,
+                  )}
+                </span>
+                <span>·</span>
+                <span>
+                  {lx(
+                    {
+                      en: `${storiesByProgram(p.id).length} documented entries`,
+                      kn: `${storiesByProgram(p.id).length} ದಾಖಲಿತ ನಮೂದುಗಳು`,
+                    },
+                    lang,
+                  )}
+                </span>
+              </div>
+              <a class="more" href={localePath(programHref(p.id), lang)}>
+                {t("cta.learnMore")}
+                <ArrowUpRight size={15} stroke-width={1.7} aria-hidden="true" />
+              </a>
+            </div>
+            <div class="thumb">
+              <PhotoFrame
+                caption={lx(p.kicker, lang)}
+                ratio="1 / 1"
+                accent={p.accent}
+              />
+            </div>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+
+  <CTABand
+    lang={lang}
+    kicker={t("home.impact.kicker")}
+    title={t("home.impact.title")}
+    body={t("home.impact.body")}
+  />
+</BaseLayout>
+
+<style>
+  .head {
+    padding-bottom: var(--s-7);
+  }
+  h1 {
+    margin: var(--s-4) 0 0;
+    max-width: 16ch;
+  }
+  .lede {
+    margin-top: var(--s-5);
+    font-size: var(--step-1);
+    color: var(--ink-2);
+  }
+  .register {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .row {
+    display: grid;
+    grid-template-columns: 12rem 1fr 12rem;
+    gap: var(--s-6);
+    align-items: start;
+    padding-block: var(--s-7);
+    border-top: 1px solid var(--rule);
+  }
+  .row:last-child {
+    border-bottom: 1px solid var(--rule);
+  }
+  .idx {
+    display: flex;
+    gap: var(--s-3);
+    align-items: baseline;
+  }
+  .num {
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    color: var(--accent);
+  }
+  .kicker {
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+  }
+  .main h2 {
+    margin: 0 0 var(--s-3);
+    font-size: var(--step-3);
+    max-width: 22ch;
+  }
+  .main h2 a {
+    text-decoration: none;
+  }
+  .main h2 a:hover {
+    color: var(--accent);
+  }
+  .main p {
+    margin: 0 0 var(--s-4);
+    color: var(--ink-2);
+    max-width: 56ch;
+  }
+  .facts {
+    display: flex;
+    gap: 0.5rem;
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    color: var(--ink-3);
+    margin-bottom: var(--s-4);
+  }
+  .more {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    text-decoration: none;
+    font-weight: 550;
+  }
+  .more:hover {
+    color: var(--accent);
+  }
+  .thumb {
+    align-self: center;
+  }
+  @media (max-width: 62rem) {
+    .row {
+      grid-template-columns: 1fr;
+      gap: var(--s-4);
+    }
+    .thumb {
+      max-width: 14rem;
+    }
+  }
+</style>

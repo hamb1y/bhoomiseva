@@ -1,0 +1,12 @@
+---
+import StoryDetail from "../../../views/StoryDetail.astro";
+import { stories } from "../../../data/stories";
+
+export function getStaticPaths() {
+  return stories.map((story) => ({ params: { slug: story.slug } }));
+}
+
+const { slug } = Astro.params;
+---
+
+<StoryDetail lang="kn" slug={slug!} />

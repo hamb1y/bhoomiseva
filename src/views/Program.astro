@@ -1,0 +1,235 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import type { Lang } from "../i18n/ui";
+import { useTranslations, localePath, lx } from "../i18n/utils";
+import { programs, programById } from "../data/programs";
+import type { ProgramId } from "../data/types";
+import { storiesByProgram } from "../data/stories";
+import { programHref } from "../lib/paths";
+import StoryCard from "../components/StoryCard.astro";
+import PhotoFrame from "../components/PhotoFrame.astro";
+import CTABand from "../components/CTABand.astro";
+import { ArrowUpRight } from "lucide-astro";
+
+interface Props {
+  lang: Lang;
+  id: ProgramId;
+}
+const { lang, id } = Astro.props;
+const t = useTranslations(lang);
+const program = programById(id)!;
+const related = storiesByProgram(id);
+const others = programs.filter((p) => p.id !== id);
+
+const photoCaption = {
+  education: {
+    en: "Tutoring session with students",
+    kn: "ವಿದ್ಯಾರ್ಥಿಗಳೊಂದಿಗೆ ಪಾಠದ ಅವಧಿ",
+  },
+  farmers: {
+    en: "Farmer training at Chirantana School, Kabbalu",
+    kn: "ಚಿರಂತನ ಶಾಲೆ, ಕಬ್ಬಾಳಿನಲ್ಲಿ ರೈತ ತರಬೇತಿ",
+  },
+  children: {
+    en: "Support delivered to a children's home",
+    kn: "ಮಕ್ಕಳ ಮನೆಗೆ ನೀಡಿದ ಬೆಂಬಲ",
+  },
+}[id];
+---
+
+<BaseLayout
+  lang={lang}
+  path={programHref(id)}
+  title={lx(program.kicker, lang)}
+  description={lx(program.summary, lang)}
+>
+  <section class:list={["head", `accent-${program.accent}`]}>
+    <div class="container head-grid">
+      <div>
+        <p class="eyebrow">{lx(program.kicker, lang)}</p>
+        <h1>{lx(program.title, lang)}</h1>
+        <p class="lede measure">{lx(program.lede, lang)}</p>
+      </div>
+      <PhotoFrame caption={lx(photoCaption, lang)} ratio="4 / 3" accent={program.accent} />
+    </div>
+  </section>
+
+  <section class:list={["activities", `accent-${program.accent}`]}>
+    <div class="container">
+      <p class="eyebrow">{lx({ en: "What this includes", kn: "ಇದರಲ್ಲಿ ಸೇರಿರುವುದು" }, lang)}</p>
+      <ul class="list">
+        {
+          program.activities.map((a, i) => (
+            <li>
+              <span class="n">{String(i + 1).padStart(2, "0")}</span>
+              <div>
+                <h2>{lx(a.title, lang)}</h2>
+                <p>{lx(a.body, lang)}</p>
+              </div>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="entries">
+    <div class="container">
+      <div class="entries-head">
+        <h2>{t("work.stories")}</h2>
+      </div>
+      {related.length ? (
+        <div class="entries-grid">
+          {related.map((s) => <StoryCard story={s} lang={lang} showProgram={false} />)}
+        </div>
+      ) : (
+        <p class="empty">{t("work.noStories")}</p>
+      )}
+    </div>
+  </section>
+
+  <section class="others">
+    <div class="container">
+      <p class="eyebrow">{t("work.otherProgrammes")}</p>
+      <div class="other-grid">
+        {
+          others.map((p) => (
+            <a class:list={["other", `accent-${p.accent}`]} href={localePath(programHref(p.id), lang)}>
+              <span class="kicker">{lx(p.kicker, lang)}</span>
+              <span class="title">{lx(p.title, lang)}</span>
+              <ArrowUpRight size={18} stroke-width={1.6} aria-hidden="true" />
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <CTABand
+    lang={lang}
+    kicker={t("home.impact.kicker")}
+    title={t("home.impact.title")}
+    body={t("home.impact.body")}
+  />
+</BaseLayout>
+
+<style>
+  .head {
+    padding-bottom: var(--s-8);
+  }
+  .head-grid {
+    display: grid;
+    grid-template-columns: 1.3fr 0.7fr;
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: center;
+  }
+  h1 {
+    margin: var(--s-4) 0 0;
+    max-width: 15ch;
+  }
+  .lede {
+    margin-top: var(--s-5);
+    font-size: var(--step-1);
+    color: var(--ink-2);
+  }
+
+  .activities .container {
+    border-top: 1px solid var(--rule-strong);
+    padding-top: var(--s-6);
+  }
+  .list {
+    list-style: none;
+    margin: var(--s-5) 0 0;
+    padding: 0;
+    display: grid;
+    gap: 0;
+  }
+  .list li {
+    display: grid;
+    grid-template-columns: 4rem 1fr;
+    gap: var(--s-5);
+    padding-block: var(--s-5);
+    border-top: 1px solid var(--rule);
+  }
+  .list li:last-child {
+    border-bottom: 1px solid var(--rule);
+  }
+  .n {
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    color: var(--accent, var(--clay));
+  }
+  .list h2 {
+    font-size: var(--step-1);
+    margin: 0 0 var(--s-2);
+  }
+  .list p {
+    margin: 0;
+    color: var(--ink-2);
+    max-width: 60ch;
+  }
+
+  .entries-head h2 {
+    font-size: var(--step-2);
+    padding-top: var(--s-3);
+    border-top: 1px solid var(--rule-strong);
+  }
+  .entries-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr));
+    gap: var(--s-6) var(--s-7);
+  }
+  .empty {
+    color: var(--ink-2);
+  }
+
+  .others .container {
+    border-top: 1px solid var(--rule);
+    padding-top: var(--s-6);
+  }
+  .other-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
+    gap: var(--s-4);
+    margin-top: var(--s-5);
+  }
+  .other {
+    display: grid;
+    gap: var(--s-2);
+    text-decoration: none;
+    padding: var(--s-5);
+    border: 1px solid var(--rule);
+    border-radius: var(--r-3);
+    background: var(--paper-raised);
+    transition: border-color var(--dur-2) var(--ease-out), transform var(--dur-2) var(--ease-out);
+  }
+  .other:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+  }
+  .other .kicker {
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  .other .title {
+    font-family: var(--font-display);
+    font-size: var(--step-1);
+    line-height: 1.2;
+  }
+  .other svg {
+    color: var(--ink-3);
+    justify-self: end;
+  }
+  @media (max-width: 62rem) {
+    .head-grid {
+      grid-template-columns: 1fr;
+    }
+    .list li {
+      grid-template-columns: 1fr;
+      gap: var(--s-2);
+    }
+  }
+</style>

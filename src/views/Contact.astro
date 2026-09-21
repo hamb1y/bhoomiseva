@@ -1,0 +1,128 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import type { Lang } from "../i18n/ui";
+import { useTranslations } from "../i18n/utils";
+import { site } from "../data/site";
+import LeadForm from "../components/LeadForm.svelte";
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const fields = [
+  { name: "name", label: t("form.name"), required: true },
+  { name: "email", label: t("form.email"), type: "email" as const, required: true },
+  { name: "message", label: t("form.message"), type: "textarea" as const, required: true },
+];
+---
+
+<BaseLayout lang={lang} path="/contact" title={t("nav.contact")} description={t("contact.lede")}>
+  <section class="head">
+    <div class="container">
+      <p class="eyebrow">{t("contact.kicker")}</p>
+      <h1>{t("contact.title")}</h1>
+      <p class="lede measure">{t("contact.lede")}</p>
+    </div>
+  </section>
+
+  <section class="body">
+    <div class="container grid">
+      <div class="form-col">
+        <h2>{t("contact.form.title")}</h2>
+        <LeadForm
+          client:load
+          formName="Contact"
+          fields={fields}
+          fallbackWhatsapp={site.whatsapp}
+          fallbackEmail={site.email}
+          submitLabel={t("form.submit")}
+          sendingLabel={t("form.sending")}
+          successMessage={t("form.success")}
+          errorMessage={t("form.error")}
+          invalidEmailMessage={t("form.invalidEmail")}
+          orContactLabel={t("form.orContact")}
+          contactEmail={site.email}
+          contactWhatsapp={site.whatsapp}
+        />
+      </div>
+
+      <aside class="details">
+        <h2>{t("footer.contact")}</h2>
+        <ul class="ledger">
+          <li>
+            <span class="label">{t("contact.email")}</span>
+            <a class="value" href={`mailto:${site.email}`}>{site.email}</a>
+          </li>
+          <li>
+            <span class="label">{t("contact.phone")}</span>
+            <a class="value" href={`tel:${site.phoneHref}`}>{site.phone}</a>
+          </li>
+          <li>
+            <span class="label">WhatsApp</span>
+            <a class="value" href={site.whatsapp}>+91 9900103178</a>
+          </li>
+          <li>
+            <span class="label">{t("contact.socials")}</span>
+            <span class="value socials">
+              <a href={site.socials.facebook}>Facebook</a>
+              <a href={site.socials.instagram}>Instagram</a>
+            </span>
+          </li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .head {
+    padding-bottom: var(--s-7);
+  }
+  h1 {
+    margin: var(--s-4) 0 0;
+  }
+  .lede {
+    margin-top: var(--s-5);
+    font-size: var(--step-1);
+    color: var(--ink-2);
+  }
+  .body .grid {
+    display: grid;
+    grid-template-columns: 1.3fr 0.7fr;
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: start;
+    border-top: 1px solid var(--rule-strong);
+    padding-top: var(--s-6);
+  }
+  .form-col h2,
+  .details h2 {
+    font-size: var(--step-2);
+    margin: 0 0 var(--s-5);
+  }
+  .details .ledger {
+    margin: 0;
+  }
+  .details .value {
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    text-align: right;
+  }
+  .details a.value {
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .details a.value:hover {
+    color: var(--clay);
+  }
+  .socials {
+    display: flex;
+    gap: var(--s-3);
+  }
+  @media (max-width: 62rem) {
+    .body .grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

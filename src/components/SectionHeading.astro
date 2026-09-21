@@ -1,0 +1,39 @@
+---
+interface Props {
+  kicker?: string;
+  title: string;
+  lede?: string;
+  id?: string;
+  strong?: boolean;
+}
+const { kicker, title, lede, id, strong = true } = Astro.props;
+---
+
+<div class="sec-head" id={id}>
+  {kicker && <p class="eyebrow">{kicker}</p>}
+  <h2 class:list={{ strong }}>{title}</h2>
+  {lede && <p class="lede">{lede}</p>}
+</div>
+
+<style>
+  .sec-head {
+    display: grid;
+    gap: var(--s-3);
+    max-width: 52rem;
+    padding-top: var(--s-3);
+    border-top: 1px solid var(--rule-strong);
+    margin-bottom: var(--s-7);
+  }
+  h2 {
+    margin: 0;
+  }
+  .lede {
+    font-size: var(--step-1);
+    color: var(--ink-2);
+    max-width: 46rem;
+    margin: var(--s-2) 0 0;
+  }
+  .eyebrow {
+    margin: 0;
+  }
+</style>

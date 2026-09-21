@@ -1,0 +1,176 @@
+---
+import type { Lang } from "../i18n/ui";
+import { useTranslations, localePath } from "../i18n/utils";
+import { nav, barePath } from "../lib/nav";
+import Mark from "./Mark.astro";
+import MobileNav from "./MobileNav.svelte";
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const path = barePath(Astro.url.pathname);
+const otherLang: Lang = lang === "en" ? "kn" : "en";
+
+const isActive = (href: string) => (href === "/" ? path === "/" : path.startsWith(href));
+
+const desktop = nav;
+const mobileLinks = nav.map((item) => ({
+  label: t(item.key),
+  href: localePath(item.href, lang),
+  children: item.children?.map((child) => ({
+    label: t(child.key),
+    href: localePath(child.href, lang),
+  })),
+}));
+---
+
+<header class="site-head">
+  <div class="container bar">
+    <a class="brand" href={localePath("/", lang)}>
+      <Mark />
+      <span class="name">{t("site.name")}</span>
+    </a>
+
+    <nav class="primary" aria-label={t("nav.menu")}>
+      <ul>
+        {
+          desktop.map((item) => (
+            <li>
+              <a
+                href={localePath(item.href, lang)}
+                class:list={{ active: isActive(item.href) }}
+                aria-current={isActive(item.href) ? "page" : undefined}
+              >
+                {t(item.key)}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <div class="actions">
+      <a class="lang" href={localePath(path, otherLang)} aria-label={t("lang.switchAria")}>
+        {t("lang.switch")}
+      </a>
+      <a class="btn btn--primary donate" href={localePath("/donate", lang)}>{t("cta.donate")}</a>
+      <div class="mobile">
+        <MobileNav
+          client:load
+          links={mobileLinks}
+          donateHref={localePath("/donate", lang)}
+          donateLabel={t("cta.donate")}
+          menuLabel={t("nav.menu")}
+          closeLabel={t("nav.close")}
+          langHref={localePath(path, otherLang)}
+          langLabel={t("lang.switch")}
+          langAria={t("lang.switchAria")}
+        />
+      </div>
+    </div>
+  </div>
+</header>
+
+<style>
+  .site-head {
+    position: sticky;
+    top: 0;
+    z-index: 70;
+    background: var(--paper);
+    border-bottom: 1px solid var(--rule);
+  }
+  .bar {
+    display: flex;
+    align-items: center;
+    gap: var(--s-6);
+    min-height: 4.25rem;
+  }
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    text-decoration: none;
+    color: var(--ink);
+    margin-right: auto;
+  }
+  .name {
+    font-family: var(--font-display);
+    font-variation-settings: "opsz" 30, "WONK" 1, "SOFT" 40;
+    font-weight: 600;
+    font-size: var(--step-1);
+    letter-spacing: -0.01em;
+    white-space: nowrap;
+  }
+  .primary ul {
+    display: flex;
+    align-items: center;
+    gap: var(--s-5);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .primary a {
+    position: relative;
+    text-decoration: none;
+    font-size: var(--step-0);
+    color: var(--ink-2);
+    padding-block: 0.35rem;
+  }
+  .primary a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 1px;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform var(--dur-2) var(--ease-out);
+  }
+  .primary a:hover {
+    color: var(--ink);
+  }
+  .primary a:hover::after,
+  .primary a.active::after {
+    transform: scaleX(1);
+  }
+  .primary a.active {
+    color: var(--ink);
+  }
+  .actions {
+    display: flex;
+    align-items: center;
+    gap: var(--s-4);
+  }
+  .lang {
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    color: var(--ink-2);
+    text-decoration: none;
+  }
+  .lang:hover {
+    color: var(--clay);
+  }
+  .mobile {
+    display: none;
+  }
+  @media (max-width: 60rem) {
+    .primary,
+    .lang {
+      display: none;
+    }
+    .donate {
+      display: none;
+    }
+    .mobile {
+      display: block;
+    }
+    .bar {
+      min-height: 3.75rem;
+    }
+  }
+</style>

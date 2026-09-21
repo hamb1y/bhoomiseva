@@ -1,0 +1,78 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import type { Lang } from "../i18n/ui";
+import { useTranslations, localePath } from "../i18n/utils";
+import { nav } from "../lib/nav";
+import { ArrowRight } from "lucide-astro";
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const links = nav.map((item) => ({ label: t(item.key), href: localePath(item.href, lang) }));
+---
+
+<BaseLayout lang={lang} path="/404" title="404">
+  <section class="notfound">
+    <div class="container">
+      <p class="code">404</p>
+      <h1>{t("notfound.title")}</h1>
+      <p class="body measure">{t("notfound.body")}</p>
+
+      <ul class="links">
+        {
+          links.map((link) => (
+            <li>
+              <a href={link.href}>
+                {link.label}
+                <ArrowRight size={15} stroke-width={1.7} aria-hidden="true" />
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+
+      <a class="btn btn--primary" href={localePath("/", lang)}>{t("notfound.home")}</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .notfound {
+    padding-block: clamp(3rem, 9vw, 7rem);
+  }
+  .code {
+    font-family: var(--font-mono);
+    font-size: var(--step-3);
+    color: var(--clay);
+    margin: 0;
+  }
+  h1 {
+    margin: var(--s-4) 0 var(--s-5);
+    max-width: 16ch;
+  }
+  .body {
+    color: var(--ink-2);
+    font-size: var(--step-1);
+  }
+  .links {
+    list-style: none;
+    padding: 0;
+    margin: var(--s-7) 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s-3) var(--s-6);
+  }
+  .links a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    text-decoration: none;
+    font-weight: 550;
+  }
+  .links a:hover {
+    color: var(--clay);
+  }
+</style>

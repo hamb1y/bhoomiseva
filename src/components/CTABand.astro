@@ -1,0 +1,63 @@
+---
+import type { Lang } from "../i18n/ui";
+import { useTranslations, localePath } from "../i18n/utils";
+
+interface Props {
+  lang: Lang;
+  kicker: string;
+  title: string;
+  body?: string;
+}
+const { lang, kicker, title, body } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<section class="cta">
+  <div class="container inner">
+    <div class="copy">
+      <p class="eyebrow">{kicker}</p>
+      <h2>{title}</h2>
+      {body && <p class="body">{body}</p>}
+    </div>
+    <div class="actions">
+      <a class="btn btn--primary" href={localePath("/donate", lang)}>{t("cta.donate")}</a>
+      <a class="btn btn--outline" href={localePath("/get-involved", lang)}>{t("cta.volunteer")}</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .cta {
+    background: var(--clay-wash);
+    border-block: 1px solid var(--rule);
+  }
+  .inner {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: var(--s-7);
+    align-items: end;
+  }
+  h2 {
+    margin: var(--s-3) 0 0;
+    max-width: 22ch;
+  }
+  .body {
+    margin: var(--s-4) 0 0;
+    color: var(--ink-2);
+    max-width: 46ch;
+  }
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s-3);
+    justify-content: flex-end;
+  }
+  @media (max-width: 52rem) {
+    .inner {
+      grid-template-columns: 1fr;
+    }
+    .actions {
+      justify-content: flex-start;
+    }
+  }
+</style>

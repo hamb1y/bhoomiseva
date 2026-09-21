@@ -1,0 +1,27 @@
+---
+interface Props {
+  size?: number;
+}
+const { size = 26 } = Astro.props;
+---
+
+<span class="mark" aria-hidden="true" style={`--size:${size}px`}>
+  <svg viewBox="0 0 24 24" fill="none">
+    <circle cx="12" cy="12" r="11" fill="var(--clay)" />
+    <path d="M3 15.6h18" stroke="var(--paper)" stroke-width="1.3" />
+    <circle cx="12" cy="9.6" r="1.7" fill="var(--paper)" />
+  </svg>
+</span>
+
+<style>
+  .mark {
+    display: inline-flex;
+    width: var(--size);
+    height: var(--size);
+    flex: none;
+  }
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+</style>

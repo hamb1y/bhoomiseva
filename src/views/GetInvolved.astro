@@ -1,0 +1,225 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import type { Lang } from "../i18n/ui";
+import { useTranslations, localePath, lx } from "../i18n/utils";
+import { site } from "../data/site";
+import { programs } from "../data/programs";
+import LeadForm from "../components/LeadForm.svelte";
+import { GraduationCap, Sprout, Home as HomeIcon, HeartHandshake, ArrowUpRight } from "lucide-astro";
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const ways = [
+  {
+    title: t("involved.volunteer.title"),
+    body: t("involved.volunteer.body"),
+    Icon: GraduationCap,
+    href: "#volunteer",
+    cta: lx({ en: "Apply to volunteer", kn: "ಸ್ವಯಂಸೇವೆಗೆ ಅರ್ಜಿ" }, lang),
+  },
+  {
+    title: t("involved.goods.title"),
+    body: t("involved.goods.body"),
+    Icon: HomeIcon,
+    href: site.whatsapp,
+    cta: lx({ en: "Tell us what you have", kn: "ನಿಮ್ಮ ಬಳಿ ಏನಿದೆ ಎಂದು ಹೇಳಿ" }, lang),
+  },
+  {
+    title: t("involved.give.title"),
+    body: t("involved.give.body"),
+    Icon: HeartHandshake,
+    href: localePath("/donate", lang),
+    cta: t("cta.donate"),
+  },
+  {
+    title: t("involved.follow.title"),
+    body: t("involved.follow.body"),
+    Icon: Sprout,
+    href: site.socials.instagram,
+    cta: lx({ en: "Follow us", kn: "ನಮ್ಮನ್ನು ಅನುಸರಿಸಿ" }, lang),
+  },
+];
+
+const availability = [
+  lx({ en: "A few hours a month", kn: "ತಿಂಗಳಿಗೆ ಕೆಲವು ಗಂಟೆಗಳು" }, lang),
+  lx({ en: "A few hours a week", kn: "ವಾರಕ್ಕೆ ಕೆಲವು ಗಂಟೆಗಳು" }, lang),
+  lx({ en: "Weekends", kn: "ವಾರಾಂತ್ಯಗಳಲ್ಲಿ" }, lang),
+  lx({ en: "Flexible", kn: "ಹೊಂದಿಕೊಳ್ಳಬಲ್ಲ" }, lang),
+];
+
+const interest = [
+  ...programs.map((p) => lx(p.kicker, lang)),
+  lx({ en: "Coordination / other", kn: "ಸಂಯೋಜನೆ / ಇತರೆ" }, lang),
+];
+
+const fields = [
+  { name: "name", label: t("form.name"), required: true },
+  { name: "email", label: t("form.email"), type: "email" as const, required: true },
+  { name: "phone", label: t("form.phone"), type: "tel" as const },
+  { name: "location", label: t("form.location") },
+  { name: "skills", label: t("form.skills"), type: "textarea" as const },
+  { name: "availability", label: t("form.availability"), type: "select" as const, options: availability },
+  { name: "interest", label: t("form.interest"), type: "select" as const, options: interest },
+];
+---
+
+<BaseLayout lang={lang} path="/get-involved" title={t("nav.involved")} description={t("involved.lede")}>
+  <section class="head">
+    <div class="container">
+      <p class="eyebrow">{t("involved.kicker")}</p>
+      <h1>{t("involved.title")}</h1>
+      <p class="lede measure">{t("involved.lede")}</p>
+    </div>
+  </section>
+
+  <section class="ways">
+    <div class="container">
+      <ul class="list">
+        {
+          ways.map(({ title, body, Icon, href, cta }, i) => (
+            <li>
+              <span class="n">{String(i + 1).padStart(2, "0")}</span>
+              <div class="way-main">
+                <h2>
+                  <Icon size={20} stroke-width={1.7} aria-hidden="true" />
+                  {title}
+                </h2>
+                <p>{body}</p>
+                <a class="more" href={href}>
+                  {cta}
+                  <ArrowUpRight size={15} stroke-width={1.7} aria-hidden="true" />
+                </a>
+              </div>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="volunteer" id="volunteer">
+    <div class="container vol-grid">
+      <div>
+        <p class="eyebrow">{t("involved.volunteer.title")}</p>
+        <h2>{lx({ en: "Tell us how you can help", kn: "ನೀವು ಹೇಗೆ ಸಹಾಯ ಮಾಡಬಲ್ಲಿರಿ ಎಂದು ಹೇಳಿ" }, lang)}</h2>
+        <p class="measure">
+          {lx(
+            {
+              en: "Fill this in and we will match you with a student, a farmer programme or a coordination task. If you would rather write directly, use WhatsApp or email below.",
+              kn: "ಇದನ್ನು ಭರ್ತಿ ಮಾಡಿ — ನಾವು ನಿಮ್ಮನ್ನು ಒಬ್ಬ ವಿದ್ಯಾರ್ಥಿ, ರೈತ ಕಾರ್ಯಕ್ರಮ ಅಥವಾ ಸಂಯೋಜನೆಯ ಕೆಲಸಕ್ಕೆ ಹೊಂದಿಸುತ್ತೇವೆ. ನೇರವಾಗಿ ಬರೆಯಲು ಬಯಸಿದರೆ, ಕೆಳಗಿನ ವಾಟ್ಸಾಪ್ ಅಥವಾ ಇಮೇಲ್ ಬಳಸಿ.",
+            },
+            lang,
+          )}
+        </p>
+      </div>
+
+      <LeadForm
+        client:load
+        formName="Volunteer"
+        fields={fields}
+        fallbackWhatsapp={site.whatsapp}
+        fallbackEmail={site.email}
+        submitLabel={t("form.submit")}
+        sendingLabel={t("form.sending")}
+        successMessage={t("form.success")}
+        errorMessage={t("form.error")}
+        invalidEmailMessage={t("form.invalidEmail")}
+        orContactLabel={t("form.orContact")}
+        contactEmail={site.email}
+        contactWhatsapp={site.whatsapp}
+      />
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .head {
+    padding-bottom: var(--s-7);
+  }
+  h1 {
+    margin: var(--s-4) 0 0;
+    max-width: 16ch;
+  }
+  .lede {
+    margin-top: var(--s-5);
+    font-size: var(--step-1);
+    color: var(--ink-2);
+  }
+  .ways .container {
+    border-top: 1px solid var(--rule-strong);
+    padding-top: var(--s-5);
+  }
+  .list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .list li {
+    display: grid;
+    grid-template-columns: 4rem 1fr;
+    gap: var(--s-5);
+    padding-block: var(--s-6);
+    border-bottom: 1px solid var(--rule);
+  }
+  .n {
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    color: var(--clay);
+  }
+  .way-main h2 {
+    display: flex;
+    align-items: center;
+    gap: var(--s-3);
+    font-size: var(--step-2);
+    margin: 0 0 var(--s-3);
+  }
+  .way-main h2 svg {
+    color: var(--clay);
+    flex: none;
+  }
+  .way-main p {
+    margin: 0 0 var(--s-4);
+    color: var(--ink-2);
+    max-width: 60ch;
+  }
+  .more {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    text-decoration: none;
+    font-weight: 550;
+  }
+  .more:hover {
+    color: var(--clay);
+  }
+  .volunteer {
+    background: var(--leaf-wash);
+    border-block: 1px solid var(--rule);
+  }
+  .vol-grid {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: clamp(2rem, 5vw, 4.5rem);
+    align-items: start;
+  }
+  .vol-grid h2 {
+    margin: var(--s-3) 0 var(--s-4);
+    max-width: 18ch;
+  }
+  .vol-grid p {
+    color: var(--ink-2);
+  }
+  @media (max-width: 62rem) {
+    .vol-grid {
+      grid-template-columns: 1fr;
+    }
+    .list li {
+      grid-template-columns: 1fr;
+      gap: var(--s-2);
+    }
+  }
+</style>

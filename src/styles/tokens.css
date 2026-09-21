@@ -1,0 +1,77 @@
+/* Bhoomi Seva — design tokens. See DESIGN.md for rationale. */
+
+:root {
+  /* ---- Colour: semantic, never decorative ---- */
+  --paper: #f3ecdf;
+  --paper-raised: #faf6ee;
+  --paper-sunk: #e9ddc9;
+
+  --ink: #241a13;
+  --ink-2: #5c4b3d;
+  --ink-3: #8a786a;
+
+  --rule: #d7c9b3;
+  --rule-strong: #b9a88e;
+
+  --clay: #b5532b;
+  --clay-deep: #8c3d1e;
+  --leaf: #3e6b4f;
+  --leaf-deep: #2b4c37;
+  --turmeric: #c8912a;
+  --indigo: #2a4a63;
+  --rose: #9e3a55;
+
+  /* Tinted grounds, derived — do not hand-pick new pastels */
+  --clay-wash: color-mix(in oklab, var(--clay) 9%, var(--paper));
+  --leaf-wash: color-mix(in oklab, var(--leaf) 10%, var(--paper));
+  --turmeric-wash: color-mix(in oklab, var(--turmeric) 12%, var(--paper));
+  --indigo-wash: color-mix(in oklab, var(--indigo) 10%, var(--paper));
+  --ink-wash: color-mix(in oklab, var(--ink) 6%, var(--paper));
+
+  /* ---- Type ---- */
+  --font-display: "Fraunces Variable", "Noto Serif Kannada", Georgia, "Times New Roman", serif;
+  --font-body: "Instrument Sans Variable", "Noto Sans Kannada", system-ui, -apple-system, sans-serif;
+  --font-mono: "IBM Plex Mono", "Noto Sans Kannada", ui-monospace, "SFMono-Regular", monospace;
+
+  --step--1: clamp(0.83rem, 0.8rem + 0.15vw, 0.9rem);
+  --step-0: clamp(1rem, 0.95rem + 0.25vw, 1.09rem);
+  --step-1: clamp(1.22rem, 1.12rem + 0.5vw, 1.45rem);
+  --step-2: clamp(1.5rem, 1.3rem + 1vw, 2rem);
+  --step-3: clamp(1.9rem, 1.55rem + 1.7vw, 2.9rem);
+  --step-4: clamp(2.4rem, 1.8rem + 3vw, 4.2rem);
+  --step-5: clamp(3rem, 2rem + 5vw, 6rem);
+
+  --measure: 66ch;
+  --leading-body: 1.6;
+  --leading-display: 1.08;
+
+  /* ---- Space ---- */
+  --s-1: 0.25rem;
+  --s-2: 0.5rem;
+  --s-3: 0.75rem;
+  --s-4: 1rem;
+  --s-5: 1.5rem;
+  --s-6: 2rem;
+  --s-7: 3rem;
+  --s-8: 4rem;
+  --s-9: 6rem;
+  --s-10: 8rem;
+  --s-11: 11rem;
+
+  --container: 78rem;
+  --gutter: clamp(1.25rem, 5vw, 4rem);
+
+  /* ---- Shape ---- */
+  --r-1: 2px;
+  --r-2: 4px;
+  --r-3: 6px;
+  --r-4: 8px;
+
+  --shadow-lift: 0 1px 0 rgba(36, 26, 19, 0.04), 0 8px 24px -16px rgba(36, 26, 19, 0.35);
+
+  /* ---- Motion ---- */
+  --ease-out: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --dur-1: 140ms;
+  --dur-2: 240ms;
+  --dur-3: 420ms;
+}

@@ -1,0 +1,159 @@
+---
+import type { Lang } from "../i18n/ui";
+import { useTranslations, localePath } from "../i18n/utils";
+import { pick, site } from "../data/site";
+import { nav } from "../lib/nav";
+import { Mail, Phone, MessageCircle, Facebook, Instagram } from "lucide-astro";
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const year = new Date().getFullYear();
+
+const explore = nav.map((item) => ({ label: t(item.key), href: localePath(item.href, lang) }));
+
+const socials = [
+  { label: "WhatsApp", href: site.whatsapp, Icon: MessageCircle },
+  { label: "Facebook", href: site.socials.facebook, Icon: Facebook },
+  { label: "Instagram", href: site.socials.instagram, Icon: Instagram },
+];
+---
+
+<footer class="site-foot">
+  <div class="container">
+    <div class="top">
+      <p class="tagline">{t("site.tagline")}</p>
+      <p class="mission measure">{pick(site.mission, lang)}</p>
+    </div>
+
+    <div class="cols">
+      <div class="col">
+        <h2 class="head">{t("footer.explore")}</h2>
+        <ul>
+          {explore.map((l) => <li><a href={l.href}>{l.label}</a></li>)}
+        </ul>
+      </div>
+
+      <div class="col">
+        <h2 class="head">{t("footer.contact")}</h2>
+        <ul>
+          <li>
+            <a href={`mailto:${site.email}`}>
+              <Mail size={15} stroke-width={1.6} aria-hidden="true" />
+              {site.email}
+            </a>
+          </li>
+          <li>
+            <a href={`tel:${site.phoneHref}`}>
+              <Phone size={15} stroke-width={1.6} aria-hidden="true" />
+              {site.phone}
+            </a>
+          </li>
+          <li>
+            <a href={site.whatsapp}>
+              <MessageCircle size={15} stroke-width={1.6} aria-hidden="true" />
+              WhatsApp
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="col">
+        <h2 class="head">{t("footer.follow")}</h2>
+        <ul>
+          {
+            socials.map(({ label, href, Icon }) => (
+              <li>
+                <a href={href}>
+                  <Icon size={15} stroke-width={1.6} aria-hidden="true" />
+                  {label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+
+    <div class="foot">
+      <span>© {year} {t("site.name")}</span>
+      <span class="note">{t("footer.legal")}</span>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-foot {
+    margin-top: var(--s-9);
+    border-top: 1px solid var(--rule-strong);
+    padding-block: var(--s-8) var(--s-6);
+    background: var(--paper-sunk);
+  }
+  .top {
+    display: grid;
+    gap: var(--s-4);
+    padding-bottom: var(--s-7);
+    border-bottom: 1px solid var(--rule);
+  }
+  .tagline {
+    font-family: var(--font-display);
+    font-variation-settings: "opsz" 60, "WONK" 1, "SOFT" 40;
+    font-weight: 560;
+    font-size: var(--step-3);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    max-width: 20ch;
+    margin: 0;
+  }
+  .mission {
+    color: var(--ink-2);
+    margin: 0;
+  }
+  .cols {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+    gap: var(--s-6);
+    padding-block: var(--s-7) var(--s-8);
+  }
+  .head {
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    margin-bottom: var(--s-4);
+  }
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: var(--s-3);
+  }
+  .col a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    color: var(--ink-2);
+    font-size: var(--step-0);
+  }
+  .col a:hover {
+    color: var(--clay);
+  }
+  .foot {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s-3) var(--s-5);
+    justify-content: space-between;
+    align-items: baseline;
+    border-top: 1px solid var(--rule);
+    padding-top: var(--s-5);
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    color: var(--ink-3);
+  }
+</style>

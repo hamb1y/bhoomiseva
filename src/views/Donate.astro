@@ -1,0 +1,168 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import type { Lang } from "../i18n/ui";
+import { useTranslations, lx } from "../i18n/utils";
+import { site } from "../data/site";
+import DonateWidget from "../components/DonateWidget.svelte";
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const causes = [
+  {
+    value: "education",
+    label: t("cause.education"),
+    amounts: [1000, 5000, 10000],
+  },
+  {
+    value: "farmers",
+    label: t("cause.farmers"),
+    amounts: [1000, 3000, 5000],
+  },
+  {
+    value: "cow",
+    label: t("cause.cow"),
+    amounts: [10000, 25000, 50000],
+  },
+  {
+    value: "children",
+    label: t("cause.children"),
+    amounts: [6000, 12000, 25000],
+  },
+  {
+    value: "any",
+    label: t("cause.any"),
+    amounts: [1000, 5000, 10000],
+  },
+];
+
+const steps = [t("donate.step1"), t("donate.step2"), t("donate.step3")];
+
+const labels = {
+  cause: t("donate.cause"),
+  amount: t("donate.amount"),
+  upi: t("donate.upi"),
+  copy: t("donate.copy"),
+  copied: t("donate.copied"),
+  qr: t("donate.qr"),
+  qrPending: t("donate.qrPending"),
+  or: t("donate.or"),
+  otherMethods: t("donate.otherMethods"),
+  confirmTitle: t("donate.confirm.title"),
+  confirmBody: t("donate.confirm.body"),
+  causeNote: t("donate.causeNote"),
+  unverified: t("donate.unverified"),
+  whatsapp: t("cta.whatsapp"),
+};
+---
+
+<BaseLayout lang={lang} path="/donate" title={t("nav.donate")} description={t("donate.lede")}>
+  <section class="head">
+    <div class="container">
+      <p class="eyebrow">{t("donate.kicker")}</p>
+      <h1>{t("donate.title")}</h1>
+      <p class="lede measure">{t("donate.lede")}</p>
+    </div>
+  </section>
+
+  <section class="steps">
+    <div class="container">
+      <ol>
+        {
+          steps.map((step, i) => (
+            <li>
+              <span class="n">{String(i + 1).padStart(2, "0")}</span>
+              <span>{step}</span>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <section class="widget-section">
+    <div class="container">
+      <DonateWidget
+        client:load
+        causes={causes}
+        labels={labels}
+        upi={site.payment.upi}
+        paytm={site.payment.paytm}
+        gpay={site.payment.gpay}
+        verified={site.payment.verified}
+        whatsapp={site.whatsapp}
+        email={site.email}
+      />
+    </div>
+  </section>
+
+  <section class="accountability">
+    <div class="container">
+      <p class="eyebrow">{lx({ en: "How we handle your donation", kn: "ನಿಮ್ಮ ದೇಣಿಗೆಯನ್ನು ನಾವು ಹೇಗೆ ನೋಡಿಕೊಳ್ಳುತ್ತೇವೆ" }, lang)}</p>
+      <p class="measure">
+        {
+          lx(
+            {
+              en: "Bhoomi Seva is small and volunteer-run, so every contribution is recorded by name and purpose and reported back to the donor. We do not use a payment gateway — transfers go directly to the organisation's UPI account, which keeps more of your money in the work.",
+              kn: "ಭೂಮಿ ಸೇವಾ ಸಣ್ಣ ಸಂಸ್ಥೆ; ಸ್ವಯಂಸೇವಕರೇ ನಡೆಸುತ್ತಾರೆ. ಆದ್ದರಿಂದ ಪ್ರತಿ ಕೊಡುಗೆಯನ್ನೂ ಹೆಸರು ಮತ್ತು ಉದ್ದೇಶದೊಂದಿಗೆ ದಾಖಲಿಸಿ, ದಾನಿಗೆ ಮಾಹಿತಿ ನೀಡುತ್ತೇವೆ. ನಾವು ಪಾವತಿ ಗೇಟ್‌ವೇ ಬಳಸುವುದಿಲ್ಲ — ಹಣ ನೇರವಾಗಿ ಸಂಸ್ಥೆಯ ಯುಪಿಐ ಖಾತೆಗೆ ಬರುತ್ತದೆ; ಇದರಿಂದ ನಿಮ್ಮ ಹೆಚ್ಚು ಹಣ ಕೆಲಸಕ್ಕೇ ಸಿಗುತ್ತದೆ.",
+            },
+            lang,
+          )
+        }
+      </p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .head {
+    padding-bottom: var(--s-6);
+  }
+  h1 {
+    margin: var(--s-4) 0 0;
+    max-width: 18ch;
+  }
+  .lede {
+    margin-top: var(--s-5);
+    font-size: var(--step-1);
+    color: var(--ink-2);
+  }
+  .steps .container {
+    border-top: 1px solid var(--rule-strong);
+    padding-top: var(--s-5);
+  }
+  ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+    gap: var(--s-5);
+  }
+  li {
+    display: flex;
+    gap: var(--s-3);
+    align-items: baseline;
+    font-size: var(--step-0);
+    color: var(--ink-2);
+  }
+  .n {
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    color: var(--clay);
+  }
+  .widget-section {
+    padding-top: var(--s-2);
+  }
+  .accountability .container {
+    border-top: 1px solid var(--rule);
+    padding-top: var(--s-5);
+  }
+  .accountability p {
+    color: var(--ink-2);
+    margin-top: var(--s-3);
+  }
+</style>

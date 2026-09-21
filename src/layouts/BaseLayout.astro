@@ -1,0 +1,74 @@
+---
+import "@fontsource-variable/fraunces";
+import "@fontsource-variable/instrument-sans";
+import "@fontsource/ibm-plex-mono/400.css";
+import "@fontsource/ibm-plex-mono/500.css";
+import "@fontsource/noto-sans-kannada/400.css";
+import "@fontsource/noto-sans-kannada/600.css";
+import "@fontsource/noto-serif-kannada/500.css";
+import "@fontsource/noto-serif-kannada/600.css";
+import "../styles/global.css";
+
+import type { Lang } from "../i18n/ui";
+import { useTranslations, localePath } from "../i18n/utils";
+import { pick, site } from "../data/site";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+
+interface Props {
+  lang: Lang;
+  /** Locale-independent path, e.g. "/work/education". */
+  path: string;
+  title?: string;
+  description?: string;
+  jsonLd?: Record<string, unknown>;
+}
+
+const { lang, path, title, description, jsonLd } = Astro.props;
+const t = useTranslations(lang);
+
+const base = Astro.site ?? new URL("https://bhoomiseva.org");
+const canonical = new URL(localePath(path, lang), base).href;
+const enUrl = new URL(localePath(path, "en"), base).href;
+const knUrl = new URL(localePath(path, "kn").replace(/^\/kn$/, "/kn/"), base).href;
+
+const pageTitle = title ? `${title} — ${site.name}` : `${site.name} — ${t("site.tagline")}`;
+const pageDescription = description ?? pick(site.shortDescription, lang);
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <title>{pageTitle}</title>
+    <meta name="description" content={pageDescription} />
+    <link rel="canonical" href={canonical} />
+    <link rel="alternate" hreflang="en" href={enUrl} />
+    <link rel="alternate" hreflang="kn" href={knUrl} />
+    <link rel="alternate" hreflang="x-default" href={enUrl} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={pageDescription} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:locale" content={lang === "kn" ? "kn_IN" : "en_IN"} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="theme-color" content="#f3ecdf" />
+
+    {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
+  </head>
+
+  <body>
+    <a class="skip" href="#main">{t("a11y.skip")}</a>
+    <Header lang={lang} />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer lang={lang} />
+  </body>
+</html>
