@@ -120,9 +120,9 @@ Living plan. Legend: `[ ]` todo · `[~]` in progress · `[x]` done.
 
 ### Known follow-ups
 
+- [x] **Logo assets** — `bun run logo` produces `logo.webp` (full lock-up), `logo-mark.webp` (emblem, used in the header), `favicon.png` and `apple-touch-icon.png`. White backgrounds are keyed out. The header, favicons and About page pick them up automatically.
 - [ ] **Astro `<Image>`** — images are optimised to WebP but still served from `public/`. Moving to `src/assets` would add responsive `srcset` and AVIF.
+- [ ] **Logo blue** — the logo introduces a blue that is not in the design palette (clay/leaf/turmeric/indigo). Decide whether to add it as a token.
 - [ ] **Photo consent** — confirm the organisation is happy to republish the photos and named stories from the old site.
 - [ ] **Kannada review** — all Kannada copy, especially content entered into the CMS.
 - [ ] **CMS smoke test** — run `cms/` and confirm seeding + pull round-trips correctly.
-- [ ] **Logo assets** — the supplied logo needs to be saved to disk, then `bun run logo <path>` produces `logo.webp`, `logo-mark.webp`, `favicon.png` and `apple-touch-icon.png`. The header and favicon switch over automatically once the files exist.
-- [ ] **Astro `<Image>`** — still served from `public/`; moving to `src/assets` would add responsive `srcset` and AVIF.

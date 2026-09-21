@@ -29,6 +29,7 @@ The site runs at http://localhost:4321. It works immediately: with no CMS synced
 bun run build          # production build to dist/
 bun run check          # type-check
 bun run images         # regenerate WebP from public/images originals
+bun run logo           # build logo assets from source artwork
 bun run content:pull   # sync content from the CMS
 bun run cms:seed       # push seed content into a running CMS
 ```

@@ -8,17 +8,22 @@ import CTABand from "../components/CTABand.astro";
 import PhotoFrame from "../components/PhotoFrame.astro";
 import { objectPosition } from "../utils/format";
 import { Info } from "lucide-astro";
+import { existsSync } from "node:fs";
 
 interface Props {
   lang: Lang;
 }
 const { lang } = Astro.props;
 const t = useTranslations(lang);
+const hasLogo = existsSync("public/images/logo.webp");
 ---
 
 <BaseLayout lang={lang} path="/about" title={t("nav.about")} description={t("about.lede")}>
   <section class="head">
     <div class="container">
+      {hasLogo && (
+        <img class="lockup" src="/images/logo.webp" alt="Bhoomi Seva" width="240" height="354" />
+      )}
       <p class="eyebrow">{t("about.kicker")}</p>
       <h1>{t("about.title")}</h1>
       <p class="lede measure">{t("about.lede")}</p>
@@ -111,6 +116,12 @@ const t = useTranslations(lang);
 <style>
   .head {
     padding-bottom: var(--s-7);
+  }
+  .lockup {
+    display: block;
+    width: clamp(9rem, 18vw, 13rem);
+    height: auto;
+    margin-bottom: var(--s-6);
   }
   h1 {
     margin: var(--s-4) 0 0;

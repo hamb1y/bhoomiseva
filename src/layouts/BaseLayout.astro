@@ -47,9 +47,14 @@ const hasLogoAssets = existsSync("public/apple-touch-icon.png");
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    {hasLogoAssets && <link rel="icon" type="image/png" href="/favicon.png" />}
-    {hasLogoAssets && <link rel="apple-touch-icon" href="/apple-touch-icon.png" />}
+    {hasLogoAssets ? (
+      <>
+        <link rel="icon" type="image/png" sizes="48x48" href="/favicon.png" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+      </>
+    ) : (
+      <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    )}
 
     <title>{pageTitle}</title>
     <meta name="description" content={pageDescription} />

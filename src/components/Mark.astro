@@ -5,7 +5,7 @@ interface Props {
   size?: number;
 }
 
-const { size = 26 } = Astro.props;
+const { size = 30 } = Astro.props;
 // The real logo, once `bun run logo` has produced it. Falls back to the
 // hand-drawn mark so the header never shows a broken image.
 const hasLogo = existsSync("public/images/logo-mark.webp");
