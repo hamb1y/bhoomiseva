@@ -30,11 +30,7 @@ const dateLabel = story.date
     ? lx(story.period, lang)
     : t("common.dateUnknown");
 
-const rows = [
-  { label: t("common.programme"), value: lx(program.kicker, lang) },
-  { label: story.date ? t("common.dated") : t("story.period"), value: dateLabel },
-  { label: t("common.location"), value: lx(story.location, lang) },
-];
+const metaItems = [lx(program.kicker, lang), dateLabel, lx(story.location, lang)];
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -65,14 +61,14 @@ const jsonLd = {
       <h1>{lx(story.title, lang)}</h1>
       <p class="summary">{lx(story.summary, lang)}</p>
 
-      <ul class="ledger meta">
-        {rows.map((row) => (
-          <li>
-            <span class="label">{row.label}</span>
-            <span class="value">{row.value}</span>
-          </li>
+      <p class="meta">
+        {metaItems.map((item, i) => (
+          <>
+            {i > 0 && <span class="sep">·</span>}
+            <span>{item}</span>
+          </>
         ))}
-      </ul>
+      </p>
 
       <PhotoFrame
         src={story.image}
@@ -97,14 +93,9 @@ const jsonLd = {
       ) : null}
 
       {story.people?.length ? (
-        <div class="people">
-          <p class="eyebrow">{t("story.people")}</p>
-          <ul>
-            {story.people.map((person) => (
-              <li>{person}</li>
-            ))}
-          </ul>
-        </div>
+        <p class="people">
+          <span class="people-label">{t("story.people")}:</span> {story.people.join(", ")}
+        </p>
       ) : null}
     </div>
   </article>
@@ -156,7 +147,15 @@ const jsonLd = {
     margin: var(--s-5) 0 var(--s-7);
   }
   .meta {
-    margin-bottom: var(--s-7);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 0 0 var(--s-7);
+    font-size: var(--step--1);
+    color: var(--ink-3);
+  }
+  .sep {
+    color: var(--rule-strong);
   }
   .body {
     margin-top: var(--s-7);
@@ -210,25 +209,12 @@ const jsonLd = {
     color: var(--ink-2);
   }
   .people {
-    margin-top: var(--s-7);
-    padding-top: var(--s-5);
-    border-top: 1px solid var(--rule);
-  }
-  .people ul {
-    list-style: none;
-    padding: 0;
-    margin: var(--s-3) 0 0;
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--s-3);
-  }
-  .people li {
-    font-family: var(--font-mono);
+    margin: var(--s-6) 0 0;
     font-size: var(--step--1);
-    border: 1px solid var(--rule-strong);
-    border-radius: 999px;
-    padding: 0.25em 0.9em;
     color: var(--ink-2);
+  }
+  .people-label {
+    color: var(--ink-3);
   }
   .related .container {
     border-top: 1px solid var(--rule-strong);

@@ -2,18 +2,19 @@
 
 The website for **Bhoomi Seva**, a volunteer-led initiative supporting rural communities in Karnataka through education, natural farming and practical support for children in need.
 
-Built as a fast, accessible, bilingual (English + Kannada) static site.
+A fast, accessible, bilingual (English + Kannada) static site, with content managed in a Payload CMS.
 
 ## Stack
 
-|                           |                                                       |
-| ------------------------- | ----------------------------------------------------- |
-| Framework                 | [Astro](https://astro.build) (static output, islands) |
-| Interactive UI            | [Svelte 5](https://svelte.dev)                        |
-| Icons                     | [Lucide](https://lucide.dev) (`lucide-svelte`)        |
-| Styling                   | Vanilla CSS + design tokens                           |
-| Fonts                     | Self-hosted via [Fontsource](https://fontsource.org)  |
-| Runtime / package manager | [Bun](https://bun.sh)                                 |
+|                           |                                                                      |
+| ------------------------- | -------------------------------------------------------------------- |
+| Framework                 | [Astro](https://astro.build) (static output, islands)                |
+| Interactive UI            | [Svelte 5](https://svelte.dev)                                       |
+| Icons                     | [Lucide](https://lucide.dev)                                         |
+| Styling                   | Vanilla CSS + design tokens                                          |
+| CMS                       | [Payload](https://payloadcms.com) 3 (separate Next.js app in `cms/`) |
+| Fonts                     | Self-hosted via [Fontsource](https://fontsource.org)                 |
+| Runtime / package manager | [Bun](https://bun.sh)                                                |
 
 ## Quick start
 
@@ -22,49 +23,83 @@ bun install
 bun run dev
 ```
 
-The dev server runs at http://localhost:4321.
+The site runs at http://localhost:4321. It works immediately: with no CMS synced, content comes from the hand-written seed in `src/data/seed/`.
 
 ```bash
-bun run build      # production build to dist/
-bun run preview    # preview the built site
-bunx astro check   # type-check (install @astrojs/check first)
+bun run build          # production build to dist/
+bun run check          # type-check
+bun run images         # regenerate WebP from public/images originals
+bun run content:pull   # sync content from the CMS
+bun run cms:seed       # push seed content into a running CMS
 ```
+
+## Content and the CMS
+
+Content is **CMS-first, seed-backed**:
+
+```
+Payload CMS  --content:pull-->  src/data/generated/*  --+-->  src/data/*.ts  -->  pages
+src/data/seed/*  ----------------------------------------+
+```
+
+`src/data/*.ts` resolves to generated content when it exists, otherwise to the seed. The site always builds, whether or not a CMS is reachable.
+
+### Running the CMS
+
+```bash
+cd cms
+bun install
+cp .env.example .env      # set PAYLOAD_SECRET
+bun dev                   # http://localhost:3000/admin
+```
+
+Create the first admin user at `/admin`, then from the repository root:
+
+```bash
+PAYLOAD_EMAIL=you@example.com PAYLOAD_PASSWORD=... bun run cms:seed
+bun run content:pull
+bun run build
+```
+
+See [`cms/README.md`](./cms/README.md) for collections, localisation and deployment.
 
 ## Project structure
 
 ```
 src/
-  components/   Astro components (static) + Svelte components (interactive)
-  data/         Typed, localised content (site, programs, stories, team, updates)
-  i18n/         ui.ts string dictionary + utils.ts helpers
-  layouts/      BaseLayout and page shells
-  pages/        File-based routes; /kn/* mirrors English
-  styles/       tokens.css (design tokens) + global.css
-public/         Static assets
+  components/   Astro components (static) + Svelte components (islands)
+  data/
+    seed/       hand-written source content (the fallback)
+    generated/  written by `content:pull` — never edit by hand
+    *.ts        resolvers (generated wins, seed falls back)
+    types.ts    Story, Program, Person, Update, Site
+  i18n/         ui.ts dictionary + utils.ts helpers
+  layouts/      BaseLayout
+  pages/        file-based routes; /kn/* mirrors English
+  styles/       tokens.css + global.css
+  views/        page implementations used by the thin route files
+public/images/  committed WebP + originals
+cms/            Payload 3 app
+scripts/        image optimisation, content pull, CMS seed
 ```
 
 ## Documentation
 
 - **[DESIGN.md](./DESIGN.md)** — design system: concept, colour, type, spacing, motion, components, and the binding anti-slop rules.
-- **[SPEC.md](./SPEC.md)** — product and technical specification: goals, information architecture, content model, interactivity, launch checklist.
+- **[SPEC.md](./SPEC.md)** — product and technical specification: architecture, information architecture, content model, CMS pipeline, launch checklist.
 - **[AGENTS.md](./AGENTS.md)** — working conventions for contributors and AI agents.
+- **[TODO.md](./TODO.md)** — current plan and changelog.
 
-## Content and translations
+## Translations
 
-All content lives in `src/data/*`, not in markup, so it can be translated and reused. Translatable fields use the `Localized` type:
+Every content field can carry English and Kannada. Payload stores both locales per document; a missing Kannada value falls back to English.
 
-```ts
-type Localized = string | { en: string; kn?: string };
-```
-
-A missing Kannada value falls back to English. **Kannada content is a first pass and must be reviewed by a native Kannada speaker before launch.**
-
-Please also read the claims policy in [AGENTS.md](./AGENTS.md) — this rebuild deliberately preserves documented work while removing unsupported statistics.
+**Kannada content is a first pass and should be reviewed by a native speaker before launch.**
 
 ## Before launch
 
-Work through the verification checklist in [SPEC.md §15](./SPEC.md). In particular, all payment and contact details must be confirmed current, and `site.payment.verified` set only once they are.
+Work through the checklist in [SPEC.md §14](./SPEC.md). In particular: confirm all payment and contact details, obtain photo consent, and set `payment.verified` only once verified.
 
 ## License
 
-Source-available under the **Controlled Website Source License 1.0 (CWSL-1.0)** © 2026 Bhoomi Seva. The code may be viewed, studied and evaluated, and Bhoomi Seva may deploy and modify it; it may not be redistributed, templated, or commercially exploited. Recipient Content (copy, photographs, testimonials, marks) remains the property of Bhoomi Seva. See [LICENSE](./LICENSE). This is not an OSI-approved open-source license.
+Source-available under the **Controlled Website Source License 1.0 (CWSL-1.0)** © 2026 Bhoomi Seva. The code may be viewed, studied and evaluated, and Bhoomi Seva may deploy and modify it; it may not be redistributed, templated, or commercially exploited. Content and photographs remain the property of Bhoomi Seva. See [LICENSE](./LICENSE). This is not an OSI-approved open-source license.

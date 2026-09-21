@@ -12,9 +12,11 @@ The strongest thing about Bhoomi Seva is that its work is _documented_: real stu
 
 Three recurring devices:
 
-1. **The ledger rule** — hairline rules and small-caps labels organise content like a record book, not like a card grid.
-2. **Date stamps** — dates and place names set in mono, like an archive entry. Every story is dated.
-3. **Evidence, not decoration** — photographs are captioned and treated as documents. When there is no photograph, we use a considered empty frame that says so, never a fake stock image.
+1. **Photographs lead.** Real photographs carry the pages — paired with text, laid full-bleed, or shown in galleries. Text supports the image rather than the other way round.
+2. **Dates and places are explicit.** Every story carries a date (or an honest period label) and a location, set in mono so they read as record rather than marketing.
+3. **Evidence, not decoration.** Photographs are captioned and treated as documents. We never use a fake stock image.
+
+> **Removed by design (do not reintroduce):** the earlier "ledger scaffolding" — numbered `01 / 02 / 03` section markers, wide-tracked uppercase mono eyebrows, and a hairline rule above every block. With real photographs in place, that scaffolding competed with the content and made the layout monotonous. Eyebrows are now plain sentence-case labels; sections are separated by space, not rules.
 
 ---
 
@@ -39,6 +41,7 @@ Derived from current design-critique consensus. These are hard constraints.
 - No three identical icon-cards in a row. Vary weight; a lead item is genuinely larger.
 - No icon-in-rounded-tile stacked above a heading. Icons sit inline, beside text.
 - No nested cards, no side-tab accent stripes, no border+shadow on the same surface.
+- No numbered section markers (`01`, `02`) and no rule above every block. Separate with space.
 - Radii are small and editorial (2–8px), never 16–24px everywhere.
 - Spacing is intentional: related things close, separate things far. Not equal gaps everywhere.
 
@@ -147,13 +150,17 @@ Paper texture is a very subtle fractal-noise overlay at ~3% on the base body onl
 ## 7. Components
 
 - **Button** — solid clay (primary), ink outline (secondary), text+underline (tertiary). Square-ish (`--r-2`), generous padding. Hover: fill shift + arrow nudge. No glow, no gradient.
-- **Story entry** — date (mono) + title (display) + place + body + optional captioned photo. Used on `/stories`.
-- **Ledger list** — definition-list style rows separated by hairlines: label left, value right. Used for facts, team, numbers.
-- **Program header** — icon inline with title, coloured by its pillar, no icon tile.
-- **Empty photo frame** — `--paper-sunk` panel with a hairline and a mono caption naming the missing image ("Photo: farmer training, Chirantana School"). Never a broken/placeholder image.
-- **Pull quote** — display serif, hanging punctuation, attributed with a rule.
+- **Story card** — photograph (3:2), date or period in mono, programme dot, display title, summary, place. Used on `/stories` and the home page.
+- **Story page** — kicker, display title, summary, a single inline meta line (programme · date · place), a 3:2 photo, body with an English-only drop cap, an optional pull quote in the original voice, and an inline "People" list.
+- **Programme row** — alternating full-width image + text, used on the home page and `/work`. The image side flips on alternate rows. Activities render as dot-marked items, never numbered.
+- **Full-bleed band** — edge-to-edge photograph with a gradient caption bar linking to a story. Breaks the vertical rhythm.
+- **Empty photo frame** — falls back to a `--paper-sunk` panel with a dashed inset when no image exists. Never a broken image.
+- **Pull quote** — display serif, accent rule on the left, attributed below.
+- **Gallery** — responsive grid of 4:3 photographs on programme pages.
 
-Interactive (Svelte islands): mobile nav, donate widget, volunteer/contact form, image lightbox, story filter.
+Interactive (Svelte islands): mobile nav, donate widget, volunteer/contact form, story filter.
+
+> Iconography comes from Lucide. Icons sit inline with text at 15–20px, never inside rounded tiles.
 
 ---
 
@@ -176,3 +183,22 @@ Allowed: colour/underline transitions on links, 2–6px translate on reveal (con
 - Language correctly set per locale (`lang="kn"` on Kannada).
 - Colour never the only signal.
 - All interactive islands keyboard operable.
+
+---
+
+## 10. Type details to preserve
+
+- **Eyebrow / label** — sentence case, body sans, weight 600, no uppercase, no wide tracking. Takes the section's accent colour where one is set. (The old wide-tracked uppercase mono eyebrow is banned.)
+- **Mono is reserved for data**: dates, periods, places, counts. Not for decoration or headings.
+- **Display** — Fraunces with `WONK 1` and optical sizing. Used for page and section headings, story titles and pull quotes. Never for body copy.
+
+---
+
+## 11. Content and CMS
+
+Colour, type and layout above describe the rendered site; the words and images come from Payload CMS (see SPEC.md §5 and `cms/README.md`).
+
+- The design assumes **real photographs**. New content should ship with an image; the empty-frame fallback exists for gaps, not as a style.
+- Every story must carry a date or an explicit period, and a location.
+- Both locales should be filled in the CMS. A blank Kannada field silently falls back to English.
+- Editors adding a story should not need to touch code. If a content change requires a developer, the CMS model is wrong — extend it instead.

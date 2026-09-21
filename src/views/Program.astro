@@ -62,15 +62,14 @@ const photoCaption = {
 
   <section class:list={["activities", `accent-${program.accent}`]}>
     <div class="container">
-      <p class="eyebrow">{lx({ en: "What this includes", kn: "ಇದರಲ್ಲಿ ಸೇರಿರುವುದು" }, lang)}</p>
+      <h2 class="activities-title">
+        {lx({ en: "What this includes", kn: "ಇದರಲ್ಲಿ ಸೇರಿರುವುದು" }, lang)}
+      </h2>
       <ul class="list">
-        {program.activities.map((a, i) => (
+        {program.activities.map((a) => (
           <li>
-            <span class="n">{String(i + 1).padStart(2, "0")}</span>
-            <div>
-              <h2>{lx(a.title, lang)}</h2>
-              <p>{lx(a.body, lang)}</p>
-            </div>
+            <h3>{lx(a.title, lang)}</h3>
+            <p>{lx(a.body, lang)}</p>
           </li>
         ))}
       </ul>
@@ -80,7 +79,6 @@ const photoCaption = {
   {program.gallery?.length ? (
     <section class="gallery">
       <div class="container">
-        <p class="eyebrow">{lx({ en: "Photos", kn: "ಫೋಟೋಗಳು" }, lang)}</p>
         <div class="gallery-grid">
           {program.gallery.map((src) => (
             <img src={src} alt="" loading="lazy" decoding="async" />
@@ -153,40 +151,32 @@ const photoCaption = {
     color: var(--ink-2);
   }
 
-  .activities .container {
-    border-top: 1px solid var(--rule-strong);
-    padding-top: var(--s-6);
+  .activities {
+    background: var(--accent-wash);
+  }
+  .activities-title {
+    font-size: var(--step-2);
+    margin: 0 0 var(--s-6);
   }
   .list {
     list-style: none;
-    margin: var(--s-5) 0 0;
+    margin: 0;
     padding: 0;
     display: grid;
-    gap: 0;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr));
+    gap: var(--s-6) var(--s-7);
   }
   .list li {
-    display: grid;
-    grid-template-columns: 4rem 1fr;
-    gap: var(--s-5);
-    padding-block: var(--s-5);
-    border-top: 1px solid var(--rule);
+    padding-top: var(--s-4);
+    border-top: 2px solid var(--accent);
   }
-  .list li:last-child {
-    border-bottom: 1px solid var(--rule);
-  }
-  .n {
-    font-family: var(--font-mono);
-    font-size: var(--step--1);
-    color: var(--accent, var(--clay));
-  }
-  .list h2 {
+  .list h3 {
     font-size: var(--step-1);
     margin: 0 0 var(--s-2);
   }
   .list p {
     margin: 0;
     color: var(--ink-2);
-    max-width: 60ch;
   }
 
   .gallery .container {
@@ -267,10 +257,6 @@ const photoCaption = {
   @media (max-width: 62rem) {
     .head-grid {
       grid-template-columns: 1fr;
-    }
-    .list li {
-      grid-template-columns: 1fr;
-      gap: var(--s-2);
     }
   }
 </style>

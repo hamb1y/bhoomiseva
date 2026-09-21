@@ -10,6 +10,9 @@
     "build": "astro build",
     "preview": "astro preview",
     "check": "astro check",
+    "images": "bun run scripts/optimize-images.mjs",
+    "content:pull": "bun run scripts/pull-content.mjs",
+    "cms:seed": "bun run scripts/seed-cms.mjs",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "astro": "astro"

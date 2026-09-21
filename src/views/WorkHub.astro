@@ -5,7 +5,6 @@ import { useTranslations, localePath, lx } from "../i18n/utils";
 import { programs } from "../data/programs";
 import { storiesByProgram } from "../data/stories";
 import { programHref } from "../lib/paths";
-import PhotoFrame from "../components/PhotoFrame.astro";
 import CTABand from "../components/CTABand.astro";
 import { ArrowUpRight } from "lucide-astro";
 
@@ -27,45 +26,34 @@ const t = useTranslations(lang);
 
   <div class="container">
     <ul class="register">
-      {programs.map((p, i) => (
+      {programs.map((p) => (
         <li class:list={["row", `accent-${p.accent}`]}>
-          <div class="idx">
-            <span class="num">{String(i + 1).padStart(2, "0")}</span>
-            <span class="kicker">{lx(p.kicker, lang)}</span>
-          </div>
+          <img
+            class="thumb"
+            src={p.image}
+            alt={p.imageAlt ? lx(p.imageAlt, lang) : lx(p.title, lang)}
+            loading="lazy"
+            decoding="async"
+          />
           <div class="main">
+            <p class="eyebrow">{lx(p.kicker, lang)}</p>
             <h2>
               <a href={localePath(programHref(p.id), lang)}>{lx(p.title, lang)}</a>
             </h2>
             <p>{lx(p.summary, lang)}</p>
-            <div class="facts">
-              <span>
-                {lx(
-                  {
-                    en: `${p.activities.length} areas of work`,
-                    kn: `${p.activities.length} ಕೆಲಸದ ಕ್ಷೇತ್ರಗಳು`,
-                  },
-                  lang,
-                )}
-              </span>
-              <span>·</span>
-              <span>
-                {lx(
-                  {
-                    en: `${storiesByProgram(p.id).length} documented entries`,
-                    kn: `${storiesByProgram(p.id).length} ದಾಖಲಿತ ನಮೂದುಗಳು`,
-                  },
-                  lang,
-                )}
-              </span>
-            </div>
+            <p class="facts">
+              {lx(
+                {
+                  en: `${p.activities.length} areas of work · ${storiesByProgram(p.id).length} documented stories`,
+                  kn: `${p.activities.length} ಕೆಲಸದ ಕ್ಷೇತ್ರಗಳು · ${storiesByProgram(p.id).length} ದಾಖಲಿತ ಕಥೆಗಳು`,
+                },
+                lang,
+              )}
+            </p>
             <a class="more" href={localePath(programHref(p.id), lang)}>
               {t("cta.learnMore")}
               <ArrowUpRight size={15} stroke-width={1.7} aria-hidden="true" />
             </a>
-          </div>
-          <div class="thumb">
-            <PhotoFrame caption={lx(p.kicker, lang)} ratio="1 / 1" accent={p.accent} />
           </div>
         </li>
       ))}
@@ -100,34 +88,13 @@ const t = useTranslations(lang);
   }
   .row {
     display: grid;
-    grid-template-columns: 12rem 1fr 12rem;
-    gap: var(--s-6);
-    align-items: start;
-    padding-block: var(--s-7);
-    border-top: 1px solid var(--rule);
-  }
-  .row:last-child {
-    border-bottom: 1px solid var(--rule);
-  }
-  .idx {
-    display: flex;
-    gap: var(--s-3);
-    align-items: baseline;
-  }
-  .num {
-    font-family: var(--font-mono);
-    font-size: var(--step--1);
-    color: var(--accent);
-  }
-  .kicker {
-    font-family: var(--font-mono);
-    font-size: var(--step--1);
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--ink-3);
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: center;
+    padding-block: clamp(2.5rem, 6vw, 4.5rem);
   }
   .main h2 {
-    margin: 0 0 var(--s-3);
+    margin: var(--s-3) 0 var(--s-3);
     font-size: var(--step-3);
     max-width: 22ch;
   }
@@ -143,9 +110,6 @@ const t = useTranslations(lang);
     max-width: 56ch;
   }
   .facts {
-    display: flex;
-    gap: 0.5rem;
-    font-family: var(--font-mono);
     font-size: var(--step--1);
     color: var(--ink-3);
     margin-bottom: var(--s-4);
@@ -161,15 +125,14 @@ const t = useTranslations(lang);
     color: var(--accent);
   }
   .thumb {
-    align-self: center;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-radius: var(--r-3);
   }
   @media (max-width: 62rem) {
     .row {
       grid-template-columns: 1fr;
-      gap: var(--s-4);
-    }
-    .thumb {
-      max-width: 14rem;
     }
   }
 </style>

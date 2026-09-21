@@ -6,7 +6,6 @@ import { pick, site } from "../data/site";
 import { programs } from "../data/programs";
 import { stories, featuredStory } from "../data/stories";
 import { programHref } from "../lib/paths";
-import SectionHeading from "../components/SectionHeading.astro";
 import StoryCard from "../components/StoryCard.astro";
 import PhotoFrame from "../components/PhotoFrame.astro";
 import CTABand from "../components/CTABand.astro";
@@ -68,7 +67,6 @@ const jsonLd = {
           accent="farmers"
         />
         <div class="feature-body">
-          <p class="meta">{lx(featuredStory.location, lang)}</p>
           <h2>
             <a href={localePath(`/stories/${featuredStory.slug}`, lang)}>
               {lx(featuredStory.title, lang)}
@@ -86,52 +84,71 @@ const jsonLd = {
 
   <section class="pillars">
     <div class="container">
-      <SectionHeading kicker={t("home.pillars.kicker")} title={t("home.pillars.title")} />
-      <div class="program-list">
-        {programs.map((p, i) => (
-          <article class:list={["program", `accent-${p.accent}`]}>
-            <div class="program-index">
-              <span class="num">{String(i + 1).padStart(2, "0")}</span>
-            </div>
-            <div class="program-main">
-              <h3>
-                <a href={localePath(programHref(p.id), lang)}>{lx(p.title, lang)}</a>
-              </h3>
-              <p>{lx(p.summary, lang)}</p>
-              <ul class="activities">
-                {p.activities.map((a) => (
-                  <li>{lx(a.title, lang)}</li>
-                ))}
-              </ul>
-              <a class="more" href={localePath(programHref(p.id), lang)}>
-                {t("cta.learnMore")}
-                <ArrowUpRight size={15} stroke-width={1.7} aria-hidden="true" />
-              </a>
-            </div>
-          </article>
-        ))}
-      </div>
+      <h2 class="section-title">{t("home.pillars.title")}</h2>
     </div>
+    <div class="container program-list">
+      {programs.map((p, i) => (
+        <article class:list={["program", `accent-${p.accent}`, { flip: i % 2 === 1 }]}>
+          <div class="program-media">
+            <img
+              src={p.image}
+              alt={p.imageAlt ? lx(p.imageAlt, lang) : lx(p.title, lang)}
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+          <div class="program-main">
+            <p class="eyebrow">{lx(p.kicker, lang)}</p>
+            <h3>
+              <a href={localePath(programHref(p.id), lang)}>{lx(p.title, lang)}</a>
+            </h3>
+            <p>{lx(p.summary, lang)}</p>
+            <ul class="activities">
+              {p.activities.map((a) => (
+                <li>{lx(a.title, lang)}</li>
+              ))}
+            </ul>
+            <a class="more" href={localePath(programHref(p.id), lang)}>
+              {t("cta.learnMore")}
+              <ArrowUpRight size={15} stroke-width={1.7} aria-hidden="true" />
+            </a>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="band">
+    <a class="band-link" href={localePath("/stories/farmer-training-kabbalu-2023", lang)}>
+      <img src="/images/farmer-training-2.webp" alt="" loading="lazy" decoding="async" />
+      <div class="band-caption">
+        <span class="band-title">
+          {lx(
+            {
+              en: "Farmer training at Chirantana School, Kabbalu, July 2023",
+              kn: "ಚಿರಂತನ ಶಾಲೆ, ಕಬ್ಬಾಳಿನಲ್ಲಿ ರೈತ ತರಬೇತಿ, ಜುಲೈ 2023",
+            },
+            lang,
+          )}
+        </span>
+        <ArrowUpRight size={16} stroke-width={1.7} aria-hidden="true" />
+      </div>
+    </a>
   </section>
 
   <section class="model">
     <div class="container model-grid">
-      <PhotoFrame
-        src="/images/cow-2.jpg"
-        alt={lx(
-          { en: "Desi cows kept for natural farming", kn: "ನೈಸರ್ಗಿಕ ಕೃಷಿಗಾಗಿ ಸಾಕಿದ ದೇಸಿ ಹಸುಗಳು" },
-          lang,
-        )}
-        caption={lx(
-          {
-            en: "Desi cows are required for natural farming",
-            kn: "ನೈಸರ್ಗಿಕ ಕೃಷಿಗೆ ದೇಸಿ ಹಸು ಅಗತ್ಯ",
-          },
-          lang,
-        )}
-        ratio="3 / 4"
-        accent="farmers"
-      />
+      <div class="model-media">
+        <img
+          src="/images/cow-donation.webp"
+          alt={lx(
+            { en: "Cow donation at Kabbalu, Kanakapura", kn: "ಕಬ್ಬಾಳು, ಕನಕಪುರದಲ್ಲಿ ಹಸು ದಾನ" },
+            lang,
+          )}
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
       <div class="model-copy">
         <p class="eyebrow">{t("home.model.kicker")}</p>
         <h2>{t("home.model.title")}</h2>
@@ -147,7 +164,7 @@ const jsonLd = {
   <section class="recent">
     <div class="container">
       <div class="recent-head">
-        <SectionHeading kicker={t("home.updates.kicker")} title={t("home.updates.title")} />
+        <h2 class="section-title">{t("home.updates.title")}</h2>
         <a class="btn btn--text all" href={localePath("/stories", lang)}>
           {t("cta.allStories")}
           <ArrowRight size={16} stroke-width={1.7} aria-hidden="true" />
@@ -199,17 +216,10 @@ const jsonLd = {
   .feature {
     display: grid;
     gap: var(--s-4);
-    padding-top: var(--s-2);
   }
   .feature-body {
     display: grid;
     gap: var(--s-2);
-  }
-  .feature .meta {
-    font-family: var(--font-mono);
-    font-size: var(--step--1);
-    color: var(--ink-3);
-    margin: 0;
   }
   .feature h2 {
     font-size: var(--step-2);
@@ -226,27 +236,33 @@ const jsonLd = {
     color: var(--ink-2);
   }
 
+  .section-title {
+    font-size: var(--step-3);
+    margin: 0 0 var(--s-6);
+  }
+
   .program-list {
     display: grid;
   }
   .program {
     display: grid;
-    grid-template-columns: 4rem 1fr;
-    gap: var(--s-5);
-    padding-block: var(--s-6);
-    border-top: 1px solid var(--rule);
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: center;
+    padding-block: clamp(2.5rem, 6vw, 4.5rem);
   }
-  .program:last-child {
-    border-bottom: 1px solid var(--rule);
+  .program.flip .program-media {
+    order: 2;
   }
-  .num {
-    font-family: var(--font-mono);
-    font-size: var(--step--1);
-    color: var(--accent);
+  .program-media img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-radius: var(--r-3);
   }
   .program-main h3 {
-    margin: 0 0 var(--s-3);
-    font-size: var(--step-2);
+    margin: var(--s-3) 0 var(--s-3);
+    font-size: var(--step-3);
   }
   .program-main h3 a {
     text-decoration: none;
@@ -257,12 +273,12 @@ const jsonLd = {
   .program-main > p {
     margin: 0 0 var(--s-4);
     color: var(--ink-2);
-    max-width: 62ch;
+    max-width: 54ch;
   }
   .activities {
     list-style: none;
     padding: 0;
-    margin: 0 0 var(--s-4);
+    margin: 0 0 var(--s-5);
     display: flex;
     flex-wrap: wrap;
     gap: var(--s-2) var(--s-5);
@@ -278,22 +294,62 @@ const jsonLd = {
     content: "";
     position: absolute;
     left: 0;
-    top: 0.6em;
+    top: 0.55em;
     width: 6px;
     height: 6px;
     border-radius: 50%;
     background: var(--accent);
   }
 
-  .model {
-    background: var(--leaf-wash);
-    border-block: 1px solid var(--rule);
+  .band {
+    padding-block: clamp(2rem, 5vw, 4rem);
   }
+  .band-link {
+    display: block;
+    position: relative;
+    text-decoration: none;
+    color: var(--paper-raised);
+  }
+  .band-link img {
+    width: 100%;
+    aspect-ratio: 21 / 9;
+    object-fit: cover;
+    display: block;
+  }
+  .band-caption {
+    position: absolute;
+    inset: auto 0 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--s-4);
+    padding: var(--s-5) clamp(1.25rem, 5vw, 4rem);
+    background: linear-gradient(to top, rgba(20, 12, 8, 0.78), rgba(20, 12, 8, 0));
+  }
+  .band-title {
+    font-family: var(--font-display);
+    font-variation-settings:
+      "opsz" 30,
+      "WONK" 1;
+    font-size: var(--step-1);
+    max-width: 40ch;
+  }
+  .band-link:hover .band-title {
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
+
   .model-grid {
     display: grid;
-    grid-template-columns: 0.8fr 1.2fr;
+    grid-template-columns: 1fr 1fr;
     gap: clamp(2rem, 5vw, 4rem);
     align-items: center;
+  }
+  .model-media img {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    border-radius: var(--r-3);
   }
   .model-copy h2 {
     margin: var(--s-3) 0 var(--s-4);
@@ -301,23 +357,20 @@ const jsonLd = {
   }
   .model-body {
     color: var(--ink-2);
-    max-width: 58ch;
+    max-width: 56ch;
     margin: 0 0 var(--s-5);
   }
 
   .recent-head {
     display: flex;
-    align-items: flex-end;
+    align-items: baseline;
     justify-content: space-between;
     gap: var(--s-5);
     flex-wrap: wrap;
+    margin-bottom: var(--s-6);
   }
-  .recent-head :global(.sec-head) {
-    margin-bottom: var(--s-5);
-    flex: 1 1 24rem;
-  }
-  .all {
-    margin-bottom: var(--s-5);
+  .recent-head .section-title {
+    margin: 0;
   }
   .recent-grid {
     display: grid;
@@ -339,11 +392,15 @@ const jsonLd = {
 
   @media (max-width: 62rem) {
     .hero .grid,
+    .program,
     .model-grid {
       grid-template-columns: 1fr;
     }
-    .feature {
-      max-width: 34rem;
+    .program.flip .program-media {
+      order: 0;
+    }
+    .band-link img {
+      aspect-ratio: 16 / 9;
     }
   }
 </style>

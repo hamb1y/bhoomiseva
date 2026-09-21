@@ -22,3 +22,17 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# ---------------------------------------------------------------------------
+# Payload CMS (cms/)
+# ---------------------------------------------------------------------------
+cms/node_modules/
+cms/.next/
+cms/.env
+cms/media/
+cms/*.db
+cms/*.db-*
+
+# Media pulled from the CMS into the Astro site. The committed originals live
+# in public/images; CMS-synced files are build artifacts.
+public/media/

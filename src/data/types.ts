@@ -59,3 +59,18 @@ export interface Update {
   location: Localized;
   kind: "event" | "donation" | "milestone" | "initiative";
 }
+
+export interface Site {
+  name: string;
+  email: string;
+  phone: string;
+  phoneHref: string;
+  whatsapp: string;
+  socials: { facebook: string; instagram: string; whatsappGroup: string };
+  payment: { upi: string; paytm: string; gpay: string; verified: boolean };
+  mission: Localized;
+  vision: Localized;
+  shortDescription: Localized;
+  about: Localized[];
+  credit: string;
+}

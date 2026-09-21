@@ -63,34 +63,48 @@ Living plan. Legend: `[ ]` todo · `[~]` in progress · `[x]` done.
 - [~] OG/social image — **deferred**: `BaseLayout` supports an `image` prop; supply a real 1200×630 asset.
 - [ ] Real photography (pending consent; replaces every `PhotoFrame` placeholder)
 
-## Phase 6 — Verification
+## Phase 7 — CMS, images, de-scaffolding ✅
 
-- [x] `bun run build` passes (38 pages)
-- [x] `bun run check` passes (0 errors)
-- [x] Rendered-HTML sweep for missing i18n keys / `undefined` / `[object Object]` — clean
-- [x] Dev server returns 200 for en + kn routes
-- [~] Visual browser sweep — **blocked**: no desktop browser connected to this session. Design is code-reviewed but has not been seen rendered.
+- [x] Payload 3 CMS in `cms/` — collections (stories, programs, team, updates, media, users), `site-settings` global, en/kn localisation
+- [x] `scripts/seed-cms.mjs` (`bun run cms:seed`) pushes seed content into a running CMS
+- [x] `scripts/pull-content.mjs` (`bun run content:pull`) writes `src/data/generated/*` and downloads media
+- [x] Data layer split into `seed/` (fallback) + `generated/` (CMS) with resolvers — the site builds with or without a CMS
+- [x] Root `.env.example`, `cms/.env.example`, `.gitignore` for CMS + synced media
+- [x] Image pipeline: all images converted to WebP (`bun run images`), originals kept, ~35% smaller
+- [x] Design de-scaffolding: removed numbered `01/02/03` markers, wide-tracked uppercase mono eyebrows, and per-block rules; eyebrows are now sentence-case labels
+- [x] Broke the monotony: alternating photo-led programme rows, a full-bleed photo band, image galleries, inline story meta
+- [x] Small originals restored and kept (`sunita.jpg`, 270×366) — never delete low-resolution source images
+- [x] Docs updated: SPEC, AGENTS, README, DESIGN
+
+## Phase 8 — Verification
+
+- [x] `bun run build` passes — **48 pages**
+- [x] `bun run check` passes (0 errors, 0 hints)
+- [x] `bun run content:pull` fails gracefully when no CMS is running, leaving generated files untouched
+- [~] Visual browser sweep — **blocked**: no desktop browser connected to this session.
 - [ ] Contrast / focus / keyboard pass in a real browser
-- [ ] Confirm no unsupported statistics survived (spot-check done)
+- [ ] Verify the CMS actually boots and seeds (needs a machine to run `cms/`)
 
 ---
 
 ## Open questions / decisions
 
 - Copyright holder for CWSL-1.0 set to **Bhoomi Seva** — confirm this is intended (vs. the developer/volunteer).
-- Payment/social details unverified; the donate page shows a "to be confirmed" notice until `site.payment.verified = true`.
+- Payment/social details unverified; the donate page shows a "to be confirmed" notice until `payment.verified = true` in the CMS.
 - Form submission endpoint not configured; forms fall back to a prefilled WhatsApp message.
 - Kannada copy is written by the assistant and should be spot-checked by a native speaker (the site owner).
+- CMS deployment target undecided (Fly / Railway / Render / VPS). The Astro build needs `PAYLOAD_URL` at build time.
 
 ## Changelog
 
-- **2026-09-21** — Foundation, content, shell, all pages (EN + KN), interactivity, SEO and infra complete. Build + type check green. License switched to CWSL-1.0. Remaining: real browser review, real assets, payment verification, optional form endpoint.
-- **2026-09-21 (content revision)** — Scraped bhoomiseva.org directly. Replaced invented/clever section microcopy with plain headings and the organisation's own words. Real testimonials (Vasanth, Sanjana, Sree Raksha, Ram, Pushparaj) and Sunita's full Kannada letter are now reproduced in the story pages. Story bodies expanded from 2–4 to 5–6 paragraphs each. Programme pages and the home page now carry the full activity lists (80% benchmark, JNV Class 5 coaching, Class 10 coaching, ₹6,000 meal, LPG, cow donation, 300–800% attributed). Mission/vision use the original wording. Footer credits the original developers. Display type scale reduced; events timeline added to the stories page.
-- **2026-09-21 (photos + stories)** — Downloaded 21 real photographs from the source site and wired them into story cards, story pages, programme headers, programme galleries, team bios and the home hero, replacing every empty photo frame. Story archive expanded from 8 to 13 entries (added scholarship distribution, JNV coaching, Class 10 coaching, desi cow programme explainer, Balipadyami meal). 48 pages built.
+- **2026-09-21** — Foundation, content, shell, all pages (EN + KN), interactivity, SEO and infra complete. Build + type check green. License switched to CWSL-1.0.
+- **2026-09-21 (content revision)** — Scraped bhoomiseva.org directly. Replaced invented/clever section microcopy with plain headings and the organisation's own words. Real testimonials (Vasanth, Sanjana, Sree Raksha, Ram, Pushparaj) and Sunita's full Kannada letter reproduced in story pages. Story bodies expanded. Full activity lists added. Mission/vision use the original wording. Footer credits the original developers.
+- **2026-09-21 (photos + stories)** — 21 real photographs downloaded and wired into story cards, story pages, programme headers, galleries, team bios and the home hero. Story archive expanded from 8 to 13 entries. 48 pages built.
+- **2026-09-21 (CMS + polish)** — Connected Payload CMS: full collection/global model with en/kn localisation, seed and pull scripts, and a data layer that resolves CMS content over the seed while always remaining buildable. Converted all images to WebP (originals kept). Removed the ledger/mono scaffolding and rebalanced page rhythm with photo-led rows, a full-bleed band and galleries. Rewrote SPEC, AGENTS, README and DESIGN.
 
 ### Known follow-ups
 
-- [ ] **Image optimisation** — photos live in `public/` and are served as-is (~3.2 MB total). Move to `src/assets` and use Astro's `<Image>` for resizing/AVIF/WebP.
-- [ ] **Photo consent** — confirm the organisation is happy to republish the photos and named stories pulled from the old site (SPEC §15.9).
-- [ ] Some source photos are low-resolution (e.g. `sunita.jpg` at 270×366 was dropped). Ask for higher-resolution originals.
-
+- [ ] **Astro `<Image>`** — images are optimised to WebP but still served from `public/`. Moving to `src/assets` would add responsive `srcset` and AVIF.
+- [ ] **Photo consent** — confirm the organisation is happy to republish the photos and named stories from the old site.
+- [ ] **Kannada review** — all Kannada copy, especially content entered into the CMS.
+- [ ] **CMS smoke test** — run `cms/` and confirm seeding + pull round-trips correctly.
