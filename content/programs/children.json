@@ -1,0 +1,88 @@
+{
+  "en": {
+    "key": "children",
+    "accent": "children",
+    "kicker": "Children & Community",
+    "title": "Orphanage and children's home support",
+    "summary": "Meals, school and college fees, laptops, bicycles, clothing, stationery, furniture, LPG cylinders, medical and emergency support for children living in care.",
+    "lede": "Bhoomi Seva supports children's homes according to their actual needs, rather than through a fixed programme. The support below has been given over time, in partnership with the homes themselves. A meal for the children can be sponsored for around ₹6,000.",
+    "activities": [
+      {
+        "title": "Sponsor a meal — around ₹6,000",
+        "body": "A meal for the children of a home can be sponsored for around ₹6,000. A meal was sponsored at Sri Krishnashraya during Balipadyami."
+      },
+      {
+        "title": "School and college fees",
+        "body": "Fee support for the children's education, as and when the need arises."
+      },
+      {
+        "title": "Laptops and bicycles",
+        "body": "Laptops so that the children can attend online classes, and bicycles for getting to school."
+      },
+      {
+        "title": "Clothing, footwear and stationery",
+        "body": "Donations of used clothes, footwear, stationery and furniture."
+      },
+      {
+        "title": "LPG cylinders",
+        "body": "Support to provide LPG cylinders for the home."
+      },
+      {
+        "title": "Medical and emergency support",
+        "body": "Help with medical needs, emergency requirements and other basic needs of the children."
+      }
+    ],
+    "image": "/images/children-3.webp",
+    "image_alt": "Children supported at a partner children's home",
+    "gallery": [
+      {
+        "image": "/images/children-1.webp"
+      },
+      {
+        "image": "/images/children-2.webp"
+      },
+      {
+        "image": "/images/children-4.webp"
+      },
+      {
+        "image": "/images/children-5.webp"
+      },
+      {
+        "image": "/images/meal-sponsor.webp"
+      }
+    ]
+  },
+  "kn": {
+    "kicker": "ಮಕ್ಕಳು ಮತ್ತು ಸಮುದಾಯ",
+    "title": "ಅನಾಥಾಶ್ರಮ ಮತ್ತು ಮಕ್ಕಳ ಮನೆಗಳಿಗೆ ಬೆಂಬಲ",
+    "summary": "ಆಶ್ರಯದಲ್ಲಿ ಬೆಳೆಯುವ ಮಕ್ಕಳಿಗೆ ಊಟ, ಶಾಲಾ ಮತ್ತು ಕಾಲೇಜು ಶುಲ್ಕ, ಲ್ಯಾಪ್‌ಟಾಪ್, ಸೈಕಲ್, ಬಟ್ಟೆ, ಲೇಖನ ಸಾಮಗ್ರಿ, ಪೀಠೋಪಕರಣ, ಎಲ್‌ಪಿಜಿ ಸಿಲಿಂಡರ್, ವೈದ್ಯಕೀಯ ಮತ್ತು ತುರ್ತು ಸಹಾಯ.",
+    "lede": "ಭೂಮಿ ಸೇವಾ ಮಕ್ಕಳ ಮನೆಗಳಿಗೆ ನಿಗದಿತ ಕಾರ್ಯಕ್ರಮದ ಬದಲು ಅವರ ನಿಜವಾದ ಅಗತ್ಯಗಳಿಗೆ ಅನುಸಾರ ಬೆಂಬಲ ನೀಡುತ್ತದೆ. ಕೆಳಗಿನ ಸಹಾಯ ಕಾಲಕಾಲಕ್ಕೆ, ಮನೆಗಳೊಂದಿಗೆ ಕೈಜೋಡಿಸಿ ನೀಡಲಾಗಿದೆ. ಮಕ್ಕಳಿಗೆ ಊಟವನ್ನು ಸುಮಾರು ₹6,000ಕ್ಕೆ ಪ್ರಾಯೋಜಿಸಬಹುದು.",
+    "activities": [
+      {
+        "title": "ಊಟದ ಪ್ರಾಯೋಜಕತ್ವ — ಸುಮಾರು ₹6,000",
+        "body": "ಒಂದು ಮನೆಯ ಮಕ್ಕಳಿಗೆ ಊಟವನ್ನು ಸುಮಾರು ₹6,000ಕ್ಕೆ ಪ್ರಾಯೋಜಿಸಬಹುದು. ಬಲಿಪಾಡ್ಯಮಿಯಂದು ಶ್ರೀ ಕೃಷ್ಣಾಶ್ರಯದಲ್ಲಿ ಊಟ ಪ್ರಾಯೋಜಿಸಲಾಗಿತ್ತು."
+      },
+      {
+        "title": "ಶಾಲಾ ಮತ್ತು ಕಾಲೇಜು ಶುಲ್ಕ",
+        "body": "ಅಗತ್ಯ ಬಂದಂತೆ ಮಕ್ಕಳ ಶಿಕ್ಷಣದ ಶುಲ್ಕಕ್ಕೆ ಸಹಾಯ."
+      },
+      {
+        "title": "ಲ್ಯಾಪ್‌ಟಾಪ್ ಮತ್ತು ಸೈಕಲ್",
+        "body": "ಮಕ್ಕಳು ಆನ್‌ಲೈನ್ ತರಗತಿಗಳಿಗೆ ಸೇರಲು ಲ್ಯಾಪ್‌ಟಾಪ್, ಮತ್ತು ಶಾಲೆಗೆ ಹೋಗಿಬರಲು ಸೈಕಲ್."
+      },
+      {
+        "title": "ಬಟ್ಟೆ, ಪಾದರಕ್ಷೆ ಮತ್ತು ಲೇಖನ ಸಾಮಗ್ರಿ",
+        "body": "ಹಳೆಯ ಬಟ್ಟೆ, ಪಾದರಕ್ಷೆ, ಲೇಖನ ಸಾಮಗ್ರಿ ಮತ್ತು ಪೀಠೋಪಕರಣಗಳ ದಾನ."
+      },
+      {
+        "title": "ಎಲ್‌ಪಿಜಿ ಸಿಲಿಂಡರ್",
+        "body": "ಮನೆಗೆ ಎಲ್‌ಪಿಜಿ ಸಿಲಿಂಡರ್ ಒದಗಿಸಲು ಸಹಾಯ."
+      },
+      {
+        "title": "ವೈದ್ಯಕೀಯ ಮತ್ತು ತುರ್ತು ಸಹಾಯ",
+        "body": "ಮಕ್ಕಳ ವೈದ್ಯಕೀಯ ಅಗತ್ಯಗಳು, ತುರ್ತು ಅಗತ್ಯಗಳು ಮತ್ತು ಇತರ ಮೂಲಭೂತ ಅಗತ್ಯಗಳಿಗೆ ಸಹಾಯ."
+      }
+    ],
+    "image_alt": "ಪಾಲುದಾರ ಮಕ್ಕಳ ಮನೆಯಲ್ಲಿ ಬೆಂಬಲಿತ ಮಕ್ಕಳು"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "en": {
+    "title": "Meal sponsored at Sri Krishnashraya",
+    "summary": "A meal for the children at Sri Krishnashraya Educational Trust was sponsored during Balipadyami.",
+    "body": [
+      "During Balipadyami, the day after Deepavali, a meal was sponsored for the children at Sri Krishnashraya Educational Trust.",
+      "A meal for the children of a home can be sponsored for around ₹6,000."
+    ],
+    "image": "/images/meal-sponsor.webp",
+    "image_alt": "A sponsored meal at Sri Krishnashraya",
+    "image_position": "center",
+    "program": "children",
+    "period": "Balipadyami",
+    "location": "Sri Krishnashraya"
+  },
+  "kn": {
+    "title": "ಶ್ರೀ ಕೃಷ್ಣಾಶ್ರಯದಲ್ಲಿ ಪ್ರಾಯೋಜಿಸಿದ ಊಟ",
+    "summary": "ಬಲಿಪಾಡ್ಯಮಿಯಂದು ಶ್ರೀ ಕೃಷ್ಣಾಶ್ರಯ ಎಜುಕೇಷನಲ್ ಟ್ರಸ್ಟ್‌ನ ಮಕ್ಕಳಿಗೆ ಒಂದು ಊಟವನ್ನು ಪ್ರಾಯೋಜಿಸಲಾಯಿತು.",
+    "body": [
+      "ದೀಪಾವಳಿಯ ಮರುದಿನದ ಬಲಿಪಾಡ್ಯಮಿಯಂದು ಶ್ರೀ ಕೃಷ್ಣಾಶ್ರಯ ಎಜುಕೇಶನಲ್ ಟ್ರಸ್ಟ್‌ನ ಮಕ್ಕಳಿಗೆ ಒಂದು ಊಟವನ್ನು ಪ್ರಾಯೋಜಿಸಲಾಯಿತು.",
+      "ಒಂದು ಮನೆಯ ಮಕ್ಕಳಿಗೆ ಊಟವನ್ನು ಸುಮಾರು ₹6,000ಕ್ಕೆ ಪ್ರಾಯೋಜಿಸಬಹುದು."
+    ],
+    "image_alt": "ಶ್ರೀ ಕೃಷ್ಣಾಶ್ರಯದಲ್ಲಿ ಪ್ರಾಯೋಜಿಸಿದ ಊಟ",
+    "period": "ಬಲಿಪಾಡ್ಯಮಿ",
+    "location": "ಶ್ರೀ ಕೃಷ್ಣಾಶ್ರಯ"
+  }
+}

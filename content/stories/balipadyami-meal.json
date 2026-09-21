@@ -1,0 +1,31 @@
+{
+  "en": {
+    "title": "A meal sponsored for the children during Balipadyami",
+    "summary": "Bhoomi Seva sponsored a meal for the children at Sri Krishnashraya Educational Trust during Balipadyami.",
+    "body": [
+      "During Balipadyami, the day after Deepavali, Bhoomi Seva sponsored a meal for the children at Sri Krishnashraya Educational Trust.",
+      "A meal for the children of a home can be sponsored for around ₹6,000.",
+      "Meals are one of several kinds of support Bhoomi Seva provides to children's homes, along with school and college fees, laptops, bicycles, clothing, stationery, furniture, LPG cylinders, and medical and emergency help.",
+      "If you would like to sponsor a meal, contact Bhoomi Seva and add “OrphanageMeal” in the payment comment."
+    ],
+    "image": "/images/meal-sponsor.webp",
+    "image_alt": "A sponsored meal at Sri Krishnashraya orphanage",
+    "image_position": "center",
+    "program": "children",
+    "period": "Balipadyami",
+    "location": "Sri Krishnashraya"
+  },
+  "kn": {
+    "title": "ಬಲಿಪಾಡ್ಯಮಿಯಂದು ಮಕ್ಕಳಿಗೆ ಪ್ರಾಯೋಜಿಸಿದ ಊಟ",
+    "summary": "ಬಲಿಪಾಡ್ಯಮಿಯಂದು ಭೂಮಿ ಸೇವಾ, ಶ್ರೀ ಕೃಷ್ಣಾಶ್ರಯ ಎಜುಕೇಷನಲ್ ಟ್ರಸ್ಟ್‌ನ ಮಕ್ಕಳಿಗೆ ಒಂದು ಊಟವನ್ನು ಪ್ರಾಯೋಜಿಸಿತು.",
+    "body": [
+      "ದೀಪಾವಳಿಯ ಮರುದಿನದ ಬಲಿಪಾಡ್ಯಮಿಯಂದು, ಶ್ರೀ ಕೃಷ್ಣಾಶ್ರಯ ಎಜುಕೇಷನಲ್ ಟ್ರಸ್ಟ್‌ನ ಮಕ್ಕಳಿಗೆ ಭೂಮಿ ಸೇವಾ ಒಂದು ಊಟವನ್ನು ಪ್ರಾಯೋಜಿಸಿತು.",
+      "ಒಂದು ಮನೆಯ ಮಕ್ಕಳಿಗೆ ಊಟವನ್ನು ಸುಮಾರು ₹6,000ಕ್ಕೆ ಪ್ರಾಯೋಜಿಸಬಹುದು.",
+      "ಊಟ, ಭೂಮಿ ಸೇವಾ ಮಕ್ಕಳ ಮನೆಗಳಿಗೆ ನೀಡುವ ಹಲವು ರೀತಿಯ ಬೆಂಬಲಗಳಲ್ಲಿ ಒಂದು — ಶಾಲಾ ಮತ್ತು ಕಾಲೇಜು ಶುಲ್ಕ, ಲ್ಯಾಪ್‌ಟಾಪ್, ಸೈಕಲ್, ಬಟ್ಟೆ, ಲೇಖನ ಸಾಮಗ್ರಿ, ಪೀಠೋಪಕರಣ, ಎಲ್‌ಪಿಜಿ ಸಿಲಿಂಡರ್, ಮತ್ತು ವೈದ್ಯಕೀಯ ಹಾಗೂ ತುರ್ತು ಸಹಾಯದ ಜೊತೆಗೆ.",
+      "ನೀವು ಊಟವನ್ನು ಪ್ರಾಯೋಜಿಸಲು ಬಯಸಿದರೆ, ಭೂಮಿ ಸೇವಾವನ್ನು ಸಂಪರ್ಕಿಸಿ ಮತ್ತು ಪಾವತಿ ಕಾಮೆಂಟ್‌ನಲ್ಲಿ “OrphanageMeal” ಎಂದು ಸೇರಿಸಿ."
+    ],
+    "image_alt": "ಶ್ರೀ ಕೃಷ್ಣಾಶ್ರಯ ಅನಾಥಾಶ್ರಮದಲ್ಲಿ ಪ್ರಾಯೋಜಿಸಿದ ಊಟ",
+    "period": "ಬಲಿಪಾಡ್ಯಮಿ",
+    "location": "ಶ್ರೀ ಕೃಷ್ಣಾಶ್ರಯ"
+  }
+}

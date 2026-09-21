@@ -6,7 +6,7 @@ Product and technical specification for the Bhoomi Seva site.
 
 ## 1. Overview
 
-Bhoomi Seva is a small, volunteer-led social initiative working with rural communities in Karnataka. This project is the rebuilt public site: a fast, accessible, bilingual (English + Kannada) static site whose content is managed in a Payload CMS by the organisation itself.
+Bhoomi Seva is a small, volunteer-led social initiative working with rural communities in Karnataka. This project is the rebuilt public site: a fast, accessible, bilingual (English + Kannada) static site whose content is managed in a Git-based CMS (Sveltia) by the organisation itself.
 
 **One-line positioning:** a volunteer-led rural and community support initiative — education, natural farming and farmer livelihoods, and practical support for children in need.
 
@@ -24,7 +24,7 @@ Bhoomi Seva is a small, volunteer-led social initiative working with rural commu
 - Not an online payment gateway. Donation stays a UPI/QR + confirmation workflow, matching how the organisation operates.
 - Not a public accounts/transparency portal (a short accountability note is in scope).
 - Not a pan-India brand. Geography stays honest: Kanakapura, Kabbalu, Mandya district.
-- Not server-rendered at request time. The site is static; the CMS is consulted at build time.
+- Not server-rendered at request time. The site is fully static; content is read from files at build time.
 
 ## 4. Audiences
 
@@ -32,24 +32,28 @@ Bhoomi Seva is a small, volunteer-led social initiative working with rural commu
 
 **Supporters:** individual donors, volunteer teachers/tutors, online and offline coordinators, goods donors, farming mentors, social-media supporters.
 
-**Editors:** Bhoomi Seva volunteers who maintain the content. They are not developers; the CMS must be usable without touching code.
+**Editors:** Bhoomi Seva volunteers who maintain the content. They are not developers; the CMS must be usable without touching code, and every edit is a reviewable Git commit.
 
 ## 5. Architecture
 
 ```
-┌──────────────────────┐    REST (build time)    ┌─────────────────────────┐
-│  Payload CMS (cms/)  │ ──────────────────────► │  Astro site (src/)      │
-│  Next.js + SQLite    │                         │  static output + islands│
-│  /admin              │ ◄────────────────────── │  Svelte 5 + vanilla CSS │
-└──────────────────────┘   seed script (once)    └─────────────────────────┘
+┌──────────────────────────────┐        ┌─────────────────────────────┐
+│  Sveltia CMS (public/admin)  │ commits│  content/  (JSON files)     │
+│  Git-based, no server or DB  │ ─────► │  one file per entry         │
+└──────────────────────────────┘        └──────────────┬──────────────┘
+                                                       │ import.meta.glob
+                                                       ▼
+                                        ┌─────────────────────────────┐
+                                        │  Astro static output        │
+                                        │  Svelte 5 islands           │
+                                        └─────────────────────────────┘
 ```
 
-- **Content is CMS-first, seed-backed.** `src/data/*.ts` resolves to `src/data/generated/*` when content has been synced, and to `src/data/seed/*` otherwise. The site therefore always builds, with or without a CMS reachable.
-- **One mapping, one place.** `src/lib/payload.ts` converts Payload documents into the site's types. It is shared by the sync script and any future preview route, so the shape is defined once.
-- **The CMS is a separate app** (`cms/`). It is never bundled into the public site.
-- **Media** is uploaded to the CMS, then resolved at sync time: images already in `public/images/` are reused, anything else is downloaded to `public/media/`.
-- **Images are interactive.** Media has focal point + crop enabled; the site applies the focal point with `object-position`, so one upload crops well at every aspect ratio.
-- **Stories are versioned.** Drafts can be saved without publishing; only published documents are pulled.
+- **Content is files.** Every entry is a JSON file under `content/`. There is no database and no CMS server: Sveltia CMS is a static SPA that reads and writes those files in Git.
+- **One loader.** `src/data/load.ts` converts the on-disk shape into the site's `Localized` model. `src/data/*.ts` glob the content folders and export typed arrays. No view or component knows about the file format.
+- **The CMS ships with the site.** `public/admin/index.html` + `public/admin/config.yml`. Nothing to deploy separately.
+- **Editing works two ways:** against a local Git checkout via the File System Access API (Chromium), or against GitHub in production.
+- **Images are committed** in `public/images/` and referenced as `/images/…`.
 
 ## 6. Information architecture
 
@@ -79,7 +83,7 @@ Kannada mirror at `/kn/*` for every route. **64 pages** built.
 
 ## 7. Content model
 
-Content lives in Payload collections and mirrors the TypeScript types in `src/data/types.ts`.
+Content lives in JSON files under `content/` and mirrors the TypeScript types in `src/data/types.ts`.
 
 ```ts
 type Localized = string | { en: string; kn?: string };
@@ -91,22 +95,18 @@ interface Update  { date?; period?; title; program; location; kind }
 interface Site    { name; contact; socials; payment; mission; vision; shortDescription; about[]; credit }
 ```
 
-### Payload collections
+### Sveltia collections
 
-| CMS             | Type        | Notes                                                   |
-| --------------- | ----------- | ------------------------------------------------------- |
-| `stories`       | `Story[]`   | 13 documented narrative entries                         |
-| `events`        | `Entry[]`   | dated event records, 4 seeded                           |
-| `blogs`         | `Blog[]`    | one collection; `kind` is `donor` or `donee`            |
-| `programs`      | `Program[]` | three programmes with activities and galleries          |
-| `team`          | `Person[]`  | four people                                             |
-| `media`         | —           | uploads with localised `alt`, caption and focal point   |
-| `users`         | —           | auth                                                    |
-| `site-settings` | `Site`      | global: contact, socials, payment, mission/vision/about |
+Defined in `public/admin/config.yml`; one JSON file per entry under `content/`.
 
-### Shared entry shape
-
-Events and blogs share one view model, `Entry`: title, summary, body, date/period, optional location, programme, author, image and focal point. They therefore share `EntryCard`, `EntryIndex` (with `EntryFilter`) and `EntryDetail`. Blogs are split by audience — `kind: "donor" | "donee"` — surfaced through the Blogs nav dropdown and a segmented filter on the hub. Stories keep their own richer shape (programme narrative plus testimonial).
+| Collection | Folder                  | Type        | Notes                                           |
+| ---------- | ----------------------- | ----------- | ----------------------------------------------- |
+| `stories`  | `content/stories`       | `Story[]`   | Longer narratives with a testimonial            |
+| `events`   | `content/events`        | `Entry[]`   | Short dated records                             |
+| `blogs`    | `content/blogs`         | `Blog[]`    | One collection; `kind` is `donor` or `donee`    |
+| `programs` | `content/programs`      | `Program[]` | The three programme pages                       |
+| `team`     | `content/team`          | `Person[]`  | People on the About page                        |
+| `settings` | `content/settings.json` | `Site`      | Contact, socials, payment, mission/vision/about |
 
 ### Content rules
 
@@ -115,43 +115,36 @@ Encoded in AGENTS.md § Content and claims policy. Summary: keep documented work
 ## 8. Localisation
 
 - `en` (default, unprefixed) and `kn` (prefixed `/kn/`).
-- Payload stores both locales on the same document; the REST API returns `{ en, kn }` with `?locale=all`, which is exactly the `Localized` shape.
-- A missing `kn` value falls back to `en` at render time.
+- Sveltia uses the `single_file` structure: each entry file is `{ "en": {...}, "kn": {...} }`. Translatable fields appear under both keys; shared fields (slug, programme, image, order) are stored once under the default locale.
+- `src/data/load.ts` turns that into the site's `Localized = { en, kn }` shape, so a missing Kannada value falls back to English at render time.
 - **Kannada long-form copy should be reviewed by a native speaker before publishing.**
 
 ## 9. Content pipeline
 
-| Command                | What it does                                                                                                                                                                     |
-| ---------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `bun run cms:seed`     | Uses Payload's Local API to create the first admin user, upload the WebP library to `media`, and write all collections + the `site-settings` global in both locales. Idempotent. |
-| `bun run content:pull` | Reads Payload and writes `src/data/generated/*.ts`. Reuses files already present in `public/images/`; anything else is downloaded to `public/media/`.                            |
-| `bun run build`        | Builds the static site from whatever `src/data/*` resolves to.                                                                                                                   |
+| Step   | What happens                                                                         |
+| ------ | ------------------------------------------------------------------------------------ |
+| Edit   | Sveltia CMS writes JSON into `content/` (locally) or commits to Git (GitHub backend) |
+| Build  | `bun run build` globs `content/**/*.json` at build time via `src/data/load.ts`       |
+| Deploy | Static output; the admin app is served from `/admin/` alongside it                   |
 
-`src/data/generated/*` is a **build artifact and is intentionally empty in git**, so the committed site builds from the seed. Run `content:pull` when you want the build to reflect the CMS. The pull is a build step, not a runtime dependency.
-
-Verified end to end: seed → pull → build renders all 13 stories, 3 programmes, 4 people and the settings global from Payload.
+There is no sync step and no runtime dependency on a CMS. A content edit is a commit; a build picks it up.
 
 ### Adding a story (editor workflow)
 
-1. **CMS → Stories → Create new.**
-2. **Story tab** — title, one-line summary, and paragraphs (one row each). Optionally a quote and the people named.
-3. **Photo tab** — upload _any_ image, or pick one already in the library. Then open the image and **drag the focal point** so the subject survives the 3:2 crop.
-4. **Sidebar** — the slug fills in from the title (edit if you want a different URL), then programme, date _or_ period, and location.
-5. **Save Draft** while working, **Publish** when it is ready.
-6. Run `bun run content:pull` then `bun run build` (or let the deploy pipeline do it). **Only published documents are pulled.**
-7. The **Preview** button opens the story on the site. It reflects the last sync, so publish before relying on it.
-
-Notes:
-
-- Cropping is handled on the site by `object-position` from the focal point, so one upload frames correctly at 3:2, 4:3 and square.
-- Uploaded images that are not already in the committed `public/images/` library are downloaded to `public/media/` at sync time. Any filename, size or format works.
-- Programme pages and the About page use the same pattern (tabs, upload fields, focal point).
+1. Open `http://localhost:4321/admin/index.html` while `bun run dev` is running (or `/admin/` in production).
+2. In a Chromium browser choose **Work with Local Repository** and pick the project root, or sign in with GitHub.
+3. **Stories → New Story.** Fill in the title, summary and one paragraph per item.
+4. **Photo:** upload any image, then set **Photo position** so the subject survives the site's crop.
+5. Set the programme, and either a date or a period, plus the location.
+6. Save. The file is written to `content/stories/<slug>.json` — commit it with Git.
+7. Reload the site (or restart `bun run dev`) to see the change.
 
 ## 10. Images
 
-- All source images are converted to WebP by `bun run images` (`scripts/optimize-images.mjs`). Originals are kept, including low-resolution ones.
-- `public/images/` holds the committed set; `public/media/` holds CMS-synced files (git-ignored).
-- Images are lazy-loaded, given explicit aspect ratios to avoid layout shift, and always captioned when they carry meaning.
+- Media is uploaded through Sveltia into `public/images/` and committed with the code (`media_folder: public/images`, `public_folder: /images`).
+- Existing WebP files are already there; `bun run images` regenerates WebP from the originals in the same folder.
+- Originals are never deleted, including low-resolution ones.
+- **Photo position** (centre / top / bottom / left / right) is stored per entry and applied as CSS `object-position`, so one upload frames correctly at 3:2, 4:3 and square. Cropping is never destructive.
 - Consent: named beneficiaries and photographs should be confirmed with the organisation before publishing.
 
 ## 11. SEO
@@ -185,11 +178,11 @@ WCAG 2.2 AA target. One `h1` per page, sequential headings, visible focus, skip 
 8. All four team bios confirmed current.
 9. **Photo consent obtained** for all named individuals and photographs.
 10. Kannada translations reviewed by a native speaker.
-11. `PAYLOAD_SECRET` and other CMS env vars set; admin user created; read access reviewed.
+11. Sveltia backend points at the real GitHub repository; editor access granted to the organisation's account.
 
 ## 15. Out of scope / future
 
-Online payments, a public accounts page, newsletters, expanded stories from 2024–2026, more languages, on-demand revalidation webhooks from Payload to the host.
+Online payments, a public accounts page, newsletters, expanded stories from 2024–2026, more languages, automated deploys on push.
 
 ## 16. Success criteria
 

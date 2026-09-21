@@ -1,8 +1,12 @@
 import type { Blog, BlogKind } from "./types";
-import { blogs as seed } from "./seed/blogs";
-import { blogs as generated } from "./generated/blogs";
+import { toBlog, entriesOf, type ContentFile } from "./load";
 
-export const blogs: Blog[] = generated.length > 0 ? generated : seed;
+const modules = import.meta.glob<ContentFile>("../../content/blogs/*.json", {
+  eager: true,
+  import: "default",
+});
+
+export const blogs: Blog[] = entriesOf(modules, toBlog);
 
 export const blogsByKind = (kind: BlogKind) => blogs.filter((b) => b.kind === kind);
 

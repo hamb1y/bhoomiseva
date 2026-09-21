@@ -1,0 +1,307 @@
+# yaml-language-server: $schema=https://unpkg.com/@sveltia/cms/schema/sveltia-cms.json
+#
+# Sveltia CMS — Git-based content editing for the Bhoomi Seva site.
+#
+# Open http://localhost:4321/admin/index.html while `bun run dev` is running.
+# In a Chromium browser, choose “Work with Local Repository” to edit the files
+# in this repo directly. In production, the GitHub backend opens pull requests
+# or commits straight to the branch below.
+#
+# Content files are the source of truth. The site reads them at build time via
+# `import.meta.glob` in src/data/*.ts — see AGENTS.md.
+
+backend:
+  name: github
+  repo: bhoomiseva/website
+  branch: main
+
+site_url: https://bhoomiseva.org
+display_url: https://bhoomiseva.org
+logo_url: /images/logo-mark.webp
+
+# Images are committed alongside the code, served from /images.
+media_folder: public/images
+public_folder: /images
+
+# English + Kannada, both stored in one file per entry: { en: {...}, kn: {...} }
+i18n:
+  structure: single_file
+  locales: [en, kn]
+  default_locale: en
+
+# Optional fields are omitted from the file when empty, which keeps the JSON
+# readable and lets the site’s fallbacks apply.
+output:
+  omit_empty_optional_fields: true
+
+collections:
+  # ---------------------------------------------------------------- stories ---
+  - name: stories
+    label: Stories
+    label_singular: Story
+    description: >-
+      Longer narratives about a student, a farmer or a family. Always dated or
+      given a period, and always located.
+    folder: content/stories
+    format: json
+    i18n: true
+    identifier_field: title
+    sortable_fields: [title, date]
+    view_filters:
+      - { label: Education, field: program, pattern: education }
+      - { label: Farmers, field: program, pattern: farmers }
+      - { label: Children, field: program, pattern: children }
+    fields:
+      - { label: Title, name: title, widget: string, i18n: true }
+      - { label: Summary, name: summary, widget: text, i18n: true }
+      - label: Body
+        name: body
+        widget: list
+        i18n: true
+        label_singular: Paragraph
+        field: { label: Paragraph, name: paragraph, widget: text }
+        hint: One paragraph per item. Four to six reads well.
+      - label: Quote
+        name: quote
+        widget: object
+        i18n: true
+        required: false
+        hint: A testimonial or letter reproduced from the source.
+        fields:
+          - { label: Quote, name: text, widget: text }
+          - { label: Attribution, name: attribution, widget: string }
+      - label: People
+        name: people
+        widget: list
+        required: false
+        field: { label: Name, name: name, widget: string }
+      - { label: Photo, name: image, widget: image, required: false }
+      - { label: Photo description, name: image_alt, widget: string, i18n: true, required: false }
+      - label: Photo position
+        name: image_position
+        widget: select
+        required: false
+        default: center
+        options: [center, top, bottom, left, right]
+        hint: Which part of the photo to keep when the site crops it.
+      - { label: Programme, name: program, widget: select, options: [education, farmers, children] }
+      - label: Date
+        name: date
+        widget: string
+        required: false
+        hint: "YYYY-MM or YYYY-MM-DD. Leave blank if unknown."
+      - { label: Period, name: period, widget: string, i18n: true, required: false }
+      - { label: Location, name: location, widget: string, i18n: true }
+      - { label: Featured, name: featured, widget: boolean, default: false, required: false }
+
+  # ----------------------------------------------------------------- events ---
+  - name: events
+    label: Events
+    label_singular: Event
+    description: Short dated records of things that happened — training, distributions, donations, meals.
+    folder: content/events
+    format: json
+    i18n: true
+    identifier_field: title
+    sortable_fields: [title, date]
+    fields:
+      - { label: Title, name: title, widget: string, i18n: true }
+      - { label: Summary, name: summary, widget: text, i18n: true }
+      - label: Body
+        name: body
+        widget: list
+        i18n: true
+        label_singular: Paragraph
+        field: { label: Paragraph, name: paragraph, widget: text }
+      - label: People
+        name: people
+        widget: list
+        required: false
+        field: { label: Name, name: name, widget: string }
+      - { label: Photo, name: image, widget: image, required: false }
+      - { label: Photo description, name: image_alt, widget: string, i18n: true, required: false }
+      - label: Photo position
+        name: image_position
+        widget: select
+        required: false
+        default: center
+        options: [center, top, bottom, left, right]
+      - { label: Programme, name: program, widget: select, options: [education, farmers, children] }
+      - label: Date
+        name: date
+        widget: string
+        required: false
+        hint: "YYYY-MM or YYYY-MM-DD."
+      - { label: Period, name: period, widget: string, i18n: true, required: false }
+      - { label: Location, name: location, widget: string, i18n: true }
+
+  # ------------------------------------------------------------------ blogs ---
+  - name: blogs
+    label: Blogs
+    label_singular: Blog post
+    description: >-
+      Writing from people involved in the work. Donor blogs are written by
+      supporters; donee blogs are written by the people we work with. Both share
+      one layout and are split by the Blogs menu on the site.
+    folder: content/blogs
+    format: json
+    i18n: true
+    identifier_field: title
+    sortable_fields: [title, date]
+    view_filters:
+      - { label: Donor blogs, field: kind, pattern: donor }
+      - { label: Donee blogs, field: kind, pattern: donee }
+    fields:
+      - { label: Title, name: title, widget: string, i18n: true }
+      - { label: Summary, name: summary, widget: text, i18n: true }
+      - label: Body
+        name: body
+        widget: list
+        i18n: true
+        label_singular: Paragraph
+        field: { label: Paragraph, name: paragraph, widget: text }
+      - label: Kind
+        name: kind
+        widget: select
+        options:
+          - { label: Donor blog, value: donor }
+          - { label: Donee blog, value: donee }
+        hint: Donor = written by a supporter. Donee = written by someone we work with.
+      - { label: Author, name: author, widget: string }
+      - { label: Author role, name: author_role, widget: string, i18n: true, required: false }
+      - { label: Photo, name: image, widget: image, required: false }
+      - { label: Photo description, name: image_alt, widget: string, i18n: true, required: false }
+      - label: Photo position
+        name: image_position
+        widget: select
+        required: false
+        default: center
+        options: [center, top, bottom, left, right]
+      - { label: Date, name: date, widget: string, required: false, hint: "YYYY-MM-DD" }
+      - { label: Location, name: location, widget: string, i18n: true, required: false }
+      - { label: Featured, name: featured, widget: boolean, default: false, required: false }
+
+  # --------------------------------------------------------------- programs ---
+  - name: programs
+    label: Programmes
+    label_singular: Programme
+    description: The three programme pages. There are normally exactly three.
+    folder: content/programs
+    format: json
+    i18n: true
+    identifier_field: key
+    slug: "{{fields.key}}"
+    fields:
+      - label: Key
+        name: key
+        widget: select
+        options: [education, farmers, children]
+        hint: Stable identifier used by the site. Do not change once set.
+      - label: Accent
+        name: accent
+        widget: select
+        options: [brand, education, farmers, children]
+        default: brand
+      - { label: Kicker, name: kicker, widget: string, i18n: true }
+      - { label: Title, name: title, widget: string, i18n: true }
+      - { label: Summary, name: summary, widget: text, i18n: true }
+      - { label: Introduction, name: lede, widget: text, i18n: true }
+      - label: Activities
+        name: activities
+        widget: list
+        i18n: true
+        label_singular: Activity
+        summary: "{{fields.title}}"
+        fields:
+          - { label: Title, name: title, widget: string, i18n: true }
+          - { label: Description, name: body, widget: text, i18n: true }
+      - { label: Photo, name: image, widget: image, required: false }
+      - { label: Photo description, name: image_alt, widget: string, i18n: true, required: false }
+      - label: Gallery
+        name: gallery
+        widget: list
+        required: false
+        label_singular: Photo
+        field: { label: Photo, name: image, widget: image }
+
+  # ------------------------------------------------------------------- team ---
+  - name: team
+    label: People
+    label_singular: Person
+    description: The people listed on the About page.
+    folder: content/team
+    format: json
+    i18n: true
+    identifier_field: name
+    sortable_fields: [order, name]
+    fields:
+      - { label: Name, name: name, widget: string }
+      - { label: Role, name: role, widget: string, i18n: true }
+      - { label: Bio, name: bio, widget: text, i18n: true }
+      - { label: Photo, name: photo, widget: image, required: false }
+      - label: Photo position
+        name: photo_position
+        widget: select
+        required: false
+        default: center
+        options: [center, top, bottom, left, right]
+      - {
+          label: Order,
+          name: order,
+          widget: number,
+          default: 0,
+          value_type: int,
+          hint: Lower numbers appear first.,
+        }
+
+  # --------------------------------------------------------------- settings ---
+  - name: settings
+    label: Site settings
+    description: Contact details, mission, vision and the About text.
+    i18n: true
+    files:
+      - name: site
+        label: Site settings
+        file: content/settings.json
+        i18n: true
+        fields:
+          - { label: Name, name: name, widget: string }
+          - { label: Email, name: email, widget: string }
+          - { label: Phone, name: phone, widget: string }
+          - {
+              label: Phone (link),
+              name: phone_href,
+              widget: string,
+              hint: "Digits only, e.g. +919900103178",
+            }
+          - { label: WhatsApp URL, name: whatsapp, widget: string, required: false }
+          - label: Social links
+            name: socials
+            widget: object
+            required: false
+            fields:
+              - { label: Facebook, name: facebook, widget: string, required: false }
+              - { label: Instagram, name: instagram, widget: string, required: false }
+              - { label: WhatsApp group, name: whatsapp_group, widget: string, required: false }
+          - label: Payment details
+            name: payment
+            widget: object
+            fields:
+              - { label: UPI ID, name: upi, widget: string }
+              - { label: Paytm, name: paytm, widget: string }
+              - { label: Google Pay, name: gpay, widget: string }
+              - label: Verified
+                name: verified
+                widget: boolean
+                default: false
+                hint: Tick only once the payment details have been confirmed current.
+          - { label: Mission, name: mission, widget: text, i18n: true }
+          - { label: Vision, name: vision, widget: text, i18n: true }
+          - { label: Short description, name: short_description, widget: text, i18n: true }
+          - label: About
+            name: about
+            widget: list
+            i18n: true
+            label_singular: Paragraph
+            field: { label: Paragraph, name: paragraph, widget: text }
+          - { label: Credit, name: credit, widget: string, required: false }

@@ -1,10 +1,5 @@
 dist/
 .astro/
 node_modules/
-public/media/
-cms/.next/
-cms/media/
-cms/node_modules/
-cms/payload-types.ts
-cms/app/(payload)/admin/importMap.js
+.verify/
 bun.lock

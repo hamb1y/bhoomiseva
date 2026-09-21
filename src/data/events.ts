@@ -1,7 +1,11 @@
 import type { Entry } from "./types";
-import { events as seed } from "./seed/events";
-import { events as generated } from "./generated/events";
+import { toEntry, entriesOf, type ContentFile } from "./load";
 
-export const events: Entry[] = generated.length > 0 ? generated : seed;
+const modules = import.meta.glob<ContentFile>("../../content/events/*.json", {
+  eager: true,
+  import: "default",
+});
+
+export const events: Entry[] = entriesOf(modules, toEntry);
 
 export const eventBySlug = (slug: string) => events.find((e) => e.slug === slug);

@@ -1,0 +1,69 @@
+{
+  "en": {
+    "key": "farmers",
+    "accent": "farmers",
+    "kicker": "Farmers & Environment",
+    "title": "Farmers & Environment",
+    "summary": "Training and awareness in natural and organic farming and agroforestry, and desi cow donations to marginal farmers who want to make the switch.",
+    "lede": "Farming is one of the most important occupations there is: every meal begins in a farmer's field. Yet many farmers are in distress, and some have taken their own lives because they could not sustain a livelihood. Soil fertility has also been depleted by the long-term use of chemical fertilisers. Bhoomi Seva works with farmers who want to move to agroforestry and natural or organic farming, which the organisation has found to be more lucrative over time. This work started in the Kanakapura area.",
+    "activities": [
+      {
+        "title": "Farmer training in natural farming and agroforestry",
+        "body": "Training and awareness sessions for farmers. Training covers the benefits of organic farming and agroforestry, how continuous use of chemical fertilisers reduces yield over a period of time, how natural farming practised for more than a couple of years can produce yields above those from chemical fertilisers, and practical guidance on how to make the switch. Sessions use videos and information from model farmers who have successfully made the change and describe how their lives changed afterwards."
+      },
+      {
+        "title": "Farmer training events",
+        "body": "Training has been organised in the Kanakapura area with the intention of holding it each year in July or August. A session was held in July 2023 at Chirantana School, Kabbalu, Kanakapura."
+      },
+      {
+        "title": "Desi cow donation",
+        "body": "Desi cows are needed by farmers who want to practise natural farming, so Bhoomi Seva donates desi cows to marginal farmers who do not have one. Cow dung and cow urine are used in farm-made natural-farming preparations, and selling milk gives the family additional income."
+      },
+      {
+        "title": "Learning from model farmers",
+        "body": "The organisation shares examples, videos and information from farmers who have already made the change, so that other farmers can see what actually happened on similar land."
+      }
+    ],
+    "image": "/images/farmer-training.webp",
+    "image_alt": "Farmer training in natural farming at Chirantana School, Kabbalu",
+    "gallery": [
+      {
+        "image": "/images/farmer-training-2.webp"
+      },
+      {
+        "image": "/images/cow-1.webp"
+      },
+      {
+        "image": "/images/cow-donation.webp"
+      },
+      {
+        "image": "/images/sunita.webp"
+      }
+    ]
+  },
+  "kn": {
+    "kicker": "ರೈತರು ಮತ್ತು ಪರಿಸರ",
+    "title": "ರೈತರು ಮತ್ತು ಪರಿಸರ",
+    "summary": "ನೈಸರ್ಗಿಕ ಮತ್ತು ಸಾವಯವ ಕೃಷಿ ಹಾಗೂ ಕೃಷಿ ಅರಣ್ಯದಲ್ಲಿ ತರಬೇತಿ ಮತ್ತು ಅರಿವು, ಮತ್ತು ಬದಲಾವಣೆ ಬಯಸುವ ಸಣ್ಣ ರೈತರಿಗೆ ದೇಸಿ ಹಸು ದಾನ.",
+    "lede": "ಕೃಷಿ ಅತ್ಯಂತ ಮುಖ್ಯವಾದ ವೃತ್ತಿಗಳಲ್ಲಿ ಒಂದು: ಪ್ರತಿ ಊಟವೂ ರೈತನ ಹೊಲದಲ್ಲಿ ಪ್ರಾರಂಭವಾಗುತ್ತದೆ. ಆದರೂ ಅನೇಕ ರೈತರು ಸಂಕಷ್ಟದಲ್ಲಿದ್ದಾರೆ; ಜೀವನೋಪಾಯ ನಡೆಸಲಾಗದೆ ಕೆಲವರು ಆತ್ಮಹತ್ಯೆ ಮಾಡಿಕೊಂಡಿದ್ದಾರೆ. ದೀರ್ಘಕಾಲದ ರಾಸಾಯನಿಕ ಗೊಬ್ಬರದ ಬಳಕೆಯಿಂದ ಮಣ್ಣಿನ ಫಲವತ್ತತೆಯೂ ಕುಸಿದಿದೆ. ಕೃಷಿ ಅರಣ್ಯ ಹಾಗೂ ನೈಸರ್ಗಿಕ/ಸಾವಯವ ಕೃಷಿಯತ್ತ ಸಾಗಲು ಇಚ್ಛಿಸುವ ರೈತರೊಂದಿಗೆ ಭೂಮಿ ಸೇವಾ ಕೆಲಸ ಮಾಡುತ್ತದೆ — ಇವು ಕಾಲಕ್ರಮೇಣ ಹೆಚ್ಚು ಲಾಭದಾಯಕ ಎಂದು ಸಂಸ್ಥೆ ಕಂಡುಕೊಂಡಿದೆ. ಈ ಕೆಲಸ ಕನಕಪುರ ಪ್ರದೇಶದಲ್ಲಿ ಪ್ರಾರಂಭವಾಯಿತು.",
+    "activities": [
+      {
+        "title": "ನೈಸರ್ಗಿಕ ಕೃಷಿ ಮತ್ತು ಕೃಷಿ ಅರಣ್ಯದಲ್ಲಿ ರೈತ ತರಬೇತಿ",
+        "body": "ರೈತರಿಗೆ ತರಬೇತಿ ಮತ್ತು ಅರಿವಿನ ಕಾರ್ಯಕ್ರಮಗಳು. ಸಾವಯವ ಕೃಷಿ ಮತ್ತು ಕೃಷಿ ಅರಣ್ಯದ ಪ್ರಯೋಜನಗಳು, ರಾಸಾಯನಿಕ ಗೊಬ್ಬರಗಳ ನಿರಂತರ ಬಳಕೆಯಿಂದ ಕಾಲಕ್ರಮೇಣ ಇಳುವರಿ ಕಡಿಮೆಯಾಗುವುದು, ಎರಡು ವರ್ಷಗಳಿಗಿಂತ ಹೆಚ್ಚು ಕಾಲ ನೈಸರ್ಗಿಕ ಕೃಷಿ ಮಾಡಿದರೆ ರಾಸಾಯನಿಕ ಗೊಬ್ಬರಕ್ಕಿಂತ ಹೆಚ್ಚು ಇಳುವರಿ ಸಿಗಬಹುದು ಎಂಬುದು, ಮತ್ತು ಬದಲಾವಣೆ ಮಾಡಿಕೊಳ್ಳುವ ಪ್ರಾಯೋಗಿಕ ಮಾರ್ಗದರ್ಶನ ಇವುಗಳನ್ನು ತರಬೇತಿ ಒಳಗೊಂಡಿದೆ. ಯಶಸ್ವಿಯಾಗಿ ಬದಲಾವಣೆ ಮಾಡಿಕೊಂಡ ಮಾದರಿ ರೈತರ ವೀಡಿಯೊ ಮತ್ತು ಮಾಹಿತಿಯನ್ನು ಬಳಸಲಾಗುತ್ತದೆ."
+      },
+      {
+        "title": "ರೈತ ತರಬೇತಿ ಕಾರ್ಯಕ್ರಮಗಳು",
+        "body": "ಕನಕಪುರ ಪ್ರದೇಶದಲ್ಲಿ ಪ್ರತಿ ವರ್ಷ ಜುಲೈ ಅಥವಾ ಆಗಸ್ಟ್‌ನಲ್ಲಿ ತರಬೇತಿ ನಡೆಸುವ ಉದ್ದೇಶದಿಂದ ಕಾರ್ಯಕ್ರಮಗಳನ್ನು ಆಯೋಜಿಸಲಾಗಿದೆ. ಜುಲೈ 2023ರಲ್ಲಿ ಕಬ್ಬಾಳಿನ ಚಿರಂತನ ಶಾಲೆಯಲ್ಲಿ ಒಂದು ಕಾರ್ಯಕ್ರಮ ನಡೆಯಿತು."
+      },
+      {
+        "title": "ದೇಸಿ ಹಸು ದಾನ",
+        "body": "ನೈಸರ್ಗಿಕ ಕೃಷಿ ಮಾಡಲು ಬಯಸುವ ರೈತರಿಗೆ ದೇಸಿ ಹಸು ಬೇಕು; ಆದ್ದರಿಂದ ಹಸು ಇಲ್ಲದ ಸಣ್ಣ ರೈತರಿಗೆ ಭೂಮಿ ಸೇವಾ ದೇಸಿ ಹಸುಗಳನ್ನು ದಾನ ಮಾಡುತ್ತದೆ. ಸೆಗಣಿ ಮತ್ತು ಗಂಜಲ ಜಮೀನಿನಲ್ಲೇ ತಯಾರಿಸುವ ನೈಸರ್ಗಿಕ ಕೃಷಿ ತಯಾರಿಕೆಗಳಲ್ಲಿ ಬಳಕೆಯಾಗುತ್ತವೆ, ಮತ್ತು ಹಾಲು ಮಾರುವುದರಿಂದ ಕುಟುಂಬಕ್ಕೆ ಹೆಚ್ಚುವರಿ ಆದಾಯ ಸಿಗುತ್ತದೆ."
+      },
+      {
+        "title": "ಮಾದರಿ ರೈತರಿಂದ ಕಲಿಕೆ",
+        "body": "ಈಗಾಗಲೇ ಬದಲಾವಣೆ ಮಾಡಿಕೊಂಡ ರೈತರ ಉದಾಹರಣೆ, ವೀಡಿಯೊ ಮತ್ತು ಮಾಹಿತಿಯನ್ನು ಹಂಚಿಕೊಳ್ಳಲಾಗುತ್ತದೆ — ಇತರ ರೈತರಿಗೆ ತಮ್ಮಂತೆಯೇ ಇರುವ ಜಮೀನಿನಲ್ಲಿ ನಿಜವಾಗಿ ಏನಾಯಿತು ಎಂದು ತಿಳಿಯಲು."
+      }
+    ],
+    "image_alt": "ಚಿರಂತನ ಶಾಲೆ, ಕಬ್ಬಾಳಿನಲ್ಲಿ ನೈಸರ್ಗಿಕ ಕೃಷಿ ರೈತ ತರಬೇತಿ"
+  }
+}

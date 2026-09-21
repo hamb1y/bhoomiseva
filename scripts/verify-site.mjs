@@ -216,6 +216,22 @@ await interaction("donate widget", "/donate", async (page) => {
   }));
 });
 
+// --- Sveltia CMS admin assets (static files; no CDN needed) ---
+for (const path of ["/admin/index.html", "/admin/config.yml"]) {
+  try {
+    const res = await fetch(`${BASE}${path}`);
+    const body = await res.text();
+    const ok = res.ok && body.length > 100;
+    console.log(`${ok ? "✓" : "✗"} ${path.padEnd(38)} HTTP ${res.status}`);
+    if (!ok) failures.push([path, [`HTTP ${res.status}`]]);
+    if (path.endsWith("config.yml") && !body.includes("collections:"))
+      failures.push([path, ["config.yml missing collections"]]);
+  } catch (err) {
+    failures.push([path, [err.message]]);
+    console.log(`✗ ${path.padEnd(38)} ${err.message}`);
+  }
+}
+
 await browser.close();
 
 console.log("");

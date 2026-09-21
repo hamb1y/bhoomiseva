@@ -59,6 +59,8 @@ export interface Person {
   bio: Localized;
   photo?: string;
   photoFocal?: ImageFocal;
+  /** Sort order on the About page; lower first. */
+  order?: number;
 }
 
 /**

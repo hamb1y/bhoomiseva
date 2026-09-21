@@ -1,12 +1,13 @@
 import type { Story } from "./types";
-import { stories as seed } from "./seed/stories";
-import { stories as generated } from "./generated/stories";
+import { toStory, entriesOf, type ContentFile } from "./load";
 
-/**
- * Content resolution: Payload-synced content wins; otherwise the hand-written
- * seed is used so the site always builds, even with no CMS running.
- */
-export const stories: Story[] = generated.length > 0 ? generated : seed;
+/** Content files are the source of truth — see public/admin/config.yml. */
+const modules = import.meta.glob<ContentFile>("../../content/stories/*.json", {
+  eager: true,
+  import: "default",
+});
+
+export const stories: Story[] = entriesOf(modules, toStory);
 
 export const featuredStory = stories.find((s) => s.featured) ?? stories[0];
 

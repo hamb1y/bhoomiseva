@@ -13,8 +13,6 @@
     "images": "bun run scripts/optimize-images.mjs",
     "logo": "bun run scripts/make-logo.mjs",
     "verify": "bun run scripts/verify-site.mjs",
-    "content:pull": "bun run scripts/pull-content.mjs",
-    "cms:seed": "cd cms && bun run seed",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "astro": "astro"

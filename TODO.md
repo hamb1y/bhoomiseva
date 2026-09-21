@@ -150,3 +150,20 @@ Living plan. Legend: `[ ]` todo · `[~]` in progress · `[x]` done.
 - [ ] **Photo consent** — confirm the organisation is happy to republish the photos and named stories from the old site.
 - [ ] **Kannada review** — all Kannada copy, especially content entered into the CMS.
 - [ ] **CMS smoke test** — run `cms/` and confirm seeding + pull round-trips correctly.
+
+### Changelog — migrated from Payload to Sveltia CMS
+
+- **2026-09-21 (Sveltia CMS)** — Replaced Payload with **Sveltia CMS**, a Git-based CMS. This is an architectural change, not a swap:
+  - **Removed** the `cms/` Next.js + SQLite app, `src/lib/payload.ts`, `scripts/pull-content.mjs`, `scripts/seed-cms.mjs`, `src/data/seed/*`, `src/data/generated/*`, `.env.example`, and the `content:pull` / `cms:seed` scripts.
+  - **Added** `public/admin/index.html` + `public/admin/config.yml` (served by the site itself) and `content/` — one JSON file per entry, the source of truth.
+  - **Added** `src/data/load.ts`, which converts Sveltia's `single_file` i18n shape (`{ en: {…}, kn: {…} }`) into the site's per-field `Localized = { en, kn }` model. `src/data/*.ts` now glob `content/**/*.json` at build time.
+  - **Migrated** all existing content 1:1 into 25 JSON files (13 stories, 4 events, 3 programmes, 4 people, settings) with a one-time script.
+  - **Replaced** Payload's numeric focal point with a **photo position** select (centre/top/bottom/left/right), applied as `object-position`. Simpler for editors, same effect.
+  - **Verified**: `astro check` clean, 64 pages built from the content files identical to before, `bun run verify` passes, `/admin/index.html` and `/admin/config.yml` serve, and headless Chromium boots Sveltia to its login screen with **zero console errors** — which means the config was fetched and parsed successfully.
+  - Payload's database/seed/pull model is gone: a content edit is now a Git commit, and there is nothing extra to deploy.
+
+### Follow-ups after the migration
+
+- [ ] Point the Sveltia `backend.repo` at the real GitHub repository (currently `bhoomiseva/website`) and grant editor access.
+- [ ] Local editing needs a Chromium browser (File System Access API). Firefox and Safari can only use the Git backend.
+- [ ] Consider adding the Sveltia schema reference to CI to validate `config.yml` on every push.
