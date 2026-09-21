@@ -54,7 +54,7 @@ const jsonLd = {
   description={lx(story.summary, lang)}
   jsonLd={jsonLd}
 >
-  <article class:list={["story", `accent-${program.accent}`]}>
+  <article class:list={["story", `accent-${program.accent}`]} data-lang={lang}>
     <div class="container narrow">
       <a class="back" href={localePath("/stories", lang)}>
         <ArrowLeft size={15} stroke-width={1.7} aria-hidden="true" />
@@ -154,7 +154,7 @@ const jsonLd = {
   .body p {
     margin: 0;
   }
-  .body p:first-child::first-letter {
+  [data-lang="en"] .body p:first-child::first-letter {
     font-family: var(--font-display);
     font-variation-settings:
       "opsz" 80,
