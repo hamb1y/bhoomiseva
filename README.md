@@ -94,20 +94,25 @@ Every entry file holds both languages in the `single_file` shape — `{ "en": {�
 
 ## Deployment
 
-The site is static, so it hosts anywhere. Two paths are wired up:
+The site is fully static — any host works. It is set up for **Cloudflare Pages**:
 
-**GitHub Pages** — `.github/workflows/deploy.yml` builds and publishes on every push to `main`. A project repository is served from `https://<owner>.github.io/<repo>/`, which is why `astro.config.mjs` reads `SITE_URL` and `BASE_PATH` from the environment; every root-relative URL goes through `asset()` in `src/utils/url.ts`.
+| Setting              | Value                              |
+| -------------------- | ---------------------------------- |
+| Build command        | `bun run build`                    |
+| Output directory     | `dist`                             |
+| Environment variable | `BUN_VERSION` = `1.4.2` (or newer) |
 
-To attach a custom domain later, set repository **Variables** (Settings → Secrets and variables → Actions):
+The admin app ships inside `dist/admin/`, so the CMS is deployed with the site — nothing separate.
 
-| Variable    | Value                    |
-| ----------- | ------------------------ |
-| `SITE_URL`  | `https://bhoomiseva.org` |
-| `BASE_PATH` | `/`                      |
+`SITE_URL` is optional and defaults to `https://bhoomiseva.org`; it feeds canonical URLs and the sitemap. Set it if the site is first served from a temporary domain:
 
-…then add a `CNAME` record and enable the custom domain in Pages. No code changes needed.
+```
+SITE_URL=https://bhoomiseva.pages.dev
+```
 
-**Any other host** (Netlify, Cloudflare Pages, a VPS) — build with `bun run build` and serve `dist/`. No `BASE_PATH` required. The admin app ships inside `dist/admin/`.
+A **project repository served from a subpath** would additionally need `BASE_PATH=/<repo>` — every root-relative URL already goes through `asset()` in `src/utils/url.ts`, so that works without code changes. At a domain root, leave it unset.
+
+`.github/workflows/ci.yml` type-checks and builds on every push and pull request.
 
 **Editing in production** — the Sveltia backend is configured for `hamb1y/bhoomiseva` in `public/admin/config.yml`. Editors sign in with GitHub at `/admin/`.
 
