@@ -98,7 +98,7 @@ export interface Site {
   phone: string;
   phoneHref: string;
   whatsapp: string;
-  socials: { facebook: string; instagram: string; whatsappGroup: string };
+  socials: { facebook: string; whatsappGroup: string };
   payment: { upi: string; paytm: string; gpay: string; verified: boolean };
   mission: Localized;
   vision: Localized;

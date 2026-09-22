@@ -297,7 +297,6 @@ collections:
             i18n: duplicate
             fields:
               - { label: Facebook, name: facebook, widget: string, required: false }
-              - { label: Instagram, name: instagram, widget: string, required: false }
               - { label: WhatsApp group, name: whatsapp_group, widget: string, required: false }
           - label: Payment details
             name: payment

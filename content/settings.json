@@ -6,15 +6,14 @@
     "phone_href": "+919900103178",
     "whatsapp": "https://wa.me/919900103178",
     "socials": {
-      "facebook": "https://www.facebook.com/",
-      "instagram": "https://www.instagram.com/",
+      "facebook": "https://www.facebook.com/bhoomiseve",
       "whatsappGroup": "https://chat.whatsapp.com/"
     },
     "payment": {
       "upi": "9900103178@ybl",
       "paytm": "+91 9900103178",
       "gpay": "+91 9900103178",
-      "verified": false
+      "verified": true
     },
     "mission": "Bhoomi Seva's mission is to reach out and help people in need in various ways, especially the rural population, and to rejuvenate our environment within our capacity.",
     "vision": "To uplift the rural population and improve the fertility of soil by encouraging farmers to take up agroforestry and/or natural farming, in the Kanakapura area to start with.",

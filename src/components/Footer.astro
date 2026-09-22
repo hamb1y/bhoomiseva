@@ -3,7 +3,7 @@ import type { Lang } from "../i18n/ui";
 import { useTranslations, localePath } from "../i18n/utils";
 import { pick, site } from "../data/site";
 import { nav } from "../lib/nav";
-import { Mail, Phone, MessageCircle, Facebook, Instagram } from "lucide-astro";
+import { Mail, Phone, MessageCircle, Facebook } from "lucide-astro";
 
 interface Props {
   lang: Lang;
@@ -17,8 +17,7 @@ const explore = nav.map((item) => ({ label: t(item.key), href: localePath(item.h
 const socials = [
   { label: "WhatsApp", href: site.whatsapp, Icon: MessageCircle },
   { label: "Facebook", href: site.socials.facebook, Icon: Facebook },
-  { label: "Instagram", href: site.socials.instagram, Icon: Instagram },
-];
+].filter(({ href }) => Boolean(href));
 ---
 
 <footer class="site-foot">

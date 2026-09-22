@@ -190,7 +190,6 @@ export function toSite(file: ContentFile): Site {
     whatsapp: shared<string>(file, "whatsapp") ?? "",
     socials: {
       facebook: socials.facebook ?? "",
-      instagram: socials.instagram ?? "",
       whatsappGroup: socials.whatsapp_group ?? "",
     },
     payment: {

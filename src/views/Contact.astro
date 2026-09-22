@@ -72,8 +72,7 @@ const fields = [
           <li>
             <span class="label">{t("contact.socials")}</span>
             <span class="value socials">
-              <a href={site.socials.facebook}>Facebook</a>
-              <a href={site.socials.instagram}>Instagram</a>
+              {site.socials.facebook && <a href={site.socials.facebook}>Facebook</a>}
             </span>
           </li>
         </ul>
