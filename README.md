@@ -114,7 +114,7 @@ A **project repository served from a subpath** would additionally need `BASE_PAT
 
 `.github/workflows/ci.yml` type-checks and builds on every push and pull request.
 
-**Editing in production** — the Sveltia backend in `public/admin/config.yml` points at `hamb1y/bhoomiseva` and signs in through the [Sveltia CMS Authenticator](https://github.com/sveltia/sveltia-cms-auth) Worker deployed at `https://bhoomiseva-sveltia-auth.rishi-s-malnad.workers.dev`. That Worker needs `ALLOWED_DOMAINS` (the site's hostnames) and the `GITHUB_CLIENT_ID` / `GITHUB_CLIENT_SECRET` of a GitHub OAuth app whose callback URL is `<worker-url>/callback`. `auth_scope: public_repo,user` is sufficient because the repository is public.
+**Editing in production** — the Sveltia backend in `public/admin/config.yml` points at `hamb1y/bhoomiseva` and signs in through the [Sveltia CMS Authenticator](https://github.com/sveltia/sveltia-cms-auth) Worker deployed at `https://bhoomiseva-sveltia-auth.rishi-s-malnad.workers.dev`. That Worker needs `ALLOWED_DOMAINS` (the site's hostnames) and the `GITHUB_CLIENT_ID` / `GITHUB_CLIENT_SECRET` of a GitHub OAuth app whose callback URL is `<worker-url>/callback`. `auth_scope: public_repo` is sufficient because the repository is public.
 
 ## Before launch
 
