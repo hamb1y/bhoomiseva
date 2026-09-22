@@ -196,10 +196,10 @@ await interaction("mobile nav", "/", async (page) => {
 });
 
 await interaction("story filter", "/stories", async (page) => {
-  const before = await page.$$eval("[data-story]:not([hidden])", (els) => els.length);
+  const before = await page.$$eval("[data-entry]:not([hidden])", (els) => els.length);
   await page.select(".filters select", "education");
   await new Promise((r) => setTimeout(r, 300));
-  const after = await page.$$eval("[data-story]:not([hidden])", (els) => els.length);
+  const after = await page.$$eval("[data-entry]:not([hidden])", (els) => els.length);
   return { before, after };
 });
 

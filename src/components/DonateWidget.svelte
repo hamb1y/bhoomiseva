@@ -15,7 +15,6 @@
     copied: string;
     qr: string;
     qrPending: string;
-    or: string;
     otherMethods: string;
     confirmTitle: string;
     confirmBody: string;

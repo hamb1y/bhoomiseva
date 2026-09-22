@@ -18,15 +18,9 @@ export const ui = {
   en: {
     "site.name": "Bhoomi Seva",
     "site.tagline": "Let's give a better Earth to our children!",
-    "site.description":
-      "A volunteer-led initiative supporting rural communities in Karnataka through education, natural farming and practical support for children in need.",
 
     "common.readEntry": "Read this story",
     "common.dateUnknown": "Date not recorded",
-    "common.backToStories": "All stories",
-    "common.dated": "Dated",
-    "common.programme": "Programme",
-    "common.location": "Location",
     "common.relatedStories": "Related stories",
 
     "a11y.skip": "Skip to content",
@@ -50,26 +44,21 @@ export const ui = {
     "nav.blogs.donees": "Donee blogs",
     "nav.menu": "Menu",
     "nav.close": "Close",
-    "nav.language": "Language",
 
     "cta.donate": "Donate",
     "cta.volunteer": "Volunteer with us",
-    "cta.contact": "Contact us",
     "cta.readStories": "Read our stories",
     "cta.learnMore": "Read more",
     "cta.allStories": "All stories",
     "cta.allEvents": "All events",
     "cta.whatsapp": "Message us on WhatsApp",
-    "cta.exploreWork": "Explore our work",
 
     "home.hero.kicker": "Volunteer-led · Karnataka",
-    "home.pillars.kicker": "Our work",
     "home.pillars.title": "What we do",
     "home.model.kicker": "How we work",
     "home.model.title": "A cow, a sewing machine and school fees",
     "home.model.body":
       "Sunita Kumara Swamy's family at Kurubarahalli Doddi near Kabbalu needed more than one thing at once. Their daughter's school fees had become hard to pay, and the household was running on a single source of income. Bhoomi Seva helped with three: a scholarship and fee payment for their daughter, a desi cow for the family's farm and dairy income, and a sewing machine for a second income.",
-    "home.updates.kicker": "Stories and updates",
     "home.updates.title": "Recent stories",
     "home.impact.kicker": "Support our work",
     "home.impact.title": "Donate or volunteer",
@@ -80,7 +69,6 @@ export const ui = {
     "work.title": "Our programmes",
     "work.lede":
       "Bhoomi Seva works in three areas: education, farmers and the environment, and support for children's homes. They often overlap — the same family may receive education support, livelihood help and practical assistance at the same time.",
-    "work.activities": "What this includes",
     "work.stories": "Stories from this programme",
     "work.otherProgrammes": "Other programmes",
     "work.noStories": "Stories from this programme are being added.",
@@ -92,13 +80,9 @@ export const ui = {
     "stories.filter.programme": "Programme",
     "stories.filter.year": "Year",
     "stories.filter.all": "All",
-    "stories.filter.noYear": "Undated",
     "stories.empty": "No entries match this filter yet.",
     "stories.count": "{n} entries",
-    "story.context": "The details",
     "story.people": "People",
-    "story.place": "Place",
-    "story.period": "Period",
     "story.quoteLabel": "In their own words",
 
     "events.kicker": "Events",
@@ -112,7 +96,6 @@ export const ui = {
     "blogs.title": "Blogs",
     "blogs.lede":
       "Writing from the people involved in this work — the donors who fund it, and the students, farmers and families we work with.",
-    "blogs.all": "All",
     "blogs.empty": "No blog posts yet.",
     "blogs.donors.title": "Donor blogs",
     "blogs.donors.lede": "Posts written by the people who fund and volunteer for this work.",
@@ -166,7 +149,6 @@ export const ui = {
     "form.sending": "Sending…",
     "form.success": "Thank you — we have your message and will get back to you.",
     "form.error": "Something went wrong. Please try WhatsApp or email instead.",
-    "form.required": "Required",
     "form.invalidEmail": "Please enter a valid email address.",
     "form.orContact": "Prefer not to use a form?",
 
@@ -180,8 +162,6 @@ export const ui = {
     "donate.copy": "Copy",
     "donate.copied": "Copied",
     "donate.qr": "QR code",
-    "donate.qr.alt": "Payment QR code",
-    "donate.or": "or",
     "donate.step1": "Choose a purpose and an amount",
     "donate.step2": "Transfer by UPI, Paytm or Google Pay",
     "donate.step3": "Send us the confirmation so we can acknowledge it",
@@ -217,28 +197,18 @@ export const ui = {
     "lang.switch": "ಕನ್ನಡ",
     "lang.switchAria": "Switch to Kannada",
 
-    "footer.mission": "Mission",
-    "footer.vision": "Vision",
     "footer.contact": "Contact",
     "footer.explore": "Explore",
     "footer.follow": "Follow",
-    "footer.rights": "Bhoomi Seva. Volunteer-led.",
-    "footer.builtNote": "A volunteer-built site.",
     "footer.legal": "Source-available under CWSL-1.0",
   },
 
   kn: {
     "site.name": "ಭೂಮಿ ಸೇವಾ",
     "site.tagline": "ನಮ್ಮ ಮಕ್ಕಳಿಗೆ ಉತ್ತಮ ಭೂಮಿಯನ್ನು ನೀಡೋಣ!",
-    "site.description":
-      "ಶಿಕ್ಷಣ, ನೈಸರ್ಗಿಕ ಕೃಷಿ ಮತ್ತು ಅಗತ್ಯವಿರುವ ಮಕ್ಕಳಿಗೆ ಪ್ರಾಯೋಗಿಕ ಬೆಂಬಲದ ಮೂಲಕ ಕರ್ನಾಟಕದ ಗ್ರಾಮೀಣ ಸಮುದಾಯಗಳಿಗೆ ನೆರವು ನೀಡುವ ಸ್ವಯಂಸೇವಕರ ಉಪಕ್ರಮ.",
 
     "common.readEntry": "ಈ ಕಥೆಯನ್ನು ಓದಿ",
     "common.dateUnknown": "ದಿನಾಂಕ ದಾಖಲಾಗಿಲ್ಲ",
-    "common.backToStories": "ಎಲ್ಲಾ ಕಥೆಗಳು",
-    "common.dated": "ದಿನಾಂಕ",
-    "common.programme": "ಕಾರ್ಯಕ್ರಮ",
-    "common.location": "ಸ್ಥಳ",
     "common.relatedStories": "ಸಂಬಂಧಿತ ಕಥೆಗಳು",
 
     "a11y.skip": "ವಿಷಯಕ್ಕೆ ಹೋಗಿ",
@@ -262,26 +232,21 @@ export const ui = {
     "nav.blogs.donees": "ಪಡೆದವರ ಬ್ಲಾಗ್",
     "nav.menu": "ಮೆನು",
     "nav.close": "ಮುಚ್ಚಿ",
-    "nav.language": "ಭಾಷೆ",
 
     "cta.donate": "ದೇಣಿಗೆ ನೀಡಿ",
     "cta.volunteer": "ನಮ್ಮೊಂದಿಗೆ ಸ್ವಯಂಸೇವೆ ಮಾಡಿ",
-    "cta.contact": "ನಮ್ಮನ್ನು ಸಂಪರ್ಕಿಸಿ",
     "cta.readStories": "ನಮ್ಮ ಕಥೆಗಳನ್ನು ಓದಿ",
     "cta.learnMore": "ಇನ್ನಷ್ಟು ಓದಿ",
     "cta.allStories": "ಎಲ್ಲಾ ಕಥೆಗಳು",
     "cta.allEvents": "ಎಲ್ಲಾ ಕಾರ್ಯಕ್ರಮಗಳು",
     "cta.whatsapp": "ವಾಟ್ಸಾಪ್‌ನಲ್ಲಿ ಸಂದೇಶ ಕಳುಹಿಸಿ",
-    "cta.exploreWork": "ನಮ್ಮ ಕೆಲಸ ನೋಡಿ",
 
     "home.hero.kicker": "ಸ್ವಯಂಸೇವಕರ ಉಪಕ್ರಮ · ಕರ್ನಾಟಕ",
-    "home.pillars.kicker": "ನಮ್ಮ ಕೆಲಸ",
     "home.pillars.title": "ನಾವು ಏನು ಮಾಡುತ್ತೇವೆ",
     "home.model.kicker": "ನಾವು ಹೇಗೆ ಕೆಲಸ ಮಾಡುತ್ತೇವೆ",
     "home.model.title": "ಒಂದು ಹಸು, ಒಂದು ಹೊಲಿಗೆ ಯಂತ್ರ ಮತ್ತು ಶಾಲಾ ಶುಲ್ಕ",
     "home.model.body":
       "ಕಬ್ಬಾಳು ಸಮೀಪದ ಕುರುಬರಹಳ್ಳಿ ದೊಡ್ಡಿಯ ಸುನೀತ ಕುಮಾರ ಸ್ವಾಮಿ ಅವರ ಕುಟುಂಬಕ್ಕೆ ಒಂದಕ್ಕಿಂತ ಹೆಚ್ಚು ಬೇಕಿತ್ತು. ಮಗಳ ಶಾಲಾ ಶುಲ್ಕ ಭರಿಸುವುದು ಕಷ್ಟವಾಗಿತ್ತು, ಮತ್ತು ಕುಟುಂಬ ಒಂದೇ ಆದಾಯದ ಮೂಲದ ಮೇಲೆ ನಡೆಯುತ್ತಿತ್ತು. ಭೂಮಿ ಸೇವಾ ಮೂರಕ್ಕೂ ನೆರವಾಯಿತು: ಮಗಳಿಗೆ ವಿದ್ಯಾರ್ಥಿವೇತನ ಮತ್ತು ಶುಲ್ಕ ಪಾವತಿ, ಕುಟುಂಬದ ಜಮೀನು ಮತ್ತು ಹಾಲಿನ ಆದಾಯಕ್ಕೆ ಒಂದು ದೇಸಿ ಹಸು, ಮತ್ತು ಇನ್ನೊಂದು ಆದಾಯಕ್ಕೆ ಒಂದು ಹೊಲಿಗೆ ಯಂತ್ರ.",
-    "home.updates.kicker": "ಕಥೆಗಳು ಮತ್ತು ಮಾಹಿತಿ",
     "home.updates.title": "ಇತ್ತೀಚಿನ ಕಥೆಗಳು",
     "home.impact.kicker": "ನಮ್ಮ ಕೆಲಸಕ್ಕೆ ಬೆಂಬಲ",
     "home.impact.title": "ದೇಣಿಗೆ ನೀಡಿ ಅಥವಾ ಸ್ವಯಂಸೇವೆ ಮಾಡಿ",
@@ -292,7 +257,6 @@ export const ui = {
     "work.title": "ನಮ್ಮ ಕಾರ್ಯಕ್ರಮಗಳು",
     "work.lede":
       "ಭೂಮಿ ಸೇವಾ ಮೂರು ಕ್ಷೇತ್ರಗಳಲ್ಲಿ ಕೆಲಸ ಮಾಡುತ್ತದೆ: ಶಿಕ್ಷಣ, ರೈತರು ಮತ್ತು ಪರಿಸರ, ಮತ್ತು ಮಕ್ಕಳ ಮನೆಗಳಿಗೆ ಬೆಂಬಲ. ಇವು ಹಲವು ಬಾರಿ ಒಂದಕ್ಕೊಂದು ಬೆರೆಯುತ್ತವೆ — ಒಂದೇ ಕುಟುಂಬಕ್ಕೆ ಶಿಕ್ಷಣ ಬೆಂಬಲ, ಜೀವನೋಪಾಯ ನೆರವು ಮತ್ತು ಪ್ರಾಯೋಗಿಕ ಸಹಾಯ ಒಟ್ಟಿಗೆ ಸಿಗಬಹುದು.",
-    "work.activities": "ಇದರಲ್ಲಿ ಸೇರಿರುವುದು",
     "work.stories": "ಈ ಕಾರ್ಯಕ್ರಮದ ಕಥೆಗಳು",
     "work.otherProgrammes": "ಇತರ ಕಾರ್ಯಕ್ರಮಗಳು",
     "work.noStories": "ಈ ಕಾರ್ಯಕ್ರಮದ ಕಥೆಗಳನ್ನು ಸೇರಿಸುತ್ತಿದ್ದೇವೆ.",
@@ -304,13 +268,9 @@ export const ui = {
     "stories.filter.programme": "ಕಾರ್ಯಕ್ರಮ",
     "stories.filter.year": "ವರ್ಷ",
     "stories.filter.all": "ಎಲ್ಲಾ",
-    "stories.filter.noYear": "ದಿನಾಂಕವಿಲ್ಲ",
     "stories.empty": "ಈ ಜರಡಿಗೆ ಸದ್ಯಕ್ಕೆ ಯಾವುದೇ ನಮೂದು ಹೊಂದಿಕೆಯಾಗುತ್ತಿಲ್ಲ.",
     "stories.count": "{n} ನಮೂದುಗಳು",
-    "story.context": "ವಿವರಗಳು",
     "story.people": "ವ್ಯಕ್ತಿಗಳು",
-    "story.place": "ಸ್ಥಳ",
-    "story.period": "ಅವಧಿ",
     "story.quoteLabel": "ಅವರದೇ ಮಾತಿನಲ್ಲಿ",
 
     "events.kicker": "ಕಾರ್ಯಕ್ರಮಗಳು",
@@ -323,7 +283,6 @@ export const ui = {
     "blogs.title": "ಬ್ಲಾಗ್‌ಗಳು",
     "blogs.lede":
       "ಈ ಕೆಲಸದಲ್ಲಿ ಭಾಗಿಯಾದವರ ಬರಹಗಳು — ಹಣ ನೀಡುವ ದಾನಿಗಳು, ಮತ್ತು ನಾವು ಕೆಲಸ ಮಾಡುವ ವಿದ್ಯಾರ್ಥಿಗಳು, ರೈತರು ಹಾಗೂ ಕುಟುಂಬಗಳು.",
-    "blogs.all": "ಎಲ್ಲಾ",
     "blogs.empty": "ಇನ್ನೂ ಬ್ಲಾಗ್ ಬರಹಗಳಿಲ್ಲ.",
     "blogs.donors.title": "ದಾನಿಗಳ ಬ್ಲಾಗ್",
     "blogs.donors.lede": "ಈ ಕೆಲಸಕ್ಕೆ ಹಣ ನೀಡುವ ಮತ್ತು ಸ್ವಯಂಸೇವೆ ಮಾಡುವವರ ಬರಹಗಳು.",
@@ -377,7 +336,6 @@ export const ui = {
     "form.sending": "ಕಳುಹಿಸುತ್ತಿದೆ…",
     "form.success": "ಧನ್ಯವಾದ — ನಿಮ್ಮ ಸಂದೇಶ ನಮಗೆ ಸಿಕ್ಕಿದೆ; ನಾವು ಸಂಪರ್ಕಿಸುತ್ತೇವೆ.",
     "form.error": "ಏನೋ ತಪ್ಪಾಗಿದೆ. ದಯವಿಟ್ಟು ವಾಟ್ಸಾಪ್ ಅಥವಾ ಇಮೇಲ್ ಮೂಲಕ ಪ್ರಯತ್ನಿಸಿ.",
-    "form.required": "ಅಗತ್ಯ",
     "form.invalidEmail": "ದಯವಿಟ್ಟು ಸರಿಯಾದ ಇಮೇಲ್ ವಿಳಾಸ ನಮೂದಿಸಿ.",
     "form.orContact": "ಅಫಾರ್ಮ್ ಬಳಸಲು ಇಷ್ಟವಿಲ್ಲವೇ?",
 
@@ -391,8 +349,6 @@ export const ui = {
     "donate.copy": "ನಕಲಿಸಿ",
     "donate.copied": "ನಕಲಾಗಿದೆ",
     "donate.qr": "ಕ್ಯೂಆರ್ ಕೋಡ್",
-    "donate.qr.alt": "ಪಾವತಿ ಕ್ಯೂಆರ್ ಕೋಡ್",
-    "donate.or": "ಅಥವಾ",
     "donate.step1": "ಒಂದು ಉದ್ದೇಶ ಮತ್ತು ಮೊತ್ತ ಆರಿಸಿ",
     "donate.step2": "ಯುಪಿಐ, ಪೇಟಿಎಂ ಅಥವಾ ಗೂಗಲ್ ಪೇ ಮೂಲಕ ವರ್ಗಾಯಿಸಿ",
     "donate.step3": "ದೃಢೀಕರಣವನ್ನು ನಮಗೆ ಕಳುಹಿಸಿ",
@@ -428,13 +384,9 @@ export const ui = {
     "lang.switch": "English",
     "lang.switchAria": "Switch to English",
 
-    "footer.mission": "ಧ್ಯೇಯ",
-    "footer.vision": "ದೃಷ್ಟಿ",
     "footer.contact": "ಸಂಪರ್ಕ",
     "footer.explore": "ಅನ್ವೇಷಿಸಿ",
     "footer.follow": "ಅನುಸರಿಸಿ",
-    "footer.rights": "ಭೂಮಿ ಸೇವಾ. ಸ್ವಯಂಸೇವಕರ ಉಪಕ್ರಮ.",
-    "footer.builtNote": "ಸ್ವಯಂಸೇವಕರಿಂದ ನಿರ್ಮಿಸಲಾದ ತಾಣ.",
     "footer.legal": "CWSL-1.0 ಅಡಿಯಲ್ಲಿ ಮೂಲ ಲಭ್ಯ",
   },
 } as const;

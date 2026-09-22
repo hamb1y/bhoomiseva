@@ -89,20 +89,8 @@ export interface Entry {
   featured?: boolean;
 }
 
-export type Event = Entry;
-
 export type BlogKind = "donor" | "donee";
 export type Blog = Entry & { kind: BlogKind };
-
-export interface Update {
-  /** ISO date where documented; omit when only a period is known. */
-  date?: string;
-  period?: Localized;
-  title: Localized;
-  program: ProgramId;
-  location: Localized;
-  kind: "event" | "donation" | "milestone" | "initiative";
-}
 
 export interface Site {
   name: string;

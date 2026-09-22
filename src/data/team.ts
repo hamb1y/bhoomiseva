@@ -6,7 +6,6 @@ const modules = import.meta.glob<ContentFile>("../../content/team/*.json", {
   import: "default",
 });
 
-export const team: Person[] = entriesOf(modules, toPerson).sort((a, b) => {
-  const order = (p: Person) => (typeof (p as any).order === "number" ? (p as any).order : 0);
-  return order(a) - order(b);
-});
+export const team: Person[] = entriesOf(modules, toPerson).sort(
+  (a, b) => (a.order ?? 0) - (b.order ?? 0),
+);

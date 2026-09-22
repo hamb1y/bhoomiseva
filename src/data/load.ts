@@ -20,17 +20,15 @@ export interface ContentFile {
   kn?: Record<string, any>;
 }
 
-export type ContentModule = { default: ContentFile };
-
 /** Slug from the filename: content/stories/my-story.json -> my-story */
-export const slugFromPath = (path: string) =>
+const slugFromPath = (path: string) =>
   path
     .split("/")
     .pop()!
     .replace(/\.json$/, "");
 
 /** A translatable field -> `{ en, kn }`. */
-export function text(file: ContentFile, key: string): Localized | undefined {
+function text(file: ContentFile, key: string): Localized | undefined {
   const en = file.en?.[key];
   const kn = file.kn?.[key];
   if (en == null && kn == null) return undefined;
@@ -38,13 +36,13 @@ export function text(file: ContentFile, key: string): Localized | undefined {
 }
 
 /** A field shared across locales (slug, programme, image, order, …). */
-export function shared<T = any>(file: ContentFile, key: string): T | undefined {
+function shared<T = any>(file: ContentFile, key: string): T | undefined {
   const value = file.en?.[key] ?? file.kn?.[key];
   return (value ?? undefined) as T | undefined;
 }
 
 /** A translatable array of strings -> `Localized[]`. */
-export function textList(file: ContentFile, key: string): Localized[] {
+function textList(file: ContentFile, key: string): Localized[] {
   const en = (file.en?.[key] ?? []) as any[];
   const kn = (file.kn?.[key] ?? []) as any[];
   return Array.from({ length: Math.max(en.length, kn.length) }, (_, i) => ({
@@ -54,7 +52,7 @@ export function textList(file: ContentFile, key: string): Localized[] {
 }
 
 /** A translatable array of objects -> zipped pairs of `{ en, kn }` subtrees. */
-export function objectList<T>(file: ContentFile, key: string, make: (en: any, kn: any) => T): T[] {
+function objectList<T>(file: ContentFile, key: string, make: (en: any, kn: any) => T): T[] {
   const en = (file.en?.[key] ?? []) as any[];
   const kn = (file.kn?.[key] ?? []) as any[];
   return Array.from({ length: Math.max(en.length, kn.length) }, (_, i) =>

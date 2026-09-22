@@ -6,7 +6,7 @@ import { programs, programById } from "../data/programs";
 import type { ProgramId } from "../data/types";
 import { storiesByProgram } from "../data/stories";
 import { programHref } from "../lib/paths";
-import StoryCard from "../components/StoryCard.astro";
+import EntryCard from "../components/EntryCard.astro";
 import PhotoFrame from "../components/PhotoFrame.astro";
 import CTABand from "../components/CTABand.astro";
 import { ArrowUpRight } from "lucide-astro";
@@ -108,7 +108,7 @@ const photoCaption = {
       {related.length ? (
         <div class="entries-grid">
           {related.map((s) => (
-            <StoryCard story={s} lang={lang} showProgram={false} />
+            <EntryCard entry={s} lang={lang} basePath="/stories" showProgram={false} />
           ))}
         </div>
       ) : (

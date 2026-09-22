@@ -1,13 +1,9 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
+import EntryIndex from "./EntryIndex.astro";
 import type { Lang } from "../i18n/ui";
 import { useTranslations, localePath, lx } from "../i18n/utils";
 import { stories } from "../data/stories";
 import { programs } from "../data/programs";
-import { yearOf } from "../utils/format";
-import StoryCard from "../components/StoryCard.astro";
-import StoryFilter from "../components/StoryFilter.svelte";
-import CTABand from "../components/CTABand.astro";
 import { ArrowUpRight } from "lucide-astro";
 
 interface Props {
@@ -15,62 +11,24 @@ interface Props {
 }
 const { lang } = Astro.props;
 const t = useTranslations(lang);
-
-const sorted = [...stories].sort((a, b) => (b.date ?? "").localeCompare(a.date ?? ""));
-
 const programOptions = programs.map((p) => ({ value: p.id, label: lx(p.kicker, lang) }));
-const years = Array.from(new Set(stories.map((s) => yearOf(s.date)).filter(Boolean) as string[]))
-  .sort()
-  .reverse()
-  .map((y) => ({ value: y, label: y }));
-
-const countTemplate = t("stories.count");
 ---
 
-<BaseLayout lang={lang} path="/stories" title={t("nav.stories")} description={t("stories.lede")}>
-  <section class="head">
-    <div class="container">
-      <p class="eyebrow">{t("stories.kicker")}</p>
-      <h1>{t("stories.title")}</h1>
-      <p class="lede measure">{t("stories.lede")}</p>
-    </div>
-  </section>
-
-  <section class="archive">
-    <div class="container">
-      <div class="controls">
-        <StoryFilter
-          client:load
-          programmeLabel={t("stories.filter.programme")}
-          yearLabel={t("stories.filter.year")}
-          allLabel={t("stories.filter.all")}
-          programmes={programOptions}
-          years={years}
-          countTemplate={countTemplate}
-        />
-        <p class="count" data-count>
-          {countTemplate.replace("{n}", String(sorted.length))}
-        </p>
-      </div>
-
-      <ul class="story-list">
-        {sorted.map((s) => {
-          const year = yearOf(s.date) ?? "none";
-          return (
-            <li data-story data-program={s.program} data-year={year}>
-              <StoryCard story={s} lang={lang} />
-            </li>
-          );
-        })}
-      </ul>
-
-      <p class="empty" data-empty hidden>
-        {t("stories.empty")}
-      </p>
-    </div>
-  </section>
-
-  <section class="events">
+<EntryIndex
+  lang={lang}
+  path="/stories"
+  basePath="/stories"
+  entries={stories}
+  kicker={t("stories.kicker")}
+  title={t("stories.title")}
+  lede={t("stories.lede")}
+  pageTitle={t("nav.stories")}
+  emptyMessage={t("stories.empty")}
+  programs={programOptions}
+  showProgram
+  showYear
+>
+  <section class="events" slot="after">
     <div class="container">
       <div class="events-cta">
         <div>
@@ -84,57 +42,9 @@ const countTemplate = t("stories.count");
       </div>
     </div>
   </section>
-
-  <CTABand
-    lang={lang}
-    kicker={t("home.impact.kicker")}
-    title={t("home.impact.title")}
-    body={t("home.impact.body")}
-  />
-</BaseLayout>
+</EntryIndex>
 
 <style>
-  .head {
-    padding-bottom: var(--s-7);
-  }
-  h1 {
-    margin: var(--s-4) 0 0;
-  }
-  .lede {
-    margin-top: var(--s-5);
-    font-size: var(--step-1);
-    color: var(--ink-2);
-  }
-  .archive .container {
-    border-top: 1px solid var(--rule-strong);
-    padding-top: var(--s-5);
-  }
-  .controls {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: end;
-    gap: var(--s-5);
-    margin-bottom: var(--s-6);
-  }
-  .count {
-    font-family: var(--font-mono);
-    font-size: var(--step--1);
-    color: var(--ink-3);
-    margin: 0;
-  }
-  .story-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(min(100%, 24rem), 1fr));
-    gap: var(--s-6) var(--s-7);
-  }
-  .empty {
-    color: var(--ink-2);
-    padding-block: var(--s-6);
-  }
   .events .container {
     border-top: 1px solid var(--rule);
     padding-top: var(--s-6);

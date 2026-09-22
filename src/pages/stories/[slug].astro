@@ -1,12 +1,29 @@
 ---
-import StoryDetail from "../../views/StoryDetail.astro";
-import { stories } from "../../data/stories";
+import EntryDetail from "../../views/EntryDetail.astro";
+import { stories, storyBySlug, storiesByProgram } from "../../data/stories";
+import { useTranslations, localePath } from "../../i18n/utils";
 
 export function getStaticPaths() {
   return stories.map((story) => ({ params: { slug: story.slug } }));
 }
 
+const lang = "en" as const;
+const t = useTranslations(lang);
 const { slug } = Astro.params;
+const entry = storyBySlug(slug!)!;
+const related = storiesByProgram(entry.program)
+  .filter((s) => s.slug !== entry.slug)
+  .slice(0, 2);
 ---
 
-<StoryDetail lang="en" slug={slug!} />
+<EntryDetail
+  lang={lang}
+  path={`/stories/${entry.slug}`}
+  basePath="/stories"
+  entry={entry}
+  backHref={localePath("/stories", lang)}
+  backLabel={t("stories.title")}
+  relatedLabel={t("common.relatedStories")}
+  related={related}
+  showProgram
+/>

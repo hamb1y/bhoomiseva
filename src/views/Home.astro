@@ -7,7 +7,7 @@ import { programs } from "../data/programs";
 import { stories, featuredStory } from "../data/stories";
 import { programHref } from "../lib/paths";
 import { objectPosition } from "../utils/format";
-import StoryCard from "../components/StoryCard.astro";
+import EntryCard from "../components/EntryCard.astro";
 import PhotoFrame from "../components/PhotoFrame.astro";
 import CTABand from "../components/CTABand.astro";
 import { ArrowUpRight, ArrowRight } from "lucide-astro";
@@ -175,7 +175,7 @@ const jsonLd = {
       </div>
       <div class="recent-grid">
         {recent.map((s) => (
-          <StoryCard story={s} lang={lang} />
+          <EntryCard entry={s} lang={lang} basePath="/stories" showProgram />
         ))}
       </div>
     </div>

@@ -135,6 +135,8 @@ const isEmpty = entries.length === 0;
     </div>
   </section>
 
+  <slot name="after" />
+
   <CTABand
     lang={lang}
     kicker={ctaKicker ?? t("home.impact.kicker")}

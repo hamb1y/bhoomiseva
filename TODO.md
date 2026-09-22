@@ -167,3 +167,13 @@ Living plan. Legend: `[ ]` todo · `[~]` in progress · `[x]` done.
 - [ ] Point the Sveltia `backend.repo` at the real GitHub repository (currently `bhoomiseva/website`) and grant editor access.
 - [ ] Local editing needs a Chromium browser (File System Access API). Firefox and Safari can only use the Git backend.
 - [ ] Consider adding the Sveltia schema reference to CI to validate `config.yml` on every push.
+
+### Changelog — code cleanup
+
+- **2026-09-22 (cleanup)** — Consolidated the duplicated story components onto the shared entry components and removed dead code:
+  - Deleted `StoryCard.astro`, `StoryDetail.astro` and `StoryFilter.svelte` (near-copies of `EntryCard` / `EntryDetail` / `EntryFilter`). Stories, events and both blog kinds now run through one implementation; `EntryIndex` gained an `after` slot for the stories page's Events band.
+  - Removed dead exports and types: `ContentModule`, `getLangFromUrl`, the `Event` and `Update` type aliases, and un-exported the internal loader helpers in `src/data/load.ts`.
+  - Removed **23 dead UI strings** from both locales (`site.description`, `story.context`, `footer.mission`, `donate.or`, and others).
+  - Simplified the team sort now that `Person.order` is typed.
+  - Fixed the verify script's story-filter check to use `[data-entry]` after the consolidation.
+  - Result: 3 fewer files, no duplicated card/detail/filter logic, `astro check` clean, 64 pages, `bun run verify` green.
