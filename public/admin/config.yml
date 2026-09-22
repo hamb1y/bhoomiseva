@@ -14,6 +14,8 @@ backend:
   name: github
   repo: hamb1y/bhoomiseva
   branch: main
+  base_url: https://bhoomiseva-sveltia-auth.rishi-s-malnad.workers.dev
+  auth_scope: public_repo,user
 
 site_url: https://bhoomiseva.org
 display_url: https://bhoomiseva.org

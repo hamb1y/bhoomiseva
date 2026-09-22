@@ -42,7 +42,7 @@ Content is plain JSON in `content/`, one file per entry. The site reads it at bu
 Start the dev server and open **http://localhost:4321/admin/index.html**:
 
 - **In a Chromium browser** — choose _Work with Local Repository_ and select the project root. Edits are written straight to your local files; commit them with Git.
-- **In production** — sign in with GitHub. Edits commit to the repository (set the real repo in `public/admin/config.yml`).
+- **In production** — open `/admin/` on the deployed site and sign in with GitHub. Editors authenticate through a Cloudflare Worker, and edits commit to the repository (see [Deployment](#deployment)). A GitHub personal access token also works if you would rather not use OAuth.
 
 The CMS has collections for Stories, Events, Blogs, Programmes and People, plus a Site settings file. Blog posts are one collection with a _Donor / Donee_ selector; the site splits them by the Blogs menu and a filter.
 
@@ -114,11 +114,11 @@ A **project repository served from a subpath** would additionally need `BASE_PAT
 
 `.github/workflows/ci.yml` type-checks and builds on every push and pull request.
 
-**Editing in production** — the Sveltia backend is configured for `hamb1y/bhoomiseva` in `public/admin/config.yml`. Editors sign in with GitHub at `/admin/`.
+**Editing in production** — the Sveltia backend in `public/admin/config.yml` points at `hamb1y/bhoomiseva` and signs in through the [Sveltia CMS Authenticator](https://github.com/sveltia/sveltia-cms-auth) Worker deployed at `https://bhoomiseva-sveltia-auth.rishi-s-malnad.workers.dev`. That Worker needs `ALLOWED_DOMAINS` (the site's hostnames) and the `GITHUB_CLIENT_ID` / `GITHUB_CLIENT_SECRET` of a GitHub OAuth app whose callback URL is `<worker-url>/callback`. `auth_scope: public_repo,user` is sufficient because the repository is public.
 
 ## Before launch
 
-Work through the checklist in [SPEC.md §14](./SPEC.md). In particular: confirm all payment and contact details, obtain photo consent, and set `payment.verified` only once verified. Also point the Sveltia backend at the real GitHub repository.
+Work through the checklist in [SPEC.md §14](./SPEC.md). In particular: confirm all payment and contact details, obtain photo consent, and set `payment.verified` only once verified.
 
 ## License
 
