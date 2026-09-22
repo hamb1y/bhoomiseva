@@ -82,6 +82,7 @@ export const ui = {
     "stories.filter.all": "All",
     "stories.empty": "No entries match this filter yet.",
     "stories.count": "{n} entries",
+    "stories.count.one": "1 entry",
     "story.people": "People",
     "story.quoteLabel": "In their own words",
 
@@ -270,6 +271,7 @@ export const ui = {
     "stories.filter.all": "ಎಲ್ಲಾ",
     "stories.empty": "ಈ ಜರಡಿಗೆ ಸದ್ಯಕ್ಕೆ ಯಾವುದೇ ನಮೂದು ಹೊಂದಿಕೆಯಾಗುತ್ತಿಲ್ಲ.",
     "stories.count": "{n} ನಮೂದುಗಳು",
+    "stories.count.one": "1 ನಮೂದು",
     "story.people": "ವ್ಯಕ್ತಿಗಳು",
     "story.quoteLabel": "ಅವರದೇ ಮಾತಿನಲ್ಲಿ",
 
@@ -382,7 +384,7 @@ export const ui = {
     "notfound.home": "ಮುಖಪುಟಕ್ಕೆ",
 
     "lang.switch": "English",
-    "lang.switchAria": "Switch to English",
+    "lang.switchAria": "ಇಂಗ್ಲಿಷ್‌ಗೆ ಬದಲಾಯಿಸಿ",
 
     "footer.contact": "ಸಂಪರ್ಕ",
     "footer.explore": "ಅನ್ವೇಷಿಸಿ",

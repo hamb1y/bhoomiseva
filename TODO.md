@@ -177,3 +177,11 @@ Living plan. Legend: `[ ]` todo · `[~]` in progress · `[x]` done.
   - Simplified the team sort now that `Person.order` is typed.
   - Fixed the verify script's story-filter check to use `[data-entry]` after the consolidation.
   - Result: 3 fewer files, no duplicated card/detail/filter logic, `astro check` clean, 64 pages, `bun run verify` green.
+
+### Kannada i18n review (2026-09-22)
+
+- Verified: 147/147 UI keys present in both locales, none untranslated, none empty, `{n}` placeholders match. All 25 content files carry Kannada for every translatable field.
+- Rendering checked in Chromium at 1440px, 390px and 320px across seven Kannada routes: no horizontal overflow, correct Kannada font fallback, drop cap correctly disabled for Kannada, authentic Kannada letter intact.
+- Fixed: `lang.switchAria` was an English string inside the Kannada dictionary.
+- Fixed: pluralisation. "1 entries" / "1 ನಮೂದುಗಳು" now render as "1 entry" / "1 ನಮೂದು".
+- Flagged for the organisation's native speaker to decide: `stories.empty` uses "ಜರಡಿ" (sieve) for "filter"; `blogs.donees` uses "ಪಡೆದವರ ಬ್ಲಾಗ್"; people's names render in Latin script on Kannada pages because `people` is a shared field; "ಅನಾಥಾಶ್ರಮ" and "ಮಕ್ಕಳ ಮನೆ" are used interchangeably.

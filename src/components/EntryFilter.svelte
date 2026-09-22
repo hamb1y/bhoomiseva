@@ -13,6 +13,7 @@
     yearLabel = "",
     allLabel = "All",
     countTemplate = "{n}",
+    countOne = "",
   }: {
     kinds?: Option[];
     programs?: Option[];
@@ -22,6 +23,7 @@
     yearLabel?: string;
     allLabel?: string;
     countTemplate?: string;
+    countOne?: string;
   } = $props();
 
   let kind = $state("all");
@@ -42,7 +44,11 @@
     const empty = document.querySelector<HTMLElement>("[data-empty]");
     if (empty) empty.hidden = visible > 0;
     const count = document.querySelector<HTMLElement>("[data-count]");
-    if (count) count.textContent = countTemplate.replace("{n}", String(visible));
+    if (count)
+      count.textContent = (visible === 1 && countOne ? countOne : countTemplate).replace(
+        "{n}",
+        String(visible),
+      );
   }
 
   $effect(() => {
