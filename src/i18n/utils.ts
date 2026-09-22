@@ -1,4 +1,5 @@
 import { ui, defaultLang, type Lang, type UIKey } from "./ui";
+import { base } from "../utils/url";
 
 export function useTranslations(lang: Lang) {
   return function t(key: UIKey): string {
@@ -18,9 +19,9 @@ export function lx(value: Localized, lang: Lang): string {
   return (lang === "kn" ? value.kn : value.en) ?? value.en;
 }
 
-/** Build a path for the given locale (English is unprefixed). */
+/** Build a path for the given locale (English is unprefixed), including the deployment base. */
 export function localePath(path: string, lang: Lang): string {
   const clean = path.startsWith("/") ? path : `/${path}`;
-  if (lang === defaultLang) return clean === "/" ? "/" : clean;
-  return clean === "/" ? `/${lang}` : `/${lang}${clean}`;
+  const localized = lang === defaultLang ? clean : clean === "/" ? `/${lang}` : `/${lang}${clean}`;
+  return `${base}${localized}`;
 }

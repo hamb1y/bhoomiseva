@@ -1,5 +1,6 @@
 ---
 import { existsSync } from "node:fs";
+import { asset } from "../utils/url";
 
 interface Props {
   size?: number;
@@ -13,7 +14,7 @@ const hasLogo = existsSync("public/images/logo-mark.webp");
 
 <span class="mark" aria-hidden={hasLogo ? undefined : "true"} style={`--size:${size}px`}>
   {hasLogo ? (
-    <img src="/images/logo-mark.webp" alt="" width={size} height={size} loading="eager" />
+    <img src={asset("/images/logo-mark.webp")} alt="" width={size} height={size} loading="eager" />
   ) : (
     <svg viewBox="0 0 24 24" fill="none">
       <circle cx="12" cy="12" r="11" fill="var(--clay)" />

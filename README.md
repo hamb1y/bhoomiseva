@@ -92,6 +92,25 @@ Every entry file holds both languages in the `single_file` shape — `{ "en": {�
 
 **Kannada content is a first pass and should be reviewed by a native speaker before launch.**
 
+## Deployment
+
+The site is static, so it hosts anywhere. Two paths are wired up:
+
+**GitHub Pages** — `.github/workflows/deploy.yml` builds and publishes on every push to `main`. A project repository is served from `https://<owner>.github.io/<repo>/`, which is why `astro.config.mjs` reads `SITE_URL` and `BASE_PATH` from the environment; every root-relative URL goes through `asset()` in `src/utils/url.ts`.
+
+To attach a custom domain later, set repository **Variables** (Settings → Secrets and variables → Actions):
+
+| Variable    | Value                    |
+| ----------- | ------------------------ |
+| `SITE_URL`  | `https://bhoomiseva.org` |
+| `BASE_PATH` | `/`                      |
+
+…then add a `CNAME` record and enable the custom domain in Pages. No code changes needed.
+
+**Any other host** (Netlify, Cloudflare Pages, a VPS) — build with `bun run build` and serve `dist/`. No `BASE_PATH` required. The admin app ships inside `dist/admin/`.
+
+**Editing in production** — the Sveltia backend is configured for `hamb1y/bhoomiseva` in `public/admin/config.yml`. Editors sign in with GitHub at `/admin/`.
+
 ## Before launch
 
 Work through the checklist in [SPEC.md §14](./SPEC.md). In particular: confirm all payment and contact details, obtain photo consent, and set `payment.verified` only once verified. Also point the Sveltia backend at the real GitHub repository.

@@ -8,6 +8,7 @@ import CTABand from "../components/CTABand.astro";
 import { objectPosition } from "../utils/format";
 import { Info } from "lucide-astro";
 import { existsSync } from "node:fs";
+import { asset } from "../utils/url";
 
 interface Props {
   lang: Lang;
@@ -21,7 +22,13 @@ const hasLogo = existsSync("public/images/logo.webp");
   <section class="head">
     <div class="container">
       {hasLogo && (
-        <img class="lockup" src="/images/logo.webp" alt="Bhoomi Seva" width="240" height="354" />
+        <img
+          class="lockup"
+          src={asset("/images/logo.webp")}
+          alt="Bhoomi Seva"
+          width="240"
+          height="354"
+        />
       )}
       <p class="eyebrow">{t("about.kicker")}</p>
       <h1>{t("about.title")}</h1>

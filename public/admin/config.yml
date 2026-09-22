@@ -12,12 +12,12 @@
 
 backend:
   name: github
-  repo: Hamb1y/bhoomiseva
+  repo: hamb1y/bhoomiseva
   branch: main
 
 site_url: https://bhoomiseva.org
 display_url: https://bhoomiseva.org
-logo_url: /images/logo-mark.webp
+logo_url: ../images/logo-mark.webp
 
 # Images are committed alongside the code, served from /images.
 media_folder: public/images

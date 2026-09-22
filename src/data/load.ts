@@ -14,6 +14,7 @@
  */
 import type { Blog, Entry, ImageFocal, Person, Program, Site, Story } from "./types";
 import type { Localized } from "../i18n/utils";
+import { asset } from "../utils/url";
 
 export interface ContentFile {
   en?: Record<string, any>;
@@ -105,7 +106,7 @@ export function toStory(slug: string, file: ContentFile): Story {
     title: text(file, "title") ?? { en: "" },
     summary: text(file, "summary") ?? { en: "" },
     body: textList(file, "body"),
-    ...(shared(file, "image") ? { image: shared<string>(file, "image") } : {}),
+    ...(shared(file, "image") ? { image: asset(shared<string>(file, "image")) } : {}),
     ...(focal(file) ? { imageFocal: focal(file) } : {}),
     ...(text(file, "image_alt") ? { imageAlt: text(file, "image_alt") } : {}),
     ...(quoteOf(file) ? { quote: quoteOf(file) } : {}),
@@ -128,7 +129,7 @@ export function toEntry(slug: string, file: ContentFile): Entry {
     title: text(file, "title") ?? { en: "" },
     summary: text(file, "summary") ?? { en: "" },
     body: textList(file, "body"),
-    ...(shared(file, "image") ? { image: shared<string>(file, "image") } : {}),
+    ...(shared(file, "image") ? { image: asset(shared<string>(file, "image")) } : {}),
     ...(focal(file) ? { imageFocal: focal(file) } : {}),
     ...(text(file, "image_alt") ? { imageAlt: text(file, "image_alt") } : {}),
     ...(quoteOf(file) ? { quote: quoteOf(file) } : {}),
@@ -155,13 +156,13 @@ export function toProgram(slug: string, file: ContentFile): Program {
       title: { en: en.title ?? "", ...(kn.title == null ? {} : { kn: kn.title }) },
       body: { en: en.body ?? "", ...(kn.body == null ? {} : { kn: kn.body }) },
     })),
-    ...(shared(file, "image") ? { image: shared<string>(file, "image") } : {}),
+    ...(shared(file, "image") ? { image: asset(shared<string>(file, "image")) } : {}),
     ...(focal(file) ? { imageFocal: focal(file) } : {}),
     ...(text(file, "image_alt") ? { imageAlt: text(file, "image_alt") } : {}),
     ...(shared<any[]>(file, "gallery")?.length
       ? {
           gallery: shared<any[]>(file, "gallery")!
-            .map((g) => g.image)
+            .map((g) => asset(g.image))
             .filter(Boolean),
         }
       : {}),
@@ -173,7 +174,7 @@ export function toPerson(slug: string, file: ContentFile): Person {
     name: shared(file, "name") ?? slug,
     role: text(file, "role") ?? { en: "" },
     bio: text(file, "bio") ?? { en: "" },
-    ...(shared(file, "photo") ? { photo: shared<string>(file, "photo") } : {}),
+    ...(shared(file, "photo") ? { photo: asset(shared<string>(file, "photo")) } : {}),
     ...(focal(file, "photo_position") ? { photoFocal: focal(file, "photo_position") } : {}),
   } as Person;
 }

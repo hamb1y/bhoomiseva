@@ -7,6 +7,7 @@ import { programs } from "../data/programs";
 import { stories, featuredStory } from "../data/stories";
 import { programHref } from "../lib/paths";
 import { objectPosition } from "../utils/format";
+import { asset } from "../utils/url";
 import EntryCard from "../components/EntryCard.astro";
 import PhotoFrame from "../components/PhotoFrame.astro";
 import CTABand from "../components/CTABand.astro";
@@ -123,7 +124,7 @@ const jsonLd = {
 
   <section class="band">
     <a class="band-link" href={localePath("/stories/farmer-training-kabbalu-2023", lang)}>
-      <img src="/images/farmer-training-2.webp" alt="" loading="lazy" decoding="async" />
+      <img src={asset("/images/farmer-training-2.webp")} alt="" loading="lazy" decoding="async" />
       <div class="band-caption">
         <span class="band-title">
           {lx(
@@ -143,7 +144,7 @@ const jsonLd = {
     <div class="container model-grid">
       <div class="model-media">
         <img
-          src="/images/cow-donation.webp"
+          src={asset("/images/cow-donation.webp")}
           alt={lx(
             { en: "Cow donation at Kabbalu, Kanakapura", kn: "ಕಬ್ಬಾಳು, ಕನಕಪುರದಲ್ಲಿ ಹಸು ದಾನ" },
             lang,
