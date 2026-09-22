@@ -76,8 +76,9 @@ collections:
         name: people
         widget: list
         required: false
+        i18n: duplicate
         field: { label: Name, name: name, widget: string }
-      - { label: Photo, name: image, widget: image, required: false }
+      - { label: Photo, name: image, widget: image, required: false, i18n: duplicate }
       - { label: Photo description, name: image_alt, widget: string, i18n: true, required: false }
       - label: Photo position
         name: image_position
@@ -85,16 +86,18 @@ collections:
         required: false
         default: center
         options: [center, top, bottom, left, right]
+        i18n: duplicate
         hint: Which part of the photo to keep when the site crops it.
-      - { label: Programme, name: program, widget: select, options: [education, farmers, children] }
+      - { label: Programme, name: program, widget: select, options: [education, farmers, children], i18n: duplicate }
       - label: Date
         name: date
         widget: string
         required: false
+        i18n: duplicate
         hint: "YYYY-MM or YYYY-MM-DD. Leave blank if unknown."
       - { label: Period, name: period, widget: string, i18n: true, required: false }
       - { label: Location, name: location, widget: string, i18n: true }
-      - { label: Featured, name: featured, widget: boolean, default: false, required: false }
+      - { label: Featured, name: featured, widget: boolean, default: false, required: false, i18n: duplicate }
 
   # ----------------------------------------------------------------- events ---
   - name: events
@@ -119,8 +122,9 @@ collections:
         name: people
         widget: list
         required: false
+        i18n: duplicate
         field: { label: Name, name: name, widget: string }
-      - { label: Photo, name: image, widget: image, required: false }
+      - { label: Photo, name: image, widget: image, required: false, i18n: duplicate }
       - { label: Photo description, name: image_alt, widget: string, i18n: true, required: false }
       - label: Photo position
         name: image_position
@@ -128,11 +132,13 @@ collections:
         required: false
         default: center
         options: [center, top, bottom, left, right]
-      - { label: Programme, name: program, widget: select, options: [education, farmers, children] }
+        i18n: duplicate
+      - { label: Programme, name: program, widget: select, options: [education, farmers, children], i18n: duplicate }
       - label: Date
         name: date
         widget: string
         required: false
+        i18n: duplicate
         hint: "YYYY-MM or YYYY-MM-DD."
       - { label: Period, name: period, widget: string, i18n: true, required: false }
       - { label: Location, name: location, widget: string, i18n: true }
@@ -165,13 +171,14 @@ collections:
       - label: Kind
         name: kind
         widget: select
+        i18n: duplicate
         options:
           - { label: Donor blog, value: donor }
           - { label: Donee blog, value: donee }
         hint: Donor = written by a supporter. Donee = written by someone we work with.
-      - { label: Author, name: author, widget: string }
+      - { label: Author, name: author, widget: string, i18n: duplicate }
       - { label: Author role, name: author_role, widget: string, i18n: true, required: false }
-      - { label: Photo, name: image, widget: image, required: false }
+      - { label: Photo, name: image, widget: image, required: false, i18n: duplicate }
       - { label: Photo description, name: image_alt, widget: string, i18n: true, required: false }
       - label: Photo position
         name: image_position
@@ -179,9 +186,10 @@ collections:
         required: false
         default: center
         options: [center, top, bottom, left, right]
-      - { label: Date, name: date, widget: string, required: false, hint: "YYYY-MM-DD" }
+        i18n: duplicate
+      - { label: Date, name: date, widget: string, required: false, hint: "YYYY-MM-DD", i18n: duplicate }
       - { label: Location, name: location, widget: string, i18n: true, required: false }
-      - { label: Featured, name: featured, widget: boolean, default: false, required: false }
+      - { label: Featured, name: featured, widget: boolean, default: false, required: false, i18n: duplicate }
 
   # --------------------------------------------------------------- programs ---
   - name: programs
@@ -204,6 +212,7 @@ collections:
         widget: select
         options: [brand, education, farmers, children]
         default: brand
+        i18n: duplicate
       - { label: Kicker, name: kicker, widget: string, i18n: true }
       - { label: Title, name: title, widget: string, i18n: true }
       - { label: Summary, name: summary, widget: text, i18n: true }
@@ -217,12 +226,13 @@ collections:
         fields:
           - { label: Title, name: title, widget: string, i18n: true }
           - { label: Description, name: body, widget: text, i18n: true }
-      - { label: Photo, name: image, widget: image, required: false }
+      - { label: Photo, name: image, widget: image, required: false, i18n: duplicate }
       - { label: Photo description, name: image_alt, widget: string, i18n: true, required: false }
       - label: Gallery
         name: gallery
         widget: list
         required: false
+        i18n: duplicate
         label_singular: Photo
         field: { label: Photo, name: image, widget: image }
 
@@ -237,16 +247,17 @@ collections:
     identifier_field: name
     sortable_fields: [order, name]
     fields:
-      - { label: Name, name: name, widget: string }
+      - { label: Name, name: name, widget: string, i18n: duplicate }
       - { label: Role, name: role, widget: string, i18n: true }
       - { label: Bio, name: bio, widget: text, i18n: true }
-      - { label: Photo, name: photo, widget: image, required: false }
+      - { label: Photo, name: photo, widget: image, required: false, i18n: duplicate }
       - label: Photo position
         name: photo_position
         widget: select
         required: false
         default: center
         options: [center, top, bottom, left, right]
+        i18n: duplicate
       - {
           label: Order,
           name: order,
@@ -254,6 +265,7 @@ collections:
           default: 0,
           value_type: int,
           hint: Lower numbers appear first.,
+          i18n: duplicate,
         }
 
   # --------------------------------------------------------------- settings ---
@@ -267,20 +279,22 @@ collections:
         file: content/settings.json
         i18n: true
         fields:
-          - { label: Name, name: name, widget: string }
-          - { label: Email, name: email, widget: string }
-          - { label: Phone, name: phone, widget: string }
+          - { label: Name, name: name, widget: string, i18n: duplicate }
+          - { label: Email, name: email, widget: string, i18n: duplicate }
+          - { label: Phone, name: phone, widget: string, i18n: duplicate }
           - {
               label: Phone (link),
               name: phone_href,
               widget: string,
               hint: "Digits only, e.g. +919900103178",
+              i18n: duplicate,
             }
-          - { label: WhatsApp URL, name: whatsapp, widget: string, required: false }
+          - { label: WhatsApp URL, name: whatsapp, widget: string, required: false, i18n: duplicate }
           - label: Social links
             name: socials
             widget: object
             required: false
+            i18n: duplicate
             fields:
               - { label: Facebook, name: facebook, widget: string, required: false }
               - { label: Instagram, name: instagram, widget: string, required: false }
@@ -288,6 +302,7 @@ collections:
           - label: Payment details
             name: payment
             widget: object
+            i18n: duplicate
             fields:
               - { label: UPI ID, name: upi, widget: string }
               - { label: Paytm, name: paytm, widget: string }
@@ -312,5 +327,6 @@ collections:
               widget: string,
               required: false,
               hint: "Who built the site.",
+              i18n: duplicate,
             }
-          - { label: Credit link, name: credit_url, widget: string, required: false }
+          - { label: Credit link, name: credit_url, widget: string, required: false, i18n: duplicate }
