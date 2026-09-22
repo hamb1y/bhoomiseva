@@ -203,6 +203,7 @@ export function toSite(file: ContentFile): Site {
     shortDescription: text(file, "short_description") ?? { en: "" },
     about: textList(file, "about"),
     credit: shared<string>(file, "credit") ?? "",
+    creditUrl: shared<string>(file, "credit_url"),
   } as Site;
 }
 

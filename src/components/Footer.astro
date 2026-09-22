@@ -85,7 +85,16 @@ const socials = [
       </span>
       <span class="note">{t("footer.legal")}</span>
     </div>
-    <p class="credit">{site.credit}</p>
+    <p class="credit">
+      {t("footer.credit")}{" "}
+      {site.creditUrl ? (
+        <a href={site.creditUrl} rel="noopener noreferrer">
+          {site.credit}
+        </a>
+      ) : (
+        site.credit
+      )}
+    </p>
   </div>
 </footer>
 
@@ -169,5 +178,11 @@ const socials = [
     font-family: var(--font-mono);
     font-size: var(--step--1);
     color: var(--ink-3);
+  }
+  .credit a {
+    color: inherit;
+  }
+  .credit a:hover {
+    color: var(--clay);
   }
 </style>

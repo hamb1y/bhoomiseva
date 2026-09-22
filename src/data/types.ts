@@ -105,4 +105,5 @@ export interface Site {
   shortDescription: Localized;
   about: Localized[];
   credit: string;
+  creditUrl?: string;
 }

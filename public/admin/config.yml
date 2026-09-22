@@ -12,7 +12,7 @@
 
 backend:
   name: github
-  repo: bhoomiseva/website
+  repo: Hamb1y/bhoomiseva
   branch: main
 
 site_url: https://bhoomiseva.org
@@ -304,4 +304,11 @@ collections:
             i18n: true
             label_singular: Paragraph
             field: { label: Paragraph, name: paragraph, widget: text }
-          - { label: Credit, name: credit, widget: string, required: false }
+          - {
+              label: Credit,
+              name: credit,
+              widget: string,
+              required: false,
+              hint: "Who built the site.",
+            }
+          - { label: Credit link, name: credit_url, widget: string, required: false }

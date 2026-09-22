@@ -201,6 +201,7 @@ export const ui = {
     "footer.contact": "Contact",
     "footer.explore": "Explore",
     "footer.follow": "Follow",
+    "footer.credit": "Website by",
     "footer.legal": "Source-available under CWSL-1.0",
   },
 
@@ -229,8 +230,8 @@ export const ui = {
     "nav.contact": "ಸಂಪರ್ಕ",
     "nav.events": "ಕಾರ್ಯಕ್ರಮಗಳು",
     "nav.blogs": "ಬ್ಲಾಗ್‌ಗಳು",
-    "nav.blogs.donors": "ದಾನಿಗಳ ಬ್ಲಾಗ್",
-    "nav.blogs.donees": "ಪಡೆದವರ ಬ್ಲಾಗ್",
+    "nav.blogs.donors": "ಡೊನರ್ ಬ್ಲಾಗ್",
+    "nav.blogs.donees": "ಡೊನಿ ಬ್ಲಾಗ್",
     "nav.menu": "ಮೆನು",
     "nav.close": "ಮುಚ್ಚಿ",
 
@@ -269,7 +270,7 @@ export const ui = {
     "stories.filter.programme": "ಕಾರ್ಯಕ್ರಮ",
     "stories.filter.year": "ವರ್ಷ",
     "stories.filter.all": "ಎಲ್ಲಾ",
-    "stories.empty": "ಈ ಜರಡಿಗೆ ಸದ್ಯಕ್ಕೆ ಯಾವುದೇ ನಮೂದು ಹೊಂದಿಕೆಯಾಗುತ್ತಿಲ್ಲ.",
+    "stories.empty": "ಈ ಫಿಲ್ಟರ್‌ಗೆ ಸದ್ಯಕ್ಕೆ ಯಾವುದೇ ನಮೂದು ಹೊಂದಿಕೆಯಾಗುತ್ತಿಲ್ಲ.",
     "stories.count": "{n} ನಮೂದುಗಳು",
     "stories.count.one": "1 ನಮೂದು",
     "story.people": "ವ್ಯಕ್ತಿಗಳು",
@@ -286,12 +287,12 @@ export const ui = {
     "blogs.lede":
       "ಈ ಕೆಲಸದಲ್ಲಿ ಭಾಗಿಯಾದವರ ಬರಹಗಳು — ಹಣ ನೀಡುವ ದಾನಿಗಳು, ಮತ್ತು ನಾವು ಕೆಲಸ ಮಾಡುವ ವಿದ್ಯಾರ್ಥಿಗಳು, ರೈತರು ಹಾಗೂ ಕುಟುಂಬಗಳು.",
     "blogs.empty": "ಇನ್ನೂ ಬ್ಲಾಗ್ ಬರಹಗಳಿಲ್ಲ.",
-    "blogs.donors.title": "ದಾನಿಗಳ ಬ್ಲಾಗ್",
+    "blogs.donors.title": "ಡೊನರ್ ಬ್ಲಾಗ್",
     "blogs.donors.lede": "ಈ ಕೆಲಸಕ್ಕೆ ಹಣ ನೀಡುವ ಮತ್ತು ಸ್ವಯಂಸೇವೆ ಮಾಡುವವರ ಬರಹಗಳು.",
-    "blogs.donors.empty": "ಇನ್ನೂ ದಾನಿಗಳ ಬ್ಲಾಗ್ ಬರಹಗಳಿಲ್ಲ.",
-    "blogs.donees.title": "ಪಡೆದವರ ಬ್ಲಾಗ್",
+    "blogs.donors.empty": "ಇನ್ನೂ ಡೊನರ್ ಬ್ಲಾಗ್ ಬರಹಗಳಿಲ್ಲ.",
+    "blogs.donees.title": "ಡೊನಿ ಬ್ಲಾಗ್",
     "blogs.donees.lede": "ನಾವು ಕೆಲಸ ಮಾಡುವ ವಿದ್ಯಾರ್ಥಿಗಳು, ರೈತರು ಮತ್ತು ಕುಟುಂಬಗಳ ಬರಹಗಳು.",
-    "blogs.donees.empty": "ಇನ್ನೂ ಪಡೆದವರ ಬ್ಲಾಗ್ ಬರಹಗಳಿಲ್ಲ.",
+    "blogs.donees.empty": "ಇನ್ನೂ ಡೊನಿ ಬ್ಲಾಗ್ ಬರಹಗಳಿಲ್ಲ.",
     "blogs.related": "ಇತರ ಬರಹಗಳು",
 
     "about.kicker": "ನಮ್ಮ ಬಗ್ಗೆ",
@@ -321,7 +322,7 @@ export const ui = {
       "ನಾವು ಬೆಂಬಲಿಸುವ ಮಕ್ಕಳ ಮನೆಗಳಿಗೆ ಲ್ಯಾಪ್‌ಟಾಪ್, ಸೈಕಲ್, ಹಳೆಯ ಬಟ್ಟೆ, ಪಾದರಕ್ಷೆ, ಲೇಖನ ಸಾಮಗ್ರಿ, ಪೀಠೋಪಕರಣ ಮತ್ತು ಎಲ್‌ಪಿಜಿ ಸಿಲಿಂಡರ್‌ಗಳ ಅಗತ್ಯವಿದೆ. ನಿಮ್ಮ ಬಳಿ ಏನಿದೆ ಎಂದು ಹೇಳಿ; ಅದನ್ನು ಒಂದು ಅಗತ್ಯಕ್ಕೆ ಹೊಂದಿಸುತ್ತೇವೆ.",
     "involved.give.title": "ಹಣ ನೀಡಿ",
     "involved.give.body":
-      "ಶಿಕ್ಷಣ, ರೈತ ಬೆಂಬಲ, ಒಂದು ದೇಸಿ ಹಸು ಅಥವಾ ಒಂದು ಅನಾಥಾಶ್ರಮದ ಊಟಕ್ಕೆ ನೆರವಾಗಿ. ಹಣ ವರ್ಗಾಯಿಸುವಾಗ ಉದ್ದೇಶವನ್ನು ಸೇರಿಸಬಹುದು.",
+      "ಶಿಕ್ಷಣ, ರೈತ ಬೆಂಬಲ, ಒಂದು ದೇಸಿ ಹಸು ಅಥವಾ ಒಂದು ಮಕ್ಕಳ ಮನೆಯ ಊಟಕ್ಕೆ ನೆರವಾಗಿ. ಹಣ ವರ್ಗಾಯಿಸುವಾಗ ಉದ್ದೇಶವನ್ನು ಸೇರಿಸಬಹುದು.",
     "involved.follow.title": "ನಮ್ಮೊಂದಿಗೆ ಇರಿ",
     "involved.follow.body":
       "ಹೊಸ ಕೆಲಸಗಳ ಮಾಹಿತಿಗಾಗಿ ಭೂಮಿ ಸೇವಾ ವಾಟ್ಸಾಪ್ ಗುಂಪಿಗೆ ಸೇರಿ ಅಥವಾ ಫೇಸ್‌ಬುಕ್‌ನಲ್ಲಿ ನಮಗೆ ಬೆಂಬಲ ನೀಡಿ.",
@@ -366,7 +367,7 @@ export const ui = {
     "cause.education": "ಶಿಕ್ಷಣ",
     "cause.farmers": "ರೈತ ಬೆಂಬಲ",
     "cause.cow": "ಹಸು ದಾನ",
-    "cause.children": "ಅನಾಥಾಶ್ರಮದ ಊಟ",
+    "cause.children": "ಮಕ್ಕಳ ಮನೆಯ ಊಟ",
     "cause.any": "ಅಗತ್ಯವಿರುವಲ್ಲಿ ಬಳಸಿ",
 
     "contact.kicker": "ಸಂಪರ್ಕ",
@@ -389,6 +390,7 @@ export const ui = {
     "footer.contact": "ಸಂಪರ್ಕ",
     "footer.explore": "ಅನ್ವೇಷಿಸಿ",
     "footer.follow": "ಅನುಸರಿಸಿ",
+    "footer.credit": "ವೆಬ್‌ಸೈಟ್ ನಿರ್ಮಾಣ",
     "footer.legal": "CWSL-1.0 ಅಡಿಯಲ್ಲಿ ಮೂಲ ಲಭ್ಯ",
   },
 } as const;
