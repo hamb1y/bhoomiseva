@@ -39,21 +39,21 @@ const causes = [
   },
 ];
 
-const steps = [t("donate.step1"), t("donate.step2"), t("donate.step3")];
-
 const labels = {
-  cause: t("donate.cause"),
+  purpose: t("donate.cause"),
   amount: t("donate.amount"),
+  total: t("donate.total"),
   upi: t("donate.upi"),
   copy: t("donate.copy"),
   copied: t("donate.copied"),
   qr: t("donate.qr"),
-  qrPending: t("donate.qrPending"),
-  otherMethods: t("donate.otherMethods"),
+  payUpi: t("donate.payUpi"),
+  payUpiNoAmount: t("donate.payUpiNoAmount"),
   confirmTitle: t("donate.confirm.title"),
   confirmBody: t("donate.confirm.body"),
   causeNote: t("donate.causeNote"),
   unverified: t("donate.unverified"),
+  otherMethods: t("donate.otherMethods"),
   whatsapp: t("cta.whatsapp"),
 };
 ---
@@ -67,26 +67,14 @@ const labels = {
     </div>
   </section>
 
-  <section class="steps">
-    <div class="container">
-      <ol>
-        {steps.map((step, i) => (
-          <li>
-            <span class="n">{String(i + 1).padStart(2, "0")}</span>
-            <span>{step}</span>
-          </li>
-        ))}
-      </ol>
-    </div>
-  </section>
-
-  <section class="widget-section">
+  <section class="slip-section">
     <div class="container">
       <DonateWidget
         client:load
         causes={causes}
         labels={labels}
         upi={site.payment.upi}
+        payeeName={site.name}
         paytm={site.payment.paytm}
         gpay={site.payment.gpay}
         verified={site.payment.verified}
@@ -98,12 +86,6 @@ const labels = {
 
   <section class="accountability">
     <div class="container">
-      <p class="eyebrow">
-        {lx(
-          { en: "How we handle your donation", kn: "ನಿಮ್ಮ ದೇಣಿಗೆಯನ್ನು ನಾವು ಹೇಗೆ ನೋಡಿಕೊಳ್ಳುತ್ತೇವೆ" },
-          lang,
-        )}
-      </p>
       <p class="measure">
         {lx(
           {
@@ -130,39 +112,19 @@ const labels = {
     font-size: var(--step-1);
     color: var(--ink-2);
   }
-  .steps .container {
-    border-top: 1px solid var(--rule-strong);
-    padding-top: var(--s-5);
-  }
-  ol {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
-    gap: var(--s-5);
-  }
-  li {
-    display: flex;
-    gap: var(--s-3);
-    align-items: baseline;
-    font-size: var(--step-0);
-    color: var(--ink-2);
-  }
-  .n {
-    font-family: var(--font-mono);
-    font-size: var(--step--1);
-    color: var(--clay);
-  }
-  .widget-section {
-    padding-top: var(--s-2);
-  }
   .accountability .container {
     border-top: 1px solid var(--rule);
     padding-top: var(--s-5);
   }
   .accountability p {
     color: var(--ink-2);
-    margin-top: var(--s-3);
+    margin: 0;
+  }
+
+  /* The fixed pay bar on phones sits over the last of the page otherwise. */
+  @media (max-width: 40rem) {
+    :global(body) {
+      padding-bottom: 5.5rem;
+    }
   }
 </style>

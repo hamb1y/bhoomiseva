@@ -1,5 +1,7 @@
 <script lang="ts">
   import { untrack } from "svelte";
+  import { renderSVG } from "uqr";
+  import { upiLink } from "../utils/upi";
 
   interface Cause {
     value: string;
@@ -8,18 +10,20 @@
   }
 
   interface Labels {
-    cause: string;
+    purpose: string;
     amount: string;
+    total: string;
     upi: string;
     copy: string;
     copied: string;
     qr: string;
-    qrPending: string;
-    otherMethods: string;
+    payUpi: string;
+    payUpiNoAmount: string;
     confirmTitle: string;
     confirmBody: string;
     causeNote: string;
     unverified: string;
+    otherMethods: string;
     whatsapp: string;
   }
 
@@ -27,6 +31,7 @@
     causes,
     labels,
     upi,
+    payeeName,
     paytm,
     gpay,
     verified,
@@ -36,6 +41,7 @@
     causes: Cause[];
     labels: Labels;
     upi: string;
+    payeeName: string;
     paytm: string;
     gpay: string;
     verified: boolean;
@@ -69,59 +75,108 @@
     }
   }
 
+  // One link drives both the QR code and the pay button, so they can never
+  // disagree. The purpose is carried in the transaction note.
+  const link = $derived(
+    upiLink({
+      upi,
+      payeeName,
+      amount: chosenAmount,
+      note: activeCause?.label ?? "",
+    }),
+  );
+  const qrSvg = $derived(renderSVG(link, { border: 0 }));
+
+  const format = (n: number) => `₹${n.toLocaleString("en-IN")}`;
+  const payLabel = $derived(
+    chosenAmount
+      ? labels.payUpi.replace("{amount}", format(chosenAmount))
+      : labels.payUpiNoAmount,
+  );
+
   const confirmLink = $derived.by(() => {
     const parts = [
-      `Donation`,
+      "Donation",
       `Cause: ${activeCause?.label ?? cause}`,
       chosenAmount ? `Amount: ₹${chosenAmount}` : null,
     ].filter(Boolean);
     return `${whatsapp}?text=${encodeURIComponent(parts.join("\n"))}`;
   });
-
-  const format = (n: number) => `₹${n.toLocaleString("en-IN")}`;
 </script>
 
-<div class="widget">
-  <div class="group" role="radiogroup" aria-labelledby="cause-label">
-    <p class="label" id="cause-label">{labels.cause}</p>
-    <div class="chips">
+<div class="receipt">
+  <div class="field">
+    <h2 class="field-title" id="purpose-label">{labels.purpose}</h2>
+    <ul class="options" role="radiogroup" aria-labelledby="purpose-label">
       {#each causes as c (c.value)}
-        <label class="chip" class:active={cause === c.value}>
-          <input type="radio" name="cause" value={c.value} bind:group={cause} />
-          <span>{c.label}</span>
-        </label>
+        <li>
+          <label class:active={cause === c.value}>
+            <input type="radio" name="cause" value={c.value} bind:group={cause} />
+            <span class="opt-label">{c.label}</span>
+            <span class="opt-tick" aria-hidden="true"></span>
+          </label>
+        </li>
       {/each}
-    </div>
+    </ul>
   </div>
 
-  <div class="amount-block">
-    <p class="label">{labels.amount}</p>
-    <div class="amounts">
+  <div class="field">
+    <h2 class="field-title" id="amount-label">{labels.amount}</h2>
+    <ul class="options" role="radiogroup" aria-labelledby="amount-label">
       {#each activeCause?.amounts ?? [] as a (a)}
-        <label class="chip chip--amount" class:active={!custom && amount === a}>
-          <input
-            type="radio"
-            name="amount"
-            value={a}
-            bind:group={amount}
-            onchange={() => (custom = "")}
-          />
-          <span>{format(a)}</span>
-        </label>
+        <li>
+          <label class:active={!custom && amount === a}>
+            <input
+              type="radio"
+              name="amount"
+              value={a}
+              bind:group={amount}
+              onchange={() => (custom = "")}
+            />
+            <span class="opt-label num">{format(a)}</span>
+            <span class="opt-tick" aria-hidden="true"></span>
+          </label>
+        </li>
       {/each}
-      <div class="chip chip--amount" class:active={Boolean(custom)}>
-        <span>₹</span>
-        <input
-          class="custom"
-          type="number"
-          min="1"
-          inputmode="numeric"
-          placeholder="Other"
-          aria-label="Custom amount"
-          bind:value={custom}
-          onfocus={() => (amount = null)}
-        />
-      </div>
+      <li>
+        <label class:active={Boolean(custom)}>
+          <span class="rup">₹</span>
+          <input
+            class="custom"
+            type="number"
+            min="1"
+            inputmode="numeric"
+            placeholder="Other"
+            aria-label="Custom amount"
+            bind:value={custom}
+            onfocus={() => (amount = null)}
+          />
+        </label>
+      </li>
+    </ul>
+  </div>
+
+  <p class="total">
+    <span>{labels.total}</span>
+    <strong class="num">{chosenAmount ? format(chosenAmount) : "—"}</strong>
+  </p>
+
+  <div class="pay">
+    <div class="qr" role="img" aria-label={labels.qr}>
+      {@html qrSvg}
+      <span class="qr-cap">{labels.qr}</span>
+    </div>
+
+    <div class="pay-side">
+      <p class="side-label">{labels.upi}</p>
+      <p class="upi-row">
+        <code>{upi}</code>
+        <button type="button" class="copy" onclick={copyUpi}>
+          {copied ? labels.copied : labels.copy}
+        </button>
+      </p>
+      <p class="alt">{labels.otherMethods}: Paytm {paytm} · Google Pay {gpay}</p>
+      <a class="pay-btn" href={link}>{payLabel}</a>
     </div>
   </div>
 
@@ -129,226 +184,284 @@
     <p class="notice" role="note">{labels.unverified}</p>
   {/if}
 
-  <div class="pay">
-    <div class="pay-main">
-      <p class="label">{labels.upi}</p>
-      <div class="upi">
-        <code>{upi}</code>
-        <button type="button" class="copy" onclick={copyUpi}
-          >{copied ? labels.copied : labels.copy}</button
-        >
-      </div>
-      <p class="alt-methods">
-        {labels.otherMethods}: Paytm {paytm} · Google Pay {gpay}
-      </p>
-    </div>
-
-    <div class="qr">
-      <div class="qr-box" role="img" aria-label={labels.qr}>
-        <span>{labels.qrPending}</span>
-      </div>
-      <p class="label">{labels.qr}</p>
-    </div>
-  </div>
-
-  <div class="confirm">
+  <div class="after">
     <h2>{labels.confirmTitle}</h2>
     <p>{labels.confirmBody}</p>
-    <p class="cause-note">{labels.causeNote}</p>
-    <div class="confirm-actions">
-      <a class="btn btn--primary" href={confirmLink}>{labels.whatsapp}</a>
-      <a class="link" href={`mailto:${email}`}>{email}</a>
-    </div>
+    <p class="note">{labels.causeNote}</p>
+    <p class="after-actions">
+      <a class="wa" href={confirmLink}>{labels.whatsapp}</a>
+      <a class="mail" href={`mailto:${email}`}>{email}</a>
+    </p>
   </div>
 </div>
 
+<div class="paybar">
+  <a class="paybar-btn" href={link}>{payLabel}</a>
+</div>
+
 <style>
-  .widget {
-    display: grid;
-    gap: var(--s-6);
+  .receipt {
+    max-width: 42rem;
+    margin-inline: auto;
+    background: var(--paper-raised);
+    border: 1px solid var(--rule-strong);
+    border-radius: var(--r-2);
+    padding: clamp(var(--s-5), 4vw, var(--s-7));
+    box-shadow: var(--shadow-lift);
   }
-  .group {
-    display: grid;
+
+  .field + .field {
+    margin-top: var(--s-6);
   }
-  .chips {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--s-2);
-  }
-  .label {
-    font-family: var(--font-mono);
-    font-size: var(--step--1);
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--ink-3);
-    padding: 0;
+  .field-title {
+    font-family: var(--font-body);
+    font-size: var(--step-0);
+    font-weight: 600;
+    color: var(--ink);
     margin: 0 0 var(--s-3);
   }
-  .chip {
-    display: inline-flex;
+
+  .options {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid var(--rule);
+  }
+  .options li {
+    border-bottom: 1px solid var(--rule);
+  }
+  .options label {
+    display: flex;
     align-items: center;
-    gap: var(--s-2);
-    border: 1px solid var(--rule-strong);
-    border-radius: 999px;
-    padding: 0.5em 1em;
+    gap: var(--s-3);
+    padding: var(--s-3) var(--s-2);
     cursor: pointer;
-    background: var(--paper-raised);
-    transition:
-      border-color var(--dur-1) var(--ease-out),
-      background var(--dur-1) var(--ease-out);
   }
-  .chip:hover {
-    border-color: var(--ink-3);
+  .options label:hover {
+    background: var(--ink-wash);
   }
-  .chip.active {
-    border-color: var(--clay);
+  .options label.active {
     background: var(--clay-wash);
   }
-  .chip input[type="radio"] {
+  .opt-label {
+    flex: 1;
+  }
+  .opt-tick {
+    inline-size: 0.85rem;
+    block-size: 0.85rem;
+    border: 1px solid var(--rule-strong);
+    border-radius: var(--r-1);
+  }
+  .options label.active .opt-tick {
+    background: var(--clay);
+    border-color: var(--clay);
+  }
+  .options input[type="radio"] {
     position: absolute;
     opacity: 0;
     pointer-events: none;
   }
-  .chip:has(input:focus-visible) {
+  .options label:has(input:focus-visible) {
     outline: 2px solid var(--clay);
     outline-offset: 2px;
   }
-  .amount-block {
-    padding-top: var(--s-2);
-  }
-  .amounts {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--s-2);
-  }
-  .chip--amount {
-    font-variant-numeric: tabular-nums;
-    font-family: var(--font-mono);
-    font-size: var(--step--1);
+  .rup {
+    color: var(--ink-2);
   }
   .custom {
     border: 0;
     background: transparent;
-    width: 7ch;
+    inline-size: 10ch;
     padding: 0;
-    font-family: var(--font-mono);
-    font-size: var(--step--1);
+    font: inherit;
     color: var(--ink);
   }
   .custom:focus-visible {
     outline: 0;
   }
+  .num {
+    font-variant-numeric: tabular-nums;
+  }
 
-  .notice {
-    margin: 0;
-    background: var(--turmeric-wash);
-    border: 1px solid var(--rule);
-    border-left: 3px solid var(--turmeric);
-    border-radius: var(--r-2);
-    padding: var(--s-4);
-    color: var(--ink-2);
-    font-size: var(--step--1);
+  .total {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--s-4);
+    margin: var(--s-6) 0 0;
+    padding-block: var(--s-4);
+    border-top: 2px solid var(--ink);
+    border-bottom: 1px solid var(--rule-strong);
+    font-weight: 600;
+  }
+  .total strong {
+    font-family: var(--font-display);
+    font-size: var(--step-3);
+    line-height: 1;
   }
 
   .pay {
     display: grid;
-    grid-template-columns: 1fr auto;
+    grid-template-columns: auto minmax(0, 1fr);
     gap: var(--s-6);
-    align-items: center;
-    border: 1px solid var(--rule);
-    border-radius: var(--r-3);
-    background: var(--paper-raised);
-    padding: var(--s-5);
+    align-items: start;
+    margin-top: var(--s-6);
   }
-  .upi {
+  .qr {
+    inline-size: 9.5rem;
+    display: grid;
+    gap: var(--s-2);
+    justify-items: center;
+    padding: var(--s-3);
+    background: #fff;
+    border: 1px solid var(--rule);
+    border-radius: var(--r-1);
+  }
+  .qr :global(svg) {
+    inline-size: 100%;
+    block-size: auto;
+  }
+  .qr-cap {
+    font-size: var(--step--1);
+    color: var(--ink-3);
+    text-align: center;
+  }
+  .side-label {
+    font-size: var(--step--1);
+    color: var(--ink-3);
+    margin: 0 0 var(--s-1);
+  }
+  .upi-row {
     display: flex;
     align-items: center;
     gap: var(--s-3);
     flex-wrap: wrap;
+    margin: 0;
   }
-  .upi code {
+  .upi-row code {
     font-family: var(--font-mono);
-    font-size: var(--step-1);
+    font-size: var(--step-0);
     background: var(--paper-sunk);
-    padding: 0.35em 0.6em;
-    border-radius: var(--r-2);
+    padding: 0.3em 0.55em;
+    border-radius: var(--r-1);
   }
   .copy {
     border: 1px solid var(--ink);
     background: transparent;
     color: var(--ink);
     border-radius: var(--r-2);
-    padding: 0.4em 0.9em;
+    padding: 0.35em 0.8em;
+    font: inherit;
     font-size: var(--step--1);
-    font-weight: 550;
   }
   .copy:hover {
     background: var(--ink);
     color: var(--paper-raised);
   }
-  .alt-methods {
-    margin: var(--s-4) 0 0;
+  .alt {
+    margin: var(--s-3) 0 0;
     font-size: var(--step--1);
     color: var(--ink-3);
-    font-family: var(--font-mono);
   }
-  .qr {
-    display: grid;
-    gap: var(--s-2);
-    justify-items: center;
-    text-align: center;
-  }
-  .qr-box {
-    width: 9rem;
-    aspect-ratio: 1;
-    display: grid;
-    place-items: center;
-    text-align: center;
-    padding: var(--s-3);
-    border: 1px dashed var(--rule-strong);
+  .pay-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: var(--s-4);
+    padding: 0.7em 1.4em;
+    background: var(--clay);
+    color: var(--paper-raised);
     border-radius: var(--r-2);
-    background: var(--paper-sunk);
-    color: var(--ink-3);
-    font-family: var(--font-mono);
-    font-size: 0.7rem;
-    line-height: 1.3;
+    text-decoration: none;
+    font-weight: 600;
   }
-  .qr .label {
-    margin: 0;
+  .pay-btn:hover {
+    background: var(--clay-deep);
   }
 
-  .confirm {
-    border-top: 1px solid var(--rule-strong);
+  .notice {
+    margin: var(--s-5) 0 0;
+    background: var(--turmeric-wash);
+    border: 1px solid var(--rule);
+    border-radius: var(--r-2);
+    padding: var(--s-4);
+    color: var(--ink-2);
+    font-size: var(--step--1);
+  }
+
+  .after {
+    margin-top: var(--s-6);
     padding-top: var(--s-5);
+    border-top: 1px dashed var(--rule-strong);
   }
-  .confirm h2 {
-    font-size: var(--step-2);
-    margin: 0 0 var(--s-3);
+  .after h2 {
+    font-size: var(--step-1);
+    margin: 0 0 var(--s-2);
   }
-  .confirm p {
+  .after p {
     color: var(--ink-2);
     margin: 0 0 var(--s-2);
-    max-width: 52ch;
+    max-width: 54ch;
   }
-  .cause-note {
-    font-family: var(--font-mono);
+  .after .note {
     font-size: var(--step--1);
     color: var(--ink-3);
   }
-  .confirm-actions {
+  .after-actions {
     display: flex;
     align-items: center;
     gap: var(--s-4);
     flex-wrap: wrap;
-    margin-top: var(--s-4);
+    margin-top: var(--s-3);
   }
-  .link {
+  .wa {
+    color: var(--clay-deep);
+    font-weight: 600;
+  }
+  .mail {
     color: var(--ink-2);
     font-size: var(--step--1);
+  }
+
+  /* The pay bar is a phone convenience: the one action never scrolls away. */
+  .paybar {
+    display: none;
   }
   @media (max-width: 40rem) {
     .pay {
       grid-template-columns: 1fr;
+      justify-items: center;
+      text-align: center;
+    }
+    .pay-side {
+      text-align: center;
+    }
+    .upi-row {
+      justify-content: center;
+    }
+    .pay-btn {
+      display: none;
+    }
+    .paybar {
+      display: block;
+      position: fixed;
+      inset: auto 0 0 0;
+      z-index: 60;
+      padding: var(--s-3) var(--gutter);
+      padding-bottom: max(var(--s-3), env(safe-area-inset-bottom));
+      background: var(--paper-raised);
+      border-top: 1px solid var(--rule-strong);
+    }
+    .paybar-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.8em 1.4em;
+      background: var(--clay);
+      color: var(--paper-raised);
+      border-radius: var(--r-2);
+      text-decoration: none;
+      font-weight: 600;
     }
   }
 </style>

@@ -13,6 +13,8 @@ export default defineConfig({
   site,
   base,
   integrations: [svelte(), sitemap()],
+  // Fixed so the site and its verifier cannot drift onto another project's port.
+  server: { port: 4322 },
   i18n: {
     defaultLocale: "en",
     locales: ["en", "kn"],

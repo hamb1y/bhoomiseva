@@ -2,7 +2,7 @@
 import type { Lang } from "../i18n/ui";
 import { useTranslations, localePath } from "../i18n/utils";
 import { pick, site } from "../data/site";
-import { nav } from "../lib/nav";
+import { footerNav } from "../lib/nav";
 import { Mail, Phone, MessageCircle, Facebook } from "lucide-astro";
 
 interface Props {
@@ -12,7 +12,7 @@ const { lang } = Astro.props;
 const t = useTranslations(lang);
 const year = new Date().getFullYear();
 
-const explore = nav.map((item) => ({ label: t(item.key), href: localePath(item.href, lang) }));
+const explore = footerNav.map((item) => ({ label: t(item.key), href: localePath(item.href, lang) }));
 
 const socials = [
   { label: "WhatsApp", href: site.whatsapp, Icon: MessageCircle },
@@ -134,11 +134,11 @@ const socials = [
     padding-block: var(--s-7) var(--s-8);
   }
   .head {
-    font-family: var(--font-mono);
+    font-family: var(--font-body);
     font-size: var(--step--1);
-    font-weight: 500;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 0;
+    text-transform: none;
     color: var(--ink-3);
     margin-bottom: var(--s-4);
   }

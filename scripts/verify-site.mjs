@@ -11,7 +11,7 @@ import puppeteer from "puppeteer-core";
 import { existsSync } from "node:fs";
 import { mkdir } from "node:fs/promises";
 
-const BASE = process.env.BASE || "http://localhost:4321";
+const BASE = process.env.BASE || "http://localhost:4322";
 const SHOTS = process.argv.includes("--shots");
 const OUT = ".verify";
 
@@ -204,16 +204,30 @@ await interaction("story filter", "/stories", async (page) => {
 });
 
 await interaction("donate widget", "/donate", async (page) => {
-  const chips = await page.$$(".group .chip");
-  await chips[2]?.click();
-  await new Promise((r) => setTimeout(r, 200));
-  return page.evaluate(() => ({
-    upi: document.querySelector(".upi code")?.textContent,
-    confirm: document
-      .querySelector(".confirm a.btn")
-      ?.getAttribute("href")
-      ?.startsWith("https://wa.me/"),
-  }));
+  // Pick the third purpose, then read the single UPI link that drives both the
+  // QR code and the pay button.
+  await page.evaluate(() => {
+    const options = document.querySelectorAll(".receipt .field:first-of-type .options label");
+    (options[2] ?? options[0])?.click();
+  });
+  await new Promise((r) => setTimeout(r, 250));
+  const result = await page.evaluate(() => {
+    const pay = document.querySelector(".receipt .pay-btn")?.getAttribute("href") ?? "";
+    return {
+      upi: document.querySelector(".receipt .upi-row code")?.textContent ?? "",
+      pay,
+      qr: Boolean(document.querySelector(".receipt .qr svg")),
+      whatsapp: Boolean(
+        document.querySelector(".receipt .after-actions .wa")?.getAttribute("href")?.startsWith("https://wa.me/"),
+      ),
+    };
+  });
+  if (!result.pay.startsWith("upi://pay?pa=")) {
+    throw new Error(`pay link is not a UPI link: ${result.pay || "(none)"}`);
+  }
+  if (!result.qr) throw new Error("no QR code rendered on the donation slip");
+  if (!result.whatsapp) throw new Error("no WhatsApp confirmation link on the donation slip");
+  return result;
 });
 
 // --- Sveltia CMS admin assets (static files; no CDN needed) ---

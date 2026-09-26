@@ -181,14 +181,21 @@ const mobileLinks = nav.map((item) => ({
     .lang {
       display: none;
     }
-    .donate {
-      display: none;
-    }
+    /* The one action stays in the bar, not only inside the menu. */
     .mobile {
       display: block;
     }
     .bar {
       min-height: 3.75rem;
+      gap: var(--s-3);
+    }
+    .donate {
+      padding: 0.45em 0.9em;
+    }
+  }
+  @media (max-width: 26rem) {
+    .name {
+      display: none;
     }
   }
 </style>
