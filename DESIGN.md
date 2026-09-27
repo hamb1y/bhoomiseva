@@ -13,17 +13,18 @@ The strongest thing about Bhoomi Seva is that its work is _documented_: real stu
 Three recurring devices:
 
 1. **Photographs lead.** Real photographs carry the pages — paired with text, laid full-bleed, or shown in galleries. Text supports the image rather than the other way round.
-2. **Dates and places are explicit.** Every story carries a date (or an honest period label) and a location, set in the condensed data face so they read as record rather than marketing.
+2. **Dates and places are explicit.** Every story carries a date (or an honest period label) and a location, set in mono so they read as record rather than marketing.
 3. **Evidence, not decoration.** Photographs are captioned and treated as documents. We never use a fake stock image.
 
 ### Earth and paper (the 2026 rework)
 
-The field notebook now has a second ground. Pages alternate between **paper** (the record) and **soil** (`--soil`, a deep brown-black used for full-width bands, the footer and the mobile menu), so a long page reads as strata rather than one cream scroll. The devices that carry it:
+The field notebook now has a second ground. Pages alternate between **paper** (the record) and **soil** (`--soil`, a deep brown-black used for full-width bands, the footer and the mobile menu), so a long page reads as strata rather than one cream scroll. Five devices carry it:
 
-1. **Photographs as evidence, first.** The home page opens on the promise and then a triptych of the three programmes' own photographs, one height, unequal widths, each captioned with the programme it shows. No collage, no shapes behind them.
-2. **Display type at scale.** The home headline uses `--step-6` (capped at ~6.2rem); inner pages open with `PageHead`, whose lede sits beside the title on wide screens.
-3. **Programme colour as ground.** Programme pages open on a full-bleed field of their own colour; on the home page each programme is a full-colour section, photograph alternating sides, using a gallery photograph that the hero has not already shown.
-4. **The record.** Story and event pages set programme / date / place / author as a ruled data strip, not as a sentence.
+1. **The sun on the horizon.** The logo mark is a sun over a horizon line. It returns as a flat clay disc behind the home collage, rising into the Donate band, as the zero of the 404, and behind the About lockup. It is always a solid shape, never a glow.
+2. **Display type at poster scale.** The home headline uses `--step-6` (up to ~6.4rem); inner pages open with a large `PageHead` whose lede sits beside the title on wide screens.
+3. **Programme colour as ground.** Programme pages open on a full-bleed field of their own colour; on the home page the three programmes are full-colour panels that pin under the header and slide over one another as you scroll (CSS `position: sticky`, only where a whole panel fits the viewport).
+4. **The record.** Story and event pages set programme / date / place / author as a ruled data strip in mono, not as a sentence.
+5. **The wordmark.** The footer ends with the organisation's name set edge to edge in clay.
 
 > **Removed by design (do not reintroduce):** the earlier "ledger scaffolding" — numbered `01 / 02 / 03` section markers, wide-tracked uppercase mono eyebrows, and a hairline rule above every block. With real photographs in place, that scaffolding competed with the content and made the layout monotonous. Eyebrows are now plain sentence-case labels; sections are separated by space, not rules.
 
@@ -35,8 +36,8 @@ Derived from current design-critique consensus. These are hard constraints.
 
 **Typography**
 
-- Never Inter, Geist, or a bare system stack — and not the other faces that now read as AI defaults either (Fraunces, Instrument Sans/Serif, Space Grotesk, IBM Plex Mono). We use **Tiro Kannada** and **Anek Kannada**: Indian-designed, and each covers Latin and Kannada as one family.
-- Real hierarchy: display and body differ in family, size and spacing; data is the body face condensed. No flat hierarchy.
+- Never Inter, Geist, or a bare system stack. We use Fraunces + Instrument Sans + IBM Plex Mono + Noto Kannada.
+- Real hierarchy: display, body and mono differ in size, weight _and_ spacing. No flat hierarchy.
 - No italic-serif-display cliché. No tiny "label above every heading". No badge pill above a headline.
 
 **Colour**
@@ -67,24 +68,6 @@ Derived from current design-critique consensus. These are hard constraints.
 - Specific and dated over grand and vague.
 
 ---
-
-### What reads as AI-generated in 2026 (and is banned here)
-
-Compiled from design-critique write-ups on "AI slop" and vibe-coded UI (Developers Digest's 16 patterns, TeneX Studio, 925 Studios, The Fountain Institute, Anthropic's note on distributional convergence). Each of these was either never used or has been removed from this site:
-
-- Default font pairings: Inter, Geist, Space Grotesk, Instrument Serif/Sans, Fraunces, IBM Plex Mono date stamps.
-- Purple/blue gradients, gradient text, coloured glows, glassmorphism, aurora backgrounds.
-- A badge, pill or eyebrow above every heading; a coloured "status dot" in front of labels that are not states. (Dots survive only where they are a key: the programme filter chips.)
-- Pills and big rounded corners on everything. Here radii are 2–8px; pills are gone.
-- Identical icon-card grids; a row of three same-size link tiles.
-- Stat-banner rows, decorative numbering (`01/02`), and oversized decorative numerals.
-- Decorative blobs and shapes behind photographs (the "sun disc" was removed for this reason).
-- Scroll-triggered fade-ins on every block, staggered entrance animations, scroll-jacking "stacking cards".
-- A giant edge-to-edge wordmark in the footer; a big CTA banner under every single page.
-- Repeating the same photograph twice on one page.
-- Copy: em dashes as a tic, "empower/seamless/world-class", unsourced numbers.
-
-The test: if a choice would be equally at home on any other site, it is not a choice.
 
 ## 3. Colour
 
@@ -123,16 +106,18 @@ Contrast: body text on paper must meet WCAG AA (4.5:1). On coloured grounds use 
 
 | Role            | Family                       | Notes                                                                          |
 | --------------- | ---------------------------- | ------------------------------------------------------------------------------ |
-| Display         | **Tiro Kannada**             | Tiro Typeworks. A Kannada-first serif whose Latin was drawn to sit with the Kannada. One weight (400); hierarchy comes from size. |
-| Body / UI       | **Anek Kannada Variable**    | Ek Type, Mumbai. Latin + Kannada, weight and width axes. |
-| Data            | **Anek Kannada, condensed**  | `font-stretch: 82%` + tabular numbers for dates, places, amounts. No monospace. |
+| Display         | **Fraunces Variable**        | `opsz` auto, `WONK 1`, weight 500–700. Warm, slightly wonky, letterpress feel. |
+| Body / UI       | **Instrument Sans Variable** | Clean, compact, characterful. Not Inter.                                       |
+| Meta / dates    | **IBM Plex Mono**            | Date stamps, place names, labels, numbers.                                     |
+| Kannada display | **Noto Serif Kannada**       | Falls back for display when Kannada is set.                                    |
+| Kannada body    | **Noto Sans Kannada**        | Falls back for body/UI.                                                        |
 
 Stacks:
 
 ```
---font-display: "Tiro Kannada", Georgia, serif;
---font-body:    "Anek Kannada Variable", system-ui, sans-serif;
---font-mono:    "Anek Kannada Variable", system-ui, sans-serif;  /* used condensed */
+--font-display: "Fraunces Variable", "Noto Serif Kannada", Georgia, serif;
+--font-body:    "Instrument Sans Variable", "Noto Sans Kannada", system-ui, sans-serif;
+--font-mono:    "IBM Plex Mono", "Noto Sans Kannada", ui-monospace, monospace;
 ```
 
 Scale (fluid, `clamp`), roughly 1.25–1.33 ratio:
@@ -185,15 +170,15 @@ Paper texture is a very subtle fractal-noise overlay at ~3% on the base body onl
 
 - **Button** — solid clay (primary), ink, light (on clay/soil), outline, text+underline. `--r-3`, generous padding. Hover: 2px lift + arrow nudge. No glow, no gradient.
 - **Arrow link** — underlined text link whose underline retracts and arrow nudges on hover.
-- **PageHead** — `--step-5` title, lede beside it on wide screens, and a sentence-case label only when it says something the title does not. Every inner page opens with it.
-- **Entry card** — 4:3 photograph; date, then the programme name in its colour; display title, summary, place. The whole card is the link. It is a size container: given ≥46rem (the first, newest entry of an unfiltered archive) it becomes a **lead** with the photograph beside the text.
+- **PageHead** — sentence-case label with a sun dot, `--step-5` title, lede beside it on wide screens. Every inner page opens with it.
+- **Entry card** — 4:3 photograph with a programme chip on it, date in mono, display title, summary, place. The whole card is the link. It is a size container: given ≥46rem (the first, newest entry of an unfiltered archive) it becomes a **lead** with the photograph beside the text.
 - **Filter bar** — programme chips with colour dots, year select, live count; sticks under the header on wide screens.
 - **Story page** — back pill, kicker, display title, a serif summary, the **record** strip (programme · date · place · author), a 3:2 photograph, body with an English-only drop cap, the letter/quote on the accent wash under a large opening quote mark, and people as pills.
-- **Programme panel** (home) — full-colour ground, activities as a slash-separated line, an underlined "Read more". Photograph side alternates.
+- **Programme panel** (home) — full-colour ground, activities as outlined pills, a tinted "Read more" button; panels stack on scroll.
 - **Programme row** (`/work`) — photograph with a block of the programme's colour offset behind it; sides alternate.
 - **Donate** — choices (cause tiles with colour dots, amount tiles, custom amount) on the left; a sticky soil **slip** on the right with the total at display size, the pay button, QR and UPI copy. On phones the slip follows the choices and a fixed pay bar keeps the action in reach.
-- **CTA band** — clay ground, light + outline buttons. On the home, work, programme, about and story pages; not at the foot of every archive list.
-- **Footer** — soil ground, tagline and mission, link columns, legal line.
+- **CTA band** — clay ground, rising sun disc, light + outline buttons.
+- **Footer** — soil ground, tagline and mission, link columns, the edge-to-edge wordmark.
 - **Empty photo frame** — falls back to a `--paper-sunk` panel with a dashed inset when no image exists. Never a broken image.
 - **Gallery** — CSS-columns masonry on programme pages; every photograph keeps its own shape and opens in the lightbox.
 
@@ -210,9 +195,9 @@ Interactive (Svelte islands): mobile nav, donate widget, volunteer/contact form,
 --dur-1: 140ms; --dur-2: 240ms; --dur-3: 420ms;
 ```
 
-Allowed: colour/underline transitions on links, arrow shifts on buttons, a 2px lift on buttons and tiles, and lightbox scale from 0.98.
+Allowed: colour/underline transitions on links, arrow shifts on buttons, a 2px lift on buttons and tiles, lightbox scale from 0.98, the hero collage settling in once on load, and the mobile menu wiping open.
 
-No entrance animations, no scroll reveals, no staggered menus. The one scroll-driven effect is functional: the header gains its hairline once the page scrolls (`animation-timeline: scroll()`); without support it simply shows the hairline.
+**Scroll-driven, CSS only.** `.reveal` blocks settle up by 1.5rem as they enter (`animation-timeline: view()`); the header gains its hairline once the page scrolls (`animation-timeline: scroll()`). These **animate position only, never opacity** — if the timeline is inactive (a page too short to scroll, print, a screenshot) the content must still be fully visible. Browsers without support simply see the static page.
 
 ---
 
@@ -231,7 +216,7 @@ No entrance animations, no scroll reveals, no staggered menus. The one scroll-dr
 
 - **Eyebrow / label** — sentence case, body sans, weight 600, no uppercase, no wide tracking. Takes the section's accent colour where one is set. (The old wide-tracked uppercase mono eyebrow is banned.)
 - **Mono is reserved for data**: dates, periods, places, counts. Not for decoration or headings.
-- **Display** — Tiro Kannada at 400. Used for page and section headings, story titles and quoted letters. Never for body copy.
+- **Display** — Fraunces with `WONK 1` and optical sizing. Used for page and section headings, story titles and pull quotes. Never for body copy.
 
 ---
 

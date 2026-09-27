@@ -27,7 +27,12 @@ const socials = [
   <div class="container">
     <div class="top">
       <p class="tagline">{t("site.tagline")}</p>
-      <p class="mission">{pick(site.mission, lang)}</p>
+      <div class="top-side">
+        <p class="mission">{pick(site.mission, lang)}</p>
+        <a class="btn btn--primary" href={localePath("/donate", lang)}>
+          {t("cta.donate")}
+        </a>
+      </div>
     </div>
 
     <div class="cols">
@@ -82,6 +87,10 @@ const socials = [
     </div>
   </div>
 
+  <p class="wordmark" aria-hidden="true">
+    {t("site.name")}
+  </p>
+
   <div class="container">
     <div class="foot">
       <span>
@@ -105,6 +114,7 @@ const socials = [
 <style>
   .site-foot {
     padding-top: var(--section);
+    overflow: hidden;
   }
   .top {
     display: grid;
@@ -116,12 +126,21 @@ const socials = [
   }
   .tagline {
     font-family: var(--font-display);
+    font-variation-settings:
+      "WONK" 1,
+      "SOFT" 50;
+    font-weight: 520;
     font-size: var(--step-4);
     line-height: 1.02;
     letter-spacing: -0.03em;
     max-width: 16ch;
     margin: 0;
     text-wrap: balance;
+  }
+  .top-side {
+    display: grid;
+    gap: var(--s-5);
+    justify-items: start;
   }
   .mission {
     color: var(--on-soil-2);
@@ -168,6 +187,30 @@ const socials = [
   .col a:hover {
     color: var(--clay-bright);
   }
+  /* The name, set edge to edge, as the last thing on every page. */
+  .wordmark {
+    margin: var(--s-5) 0 0;
+    font-family: var(--font-display);
+    font-variation-settings:
+      "opsz" 144,
+      "WONK" 1,
+      "SOFT" 100;
+    font-weight: 600;
+    font-size: clamp(3.5rem, 16.5vw, 19rem);
+    line-height: 0.8;
+    letter-spacing: -0.055em;
+    text-align: center;
+    white-space: nowrap;
+    color: var(--clay);
+    user-select: none;
+    translate: 0 0.1em;
+  }
+  :global(:lang(kn)) .wordmark {
+    font-size: clamp(3rem, 14vw, 16rem);
+    letter-spacing: 0;
+    line-height: 1.1;
+    translate: 0 0.12em;
+  }
   .foot {
     display: flex;
     flex-wrap: wrap;
@@ -177,10 +220,10 @@ const socials = [
     border-top: 1px solid var(--soil-rule);
     padding-block: var(--s-5);
     font-family: var(--font-mono);
-    font-stretch: 82%;
-    font-variant-numeric: tabular-nums;
     font-size: var(--step--1);
     color: var(--on-soil-3);
+    position: relative;
+    background: var(--soil);
   }
   .credit a {
     color: var(--on-soil-2);

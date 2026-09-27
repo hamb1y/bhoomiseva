@@ -216,6 +216,10 @@
   }
   .field-title {
     font-family: var(--font-display);
+    font-variation-settings:
+      "opsz" 40,
+      "WONK" 1,
+      "SOFT" 60;
     font-size: var(--step-2);
     font-weight: 540;
     color: var(--ink);
@@ -375,6 +379,10 @@
   }
   .total strong {
     font-family: var(--font-display);
+    font-variation-settings:
+      "opsz" 144,
+      "WONK" 1,
+      "SOFT" 80;
     font-weight: 560;
     font-size: clamp(3rem, 2rem + 4vw, 5rem);
     letter-spacing: -0.04em;
@@ -382,8 +390,6 @@
   }
   .total-cause {
     font-family: var(--font-mono);
-    font-stretch: 82%;
-    font-variant-numeric: tabular-nums;
     font-size: var(--step--1);
     color: var(--clay-bright);
   }
@@ -441,8 +447,6 @@
   }
   .upi-row code {
     font-family: var(--font-mono);
-    font-stretch: 82%;
-    font-variant-numeric: tabular-nums;
     font-size: var(--step--1);
     background: var(--soil-2);
     border: 1px solid var(--soil-rule);

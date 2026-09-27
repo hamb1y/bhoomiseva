@@ -6,6 +6,7 @@ import { yearOf } from "../utils/format";
 import type { Entry } from "../data/types";
 import EntryCard from "../components/EntryCard.astro";
 import EntryFilter from "../components/EntryFilter.svelte";
+import CTABand from "../components/CTABand.astro";
 import PageHead from "../components/PageHead.astro";
 import { Clock } from "lucide-astro";
 
@@ -33,6 +34,9 @@ interface Props {
   showProgram?: boolean;
   showAuthor?: boolean;
   showYear?: boolean;
+  ctaKicker?: string;
+  ctaTitle?: string;
+  ctaBody?: string;
 }
 
 const {
@@ -52,6 +56,9 @@ const {
   showProgram = false,
   showAuthor = false,
   showYear = false,
+  ctaKicker,
+  ctaTitle,
+  ctaBody,
 } = Astro.props;
 
 const t = useTranslations(lang);
@@ -127,6 +134,13 @@ const isEmpty = entries.length === 0;
   </section>
 
   <slot name="after" />
+
+  <CTABand
+    lang={lang}
+    kicker={ctaKicker ?? t("home.impact.kicker")}
+    title={ctaTitle ?? t("home.impact.title")}
+    body={ctaBody ?? t("home.impact.body")}
+  />
 </BaseLayout>
 
 <style>
@@ -149,8 +163,6 @@ const isEmpty = entries.length === 0;
   }
   .count {
     font-family: var(--font-mono);
-    font-stretch: 82%;
-    font-variant-numeric: tabular-nums;
     font-size: var(--step--1);
     color: var(--ink-2);
     margin: 0;

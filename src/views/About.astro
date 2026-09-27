@@ -22,12 +22,15 @@ const hasLogo = existsSync("public/images/logo.webp");
   <header class="page-head">
     <div class="container head-grid">
       <div>
-        <p class="eyebrow">{t("about.kicker")}</p>
+        <p class="eyebrow eyebrow--dot">{t("about.kicker")}</p>
         <h1>{t("about.title")}</h1>
         <p class="lede head-lede">{t("about.lede")}</p>
       </div>
       {hasLogo && (
         <div class="lockup-wrap">
+          <svg class="sun" viewBox="0 0 200 200" aria-hidden="true">
+            <circle cx="100" cy="100" r="100"></circle>
+          </svg>
           <img
             class="lockup"
             src={asset("/images/logo.webp")}
@@ -53,11 +56,11 @@ const hasLogo = existsSync("public/images/logo.webp");
   <section class="mv soil">
     <div class="container mv-grid">
       <div class="mv-block">
-        <p class="eyebrow">{t("about.mission")}</p>
+        <p class="eyebrow eyebrow--dot">{t("about.mission")}</p>
         <p class="mv-text">{pick(site.mission, lang)}</p>
       </div>
       <div class="mv-block accent-farmers">
-        <p class="eyebrow">{t("about.vision")}</p>
+        <p class="eyebrow eyebrow--dot">{t("about.vision")}</p>
         <p class="mv-text">{pick(site.vision, lang)}</p>
       </div>
     </div>
@@ -78,7 +81,7 @@ const hasLogo = existsSync("public/images/logo.webp");
 
       <ul class="people">
         {team.map((person) => (
-          <li>
+          <li class="reveal">
             <div class="portrait">
               {person.photo && (
                 <img
@@ -136,6 +139,12 @@ const hasLogo = existsSync("public/images/logo.webp");
     place-items: center;
     padding: var(--s-6);
   }
+  .sun {
+    position: absolute;
+    width: 100%;
+    max-width: 22rem;
+    fill: var(--paper-raised);
+  }
   .lockup {
     position: relative;
     width: clamp(9rem, 16vw, 13rem);
@@ -161,6 +170,10 @@ const hasLogo = existsSync("public/images/logo.webp");
   .intro p.first {
     grid-column: 1 / -1;
     font-family: var(--font-display);
+    font-variation-settings:
+      "opsz" 60,
+      "WONK" 1,
+      "SOFT" 60;
     font-weight: 420;
     font-size: var(--step-3);
     line-height: 1.22;
@@ -185,6 +198,10 @@ const hasLogo = existsSync("public/images/logo.webp");
   }
   .mv-text {
     font-family: var(--font-display);
+    font-variation-settings:
+      "opsz" 60,
+      "WONK" 1,
+      "SOFT" 60;
     font-weight: 420;
     font-size: var(--step-3);
     line-height: 1.2;
@@ -260,8 +277,6 @@ const hasLogo = existsSync("public/images/logo.webp");
   }
   .role {
     font-family: var(--font-mono);
-    font-stretch: 82%;
-    font-variant-numeric: tabular-nums;
     font-size: var(--step--1);
     color: var(--clay-deep);
     margin: var(--s-2) 0 var(--s-3);

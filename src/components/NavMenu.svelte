@@ -136,6 +136,13 @@
     border-radius: var(--r-4);
     box-shadow: var(--shadow-deep);
     z-index: 80;
+    animation: drop var(--dur-2) var(--ease-out);
+  }
+  @keyframes drop {
+    from {
+      opacity: 0;
+      translate: 0 -4px;
+    }
   }
   .menu a {
     display: flex;
@@ -147,6 +154,23 @@
     color: var(--ink);
     font-size: var(--step-0);
     font-weight: 500;
+  }
+  .menu a::before {
+    content: "";
+    width: 0.6rem;
+    height: 0.6rem;
+    border-radius: 50%;
+    background: var(--dot, var(--clay));
+    flex: none;
+  }
+  .dot-education {
+    --dot: var(--turmeric);
+  }
+  .dot-farmers {
+    --dot: var(--leaf);
+  }
+  .dot-children {
+    --dot: var(--indigo);
   }
   .menu a:hover {
     background: var(--ink-wash);

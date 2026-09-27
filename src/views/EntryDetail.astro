@@ -51,11 +51,11 @@ const dateLabel = entry.date
 const record = [
   showAuthor && entry.author ? { label: t("story.record.author"), value: entry.author } : null,
   showProgram && program
-    ? { label: t("stories.filter.programme"), value: lx(program.kicker, lang) }
+    ? { label: t("stories.filter.programme"), value: lx(program.kicker, lang), dot: true }
     : null,
   { label: t("story.record.date"), value: dateLabel },
   entry.location ? { label: t("story.record.place"), value: lx(entry.location, lang) } : null,
-].filter(Boolean) as { label: string; value: string }[];
+].filter(Boolean) as { label: string; value: string; dot?: boolean }[];
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -81,8 +81,8 @@ const jsonLd = {
         {backLabel}
       </a>
 
-      {entry.author && showAuthor && <p class="eyebrow">{entry.author}</p>}
-      {!showAuthor && program && <p class="eyebrow">{lx(program.kicker, lang)}</p>}
+      {entry.author && showAuthor && <p class="eyebrow eyebrow--dot">{entry.author}</p>}
+      {!showAuthor && program && <p class="eyebrow eyebrow--dot">{lx(program.kicker, lang)}</p>}
       <h1>{lx(entry.title, lang)}</h1>
       <p class="summary">{lx(entry.summary, lang)}</p>
 
@@ -90,7 +90,7 @@ const jsonLd = {
         {record.map((item) => (
           <div>
             <dt>{item.label}</dt>
-            <dd>{item.value}</dd>
+            <dd class:list={{ dot: item.dot }}>{item.value}</dd>
           </div>
         ))}
       </dl>
@@ -117,6 +117,9 @@ const jsonLd = {
 
       {entry.quote ? (
         <figure class="quote">
+          <span class="mark" aria-hidden="true">
+            “
+          </span>
           <p class="quote-label">{t("story.quoteLabel")}</p>
           <blockquote>{lx(entry.quote.text, lang)}</blockquote>
           <figcaption>{lx(entry.quote.attribution, lang)}</figcaption>
@@ -126,7 +129,9 @@ const jsonLd = {
       {entry.people?.length ? (
         <p class="people">
           <span class="people-label">{t("story.people")}</span>
-          <span>{entry.people.join(", ")}</span>
+          {entry.people.map((name) => (
+            <span class="person">{name}</span>
+          ))}
         </p>
       ) : null}
     </div>
@@ -178,13 +183,19 @@ const jsonLd = {
     font-weight: 600;
     color: var(--ink-2);
     margin-bottom: var(--s-7);
-    transition: color var(--dur-1) var(--ease-out);
+    padding: 0.45rem 0.9rem 0.45rem 0.7rem;
+    border: 1px solid var(--rule-strong);
+    border-radius: 999px;
+    transition:
+      color var(--dur-1) var(--ease-out),
+      border-color var(--dur-1) var(--ease-out);
   }
   .back :global(svg) {
     transition: transform var(--dur-2) var(--ease-out);
   }
   .back:hover {
     color: var(--ink);
+    border-color: var(--ink);
   }
   .back:hover :global(svg) {
     transform: translateX(-3px);
@@ -197,6 +208,10 @@ const jsonLd = {
   .summary {
     font-size: var(--step-2);
     font-family: var(--font-display);
+    font-variation-settings:
+      "opsz" 36,
+      "WONK" 1,
+      "SOFT" 60;
     font-weight: 380;
     line-height: 1.35;
     color: var(--ink-2);
@@ -231,11 +246,22 @@ const jsonLd = {
   dd {
     margin: 0;
     font-family: var(--font-mono);
-    font-stretch: 82%;
-    font-variant-numeric: tabular-nums;
-    font-size: var(--step-0);
+    font-size: var(--step--1);
     color: var(--ink);
     line-height: 1.45;
+  }
+  dd.dot {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5em;
+  }
+  dd.dot::before {
+    content: "";
+    width: 0.6em;
+    height: 0.6em;
+    border-radius: 50%;
+    background: var(--accent-fill);
+    flex: none;
   }
   @media (max-width: 40rem) {
     .record > div + div {
@@ -264,6 +290,10 @@ const jsonLd = {
   }
   [data-lang="en"] .body p:first-child::first-letter {
     font-family: var(--font-display);
+    font-variation-settings:
+      "opsz" 144,
+      "WONK" 1,
+      "SOFT" 100;
     font-weight: 600;
     font-size: 4.1em;
     line-height: 0.8;
@@ -276,8 +306,22 @@ const jsonLd = {
     position: relative;
     margin: var(--s-8) 0 0;
     padding: clamp(2rem, 5vw, 3.5rem);
+    padding-top: clamp(3.5rem, 7vw, 5rem);
     background: var(--accent-wash);
     border-radius: var(--r-4);
+  }
+  .mark {
+    position: absolute;
+    top: -0.15em;
+    left: clamp(1.25rem, 4vw, 2.75rem);
+    font-family: var(--font-display);
+    font-variation-settings:
+      "opsz" 144,
+      "SOFT" 100;
+    font-weight: 700;
+    font-size: clamp(6rem, 14vw, 9rem);
+    line-height: 1;
+    color: var(--accent-fill);
   }
   .quote-label {
     font-size: var(--step--1);
@@ -288,6 +332,10 @@ const jsonLd = {
   .quote blockquote {
     margin: 0;
     font-family: var(--font-display);
+    font-variation-settings:
+      "opsz" 30,
+      "WONK" 1,
+      "SOFT" 60;
     font-weight: 420;
     font-size: var(--step-2);
     line-height: 1.42;
@@ -306,7 +354,10 @@ const jsonLd = {
     color: var(--ink-2);
   }
   .quote figcaption::before {
-    content: "—";
+    content: "";
+    width: 2rem;
+    height: 2px;
+    background: var(--accent-fill);
   }
   .people {
     display: flex;
@@ -321,6 +372,12 @@ const jsonLd = {
     font-weight: 600;
     color: var(--ink-3);
     margin-right: var(--s-2);
+  }
+  .person {
+    padding: 0.3em 0.8em;
+    border-radius: 999px;
+    background: var(--paper-sunk);
+    color: var(--ink);
   }
   .related h2 {
     font-size: var(--step-3);
