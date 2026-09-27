@@ -60,7 +60,7 @@ src/
     load.ts      converts the CMS file shape into the site's types
     *.ts         typed collections: stories, events, blogs, programs, team, site
     types.ts     Story, Entry, Blog, Program, Person, Site
-  i18n/          ui.ts string dictionary, utils.ts helpers
+  i18n/          ui.ts (reads content/copy.json), utils.ts helpers
   layouts/       BaseLayout.astro
   lib/           nav.ts, paths.ts
   pages/         file-based routes; /kn/* mirrors the English routes
@@ -90,7 +90,8 @@ scripts/         optimize-images.mjs, make-logo.mjs, verify-site.mjs
 ## Internationalisation
 
 - Locales: `en` (default, unprefixed) and `kn` (prefixed `/kn/`).
-- UI strings: `src/i18n/ui.ts`. Use `useTranslations(lang)`.
+- UI strings: `content/copy.json`, edited in the CMS as "Interface text". Use `useTranslations(lang)`. A new key goes in both locale blocks and in the copy file's fields in `config.yml`; a field named `self` is the label of its own group (`nav.work.self` is read as `nav.work`).
+- Never hardcode visible text or figures in a view — put it in `content/` so editors can change it.
 - Content fields: `Localized = string | { en: string; kn?: string }`; missing `kn` falls back to `en`.
 - Sveltia uses the `single_file` structure, so each entry file is `{ "en": {…}, "kn": {…} }`. `src/data/load.ts` converts that to the `{ en, kn }` per-field shape the site uses.
 - **Kannada copy is a first pass and must be reviewed by a native speaker.** Do not machine-translate long-form content into the CMS.

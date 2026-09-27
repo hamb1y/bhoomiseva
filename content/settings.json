@@ -6,14 +6,40 @@
     "phone_href": "+919900103178",
     "whatsapp": "https://wa.me/919900103178",
     "socials": {
-      "facebook": "https://www.facebook.com/bhoomiseve",
-      "whatsappGroup": "https://chat.whatsapp.com/"
+      "facebook": "https://www.facebook.com/bhoomiseve"
     },
     "payment": {
       "upi": "9900103178@ybl",
       "paytm": "+91 9900103178",
       "gpay": "+91 9900103178",
       "verified": true
+    },
+    "donation_amounts": {
+      "education": [
+        1000,
+        5000,
+        10000
+      ],
+      "farmers": [
+        1000,
+        3000,
+        5000
+      ],
+      "cow": [
+        10000,
+        25000,
+        50000
+      ],
+      "children": [
+        6000,
+        12000,
+        25000
+      ],
+      "any": [
+        1000,
+        5000,
+        10000
+      ]
     },
     "mission": "Bhoomi Seva's mission is to reach out and help people in need in various ways, especially the rural population, and to rejuvenate our environment within our capacity.",
     "vision": "To uplift the rural population and improve the fertility of soil by encouraging farmers to take up agroforestry and/or natural farming, in the Kanakapura area to start with.",
@@ -48,17 +74,17 @@
       },
       {
         "image": "/images/cow-boregowda-2025.webp",
-        "caption": "Cow donation to BoreGowda",
+        "caption": "Cow donation to Boregowda",
         "date": "2025-06"
       },
       {
-        "image": "/images/meal-rishi-birthday-2025.webp",
-        "caption": "A meal at the orphanage for Rishi's birthday",
+        "image": "/images/meal-orphanage-2025.webp",
+        "caption": "A meal at the orphanage",
         "date": "2025-06"
       },
       {
-        "image": "/images/meal-rishi-birthday-2025-2.webp",
-        "caption": "Serving the birthday meal",
+        "image": "/images/meal-orphanage-2025-2.webp",
+        "caption": "Serving the meal",
         "date": "2025-06"
       }
     ]
@@ -99,13 +125,13 @@
         "date": "2025-06"
       },
       {
-        "image": "/images/meal-rishi-birthday-2025.webp",
-        "caption": "ರಿಷಿ ಅವರ ಹುಟ್ಟುಹಬ್ಬಕ್ಕೆ ಅನಾಥಾಶ್ರಮದಲ್ಲಿ ಊಟ",
+        "image": "/images/meal-orphanage-2025.webp",
+        "caption": "ಅನಾಥಾಶ್ರಮದಲ್ಲಿ ಊಟ",
         "date": "2025-06"
       },
       {
-        "image": "/images/meal-rishi-birthday-2025-2.webp",
-        "caption": "ಹುಟ್ಟುಹಬ್ಬದ ಊಟ ಬಡಿಸುತ್ತಿರುವುದು",
+        "image": "/images/meal-orphanage-2025-2.webp",
+        "caption": "ಊಟ ಬಡಿಸುತ್ತಿರುವುದು",
         "date": "2025-06"
       }
     ]

@@ -1,7 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import type { Lang } from "../i18n/ui";
-import { useTranslations, lx } from "../i18n/utils";
+import { useTranslations } from "../i18n/utils";
 import { site } from "../data/site";
 import DonateWidget from "../components/DonateWidget.svelte";
 import PageHead from "../components/PageHead.astro";
@@ -13,33 +13,12 @@ interface Props {
 const { lang } = Astro.props;
 const t = useTranslations(lang);
 
-const causes = [
-  {
-    value: "education",
-    label: t("cause.education"),
-    amounts: [1000, 5000, 10000],
-  },
-  {
-    value: "farmers",
-    label: t("cause.farmers"),
-    amounts: [1000, 3000, 5000],
-  },
-  {
-    value: "cow",
-    label: t("cause.cow"),
-    amounts: [10000, 25000, 50000],
-  },
-  {
-    value: "children",
-    label: t("cause.children"),
-    amounts: [6000, 12000, 25000],
-  },
-  {
-    value: "any",
-    label: t("cause.any"),
-    amounts: [1000, 5000, 10000],
-  },
-];
+// Suggested amounts are set per cause in Site settings.
+const causes = (["education", "farmers", "cow", "children", "any"] as const).map((value) => ({
+  value,
+  label: t(`cause.${value}`),
+  amounts: site.donationAmounts[value] ?? [],
+}));
 
 const labels = {
   purpose: t("donate.cause"),
@@ -86,13 +65,7 @@ const labels = {
       <p class="note">
         <ShieldCheck size={22} stroke-width={1.7} aria-hidden="true" />
         <span>
-          {lx(
-            {
-              en: "Bhoomi Seva is small and volunteer-run, so every contribution is recorded by name and purpose and reported back to the donor. We do not use a payment gateway — transfers go directly to the organisation's UPI account, which keeps more of your money in the work.",
-              kn: "ಭೂಮಿ ಸೇವಾ ಸಣ್ಣ ಸಂಸ್ಥೆ; ಸ್ವಯಂಸೇವಕರೇ ನಡೆಸುತ್ತಾರೆ. ಆದ್ದರಿಂದ ಪ್ರತಿ ಕೊಡುಗೆಯನ್ನೂ ಹೆಸರು ಮತ್ತು ಉದ್ದೇಶದೊಂದಿಗೆ ದಾಖಲಿಸಿ, ದಾನಿಗೆ ಮಾಹಿತಿ ನೀಡುತ್ತೇವೆ. ನಾವು ಪಾವತಿ ಗೇಟ್‌ವೇ ಬಳಸುವುದಿಲ್ಲ — ಹಣ ನೇರವಾಗಿ ಸಂಸ್ಥೆಯ ಯುಪಿಐ ಖಾತೆಗೆ ಬರುತ್ತದೆ; ಇದರಿಂದ ನಿಮ್ಮ ಹೆಚ್ಚು ಹಣ ಕೆಲಸಕ್ಕೇ ಸಿಗುತ್ತದೆ.",
-            },
-            lang,
-          )}
+          {t("donate.accountability")}
         </span>
       </p>
     </div>

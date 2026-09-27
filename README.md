@@ -71,7 +71,7 @@ src/
     load.ts       converts the content file shape into the site's types
     *.ts          typed collections: stories, events, blogs, programs, team, site
     types.ts      Story, Entry, Blog, Program, Person, Site
-  i18n/           ui.ts dictionary + utils.ts helpers
+  i18n/           ui.ts (reads content/copy.json) + utils.ts helpers
   layouts/        BaseLayout
   pages/          file-based routes; /kn/* mirrors English
   styles/         tokens.css + global.css

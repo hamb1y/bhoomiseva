@@ -21,20 +21,6 @@ const program = programById(id)!;
 const related = storiesByProgram(id);
 const others = programs.filter((p) => p.id !== id);
 
-const photoCaption = {
-  education: {
-    en: "Tutoring session with students",
-    kn: "ವಿದ್ಯಾರ್ಥಿಗಳೊಂದಿಗೆ ಪಾಠದ ಅವಧಿ",
-  },
-  farmers: {
-    en: "Farmer training at Chirantana School, Kabbalu",
-    kn: "ಚಿರಂತನ ಶಾಲೆ, ಕಬ್ಬಾಳಿನಲ್ಲಿ ರೈತ ತರಬೇತಿ",
-  },
-  children: {
-    en: "Support delivered to a children's home",
-    kn: "ಮಕ್ಕಳ ಮನೆಗೆ ನೀಡಿದ ಬೆಂಬಲ",
-  },
-}[id];
 ---
 
 <BaseLayout
@@ -53,7 +39,7 @@ const photoCaption = {
       <PhotoFrame
         src={program.image}
         alt={program.imageAlt ? lx(program.imageAlt, lang) : lx(program.title, lang)}
-        caption={program.imageAlt ? lx(program.imageAlt, lang) : lx(photoCaption, lang)}
+        caption={program.imageAlt ? lx(program.imageAlt, lang) : lx(program.title, lang)}
         focal={program.imageFocal}
         lightbox
         lightboxGroup={program.id}
@@ -67,7 +53,7 @@ const photoCaption = {
   <section class:list={["activities", `accent-${program.accent}`]}>
     <div class="container">
       <h2 class="activities-title">
-        {lx({ en: "What this includes", kn: "ಇದರಲ್ಲಿ ಸೇರಿರುವುದು" }, lang)}
+        {t("work.includes")}
       </h2>
       <ul class="list">
         {program.activities.map((a) => (

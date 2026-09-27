@@ -198,6 +198,12 @@ export function toSite(file: ContentFile): Site {
       gpay: payment.gpay ?? "",
       verified: Boolean(payment.verified),
     },
+    donationAmounts: Object.fromEntries(
+      Object.entries(shared<Record<string, unknown>>(file, "donation_amounts") ?? {}).map(([cause, amounts]) => [
+        cause,
+        Array.isArray(amounts) ? amounts.filter((n): n is number => typeof n === "number" && n > 0) : [],
+      ]),
+    ),
     mission: text(file, "mission") ?? { en: "" },
     vision: text(file, "vision") ?? { en: "" },
     shortDescription: text(file, "short_description") ?? { en: "" },

@@ -4,8 +4,8 @@ import { base } from "../utils/url";
 export function useTranslations(lang: Lang) {
   return function t(key: UIKey): string {
     return (
-      (ui[lang] as Record<string, string>)[key] ??
-      (ui[defaultLang] as Record<string, string>)[key] ??
+      ui[lang][key] ??
+      ui[defaultLang][key] ??
       key
     );
   };

@@ -100,6 +100,8 @@ export interface Site {
   whatsapp: string;
   socials: { facebook: string; whatsappGroup: string };
   payment: { upi: string; paytm: string; gpay: string; verified: boolean };
+  /** Suggested amounts in rupees on the Donate page, per cause. */
+  donationAmounts: Record<string, number[]>;
   mission: Localized;
   vision: Localized;
   shortDescription: Localized;

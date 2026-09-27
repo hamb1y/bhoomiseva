@@ -13,6 +13,11 @@ interface Props {
 const { lang } = Astro.props;
 const t = useTranslations(lang);
 
+// Show the number the WhatsApp link opens, e.g. wa.me/919900103178 -> +91 9900103178.
+const waDigits = site.whatsapp.match(/wa\.me\/(\d+)/)?.[1] ?? "";
+const whatsappNumber =
+  waDigits.length === 12 && waDigits.startsWith("91") ? `+91 ${waDigits.slice(2)}` : waDigits ? `+${waDigits}` : site.phone;
+
 const fields = [
   { name: "name", label: t("form.name"), required: true },
   { name: "email", label: t("form.email"), type: "email" as const, required: true },
@@ -65,7 +70,7 @@ const fields = [
             <span class="label">WhatsApp</span>
             <a class="value" href={site.whatsapp}>
               <MessageCircle size={20} stroke-width={1.6} aria-hidden="true" />
-              +91 9900103178
+              {whatsappNumber}
             </a>
           </li>
           {site.socials.facebook && (

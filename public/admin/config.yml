@@ -314,6 +314,17 @@ collections:
                 widget: boolean
                 default: false
                 hint: Tick only once the payment details have been confirmed current.
+          - label: Suggested donation amounts
+            name: donation_amounts
+            widget: object
+            i18n: duplicate
+            hint: "Rupee amounts offered on the Donate page for each cause. The second one is picked first."
+            fields:
+              - { label: "Education", name: education, widget: list, field: { label: Amount, name: amount, widget: number, value_type: int } }
+              - { label: "Farmer support", name: farmers, widget: list, field: { label: Amount, name: amount, widget: number, value_type: int } }
+              - { label: "Cow donation", name: cow, widget: list, field: { label: Amount, name: amount, widget: number, value_type: int } }
+              - { label: "Orphanage meal", name: children, widget: list, field: { label: Amount, name: amount, widget: number, value_type: int } }
+              - { label: "Any", name: any, widget: list, field: { label: Amount, name: amount, widget: number, value_type: int } }
           - { label: Mission, name: mission, widget: text, i18n: true }
           - { label: Vision, name: vision, widget: text, i18n: true }
           - { label: Short description, name: short_description, widget: text, i18n: true }
@@ -343,3 +354,441 @@ collections:
               i18n: duplicate,
             }
           - { label: Credit link, name: credit_url, widget: string, required: false, i18n: duplicate }
+
+      - name: copy
+        label: Interface text
+        file: content/copy.json
+        i18n: true
+        description: "Headings, introductions, buttons and labels across the site. Each section is one page or part of the page."
+        fields:
+          - name: "site"
+            label: "Site"
+            widget: object
+            i18n: true
+            collapsed: true
+            fields:
+              - { name: "name", label: "Name", widget: string, i18n: true }
+              - { name: "tagline", label: "Tagline", widget: string, i18n: true }
+          - name: "common"
+            label: "Shared labels"
+            widget: object
+            i18n: true
+            collapsed: true
+            fields:
+              - { name: "readEntry", label: "Read entry", widget: string, i18n: true }
+              - { name: "dateUnknown", label: "Date unknown", widget: string, i18n: true }
+              - { name: "relatedStories", label: "Related stories", widget: string, i18n: true }
+          - name: "a11y"
+            label: "Accessibility labels"
+            widget: object
+            i18n: true
+            collapsed: true
+            fields:
+              - { name: "skip", label: "Skip", widget: string, i18n: true }
+          - name: "lightbox"
+            label: "Photo viewer"
+            widget: object
+            i18n: true
+            collapsed: true
+            fields:
+              - { name: "close", label: "Close", widget: string, i18n: true }
+              - { name: "prev", label: "Prev", widget: string, i18n: true }
+              - { name: "next", label: "Next", widget: string, i18n: true }
+          - name: "nav"
+            label: "Navigation"
+            widget: object
+            i18n: true
+            collapsed: true
+            fields:
+              - { name: "home", label: "Home", widget: string, i18n: true }
+              - name: "work"
+                label: "Our work pages"
+                widget: object
+                i18n: true
+                collapsed: true
+                fields:
+                  - { name: "self", label: "Work", widget: string, i18n: true }
+                  - { name: "education", label: "Education", widget: string, i18n: true }
+                  - { name: "farmers", label: "Farmers", widget: string, i18n: true }
+                  - { name: "children", label: "Children", widget: string, i18n: true }
+              - { name: "stories", label: "Stories", widget: string, i18n: true }
+              - { name: "about", label: "About", widget: string, i18n: true }
+              - { name: "involved", label: "Involved", widget: string, i18n: true }
+              - { name: "donate", label: "Donate", widget: string, i18n: true }
+              - { name: "contact", label: "Contact", widget: string, i18n: true }
+              - { name: "events", label: "Events", widget: string, i18n: true }
+              - name: "blogs"
+                label: "Blogs pages"
+                widget: object
+                i18n: true
+                collapsed: true
+                fields:
+                  - { name: "self", label: "Blogs", widget: string, i18n: true }
+                  - { name: "donors", label: "Donors", widget: string, i18n: true }
+                  - { name: "donees", label: "Donees", widget: string, i18n: true }
+              - { name: "menu", label: "Menu", widget: string, i18n: true }
+              - { name: "close", label: "Close", widget: string, i18n: true }
+          - name: "cta"
+            label: "Buttons"
+            widget: object
+            i18n: true
+            collapsed: true
+            fields:
+              - { name: "donate", label: "Donate", widget: string, i18n: true }
+              - { name: "volunteer", label: "Volunteer", widget: string, i18n: true }
+              - { name: "readStories", label: "Read stories", widget: string, i18n: true }
+              - { name: "learnMore", label: "Learn more", widget: string, i18n: true }
+              - { name: "allStories", label: "All stories", widget: string, i18n: true }
+              - { name: "allEvents", label: "All events", widget: string, i18n: true }
+              - { name: "whatsapp", label: "Whatsapp", widget: string, i18n: true }
+          - name: "home"
+            label: "Home page"
+            widget: object
+            i18n: true
+            collapsed: true
+            fields:
+              - name: "hero"
+                label: "Hero"
+                widget: object
+                i18n: true
+                collapsed: true
+                fields:
+                  - { name: "kicker", label: "Kicker", widget: string, i18n: true }
+              - name: "pillars"
+                label: "Pillars"
+                widget: object
+                i18n: true
+                collapsed: true
+                fields:
+                  - { name: "title", label: "Title", widget: string, i18n: true }
+              - name: "model"
+                label: "Model"
+                widget: object
+                i18n: true
+                collapsed: true
+                fields:
+                  - { name: "kicker", label: "Kicker", widget: string, i18n: true }
+                  - { name: "title", label: "Title", widget: string, i18n: true }
+                  - { name: "body", label: "Body", widget: text, i18n: true }
+              - name: "updates"
+                label: "Updates"
+                widget: object
+                i18n: true
+                collapsed: true
+                fields:
+                  - { name: "title", label: "Title", widget: string, i18n: true }
+              - name: "impact"
+                label: "Impact"
+                widget: object
+                i18n: true
+                collapsed: true
+                fields:
+                  - { name: "kicker", label: "Kicker", widget: string, i18n: true }
+                  - { name: "title", label: "Title", widget: string, i18n: true }
+                  - { name: "body", label: "Body", widget: text, i18n: true }
+          - name: "work"
+            label: "Our work pages"
+            widget: object
+            i18n: true
+            collapsed: true
+            fields:
+              - { name: "kicker", label: "Kicker", widget: string, i18n: true }
+              - { name: "title", label: "Title", widget: string, i18n: true }
+              - { name: "lede", label: "Lede", widget: text, i18n: true }
+              - { name: "includes", label: "Includes", widget: string, i18n: true }
+              - { name: "stories", label: "Stories", widget: string, i18n: true }
+              - { name: "otherProgrammes", label: "Other programmes", widget: string, i18n: true }
+              - { name: "noStories", label: "No stories", widget: string, i18n: true }
+          - name: "stories"
+            label: "Stories page"
+            widget: object
+            i18n: true
+            collapsed: true
+            fields:
+              - { name: "kicker", label: "Kicker", widget: string, i18n: true }
+              - { name: "title", label: "Title", widget: string, i18n: true }
+              - name: "filter"
+                label: "Filter"
+                widget: object
+                i18n: true
+                collapsed: true
+                fields:
+                  - { name: "programme", label: "Programme", widget: string, i18n: true }
+                  - { name: "year", label: "Year", widget: string, i18n: true }
+                  - { name: "all", label: "All", widget: string, i18n: true }
+              - { name: "empty", label: "Empty", widget: string, i18n: true }
+              - name: "count"
+                label: "Count"
+                widget: object
+                i18n: true
+                collapsed: true
+                fields:
+                  - { name: "self", label: "Count", widget: string, i18n: true, hint: "Keep {n} as written; the site fills it in." }
+                  - { name: "one", label: "One", widget: string, i18n: true }
+          - name: "story"
+            label: "Story pages"
+            widget: object
+            i18n: true
+            collapsed: true
+            fields:
+              - { name: "people", label: "People", widget: string, i18n: true }
+              - { name: "quoteLabel", label: "Quote label", widget: string, i18n: true }
+              - name: "record"
+                label: "Record"
+                widget: object
+                i18n: true
+                collapsed: true
+                fields:
+                  - { name: "date", label: "Date", widget: string, i18n: true }
+                  - { name: "place", label: "Place", widget: string, i18n: true }
+                  - { name: "author", label: "Author", widget: string, i18n: true }
+          - name: "events"
+            label: "Events page"
+            widget: object
+            i18n: true
+            collapsed: true
+            fields:
+              - { name: "kicker", label: "Kicker", widget: string, i18n: true }
+              - { name: "title", label: "Title", widget: string, i18n: true }
+              - { name: "lede", label: "Lede", widget: text, i18n: true }
+              - { name: "empty", label: "Empty", widget: string, i18n: true }
+              - { name: "related", label: "Related", widget: string, i18n: true }
+          - name: "blogs"
+            label: "Blogs pages"
+            widget: object
+            i18n: true
+            collapsed: true
+            fields:
+              - { name: "kicker", label: "Kicker", widget: string, i18n: true }
+              - { name: "title", label: "Title", widget: string, i18n: true }
+              - { name: "lede", label: "Lede", widget: text, i18n: true }
+              - { name: "empty", label: "Empty", widget: string, i18n: true }
+              - name: "donors"
+                label: "Donors"
+                widget: object
+                i18n: true
+                collapsed: true
+                fields:
+                  - { name: "title", label: "Title", widget: string, i18n: true }
+                  - { name: "lede", label: "Lede", widget: text, i18n: true }
+                  - { name: "empty", label: "Empty", widget: string, i18n: true }
+              - name: "donees"
+                label: "Donees"
+                widget: object
+                i18n: true
+                collapsed: true
+                fields:
+                  - { name: "title", label: "Title", widget: string, i18n: true }
+                  - { name: "lede", label: "Lede", widget: text, i18n: true }
+                  - { name: "empty", label: "Empty", widget: string, i18n: true }
+              - { name: "related", label: "Related", widget: string, i18n: true }
+          - name: "about"
+            label: "About page"
+            widget: object
+            i18n: true
+            collapsed: true
+            fields:
+              - { name: "kicker", label: "Kicker", widget: string, i18n: true }
+              - { name: "title", label: "Title", widget: string, i18n: true }
+              - { name: "lede", label: "Lede", widget: text, i18n: true }
+              - name: "record"
+                label: "Record"
+                widget: object
+                i18n: true
+                collapsed: true
+                fields:
+                  - { name: "self", label: "Record", widget: string, i18n: true }
+                  - { name: "lede", label: "Lede", widget: text, i18n: true }
+              - { name: "mission", label: "Mission", widget: string, i18n: true }
+              - { name: "vision", label: "Vision", widget: string, i18n: true }
+              - name: "team"
+                label: "Team"
+                widget: object
+                i18n: true
+                collapsed: true
+                fields:
+                  - { name: "self", label: "Team", widget: string, i18n: true }
+                  - { name: "lede", label: "Lede", widget: text, i18n: true }
+              - name: "community"
+                label: "Community"
+                widget: object
+                i18n: true
+                collapsed: true
+                fields:
+                  - { name: "self", label: "Community", widget: string, i18n: true }
+                  - { name: "body", label: "Body", widget: text, i18n: true }
+          - name: "involved"
+            label: "Get involved page"
+            widget: object
+            i18n: true
+            collapsed: true
+            fields:
+              - { name: "kicker", label: "Kicker", widget: string, i18n: true }
+              - { name: "title", label: "Title", widget: string, i18n: true }
+              - { name: "lede", label: "Lede", widget: text, i18n: true }
+              - name: "volunteer"
+                label: "Volunteer"
+                widget: object
+                i18n: true
+                collapsed: true
+                fields:
+                  - { name: "title", label: "Title", widget: string, i18n: true }
+                  - { name: "body", label: "Body", widget: text, i18n: true }
+                  - { name: "cta", label: "Cta", widget: string, i18n: true }
+              - name: "goods"
+                label: "Goods"
+                widget: object
+                i18n: true
+                collapsed: true
+                fields:
+                  - { name: "title", label: "Title", widget: string, i18n: true }
+                  - { name: "body", label: "Body", widget: text, i18n: true }
+                  - { name: "cta", label: "Cta", widget: string, i18n: true }
+              - name: "give"
+                label: "Give"
+                widget: object
+                i18n: true
+                collapsed: true
+                fields:
+                  - { name: "title", label: "Title", widget: string, i18n: true }
+                  - { name: "body", label: "Body", widget: text, i18n: true }
+              - name: "follow"
+                label: "Follow"
+                widget: object
+                i18n: true
+                collapsed: true
+                fields:
+                  - { name: "title", label: "Title", widget: string, i18n: true }
+                  - { name: "body", label: "Body", widget: text, i18n: true }
+                  - { name: "cta", label: "Cta", widget: string, i18n: true }
+              - name: "form"
+                label: "Volunteer form"
+                widget: object
+                i18n: true
+                collapsed: true
+                fields:
+                  - { name: "title", label: "Title", widget: string, i18n: true }
+                  - { name: "body", label: "Body", widget: text, i18n: true }
+          - name: "form"
+            label: "Volunteer form"
+            widget: object
+            i18n: true
+            collapsed: true
+            fields:
+              - { name: "name", label: "Name", widget: string, i18n: true }
+              - { name: "email", label: "Email", widget: string, i18n: true }
+              - { name: "phone", label: "Phone", widget: string, i18n: true }
+              - { name: "location", label: "Location", widget: string, i18n: true }
+              - { name: "skills", label: "Skills", widget: string, i18n: true }
+              - { name: "availability", label: "Availability", widget: string, i18n: true }
+              - name: "availabilityOptions"
+                label: "Availability options"
+                widget: object
+                i18n: true
+                collapsed: true
+                fields:
+                  - { name: "month", label: "Month", widget: string, i18n: true }
+                  - { name: "week", label: "Week", widget: string, i18n: true }
+                  - { name: "weekends", label: "Weekends", widget: string, i18n: true }
+                  - { name: "flexible", label: "Flexible", widget: string, i18n: true }
+              - { name: "interest", label: "Interest", widget: string, i18n: true }
+              - { name: "interestOther", label: "Interest other", widget: string, i18n: true }
+              - { name: "message", label: "Message", widget: string, i18n: true }
+              - { name: "submit", label: "Submit", widget: string, i18n: true }
+              - { name: "sending", label: "Sending", widget: string, i18n: true }
+              - { name: "success", label: "Success", widget: string, i18n: true }
+              - { name: "error", label: "Error", widget: string, i18n: true }
+              - { name: "invalidEmail", label: "Invalid email", widget: string, i18n: true }
+              - { name: "orContact", label: "Or contact", widget: string, i18n: true }
+          - name: "donate"
+            label: "Donate page"
+            widget: object
+            i18n: true
+            collapsed: true
+            fields:
+              - { name: "kicker", label: "Kicker", widget: string, i18n: true }
+              - { name: "title", label: "Title", widget: string, i18n: true }
+              - { name: "lede", label: "Lede", widget: text, i18n: true }
+              - { name: "cause", label: "Cause", widget: string, i18n: true }
+              - { name: "amount", label: "Amount", widget: string, i18n: true }
+              - { name: "total", label: "Total", widget: string, i18n: true }
+              - { name: "upi", label: "Upi", widget: string, i18n: true }
+              - { name: "copy", label: "Copy", widget: string, i18n: true }
+              - { name: "copied", label: "Copied", widget: string, i18n: true }
+              - { name: "qr", label: "Qr", widget: string, i18n: true }
+              - { name: "payUpi", label: "Pay upi", widget: string, i18n: true, hint: "Keep {amount} as written; the site fills it in." }
+              - { name: "payUpiNoAmount", label: "Pay upi no amount", widget: string, i18n: true }
+              - name: "confirm"
+                label: "Confirm"
+                widget: object
+                i18n: true
+                collapsed: true
+                fields:
+                  - { name: "title", label: "Title", widget: string, i18n: true }
+                  - { name: "body", label: "Body", widget: text, i18n: true }
+              - { name: "unverified", label: "Unverified", widget: text, i18n: true }
+              - { name: "accountability", label: "Accountability", widget: text, i18n: true }
+              - { name: "from", label: "From", widget: string, i18n: true }
+              - { name: "message", label: "Message", widget: string, i18n: true }
+              - { name: "optional", label: "Optional", widget: string, i18n: true }
+              - { name: "supported", label: "Supported", widget: text, i18n: true }
+              - { name: "causeNote", label: "Cause note", widget: text, i18n: true }
+          - name: "cause"
+            label: "Donation causes"
+            widget: object
+            i18n: true
+            collapsed: true
+            fields:
+              - { name: "education", label: "Education", widget: string, i18n: true }
+              - { name: "farmers", label: "Farmers", widget: string, i18n: true }
+              - { name: "cow", label: "Cow", widget: string, i18n: true }
+              - { name: "children", label: "Children", widget: string, i18n: true }
+              - { name: "any", label: "Any", widget: string, i18n: true }
+          - name: "contact"
+            label: "Contact page"
+            widget: object
+            i18n: true
+            collapsed: true
+            fields:
+              - { name: "kicker", label: "Kicker", widget: string, i18n: true }
+              - { name: "title", label: "Title", widget: string, i18n: true }
+              - { name: "lede", label: "Lede", widget: text, i18n: true }
+              - { name: "email", label: "Email", widget: string, i18n: true }
+              - { name: "phone", label: "Phone", widget: string, i18n: true }
+              - { name: "socials", label: "Socials", widget: string, i18n: true }
+              - name: "form"
+                label: "Volunteer form"
+                widget: object
+                i18n: true
+                collapsed: true
+                fields:
+                  - { name: "title", label: "Title", widget: string, i18n: true }
+          - name: "notfound"
+            label: "Page not found"
+            widget: object
+            i18n: true
+            collapsed: true
+            fields:
+              - { name: "title", label: "Title", widget: string, i18n: true }
+              - { name: "body", label: "Body", widget: text, i18n: true }
+              - { name: "home", label: "Home", widget: string, i18n: true }
+          - name: "lang"
+            label: "Language switch"
+            widget: object
+            i18n: true
+            collapsed: true
+            fields:
+              - { name: "switch", label: "Switch", widget: string, i18n: true }
+              - { name: "switchAria", label: "Switch aria", widget: string, i18n: true }
+          - name: "footer"
+            label: "Footer"
+            widget: object
+            i18n: true
+            collapsed: true
+            fields:
+              - { name: "contact", label: "Contact", widget: string, i18n: true }
+              - { name: "explore", label: "Explore", widget: string, i18n: true }
+              - { name: "follow", label: "Follow", widget: string, i18n: true }
+              - { name: "credit", label: "Credit", widget: string, i18n: true }
+              - { name: "legal", label: "Legal", widget: string, i18n: true }
+

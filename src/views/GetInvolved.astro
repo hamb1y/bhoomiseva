@@ -26,14 +26,14 @@ const ways = [
     body: t("involved.volunteer.body"),
     Icon: GraduationCap,
     href: "#volunteer",
-    cta: lx({ en: "Apply to volunteer", kn: "ಸ್ವಯಂಸೇವೆಗೆ ಅರ್ಜಿ" }, lang),
+    cta: t("involved.volunteer.cta"),
   },
   {
     title: t("involved.goods.title"),
     body: t("involved.goods.body"),
     Icon: HomeIcon,
     href: site.whatsapp,
-    cta: lx({ en: "Tell us what you have", kn: "ನಿಮ್ಮ ಬಳಿ ಏನಿದೆ ಎಂದು ಹೇಳಿ" }, lang),
+    cta: t("involved.goods.cta"),
   },
   {
     title: t("involved.give.title"),
@@ -47,7 +47,7 @@ const ways = [
     body: t("involved.follow.body"),
     Icon: Sprout,
     href: site.socials.facebook,
-    cta: lx({ en: "Follow us", kn: "ನಮ್ಮನ್ನು ಅನುಸರಿಸಿ" }, lang),
+    cta: t("involved.follow.cta"),
   },
 ];
 
@@ -55,15 +55,15 @@ const ways = [
 const leadPhoto = programById("education")?.image;
 
 const availability = [
-  lx({ en: "A few hours a month", kn: "ತಿಂಗಳಿಗೆ ಕೆಲವು ಗಂಟೆಗಳು" }, lang),
-  lx({ en: "A few hours a week", kn: "ವಾರಕ್ಕೆ ಕೆಲವು ಗಂಟೆಗಳು" }, lang),
-  lx({ en: "Weekends", kn: "ವಾರಾಂತ್ಯಗಳಲ್ಲಿ" }, lang),
-  lx({ en: "Flexible", kn: "ಹೊಂದಿಕೊಳ್ಳಬಲ್ಲ" }, lang),
+  t("form.availabilityOptions.month"),
+  t("form.availabilityOptions.week"),
+  t("form.availabilityOptions.weekends"),
+  t("form.availabilityOptions.flexible"),
 ];
 
 const interest = [
   ...programs.map((p) => lx(p.kicker, lang)),
-  lx({ en: "Coordination / other", kn: "ಸಂಯೋಜನೆ / ಇತರೆ" }, lang),
+  t("form.interestOther"),
 ];
 
 const fields = [
@@ -118,16 +118,10 @@ const fields = [
       <div class="vol-copy">
         <p class="eyebrow eyebrow--dot">{t("involved.volunteer.title")}</p>
         <h2>
-          {lx({ en: "Tell us how you can help", kn: "ನೀವು ಹೇಗೆ ಸಹಾಯ ಮಾಡಬಲ್ಲಿರಿ ಎಂದು ಹೇಳಿ" }, lang)}
+          {t("involved.form.title")}
         </h2>
         <p>
-          {lx(
-            {
-              en: "Fill this in and we will match you with a student, a farmer programme or a coordination task. If you would rather write directly, use WhatsApp or email below.",
-              kn: "ಇದನ್ನು ಭರ್ತಿ ಮಾಡಿ — ನಾವು ನಿಮ್ಮನ್ನು ಒಬ್ಬ ವಿದ್ಯಾರ್ಥಿ, ರೈತ ಕಾರ್ಯಕ್ರಮ ಅಥವಾ ಸಂಯೋಜನೆಯ ಕೆಲಸಕ್ಕೆ ಹೊಂದಿಸುತ್ತೇವೆ. ನೇರವಾಗಿ ಬರೆಯಲು ಬಯಸಿದರೆ, ಕೆಳಗಿನ ವಾಟ್ಸಾಪ್ ಅಥವಾ ಇಮೇಲ್ ಬಳಸಿ.",
-            },
-            lang,
-          )}
+          {t("involved.form.body")}
         </p>
       </div>
 
