@@ -1,7 +1,7 @@
 ---
 /**
- * The header every inner page opens with: a sentence-case label, a large
- * display title, and the lede set beside it on wide screens.
+ * The header every inner page opens with: a large display title, the lede
+ * beside it on wide screens, and a label only where it adds information.
  */
 interface Props {
   kicker: string;
@@ -10,6 +10,9 @@ interface Props {
   accent?: string;
 }
 const { kicker, title, lede, accent = "brand" } = Astro.props;
+// A label that only repeats the title ("Donate" above "Donate to Bhoomi Seva")
+// is decoration. Show it only when it tells the reader something new.
+const showKicker = !title.toLowerCase().includes(kicker.toLowerCase());
 ---
 
 <header class:list={["page-head", `accent-${accent}`]}>
@@ -17,7 +20,7 @@ const { kicker, title, lede, accent = "brand" } = Astro.props;
     <slot name="above" />
     <div class="page-head__grid">
       <div>
-        <p class="eyebrow eyebrow--dot">{kicker}</p>
+        {showKicker && <p class="eyebrow">{kicker}</p>}
         <h1>{title}</h1>
       </div>
       {lede && <p class="lede">{lede}</p>}

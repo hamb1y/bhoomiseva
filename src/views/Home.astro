@@ -23,7 +23,7 @@ const programLabel = (id: string) => {
 const yearOf = (s: (typeof stories)[number]) =>
   s.date ? s.date.slice(0, 4) : s.period ? lx(s.period, lang) : "";
 
-// The hero is a collage of the three programmes, one photograph each.
+// The hero shows the three programmes, one photograph each.
 const collage = (["children", "farmers", "education"] as const)
   .map((id) => programById(id))
   .filter((p): p is NonNullable<typeof p> => Boolean(p?.image));
@@ -31,6 +31,14 @@ const collage = (["children", "farmers", "education"] as const)
 // "How we work" tells the Kurubarahalli Doddi family's story (the copy in
 // home.model.* is about them), so it links to that story specifically.
 const model = storyBySlug("sunita-kurubarahalli-doddi") ?? featuredStory;
+
+// The triptych already shows each programme's main photograph, so the panels
+// below use a different one from that programme's own gallery where it has one.
+// A numbered variant of the main file (farmer-training-2 beside farmer-training)
+// is usually the same scene a second later, so skip those too.
+const stem = (src?: string) => (src ?? "").replace(/\.[a-z]+$/i, "");
+const panelImage = (p: (typeof programs)[number]) =>
+  p.gallery?.find((src) => !stem(src).startsWith(stem(p.image))) ?? p.image;
 
 const strip = [...stories]
   .sort((a, b) => (b.date ?? "").localeCompare(a.date ?? ""))
@@ -49,11 +57,11 @@ const jsonLd = {
 ---
 
 <BaseLayout lang={lang} path="/" jsonLd={jsonLd}>
-  <!-- 1. Hero: the promise, set large, beside the three programmes in pictures -->
+  <!-- 1. Hero: the promise, then the three programmes as photographs -->
   <section class="hero">
-    <div class="container hero-grid">
+    <div class="container">
       <div class="hero-copy">
-        <p class="eyebrow eyebrow--dot">{t("home.hero.kicker")}</p>
+        <p class="eyebrow">{t("home.hero.kicker")}</p>
         <h1>{t("site.tagline")}</h1>
         <div class="hero-cta">
           <a class="btn btn--primary" href={localePath("/donate", lang)}>
@@ -65,36 +73,23 @@ const jsonLd = {
             <ArrowRight size={16} stroke-width={1.8} aria-hidden="true" />
           </a>
         </div>
-        <ul class="hero-programs" aria-label={t("home.pillars.title")}>
-          {programs.map((p) => (
-            <li class={`accent-${p.accent}`}>
-              <a href={localePath(programHref(p.id), lang)}>{lx(p.kicker, lang)}</a>
-            </li>
-          ))}
-        </ul>
       </div>
 
-      <div class="collage">
-        <svg class="sun" viewBox="0 0 200 200" aria-hidden="true">
-          <circle cx="100" cy="100" r="100"></circle>
-        </svg>
-        {collage.map((p, i) => (
-          <a
-            class:list={["shot", `shot-${i + 1}`, `accent-${p.accent}`]}
-            href={localePath(programHref(p.id), lang)}
-          >
-            <img
-              src={p.image}
-              alt={p.imageAlt ? lx(p.imageAlt, lang) : lx(p.title, lang)}
-              style={`object-position:${objectPosition(p.imageFocal)}`}
-              loading={i === 0 ? "eager" : "lazy"}
-              fetchpriority={i === 0 ? "high" : undefined}
-              decoding="async"
-            />
-            <span class="shot-tag">{lx(p.kicker, lang)}</span>
-          </a>
+      <ul class="triptych" aria-label={t("home.pillars.title")}>
+        {collage.map((p) => (
+          <li class={`accent-${p.accent}`}>
+            <a href={localePath(programHref(p.id), lang)}>
+              <img
+                src={p.image}
+                alt={p.imageAlt ? lx(p.imageAlt, lang) : lx(p.title, lang)}
+                style={`object-position:${objectPosition(p.imageFocal)}`}
+                decoding="async"
+              />
+              <span class="triptych-label">{lx(p.kicker, lang)}</span>
+            </a>
+          </li>
         ))}
-      </div>
+      </ul>
     </div>
   </section>
 
@@ -102,9 +97,9 @@ const jsonLd = {
   <section class="mission">
     <div class="container">
       <div class="mission-grid">
-        <p class="eyebrow eyebrow--dot">{t("about.mission")}</p>
-        <p class="mission-text reveal">{pick(site.mission, lang)}</p>
-        <div class="mission-side reveal">
+        <p class="eyebrow">{t("about.mission")}</p>
+        <p class="mission-text">{pick(site.mission, lang)}</p>
+        <div class="mission-side">
           <p>{t("about.community.body")}</p>
           <a class="arrow-link" href={localePath("/about", lang)}>
             {t("nav.about")}
@@ -123,8 +118,8 @@ const jsonLd = {
       </h2>
     </div>
     <div class="stack">
-      {programs.map((p, i) => (
-        <article class:list={["pillar", `pillar-${p.accent}`]} style={`--i:${i}`}>
+      {programs.map((p) => (
+        <article class:list={["pillar", `pillar-${p.accent}`]}>
           <div class="container pillar-inner">
             <div class="pillar-copy">
               <p class="pillar-kicker">{lx(p.kicker, lang)}</p>
@@ -143,11 +138,19 @@ const jsonLd = {
               </a>
             </div>
             <div class="pillar-media">
-              {p.image && (
+              {panelImage(p) && (
                 <img
-                  src={p.image}
-                  alt={p.imageAlt ? lx(p.imageAlt, lang) : lx(p.title, lang)}
-                  style={`object-position:${objectPosition(p.imageFocal)}`}
+                  src={panelImage(p)}
+                  alt={
+                    panelImage(p) === p.image && p.imageAlt
+                      ? lx(p.imageAlt, lang)
+                      : lx(p.title, lang)
+                  }
+                  style={
+                    panelImage(p) === p.image
+                      ? `object-position:${objectPosition(p.imageFocal)}`
+                      : undefined
+                  }
                   loading="lazy"
                   decoding="async"
                 />
@@ -163,8 +166,8 @@ const jsonLd = {
   {model && (
     <section class="model soil accent-farmers">
       <div class="container model-grid">
-        <div class="model-copy reveal">
-          <p class="eyebrow eyebrow--dot">{t("home.model.kicker")}</p>
+        <div class="model-copy">
+          <p class="eyebrow">{t("home.model.kicker")}</p>
           <h2>{t("home.model.title")}</h2>
           <p class="model-body">{t("home.model.body")}</p>
           <a class="btn btn--light" href={localePath(`/stories/${model.slug}`, lang)}>
@@ -172,7 +175,7 @@ const jsonLd = {
             <ArrowRight size={18} stroke-width={1.8} aria-hidden="true" />
           </a>
         </div>
-        <figure class="model-letter reveal">
+        <figure class="model-letter">
           {model.image && (
             <img
               src={model.image}
@@ -242,177 +245,72 @@ const jsonLd = {
 <style>
   /* ---------- 1. hero ---------- */
   .hero {
-    padding-block: clamp(2rem, 5vw, 4rem) clamp(4rem, 8vw, 7rem);
+    padding-block: clamp(2.5rem, 6vw, 5rem) clamp(4rem, 8vw, 7rem);
   }
-  .hero-grid {
+  .hero-copy {
     display: grid;
-    grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
-    gap: clamp(2.5rem, 6vw, 5rem);
-    align-items: center;
+    grid-template-columns: minmax(0, 1.4fr) auto;
+    gap: var(--s-5) var(--s-7);
+    align-items: end;
+  }
+  .hero-copy .eyebrow {
+    grid-column: 1 / -1;
   }
   .hero-copy h1 {
-    margin: var(--s-5) 0 0;
-    font-size: min(var(--step-6), 6.4rem);
-    font-variation-settings:
-      "opsz" 144,
-      "WONK" 1,
-      "SOFT" 100;
-    font-weight: 560;
-    line-height: 0.92;
-    letter-spacing: -0.045em;
-    max-width: 11ch;
+    margin: 0;
+    font-size: min(var(--step-6), 6.2rem);
+    line-height: 0.98;
+    letter-spacing: -0.025em;
+    max-width: 13ch;
   }
   :global(:lang(kn)) .hero-copy h1 {
     font-size: var(--step-5);
-    line-height: 1.2;
+    line-height: 1.3;
     letter-spacing: 0;
-    max-width: 14ch;
+    max-width: 16ch;
   }
   .hero-cta {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
     gap: var(--s-4) var(--s-6);
-    margin-top: var(--s-7);
-  }
-  .hero-programs {
-    list-style: none;
-    padding: 0;
-    margin: var(--s-7) 0 0;
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--s-2);
-  }
-  .hero-programs a {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.55em;
-    padding: 0.5em 0.95em 0.5em 0.75em;
-    border: 1px solid var(--rule-strong);
-    border-radius: 999px;
-    font-size: var(--step--1);
-    font-weight: 600;
-    text-decoration: none;
-    color: var(--ink);
-    transition:
-      background var(--dur-1) var(--ease-out),
-      border-color var(--dur-1) var(--ease-out);
-  }
-  .hero-programs a::before {
-    content: "";
-    width: 0.65em;
-    height: 0.65em;
-    border-radius: 50%;
-    background: var(--accent-fill);
-  }
-  .hero-programs a:hover {
-    background: var(--paper-raised);
-    border-color: var(--ink);
+    padding-bottom: 0.6rem;
   }
 
-  .collage {
-    position: relative;
-    aspect-ratio: 1 / 1.08;
-    min-height: 24rem;
+  /* Three photographs, one per programme, at one height and unequal widths,
+     each captioned with what it shows. Evidence, not decoration. */
+  .triptych {
+    list-style: none;
+    padding: 0;
+    margin: clamp(2.5rem, 5vw, 4rem) 0 0;
+    display: grid;
+    grid-template-columns: 1.15fr 1.45fr 1fr;
+    gap: var(--s-3);
   }
-  /* The logo mark's sun, risen behind the photographs. */
-  .sun {
-    position: absolute;
-    width: 72%;
-    right: -4%;
-    top: 6%;
-    fill: var(--clay);
+  .triptych a {
+    display: grid;
+    gap: var(--s-3);
+    text-decoration: none;
+    color: var(--ink);
   }
-  .shot {
-    position: absolute;
-    display: block;
-    border-radius: var(--r-4);
-    overflow: hidden;
-    box-shadow: var(--shadow-deep);
-    background: var(--paper-sunk);
-    outline-offset: 4px;
-  }
-  .shot img {
+  .triptych img {
     width: 100%;
-    height: 100%;
+    height: clamp(14rem, 30vw, 26rem);
     object-fit: cover;
+    border-radius: var(--r-2);
+    background: var(--paper-sunk);
     filter: var(--photo-filter);
   }
-  .shot-1 {
-    left: 18%;
-    top: 0;
-    width: 52%;
-    height: 72%;
-    z-index: 2;
-  }
-  .shot-2 {
-    left: 0;
-    bottom: 0;
-    width: 58%;
-    height: 40%;
-    z-index: 3;
-  }
-  .shot-3 {
-    right: 0;
-    bottom: 10%;
-    width: 38%;
-    height: 38%;
-    z-index: 1;
-  }
-  .shot-tag {
-    position: absolute;
-    left: var(--s-3);
-    bottom: var(--s-3);
-    display: inline-flex;
-    align-items: center;
-    gap: 0.45em;
-    padding: 0.3em 0.7em 0.3em 0.55em;
-    border-radius: 999px;
-    background: var(--paper-raised);
-    color: var(--ink);
-    font-size: 0.78rem;
+  .triptych-label {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--s-3);
+    padding-top: var(--s-2);
+    border-top: 2px solid var(--accent-fill);
     font-weight: 600;
-    line-height: 1.2;
-    transition: transform var(--dur-2) var(--ease-out);
   }
-  .shot-tag::before {
-    content: "";
-    width: 0.6em;
-    height: 0.6em;
-    border-radius: 50%;
-    background: var(--accent-fill);
-  }
-  .shot-1 .shot-tag {
-    top: var(--s-3);
-    bottom: auto;
-  }
-  .shot:hover .shot-tag {
-    transform: translateY(-3px);
-  }
-  @media (prefers-reduced-motion: no-preference) {
-    .shot {
-      animation: land 900ms var(--ease-out) both;
-    }
-    .shot-2 {
-      animation-delay: 120ms;
-    }
-    .shot-3 {
-      animation-delay: 240ms;
-    }
-    .sun {
-      animation: rise-sun 1200ms var(--ease-out) both;
-    }
-  }
-  @keyframes land {
-    from {
-      opacity: 0;
-      translate: 0 14px;
-    }
-  }
-  @keyframes rise-sun {
-    from {
-      translate: 0 12%;
-    }
+  .triptych a:hover .triptych-label {
+    color: var(--accent);
   }
 
   /* ---------- 2. mission ---------- */
@@ -433,10 +331,6 @@ const jsonLd = {
   .mission-text {
     margin: 0;
     font-family: var(--font-display);
-    font-variation-settings:
-      "opsz" 72,
-      "WONK" 1,
-      "SOFT" 60;
     font-weight: 440;
     font-size: var(--step-4);
     line-height: 1.12;
@@ -499,6 +393,10 @@ const jsonLd = {
       box-shadow: 0 -18px 40px -30px rgba(20, 12, 6, 0.8);
     }
   }
+  /* Alternate the photograph's side so the three panels are not one shape. */
+  .pillar:nth-child(even) .pillar-media {
+    order: -1;
+  }
   .pillar-inner {
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
@@ -550,31 +448,32 @@ const jsonLd = {
     margin: 0 0 var(--s-6);
     display: flex;
     flex-wrap: wrap;
-    gap: var(--s-2);
+    gap: var(--s-1) var(--s-2);
+    max-width: 52ch;
   }
   .activities li {
     font-size: var(--step--1);
-    line-height: 1.3;
-    padding: 0.4em 0.8em;
-    border-radius: 999px;
-    border: 1px solid color-mix(in oklab, currentColor 35%, transparent);
+    line-height: 1.35;
+  }
+  .activities li + li::before {
+    content: "/";
+    margin-right: var(--s-2);
+    opacity: 0.6;
   }
   .pillar-more {
     display: inline-flex;
     align-items: center;
     gap: 0.4rem;
     font-weight: 650;
-    text-decoration: none;
-    padding: 0.8em 1.2em;
-    border-radius: var(--r-3);
-    background: color-mix(in oklab, currentColor 14%, transparent);
-    transition: background var(--dur-2) var(--ease-out);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.3em;
   }
   .pillar-more :global(svg) {
     transition: transform var(--dur-2) var(--ease-out);
   }
   .pillar-more:hover {
-    background: color-mix(in oklab, currentColor 24%, transparent);
+    text-decoration-thickness: 2px;
   }
   .pillar-more:hover :global(svg) {
     transform: translate(2px, -2px);
@@ -632,10 +531,6 @@ const jsonLd = {
   .letter blockquote {
     margin: 0;
     font-family: var(--font-display);
-    font-variation-settings:
-      "opsz" 24,
-      "WONK" 1,
-      "SOFT" 80;
     font-weight: 400;
     font-size: var(--step-1);
     line-height: 1.55;
@@ -645,6 +540,8 @@ const jsonLd = {
     padding-top: var(--s-4);
     border-top: 1px dashed #b9a88e;
     font-family: var(--font-mono);
+    font-stretch: 82%;
+    font-variant-numeric: tabular-nums;
     font-size: var(--step--1);
     color: #5c4b3d;
   }
@@ -692,19 +589,6 @@ const jsonLd = {
     background: var(--paper-sunk);
     position: relative;
   }
-  .p-media::after {
-    content: "";
-    position: absolute;
-    inset: auto 0 0 0;
-    height: 5px;
-    background: var(--accent-fill);
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform var(--dur-3) var(--ease-out);
-  }
-  .strip a:hover .p-media::after {
-    transform: scaleX(1);
-  }
   .strip img {
     width: 100%;
     aspect-ratio: 4 / 5;
@@ -720,32 +604,10 @@ const jsonLd = {
     font-weight: 600;
     color: var(--ink-2);
   }
-  .p-meta::before {
-    content: "";
-    width: 0.6em;
-    height: 0.6em;
-    border-radius: 50%;
-    background: var(--accent-fill);
-  }
-  .p-year {
-    font-family: var(--font-mono);
-    font-weight: 400;
-    color: var(--ink-3);
-  }
-  .p-year::before {
-    content: "·";
-    margin-right: 0.5em;
-  }
   .p-name {
     font-family: var(--font-display);
-    font-variation-settings:
-      "opsz" 30,
-      "WONK" 1,
-      "SOFT" 60;
-    font-weight: 560;
     font-size: var(--step-1);
-    line-height: 1.15;
-    letter-spacing: -0.01em;
+    line-height: 1.2;
     text-wrap: balance;
   }
   .strip a:hover .p-name {
@@ -757,15 +619,16 @@ const jsonLd = {
 
   /* ---------- responsive ---------- */
   @media (max-width: 62rem) {
-    .hero-grid,
+    .hero-copy,
     .pillar-inner,
     .model-grid {
       grid-template-columns: 1fr;
     }
-    .collage {
-      max-width: 34rem;
-      width: 100%;
-      margin-inline: auto;
+    .triptych {
+      grid-template-columns: 1fr 1fr;
+    }
+    .triptych li:first-child {
+      grid-column: 1 / -1;
     }
     .pillar-media {
       order: -1;

@@ -14,9 +14,6 @@ const t = useTranslations(lang);
 ---
 
 <section class="cta">
-  <svg class="sun" viewBox="0 0 200 200" aria-hidden="true">
-    <circle cx="100" cy="100" r="100"></circle>
-  </svg>
   <div class="container inner">
     <div class="copy">
       <p class="kicker">{kicker}</p>
@@ -37,21 +34,9 @@ const t = useTranslations(lang);
 
 <style>
   .cta {
-    position: relative;
-    overflow: hidden;
     background: var(--clay);
     color: #fff8f1;
     --ink: #fff8f1;
-  }
-  /* A setting sun on the horizon line — the shape of the logo mark. */
-  .sun {
-    position: absolute;
-    width: clamp(18rem, 42vw, 36rem);
-    right: -6vw;
-    bottom: calc(clamp(18rem, 42vw, 36rem) * -0.5);
-    fill: var(--clay-bright);
-    opacity: 0.55;
-    pointer-events: none;
   }
   .inner {
     position: relative;

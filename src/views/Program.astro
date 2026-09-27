@@ -71,7 +71,7 @@ const photoCaption = {
       </h2>
       <ul class="list">
         {program.activities.map((a) => (
-          <li class="reveal">
+          <li>
             <h3>{lx(a.title, lang)}</h3>
             <p>{lx(a.body, lang)}</p>
           </li>
@@ -118,7 +118,7 @@ const photoCaption = {
 
   <section class="others">
     <div class="container">
-      <p class="eyebrow eyebrow--dot">{t("work.otherProgrammes")}</p>
+      <p class="eyebrow">{t("work.otherProgrammes")}</p>
       <div class="other-grid">
         {others.map((p) => (
           <a class:list={["other", `other-${p.accent}`]} href={localePath(programHref(p.id), lang)}>
@@ -327,10 +327,6 @@ const photoCaption = {
   }
   .other .title {
     font-family: var(--font-display);
-    font-variation-settings:
-      "opsz" 72,
-      "WONK" 1,
-      "SOFT" 60;
     font-weight: 540;
     font-size: var(--step-3);
     letter-spacing: -0.02em;

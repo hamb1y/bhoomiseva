@@ -73,8 +73,8 @@
   <div class="panel" id="mobile-nav" bind:this={panel}>
     <nav aria-label={menuLabel}>
       <ul>
-        {#each links as link, i (link.href)}
-          <li style={`--i:${i}`}>
+        {#each links as link (link.href)}
+          <li>
             <a href={link.href} onclick={() => (open = false)}>{link.label}</a>
             {#if link.children?.length}
               <ul class="sub">
@@ -139,15 +139,6 @@
     justify-content: space-between;
     gap: var(--s-7);
     overflow-y: auto;
-    animation: open var(--dur-3) var(--ease-out);
-  }
-  @keyframes open {
-    from {
-      clip-path: inset(0 0 100% 0);
-    }
-    to {
-      clip-path: inset(0 0 0 0);
-    }
   }
   ul {
     list-style: none;
@@ -156,25 +147,12 @@
   }
   nav > ul > li {
     border-bottom: 1px solid var(--soil-rule);
-    animation: rise var(--dur-3) var(--ease-out) both;
-    animation-delay: calc(80ms + var(--i) * 45ms);
-  }
-  @keyframes rise {
-    from {
-      opacity: 0;
-      translate: 0 8px;
-    }
   }
   nav > ul > li > a {
     display: block;
     font-family: var(--font-display);
-    font-variation-settings:
-      "opsz" 72,
-      "WONK" 1,
-      "SOFT" 50;
-    font-weight: 520;
     font-size: clamp(2rem, 9vw, 2.75rem);
-    letter-spacing: -0.03em;
+    letter-spacing: -0.01em;
     line-height: 1.1;
     text-decoration: none;
     padding: var(--s-4) 0;
@@ -192,22 +170,6 @@
     color: var(--on-soil-2);
     text-decoration: none;
     padding: var(--s-2) 0;
-  }
-  .sub a::before {
-    content: "";
-    width: 0.6rem;
-    height: 0.6rem;
-    border-radius: 50%;
-    background: var(--dot, var(--clay-bright));
-  }
-  .dot-education {
-    --dot: var(--turmeric);
-  }
-  .dot-farmers {
-    --dot: #6f9e7f;
-  }
-  .dot-children {
-    --dot: #6d93b5;
   }
   .sub a:hover,
   nav a:hover {
@@ -235,7 +197,7 @@
     color: var(--on-soil);
     text-decoration: none;
     padding: 0.5rem 0.9rem;
-    border: 1px solid var(--soil-rule);
-    border-radius: 999px;
+    text-decoration: underline;
+    text-underline-offset: 0.3em;
   }
 </style>

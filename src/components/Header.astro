@@ -132,18 +132,8 @@ const mobileLinks = nav.map((item) => ({
     color: var(--ink);
     margin-right: auto;
   }
-  .brand :global(.mark) {
-    transition: transform var(--dur-3) var(--ease-out);
-  }
-  .brand:hover :global(.mark) {
-    transform: rotate(-12deg);
-  }
   .name {
     font-family: var(--font-display);
-    font-variation-settings:
-      "opsz" 30,
-      "WONK" 1,
-      "SOFT" 60;
     font-weight: 620;
     font-size: var(--step-1);
     letter-spacing: -0.02em;
@@ -187,16 +177,14 @@ const mobileLinks = nav.map((item) => ({
     font-weight: 600;
     color: var(--ink-2);
     text-decoration: none;
-    padding: 0.4rem 0.75rem;
-    border: 1px solid var(--rule-strong);
-    border-radius: 999px;
-    transition:
-      border-color var(--dur-1) var(--ease-out),
-      color var(--dur-1) var(--ease-out);
+    padding: 0.4rem 0.2rem;
+    text-decoration: underline;
+    text-decoration-color: var(--rule-strong);
+    text-underline-offset: 0.3em;
   }
   .lang:hover {
     color: var(--clay-deep);
-    border-color: var(--clay);
+    text-decoration-color: currentColor;
   }
   .donate {
     padding: 0.75em 1.2em;

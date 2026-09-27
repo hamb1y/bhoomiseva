@@ -108,7 +108,7 @@ scripts/         optimize-images.mjs, make-logo.mjs, verify-site.mjs
 ## Do not
 
 - Introduce a second CSS methodology, a UI component library, or a CSS framework.
-- Use Inter/Geist/system-only fonts, purple or blue gradients, glassmorphism, gradient text, glowing halos, nested cards, icon-tiles above headings, auto-marquees, pulsing dots, bounce easing, or hover image zoom. These are banned in DESIGN.md.
+- Use Inter/Geist/system-only fonts (or the other AI-default faces: Fraunces, Instrument, Space Grotesk, Plex Mono), purple or blue gradients, glassmorphism, gradient text, glowing halos, nested cards, icon-tiles above headings, pills and dots on everything, stat-banner rows, decorative numerals or blobs, scroll-reveal animations, auto-marquees, pulsing dots, bounce easing, or hover image zoom. See "What reads as AI-generated" in DESIGN.md.
 - Reintroduce the "ledger scaffolding" that was deliberately removed: numbered `01/02/03` section markers, mono uppercase eyebrows, and rules on every block.
 - Delete low-resolution source images (they are kept deliberately).
 - Commit secrets, or unverified personal data.

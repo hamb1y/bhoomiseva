@@ -39,10 +39,11 @@
   --ink-wash: color-mix(in oklab, var(--ink) 6%, var(--paper));
 
   /* ---- Type ---- */
-  --font-display: "Fraunces Variable", "Noto Serif Kannada", Georgia, "Times New Roman", serif;
-  --font-body:
-    "Instrument Sans Variable", "Noto Sans Kannada", system-ui, -apple-system, sans-serif;
-  --font-mono: "IBM Plex Mono", "Noto Sans Kannada", ui-monospace, "SFMono-Regular", monospace;
+  --font-display: "Tiro Kannada", Georgia, "Times New Roman", serif;
+  --font-body: "Anek Kannada Variable", system-ui, -apple-system, sans-serif;
+  /* Dates, places and figures: the body face, condensed, with tabular numbers.
+     No monospace — it reads as a developer tool, not a record book. */
+  --font-mono: "Anek Kannada Variable", system-ui, sans-serif;
 
   --step--1: clamp(0.83rem, 0.8rem + 0.15vw, 0.9rem);
   --step-0: clamp(1rem, 0.95rem + 0.25vw, 1.09rem);
@@ -56,7 +57,7 @@
 
   --measure: 66ch;
   --leading-body: 1.6;
-  --leading-display: 1.02;
+  --leading-display: 1.08;
 
   /* ---- Space ---- */
   --s-1: 0.25rem;

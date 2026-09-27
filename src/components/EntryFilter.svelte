@@ -131,7 +131,7 @@
     align-items: center;
     gap: 0.5em;
     border: 1px solid var(--rule-strong);
-    border-radius: 999px;
+    border-radius: var(--r-2);
     padding: 0.55em 1.05em;
     cursor: pointer;
     font-size: var(--step--1);
@@ -187,7 +187,7 @@
       url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%235c4b3d' stroke-width='1.5'/%3E%3C/svg%3E")
       no-repeat right 0.9rem center;
     border: 1px solid var(--rule-strong);
-    border-radius: 999px;
+    border-radius: var(--r-2);
     padding: 0.55em 2.4em 0.55em 1.05em;
     font-family: var(--font-body);
     font-size: var(--step--1);

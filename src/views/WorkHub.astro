@@ -35,7 +35,7 @@ const t = useTranslations(lang);
             />
           </a>
           <div class="main">
-            <p class="eyebrow eyebrow--dot">{lx(p.kicker, lang)}</p>
+            <p class="eyebrow">{lx(p.kicker, lang)}</p>
             <h2>
               <a href={localePath(programHref(p.id), lang)}>{lx(p.title, lang)}</a>
             </h2>
@@ -84,24 +84,8 @@ const t = useTranslations(lang);
   .row:nth-child(even) .media {
     order: 2;
   }
-  /* A block of the programme's colour sits offset behind each photograph. */
   .media {
-    position: relative;
     display: block;
-    isolation: isolate;
-    margin: 0 var(--s-5) var(--s-5) 0;
-  }
-  .media::before {
-    content: "";
-    position: absolute;
-    inset: var(--s-5) calc(-1 * var(--s-5)) calc(-1 * var(--s-5)) var(--s-5);
-    background: var(--accent-fill);
-    border-radius: var(--r-4);
-    z-index: -1;
-    transition: translate var(--dur-3) var(--ease-out);
-  }
-  .row:hover .media::before {
-    translate: 4px 4px;
   }
   .thumb {
     width: 100%;
@@ -132,11 +116,10 @@ const t = useTranslations(lang);
     display: inline-block;
     margin: 0 0 var(--s-6);
     font-family: var(--font-mono);
+    font-stretch: 82%;
+    font-variant-numeric: tabular-nums;
     font-size: var(--step--1);
-    color: var(--ink);
-    padding: 0.35em 0.8em;
-    background: var(--accent-wash);
-    border-radius: var(--r-2);
+    color: var(--ink-2);
   }
   .main .btn {
     display: flex;

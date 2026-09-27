@@ -16,17 +16,9 @@ const links = nav.map((item) => ({ label: t(item.key), href: localePath(item.hre
 
 <BaseLayout lang={lang} path="/404" title="404">
   <section class="notfound">
-    <div class="container grid">
-      <p class="code" aria-hidden="true">
-        4
-        <svg viewBox="0 0 200 200">
-          <circle cx="100" cy="100" r="100"></circle>
-          <path d="M0 132h200" />
-        </svg>
-        4
-      </p>
+    <div class="container">
       <div class="copy">
-        <p class="eyebrow eyebrow--dot">404</p>
+        <p class="eyebrow">404</p>
         <h1>{t("notfound.title")}</h1>
         <p class="body">{t("notfound.body")}</p>
 
@@ -52,39 +44,6 @@ const links = nav.map((item) => ({ label: t(item.key), href: localePath(item.hre
 <style>
   .notfound {
     padding-block: clamp(3rem, 8vw, 7rem);
-  }
-  .grid {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    gap: clamp(2rem, 6vw, 5rem);
-    align-items: center;
-  }
-  /* The zero is the logo's sun, sitting on its horizon. */
-  .code {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.04em;
-    margin: 0;
-    font-family: var(--font-display);
-    font-variation-settings:
-      "opsz" 144,
-      "WONK" 1,
-      "SOFT" 100;
-    font-weight: 600;
-    font-size: clamp(7rem, 22vw, 17rem);
-    line-height: 1;
-    letter-spacing: -0.05em;
-    color: var(--ink);
-  }
-  .code svg {
-    width: 0.62em;
-    height: 0.62em;
-    fill: var(--clay);
-  }
-  .code path {
-    stroke: var(--paper);
-    stroke-width: 9;
   }
   h1 {
     margin: var(--s-4) 0 var(--s-5);
@@ -118,13 +77,5 @@ const links = nav.map((item) => ({ label: t(item.key), href: localePath(item.hre
   .links a:hover {
     color: var(--clay-deep);
     padding-left: var(--s-2);
-  }
-  @media (max-width: 52rem) {
-    .grid {
-      grid-template-columns: 1fr;
-    }
-    .code {
-      justify-content: flex-start;
-    }
   }
 </style>

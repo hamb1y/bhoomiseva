@@ -41,7 +41,6 @@ const meta = entry.date
           loading="lazy"
           decoding="async"
         />
-        {showProgram && program && <span class="prog">{lx(program.kicker, lang)}</span>}
       </div>
     )}
 
@@ -49,9 +48,7 @@ const meta = entry.date
       <p class="meta">
         <span class="date">{meta ?? t("common.dateUnknown")}</span>
         {showAuthor && entry.author && <span class="author">{entry.author}</span>}
-        {!entry.image && showProgram && program && (
-          <span class="prog-inline">{lx(program.kicker, lang)}</span>
-        )}
+        {showProgram && program && <span class="prog-inline">{lx(program.kicker, lang)}</span>}
       </p>
 
       <h3 class="title">
@@ -96,34 +93,11 @@ const meta = entry.date
   .card:hover .thumb {
     filter: saturate(1.05) contrast(1.04);
   }
-  .prog {
-    position: absolute;
-    left: var(--s-3);
-    top: var(--s-3);
-    display: inline-flex;
-    align-items: center;
-    gap: 0.45em;
-    padding: 0.35em 0.75em 0.35em 0.6em;
-    border-radius: 999px;
-    background: var(--paper-raised);
-    color: var(--ink);
-    font-size: var(--step--1);
-    font-weight: 600;
-    line-height: 1.2;
-  }
-  .prog::before,
-  .prog-inline::before {
-    content: "";
-    width: 0.6em;
-    height: 0.6em;
-    border-radius: 50%;
-    background: var(--accent-fill);
-    flex: none;
-  }
   .prog-inline {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.45em;
+    font-family: var(--font-body);
+    font-stretch: 100%;
+    font-weight: 600;
+    color: var(--accent);
   }
   .text {
     display: grid;
@@ -137,6 +111,8 @@ const meta = entry.date
     gap: var(--s-2) var(--s-4);
     margin: 0;
     font-family: var(--font-mono);
+    font-stretch: 82%;
+    font-variant-numeric: tabular-nums;
     font-size: var(--step--1);
     color: var(--ink-2);
   }
@@ -190,6 +166,8 @@ const meta = entry.date
   .place {
     margin: 0;
     font-family: var(--font-mono);
+    font-stretch: 82%;
+    font-variant-numeric: tabular-nums;
     font-size: var(--step--1);
     color: var(--ink-3);
   }
