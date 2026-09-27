@@ -43,12 +43,12 @@ const photoCaption = {
   title={lx(program.kicker, lang)}
   description={lx(program.summary, lang)}
 >
-  <section class:list={["head", `accent-${program.accent}`]}>
+  <section class:list={["head", `head-${program.accent}`, `accent-${program.accent}`]}>
     <div class="container head-grid">
-      <div>
-        <p class="eyebrow">{lx(program.kicker, lang)}</p>
+      <div class="head-copy">
+        <p class="head-kicker">{lx(program.kicker, lang)}</p>
         <h1>{lx(program.title, lang)}</h1>
-        <p class="lede measure">{lx(program.lede, lang)}</p>
+        <p class="lede">{lx(program.lede, lang)}</p>
       </div>
       <PhotoFrame
         src={program.image}
@@ -57,8 +57,9 @@ const photoCaption = {
         focal={program.imageFocal}
         lightbox
         lightboxGroup={program.id}
-        ratio="4 / 3"
+        ratio="1 / 1"
         accent={program.accent}
+        class="head-photo"
       />
     </div>
   </section>
@@ -70,7 +71,7 @@ const photoCaption = {
       </h2>
       <ul class="list">
         {program.activities.map((a) => (
-          <li>
+          <li class="reveal">
             <h3>{lx(a.title, lang)}</h3>
             <p>{lx(a.body, lang)}</p>
           </li>
@@ -102,9 +103,7 @@ const photoCaption = {
 
   <section class="entries">
     <div class="container">
-      <div class="entries-head">
-        <h2>{t("work.stories")}</h2>
-      </div>
+      <h2 class="entries-title">{t("work.stories")}</h2>
       {related.length ? (
         <div class="entries-grid">
           {related.map((s) => (
@@ -119,16 +118,16 @@ const photoCaption = {
 
   <section class="others">
     <div class="container">
-      <p class="eyebrow">{t("work.otherProgrammes")}</p>
+      <p class="eyebrow eyebrow--dot">{t("work.otherProgrammes")}</p>
       <div class="other-grid">
         {others.map((p) => (
-          <a
-            class:list={["other", `accent-${p.accent}`]}
-            href={localePath(programHref(p.id), lang)}
-          >
-            <span class="kicker">{lx(p.kicker, lang)}</span>
-            <span class="title">{lx(p.title, lang)}</span>
-            <ArrowUpRight size={18} stroke-width={1.6} aria-hidden="true" />
+          <a class:list={["other", `other-${p.accent}`]} href={localePath(programHref(p.id), lang)}>
+            {p.image && <img src={p.image} alt="" loading="lazy" decoding="async" />}
+            <span class="other-text">
+              <span class="kicker">{lx(p.kicker, lang)}</span>
+              <span class="title">{lx(p.title, lang)}</span>
+            </span>
+            <ArrowUpRight size={28} stroke-width={1.6} aria-hidden="true" />
           </a>
         ))}
       </div>
@@ -144,31 +143,54 @@ const photoCaption = {
 </BaseLayout>
 
 <style>
+  /* The programme's own colour, edge to edge. */
   .head {
-    padding-bottom: var(--s-8);
+    padding-block: clamp(3rem, 7vw, 6rem);
+    background: var(--accent-fill);
+    color: var(--paper-raised);
+  }
+  .head-education {
+    color: var(--ink);
   }
   .head-grid {
     display: grid;
-    grid-template-columns: 1.3fr 0.7fr;
-    gap: clamp(2rem, 5vw, 4rem);
+    grid-template-columns: minmax(0, 1.4fr) minmax(0, 0.8fr);
+    gap: clamp(2rem, 6vw, 5rem);
     align-items: center;
+  }
+  .head-kicker {
+    margin: 0;
+    font-size: var(--step--1);
+    font-weight: 600;
+    opacity: 0.85;
   }
   h1 {
     margin: var(--s-4) 0 0;
-    max-width: 15ch;
+    font-size: var(--step-5);
+    max-width: 13ch;
   }
   .lede {
-    margin-top: var(--s-5);
+    margin-top: var(--s-6);
     font-size: var(--step-1);
-    color: var(--ink-2);
+    line-height: 1.6;
+    max-width: 52ch;
+    opacity: 0.95;
+  }
+  .head :global(.caption) {
+    color: inherit;
+    opacity: 0.85;
+  }
+  .head :global(.head-photo img) {
+    box-shadow: var(--shadow-deep);
+  }
+  .head :global(:focus-visible) {
+    outline-color: currentColor;
   }
 
-  .activities {
-    background: var(--accent-wash);
-  }
   .activities-title {
-    font-size: var(--step-2);
-    margin: 0 0 var(--s-6);
+    font-size: var(--step-4);
+    margin: 0 0 var(--s-7);
+    max-width: 16ch;
   }
   .list {
     list-style: none;
@@ -176,109 +198,159 @@ const photoCaption = {
     padding: 0;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr));
-    gap: var(--s-6) var(--s-7);
+    gap: var(--s-7) var(--s-7);
   }
   .list li {
-    padding-top: var(--s-4);
-    border-top: 2px solid var(--accent);
+    padding-top: var(--s-5);
+    border-top: 3px solid var(--accent-fill);
   }
   .list h3 {
-    font-size: var(--step-1);
-    margin: 0 0 var(--s-2);
+    font-size: var(--step-2);
+    margin: 0 0 var(--s-3);
   }
   .list p {
     margin: 0;
     color: var(--ink-2);
   }
 
-  .gallery .container {
-    border-top: 1px solid var(--rule);
-    padding-top: var(--s-6);
+  .gallery {
+    padding-top: 0;
   }
+  /* Masonry by columns: every photograph keeps its own shape. */
   .gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
-    gap: var(--s-4);
-    margin-top: var(--s-5);
-  }
-  .gallery-grid img {
-    width: 100%;
-    aspect-ratio: 4 / 3;
-    object-fit: cover;
-    border: 1px solid var(--rule);
-    border-radius: var(--r-2);
-    background: var(--paper-sunk);
+    columns: 3 16rem;
+    column-gap: var(--s-4);
   }
   .gallery-item {
     display: block;
+    width: 100%;
     padding: 0;
+    margin: 0 0 var(--s-4);
     border: 0;
     background: none;
     cursor: zoom-in;
+    break-inside: avoid;
+    border-radius: var(--r-4);
+    overflow: hidden;
+  }
+  .gallery-item img {
+    width: 100%;
+    height: auto;
+    background: var(--paper-sunk);
+    filter: var(--photo-filter);
+    transition: filter var(--dur-3) var(--ease-out);
   }
   .gallery-item:hover img {
-    opacity: 0.94;
+    filter: saturate(1.05) contrast(1.04);
   }
 
-  .entries-head h2 {
-    font-size: var(--step-2);
-    padding-top: var(--s-3);
-    border-top: 1px solid var(--rule-strong);
+  .entries {
+    background: var(--paper-sunk);
+  }
+  .entries-title {
+    font-size: var(--step-4);
+    margin-bottom: var(--s-7);
   }
   .entries-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr));
-    gap: var(--s-6) var(--s-7);
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 21rem), 1fr));
+    gap: var(--s-8) var(--s-6);
+  }
+  .entries :global(.prog) {
+    background: var(--paper);
   }
   .empty {
     color: var(--ink-2);
   }
 
-  .others .container {
-    border-top: 1px solid var(--rule);
-    padding-top: var(--s-6);
-  }
   .other-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr));
     gap: var(--s-4);
     margin-top: var(--s-5);
   }
   .other {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: end;
+    gap: var(--s-4);
+    min-height: 16rem;
+    padding: var(--s-6);
+    text-decoration: none;
+    border-radius: var(--r-4);
+    overflow: hidden;
+    isolation: isolate;
+    color: #fff8f1;
+    background: var(--c);
+  }
+  .other-education {
+    --c: var(--turmeric);
+    color: var(--ink);
+  }
+  .other-farmers {
+    --c: var(--leaf);
+  }
+  .other-children {
+    --c: var(--indigo);
+  }
+  /* The photograph sits behind, tinted by the programme colour. */
+  .other img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -2;
+    filter: grayscale(0.4);
+  }
+  .other::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--c);
+    opacity: 0.86;
+    z-index: -1;
+    transition: opacity var(--dur-3) var(--ease-out);
+  }
+  .other:hover::before {
+    opacity: 0.72;
+  }
+  .other-text {
     display: grid;
     gap: var(--s-2);
-    text-decoration: none;
-    padding: var(--s-5);
-    border: 1px solid var(--rule);
-    border-radius: var(--r-3);
-    background: var(--paper-raised);
-    transition:
-      border-color var(--dur-2) var(--ease-out),
-      transform var(--dur-2) var(--ease-out);
-  }
-  .other:hover {
-    border-color: var(--accent);
-    transform: translateY(-2px);
   }
   .other .kicker {
-    font-family: var(--font-mono);
     font-size: var(--step--1);
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--accent);
+    font-weight: 600;
+    opacity: 0.9;
   }
   .other .title {
     font-family: var(--font-display);
-    font-size: var(--step-1);
-    line-height: 1.2;
+    font-variation-settings:
+      "opsz" 72,
+      "WONK" 1,
+      "SOFT" 60;
+    font-weight: 540;
+    font-size: var(--step-3);
+    letter-spacing: -0.02em;
+    line-height: 1.05;
   }
-  .other svg {
-    color: var(--ink-3);
-    justify-self: end;
+  .other :global(svg) {
+    transition: transform var(--dur-2) var(--ease-out);
+  }
+  .other:hover :global(svg) {
+    transform: translate(4px, -4px);
+  }
+  .other:focus-visible {
+    outline-color: var(--c);
   }
   @media (max-width: 62rem) {
     .head-grid {
       grid-template-columns: 1fr;
+    }
+    .head :global(.head-photo) {
+      max-width: 26rem;
     }
   }
 </style>

@@ -197,7 +197,8 @@ await interaction("mobile nav", "/", async (page) => {
 
 await interaction("story filter", "/stories", async (page) => {
   const before = await page.$$eval("[data-entry]:not([hidden])", (els) => els.length);
-  await page.select(".filters select", "education");
+  // Programme is a row of chips (radio inputs); click the Education one.
+  await page.click('.filters .chip:has(input[value="education"])');
   await new Promise((r) => setTimeout(r, 300));
   const after = await page.$$eval("[data-entry]:not([hidden])", (els) => els.length);
   return { before, after };
@@ -218,7 +219,10 @@ await interaction("donate widget", "/donate", async (page) => {
       pay,
       qr: Boolean(document.querySelector(".receipt .qr svg")),
       whatsapp: Boolean(
-        document.querySelector(".receipt .after-actions .wa")?.getAttribute("href")?.startsWith("https://wa.me/"),
+        document
+          .querySelector(".receipt .after-actions .wa")
+          ?.getAttribute("href")
+          ?.startsWith("https://wa.me/"),
       ),
     };
   });

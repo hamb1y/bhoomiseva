@@ -1,9 +1,10 @@
 <script lang="ts">
-  import { Menu, X } from "lucide-svelte";
+  import { Menu, X, ArrowRight } from "lucide-svelte";
 
   interface Link {
     label: string;
     href: string;
+    accent?: string;
     children?: Link[];
   }
 
@@ -53,16 +54,17 @@
 
 <button
   class="toggle"
+  class:open
   type="button"
   aria-expanded={open}
   aria-controls="mobile-nav"
   onclick={() => (open = !open)}
 >
   {#if open}
-    <X size={22} strokeWidth={1.7} aria-hidden="true" />
+    <X size={22} strokeWidth={1.8} aria-hidden="true" />
     <span class="sr">{closeLabel}</span>
   {:else}
-    <Menu size={22} strokeWidth={1.7} aria-hidden="true" />
+    <Menu size={22} strokeWidth={1.8} aria-hidden="true" />
     <span class="sr">{menuLabel}</span>
   {/if}
 </button>
@@ -71,14 +73,18 @@
   <div class="panel" id="mobile-nav" bind:this={panel}>
     <nav aria-label={menuLabel}>
       <ul>
-        {#each links as link (link.href)}
-          <li>
+        {#each links as link, i (link.href)}
+          <li style={`--i:${i}`}>
             <a href={link.href} onclick={() => (open = false)}>{link.label}</a>
             {#if link.children?.length}
               <ul class="sub">
                 {#each link.children as child (child.href)}
                   <li>
-                    <a href={child.href} onclick={() => (open = false)}>{child.label}</a>
+                    <a
+                      href={child.href}
+                      class={child.accent ? `dot-${child.accent}` : ""}
+                      onclick={() => (open = false)}>{child.label}</a
+                    >
                   </li>
                 {/each}
               </ul>
@@ -87,8 +93,13 @@
         {/each}
       </ul>
     </nav>
-    <a class="donate" href={donateHref} onclick={() => (open = false)}>{donateLabel}</a>
-    <a class="lang" href={langHref} aria-label={langAria}>{langLabel}</a>
+    <div class="foot">
+      <a class="donate" href={donateHref} onclick={() => (open = false)}>
+        {donateLabel}
+        <ArrowRight size={18} strokeWidth={1.8} aria-hidden="true" />
+      </a>
+      <a class="lang" href={langHref} aria-label={langAria}>{langLabel}</a>
+    </div>
   </div>
 {/if}
 
@@ -96,12 +107,14 @@
   .toggle {
     display: inline-grid;
     place-items: center;
-    width: 42px;
-    height: 42px;
+    width: 44px;
+    height: 44px;
     border: 1px solid var(--rule-strong);
-    border-radius: var(--r-2);
+    border-radius: var(--r-3);
     background: transparent;
     color: var(--ink);
+    position: relative;
+    z-index: 2;
   }
   .toggle:hover {
     background: var(--ink-wash);
@@ -116,14 +129,25 @@
   }
   .panel {
     position: fixed;
-    inset: 0;
+    inset: var(--head-h) 0 0 0;
     z-index: 60;
-    background: var(--paper);
-    padding: 6.5rem var(--gutter) 3rem;
+    background: var(--soil);
+    color: var(--on-soil);
+    padding: var(--s-6) var(--gutter) max(var(--s-6), env(safe-area-inset-bottom));
     display: flex;
     flex-direction: column;
-    gap: var(--s-6);
+    justify-content: space-between;
+    gap: var(--s-7);
     overflow-y: auto;
+    animation: open var(--dur-3) var(--ease-out);
+  }
+  @keyframes open {
+    from {
+      clip-path: inset(0 0 100% 0);
+    }
+    to {
+      clip-path: inset(0 0 0 0);
+    }
   }
   ul {
     list-style: none;
@@ -131,48 +155,87 @@
     padding: 0;
   }
   nav > ul > li {
-    border-bottom: 1px solid var(--rule);
+    border-bottom: 1px solid var(--soil-rule);
+    animation: rise var(--dur-3) var(--ease-out) both;
+    animation-delay: calc(80ms + var(--i) * 45ms);
+  }
+  @keyframes rise {
+    from {
+      opacity: 0;
+      translate: 0 8px;
+    }
   }
   nav > ul > li > a {
     display: block;
     font-family: var(--font-display);
     font-variation-settings:
-      "opsz" 40,
-      "WONK" 1;
-    font-size: var(--step-2);
+      "opsz" 72,
+      "WONK" 1,
+      "SOFT" 50;
+    font-weight: 520;
+    font-size: clamp(2rem, 9vw, 2.75rem);
+    letter-spacing: -0.03em;
+    line-height: 1.1;
     text-decoration: none;
     padding: var(--s-4) 0;
   }
   .sub {
-    padding: 0 0 var(--s-4) var(--s-4);
+    padding: 0 0 var(--s-4);
+    display: grid;
+    gap: var(--s-1);
   }
   .sub a {
-    display: block;
-    font-family: var(--font-body);
-    font-size: var(--step-0);
-    color: var(--ink-2);
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    font-size: var(--step-1);
+    color: var(--on-soil-2);
     text-decoration: none;
     padding: var(--s-2) 0;
   }
+  .sub a::before {
+    content: "";
+    width: 0.6rem;
+    height: 0.6rem;
+    border-radius: 50%;
+    background: var(--dot, var(--clay-bright));
+  }
+  .dot-education {
+    --dot: var(--turmeric);
+  }
+  .dot-farmers {
+    --dot: #6f9e7f;
+  }
+  .dot-children {
+    --dot: #6d93b5;
+  }
   .sub a:hover,
   nav a:hover {
-    color: var(--clay);
+    color: var(--clay-bright);
+  }
+  .foot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--s-4);
   }
   .donate {
     display: inline-flex;
-    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
     background: var(--clay);
-    color: #fff6ee;
+    color: #fff8f1;
     text-decoration: none;
-    padding: 0.85em 1.2em;
-    border-radius: var(--r-2);
-    font-weight: 550;
-    align-self: flex-start;
+    padding: 1em 1.4em;
+    border-radius: var(--r-3);
+    font-weight: 600;
   }
   .lang {
-    font-family: var(--font-mono);
-    font-size: var(--step--1);
-    color: var(--ink-2);
-    text-underline-offset: 0.2em;
+    font-weight: 600;
+    color: var(--on-soil);
+    text-decoration: none;
+    padding: 0.5rem 0.9rem;
+    border: 1px solid var(--soil-rule);
+    border-radius: 999px;
   }
 </style>

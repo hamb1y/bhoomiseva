@@ -7,11 +7,13 @@ import type { Entry } from "../data/types";
 import EntryCard from "../components/EntryCard.astro";
 import EntryFilter from "../components/EntryFilter.svelte";
 import CTABand from "../components/CTABand.astro";
+import PageHead from "../components/PageHead.astro";
 import { Clock } from "lucide-astro";
 
 interface FilterOption {
   value: string;
   label: string;
+  accent?: string;
 }
 
 interface Props {
@@ -74,13 +76,7 @@ const isEmpty = entries.length === 0;
 ---
 
 <BaseLayout lang={lang} path={path} title={pageTitle ?? title} description={lede}>
-  <section class="head">
-    <div class="container">
-      <p class="eyebrow">{kicker}</p>
-      <h1>{title}</h1>
-      <p class="lede measure">{lede}</p>
-    </div>
-  </section>
+  <PageHead kicker={kicker} title={title} lede={lede} />
 
   <section class="archive">
     <div class="container">
@@ -98,20 +94,20 @@ const isEmpty = entries.length === 0;
             countTemplate={countTemplate}
             countOne={countOne}
           />
-          <p class="count" data-count>
+          <p class="count" data-count aria-live="polite">
             {(sorted.length === 1 ? countOne : countTemplate).replace("{n}", String(sorted.length))}
           </p>
         </div>
       )}
 
       {isEmpty ? (
-        <p class="empty">
-          <Clock size={18} strokeWidth={1.6} aria-hidden="true" />
-          {emptyMessage}
-        </p>
+        <div class="empty empty--page">
+          <Clock size={22} strokeWidth={1.6} aria-hidden="true" />
+          <p>{emptyMessage}</p>
+        </div>
       ) : (
         <>
-          <ul class="entry-list">
+          <ul class="entry-list" data-entry-list>
             {sorted.map((entry) => (
               <li
                 data-entry
@@ -148,50 +144,70 @@ const isEmpty = entries.length === 0;
 </BaseLayout>
 
 <style>
-  .head {
-    padding-bottom: var(--s-7);
-  }
-  h1 {
-    margin: var(--s-4) 0 0;
-  }
-  .lede {
-    margin-top: var(--s-5);
-    font-size: var(--step-1);
-    color: var(--ink-2);
-  }
-  .archive .container {
-    border-top: 1px solid var(--rule-strong);
-    padding-top: var(--s-5);
+  .archive {
+    padding-top: 0;
   }
   .controls {
+    position: sticky;
+    top: var(--head-h);
+    z-index: 5;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: end;
-    gap: var(--s-5);
-    margin-bottom: var(--s-6);
+    gap: var(--s-4) var(--s-5);
+    margin-bottom: var(--s-7);
+    padding-block: var(--s-4);
+    background: var(--paper);
+    border-block: 1px solid var(--rule);
   }
   .count {
     font-family: var(--font-mono);
     font-size: var(--step--1);
-    color: var(--ink-3);
+    color: var(--ink-2);
     margin: 0;
+    padding-bottom: 0.4em;
   }
   .entry-list {
     list-style: none;
     padding: 0;
     margin: 0;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(min(100%, 24rem), 1fr));
-    gap: var(--s-6) var(--s-7);
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 21rem), 1fr));
+    gap: var(--s-8) var(--s-6);
+  }
+  /* On the unfiltered list, the newest entry leads at full width. */
+  .entry-list:not([data-filtered]) > li:first-child {
+    grid-column: 1 / -1;
+    padding-bottom: var(--s-7);
+    border-bottom: 1px solid var(--rule);
   }
   .empty {
-    display: flex;
-    align-items: center;
-    gap: var(--s-3);
     color: var(--ink-2);
     padding-block: var(--s-7);
     margin: 0;
     max-width: 52ch;
+  }
+  .empty--page {
+    display: flex;
+    align-items: center;
+    gap: var(--s-4);
+    max-width: none;
+    padding: clamp(2rem, 6vw, 4rem);
+    border: 1.5px dashed var(--rule-strong);
+    border-radius: var(--r-4);
+    font-size: var(--step-1);
+  }
+  .empty--page :global(svg) {
+    color: var(--clay);
+    flex: none;
+  }
+  .empty--page p {
+    margin: 0;
+  }
+  @media (max-width: 40rem) {
+    .controls {
+      position: static;
+    }
   }
 </style>

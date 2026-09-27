@@ -16,6 +16,16 @@ Three recurring devices:
 2. **Dates and places are explicit.** Every story carries a date (or an honest period label) and a location, set in mono so they read as record rather than marketing.
 3. **Evidence, not decoration.** Photographs are captioned and treated as documents. We never use a fake stock image.
 
+### Earth and paper (the 2026 rework)
+
+The field notebook now has a second ground. Pages alternate between **paper** (the record) and **soil** (`--soil`, a deep brown-black used for full-width bands, the footer and the mobile menu), so a long page reads as strata rather than one cream scroll. Five devices carry it:
+
+1. **The sun on the horizon.** The logo mark is a sun over a horizon line. It returns as a flat clay disc behind the home collage, rising into the Donate band, as the zero of the 404, and behind the About lockup. It is always a solid shape, never a glow.
+2. **Display type at poster scale.** The home headline uses `--step-6` (up to ~6.4rem); inner pages open with a large `PageHead` whose lede sits beside the title on wide screens.
+3. **Programme colour as ground.** Programme pages open on a full-bleed field of their own colour; on the home page the three programmes are full-colour panels that pin under the header and slide over one another as you scroll (CSS `position: sticky`, only where a whole panel fits the viewport).
+4. **The record.** Story and event pages set programme / date / place / author as a ruled data strip in mono, not as a sentence.
+5. **The wordmark.** The footer ends with the organisation's name set edge to edge in clay.
+
 > **Removed by design (do not reintroduce):** the earlier "ledger scaffolding" — numbered `01 / 02 / 03` section markers, wide-tracked uppercase mono eyebrows, and a hairline rule above every block. With real photographs in place, that scaffolding competed with the content and made the layout monotonous. Eyebrows are now plain sentence-case labels; sections are separated by space, not rules.
 
 ---
@@ -63,22 +73,28 @@ Derived from current design-critique consensus. These are hard constraints.
 
 Semantic tokens. Names describe **function**, not appearance.
 
-| Token            | Hex       | Meaning                             |
-| ---------------- | --------- | ----------------------------------- |
-| `--paper`        | `#F3ECDF` | base page ground (warm paper)       |
-| `--paper-raised` | `#FAF6EE` | lifted surface / cards              |
-| `--paper-sunk`   | `#E9DDC9` | recessed bands, image frames        |
-| `--ink`          | `#241A13` | primary text (deep soil)            |
-| `--ink-2`        | `#5C4B3D` | secondary text                      |
-| `--ink-3`        | `#8A786A` | captions, meta                      |
-| `--rule`         | `#D7C9B3` | hairlines, dividers                 |
-| `--clay`         | `#B5532B` | primary action / brand (terracotta) |
-| `--clay-deep`    | `#8C3D1E` | pressed / accessible text-on-paper  |
-| `--leaf`         | `#3E6B4F` | farmers & environment               |
-| `--leaf-deep`    | `#2B4C37` | leaf text                           |
-| `--turmeric`     | `#D39A2A` | education                           |
-| `--indigo`       | `#2A4A63` | children & community                |
-| `--rose`         | `#9E3A55` | emergency / urgent needs            |
+| Token            | Hex       | Meaning                                     |
+| ---------------- | --------- | ------------------------------------------- |
+| `--paper`        | `#F3ECDF` | base page ground (warm paper)               |
+| `--paper-raised` | `#FAF6EE` | lifted surface / cards                      |
+| `--paper-sunk`   | `#E9DDC9` | recessed bands, image frames                |
+| `--ink`          | `#241A13` | primary text (deep soil)                    |
+| `--ink-2`        | `#5C4B3D` | secondary text                              |
+| `--ink-3`        | `#7D6B5D` | captions, meta (AA on paper)                |
+| `--rule`         | `#D7C9B3` | hairlines, dividers                         |
+| `--clay`         | `#B5532B` | primary action / brand (terracotta)         |
+| `--clay-deep`    | `#8C3D1E` | pressed / accessible text-on-paper          |
+| `--leaf`         | `#3E6B4F` | farmers & environment                       |
+| `--leaf-deep`    | `#2B4C37` | leaf text                                   |
+| `--turmeric`     | `#D39A2A` | education                                   |
+| `--indigo`       | `#2A4A63` | children & community                        |
+| `--rose`         | `#9E3A55` | emergency / urgent needs                    |
+| `--soil`         | `#1F1711` | dark ground: bands, footer, menu            |
+| `--soil-2`       | `#2C2119` | raised surface on soil                      |
+| `--on-soil`      | `#F3ECDF` | text on soil (`-2`, `-3` for meta)          |
+| `--clay-bright`  | `#D8703F` | clay used _on soil_, where clay is too dark |
+
+`.soil` on a section flips the ink/rule tokens so any component placed inside reads correctly on the dark ground. Each pillar class (`.accent-education` …) sets `--accent` (a text-safe shade), `--accent-fill` (the pure colour, for grounds, dots and rules), `--accent-on-soil` and `--accent-wash`. Turmeric is too light for text on paper, so its `--accent` is a darker `#8A6112`.
 
 Washes (tinted section grounds) are generated with `color-mix()` from these, e.g. `--leaf-wash: color-mix(in oklab, var(--leaf) 10%, var(--paper))`. Do not hand-pick new pastels.
 
@@ -109,14 +125,17 @@ Scale (fluid, `clamp`), roughly 1.25–1.33 ratio:
 ```
 --step--1: clamp(0.83rem, 0.8rem + 0.15vw, 0.9rem);
 --step-0:  clamp(1rem, 0.95rem + 0.25vw, 1.09rem);
---step-1:  clamp(1.22rem, 1.12rem + 0.5vw, 1.45rem);
---step-2:  clamp(1.5rem, 1.3rem + 1vw, 2rem);
---step-3:  clamp(1.9rem, 1.55rem + 1.7vw, 2.9rem);
---step-4:  clamp(2.4rem, 1.8rem + 3vw, 4.2rem);
---step-5:  clamp(3rem, 2rem + 5vw, 6rem);
+--step-1:  clamp(1.18rem, 1.1rem + 0.45vw, 1.4rem);
+--step-2:  clamp(1.45rem, 1.3rem + 0.85vw, 1.95rem);
+--step-3:  clamp(1.8rem, 1.5rem + 1.5vw, 2.75rem);
+--step-4:  clamp(2.2rem, 1.7rem + 2.4vw, 3.6rem);
+--step-5:  clamp(2.6rem, 1.8rem + 3.8vw, 5rem);     /* page titles */
+--step-6:  clamp(3rem, 1.6rem + 6.4vw, 7.75rem);   /* the home headline only */
 ```
 
-Body measure 62–70ch. Line height 1.6 body, 1.05–1.15 display. Letter-spacing: slightly positive for small caps labels, slightly negative for large display.
+Kannada headings drop the negative tracking and open the line height to ~1.25 (`:lang(kn)` rules in `global.css` and the views), because Kannada words are long and the script needs vertical room.
+
+Body measure 62–70ch. Line height 1.6 body, 0.92–1.1 display. Letter-spacing: slightly positive for small caps labels, slightly negative for large display.
 
 ---
 
@@ -130,7 +149,7 @@ Body measure 62–70ch. Line height 1.6 body, 1.05–1.15 display. Letter-spacin
 --s-9: 6rem;    --s-10: 8rem;   --s-11: 11rem;
 ```
 
-Page container max `78rem`, gutters `clamp(1.25rem, 5vw, 4rem)`. Editorial layout uses a 12-column grid on `.grid` for asymmetry (lead story 7 cols, secondary 5, etc.), never uniform thirds.
+Page container max `82rem`, gutters `clamp(1.25rem, 5vw, 4rem)`. Editorial layout uses a 12-column grid on `.grid` for asymmetry (lead story 7 cols, secondary 5, etc.), never uniform thirds.
 
 ---
 
@@ -149,14 +168,19 @@ Paper texture is a very subtle fractal-noise overlay at ~3% on the base body onl
 
 ## 7. Components
 
-- **Button** — solid clay (primary), ink outline (secondary), text+underline (tertiary). Square-ish (`--r-2`), generous padding. Hover: fill shift + arrow nudge. No glow, no gradient.
-- **Story card** — photograph (3:2), date or period in mono, programme dot, display title, summary, place. Used on `/stories` and the home page.
-- **Story page** — kicker, display title, summary, a single inline meta line (programme · date · place), a 3:2 photo, body with an English-only drop cap, an optional pull quote in the original voice, and an inline "People" list.
-- **Programme row** — alternating full-width image + text, used on the home page and `/work`. The image side flips on alternate rows. Activities render as dot-marked items, never numbered.
-- **Full-bleed band** — edge-to-edge photograph with a gradient caption bar linking to a story. Breaks the vertical rhythm.
+- **Button** — solid clay (primary), ink, light (on clay/soil), outline, text+underline. `--r-3`, generous padding. Hover: 2px lift + arrow nudge. No glow, no gradient.
+- **Arrow link** — underlined text link whose underline retracts and arrow nudges on hover.
+- **PageHead** — sentence-case label with a sun dot, `--step-5` title, lede beside it on wide screens. Every inner page opens with it.
+- **Entry card** — 4:3 photograph with a programme chip on it, date in mono, display title, summary, place. The whole card is the link. It is a size container: given ≥46rem (the first, newest entry of an unfiltered archive) it becomes a **lead** with the photograph beside the text.
+- **Filter bar** — programme chips with colour dots, year select, live count; sticks under the header on wide screens.
+- **Story page** — back pill, kicker, display title, a serif summary, the **record** strip (programme · date · place · author), a 3:2 photograph, body with an English-only drop cap, the letter/quote on the accent wash under a large opening quote mark, and people as pills.
+- **Programme panel** (home) — full-colour ground, activities as outlined pills, a tinted "Read more" button; panels stack on scroll.
+- **Programme row** (`/work`) — photograph with a block of the programme's colour offset behind it; sides alternate.
+- **Donate** — choices (cause tiles with colour dots, amount tiles, custom amount) on the left; a sticky soil **slip** on the right with the total at display size, the pay button, QR and UPI copy. On phones the slip follows the choices and a fixed pay bar keeps the action in reach.
+- **CTA band** — clay ground, rising sun disc, light + outline buttons.
+- **Footer** — soil ground, tagline and mission, link columns, the edge-to-edge wordmark.
 - **Empty photo frame** — falls back to a `--paper-sunk` panel with a dashed inset when no image exists. Never a broken image.
-- **Pull quote** — display serif, accent rule on the left, attributed below.
-- **Gallery** — responsive grid of 4:3 photographs on programme pages.
+- **Gallery** — CSS-columns masonry on programme pages; every photograph keeps its own shape and opens in the lightbox.
 
 Interactive (Svelte islands): mobile nav, donate widget, volunteer/contact form, story filter.
 
@@ -171,7 +195,9 @@ Interactive (Svelte islands): mobile nav, donate widget, volunteer/contact form,
 --dur-1: 140ms; --dur-2: 240ms; --dur-3: 420ms;
 ```
 
-Allowed: colour/underline transitions on links, 2–6px translate on reveal (content visible without JS), arrow shifts on buttons, lightbox scale from 0.98. Nothing more.
+Allowed: colour/underline transitions on links, arrow shifts on buttons, a 2px lift on buttons and tiles, lightbox scale from 0.98, the hero collage settling in once on load, and the mobile menu wiping open.
+
+**Scroll-driven, CSS only.** `.reveal` blocks settle up by 1.5rem as they enter (`animation-timeline: view()`); the header gains its hairline once the page scrolls (`animation-timeline: scroll()`). These **animate position only, never opacity** — if the timeline is inactive (a page too short to scroll, print, a screenshot) the content must still be fully visible. Browsers without support simply see the static page.
 
 ---
 

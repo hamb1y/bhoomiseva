@@ -4,6 +4,8 @@ import type { Lang } from "../i18n/ui";
 import { useTranslations } from "../i18n/utils";
 import { site } from "../data/site";
 import LeadForm from "../components/LeadForm.svelte";
+import PageHead from "../components/PageHead.astro";
+import { Mail, Phone, MessageCircle, Facebook } from "lucide-astro";
 
 interface Props {
   lang: Lang;
@@ -19,13 +21,7 @@ const fields = [
 ---
 
 <BaseLayout lang={lang} path="/contact" title={t("nav.contact")} description={t("contact.lede")}>
-  <section class="head">
-    <div class="container">
-      <p class="eyebrow">{t("contact.kicker")}</p>
-      <h1>{t("contact.title")}</h1>
-      <p class="lede measure">{t("contact.lede")}</p>
-    </div>
-  </section>
+  <PageHead kicker={t("contact.kicker")} title={t("contact.title")} lede={t("contact.lede")} />
 
   <section class="body">
     <div class="container grid">
@@ -48,33 +44,39 @@ const fields = [
         />
       </div>
 
-      <aside class="details">
+      <aside class="details soil">
         <h2>{t("footer.contact")}</h2>
-        <ul class="ledger">
+        <ul>
           <li>
             <span class="label">{t("contact.email")}</span>
             <a class="value" href={`mailto:${site.email}`}>
+              <Mail size={20} stroke-width={1.6} aria-hidden="true" />
               {site.email}
             </a>
           </li>
           <li>
             <span class="label">{t("contact.phone")}</span>
             <a class="value" href={`tel:${site.phoneHref}`}>
+              <Phone size={20} stroke-width={1.6} aria-hidden="true" />
               {site.phone}
             </a>
           </li>
           <li>
             <span class="label">WhatsApp</span>
             <a class="value" href={site.whatsapp}>
+              <MessageCircle size={20} stroke-width={1.6} aria-hidden="true" />
               +91 9900103178
             </a>
           </li>
-          <li>
-            <span class="label">{t("contact.socials")}</span>
-            <span class="value socials">
-              {site.socials.facebook && <a href={site.socials.facebook}>Facebook</a>}
-            </span>
-          </li>
+          {site.socials.facebook && (
+            <li>
+              <span class="label">{t("contact.socials")}</span>
+              <a class="value" href={site.socials.facebook}>
+                <Facebook size={20} stroke-width={1.6} aria-hidden="true" />
+                Facebook
+              </a>
+            </li>
+          )}
         </ul>
       </aside>
     </div>
@@ -82,51 +84,67 @@ const fields = [
 </BaseLayout>
 
 <style>
-  .head {
-    padding-bottom: var(--s-7);
+  .body {
+    padding-top: 0;
   }
-  h1 {
-    margin: var(--s-4) 0 0;
-  }
-  .lede {
-    margin-top: var(--s-5);
-    font-size: var(--step-1);
-    color: var(--ink-2);
-  }
-  .body .grid {
+  .grid {
     display: grid;
-    grid-template-columns: 1.3fr 0.7fr;
+    grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
     gap: clamp(2rem, 5vw, 4rem);
     align-items: start;
-    border-top: 1px solid var(--rule-strong);
-    padding-top: var(--s-6);
+  }
+  .form-col {
+    background: var(--paper-raised);
+    border-radius: var(--r-4);
+    padding: clamp(1.5rem, 4vw, 3rem);
+    box-shadow: var(--shadow-lift);
   }
   .form-col h2,
   .details h2 {
-    font-size: var(--step-2);
-    margin: 0 0 var(--s-5);
+    font-size: var(--step-3);
+    margin: 0 0 var(--s-6);
   }
-  .details .ledger {
+  .details {
+    border-radius: var(--r-4);
+    padding: clamp(1.5rem, 4vw, 3rem);
+  }
+  .details ul {
+    list-style: none;
     margin: 0;
+    padding: 0;
+    display: grid;
   }
-  .details .value {
-    font-family: var(--font-mono);
+  .details li {
+    display: grid;
+    gap: var(--s-2);
+    padding-block: var(--s-4);
+    border-top: 1px solid var(--soil-rule);
+  }
+  .label {
     font-size: var(--step--1);
-    text-align: right;
+    font-weight: 600;
+    color: var(--on-soil-3);
   }
-  .details a.value {
-    color: var(--ink);
-    text-decoration: none;
-  }
-  .details a.value:hover {
-    color: var(--clay);
-  }
-  .socials {
-    display: flex;
+  .value {
+    display: inline-flex;
+    align-items: center;
     gap: var(--s-3);
+    font-size: var(--step-1);
+    font-weight: 500;
+    color: var(--on-soil);
+    text-decoration: none;
+    overflow-wrap: anywhere;
+    transition: color var(--dur-1) var(--ease-out);
+  }
+  .value :global(svg) {
+    flex: none;
+    color: var(--clay-bright);
+  }
+  .value:hover {
+    color: var(--clay-bright);
   }
   @media (max-width: 62rem) {
-    .body .grid {
+    .grid {
       grid-template-columns: 1fr;
     }
   }

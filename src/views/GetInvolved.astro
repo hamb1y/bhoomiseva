@@ -3,8 +3,9 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import type { Lang } from "../i18n/ui";
 import { useTranslations, localePath, lx } from "../i18n/utils";
 import { site } from "../data/site";
-import { programs } from "../data/programs";
+import { programs, programById } from "../data/programs";
 import LeadForm from "../components/LeadForm.svelte";
+import PageHead from "../components/PageHead.astro";
 import {
   GraduationCap,
   Sprout,
@@ -50,6 +51,9 @@ const ways = [
   },
 ];
 
+// Tutoring is the volunteering most people do, so its photograph backs the lead.
+const leadPhoto = programById("education")?.image;
+
 const availability = [
   lx({ en: "A few hours a month", kn: "ತಿಂಗಳಿಗೆ ಕೆಲವು ಗಂಟೆಗಳು" }, lang),
   lx({ en: "A few hours a week", kn: "ವಾರಕ್ಕೆ ಕೆಲವು ಗಂಟೆಗಳು" }, lang),
@@ -84,31 +88,25 @@ const fields = [
   title={t("nav.involved")}
   description={t("involved.lede")}
 >
-  <section class="head">
-    <div class="container">
-      <p class="eyebrow">{t("involved.kicker")}</p>
-      <h1>{t("involved.title")}</h1>
-      <p class="lede measure">{t("involved.lede")}</p>
-    </div>
-  </section>
+  <PageHead kicker={t("involved.kicker")} title={t("involved.title")} lede={t("involved.lede")} />
 
   <section class="ways">
     <div class="container">
       <ul class="list">
         {ways.map(({ title, body, Icon, href, cta }, i) => (
-          <li>
-            <span class="n">{String(i + 1).padStart(2, "0")}</span>
-            <div class="way-main">
-              <h2>
-                <Icon size={20} stroke-width={1.7} aria-hidden="true" />
-                {title}
-              </h2>
-              <p>{body}</p>
-              <a class="more" href={href}>
-                {cta}
-                <ArrowUpRight size={15} stroke-width={1.7} aria-hidden="true" />
-              </a>
-            </div>
+          <li class:list={["way", { lead: i === 0 }]}>
+            {i === 0 && leadPhoto && (
+              <img class="lead-photo" src={leadPhoto} alt="" loading="lazy" decoding="async" />
+            )}
+            <h2>
+              <Icon size={i === 0 ? 28 : 22} stroke-width={1.7} aria-hidden="true" />
+              {title}
+            </h2>
+            <p>{body}</p>
+            <a class="arrow-link" href={href}>
+              {cta}
+              <ArrowUpRight size={16} stroke-width={1.8} aria-hidden="true" />
+            </a>
           </li>
         ))}
       </ul>
@@ -117,12 +115,12 @@ const fields = [
 
   <section class="volunteer" id="volunteer">
     <div class="container vol-grid">
-      <div>
-        <p class="eyebrow">{t("involved.volunteer.title")}</p>
+      <div class="vol-copy">
+        <p class="eyebrow eyebrow--dot">{t("involved.volunteer.title")}</p>
         <h2>
           {lx({ en: "Tell us how you can help", kn: "ನೀವು ಹೇಗೆ ಸಹಾಯ ಮಾಡಬಲ್ಲಿರಿ ಎಂದು ಹೇಳಿ" }, lang)}
         </h2>
-        <p class="measure">
+        <p>
           {lx(
             {
               en: "Fill this in and we will match you with a student, a farmer programme or a coordination task. If you would rather write directly, use WhatsApp or email below.",
@@ -133,109 +131,166 @@ const fields = [
         </p>
       </div>
 
-      <LeadForm
-        client:load
-        formName="Volunteer"
-        fields={fields}
-        fallbackWhatsapp={site.whatsapp}
-        fallbackEmail={site.email}
-        submitLabel={t("form.submit")}
-        sendingLabel={t("form.sending")}
-        successMessage={t("form.success")}
-        errorMessage={t("form.error")}
-        invalidEmailMessage={t("form.invalidEmail")}
-        orContactLabel={t("form.orContact")}
-        contactEmail={site.email}
-        contactWhatsapp={site.whatsapp}
-      />
+      <div class="form-panel">
+        <LeadForm
+          client:load
+          formName="Volunteer"
+          fields={fields}
+          fallbackWhatsapp={site.whatsapp}
+          fallbackEmail={site.email}
+          submitLabel={t("form.submit")}
+          sendingLabel={t("form.sending")}
+          successMessage={t("form.success")}
+          errorMessage={t("form.error")}
+          invalidEmailMessage={t("form.invalidEmail")}
+          orContactLabel={t("form.orContact")}
+          contactEmail={site.email}
+          contactWhatsapp={site.whatsapp}
+        />
+      </div>
     </div>
   </section>
 </BaseLayout>
 
 <style>
-  .head {
-    padding-bottom: var(--s-7);
+  .ways {
+    padding-top: 0;
   }
-  h1 {
-    margin: var(--s-4) 0 0;
-    max-width: 16ch;
-  }
-  .lede {
-    margin-top: var(--s-5);
-    font-size: var(--step-1);
-    color: var(--ink-2);
-  }
-  .ways .container {
-    border-top: 1px solid var(--rule-strong);
-    padding-top: var(--s-5);
-  }
+  /* Volunteering leads, tall, on the left; the other three ways stack beside it. */
   .list {
     list-style: none;
     margin: 0;
     padding: 0;
-  }
-  .list li {
     display: grid;
-    grid-template-columns: 4rem 1fr;
-    gap: var(--s-5);
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+    grid-template-rows: repeat(3, auto);
+    gap: 0 clamp(2rem, 5vw, 4rem);
+  }
+  .way {
     padding-block: var(--s-6);
-    border-bottom: 1px solid var(--rule);
+    border-top: 1px solid var(--rule);
   }
-  .n {
-    font-family: var(--font-mono);
-    font-size: var(--step--1);
-    color: var(--clay);
-  }
-  .way-main h2 {
+  .way h2 {
     display: flex;
     align-items: center;
     gap: var(--s-3);
     font-size: var(--step-2);
     margin: 0 0 var(--s-3);
   }
-  .way-main h2 svg {
+  .way h2 :global(svg) {
     color: var(--clay);
     flex: none;
   }
-  .way-main p {
+  .way p {
     margin: 0 0 var(--s-4);
     color: var(--ink-2);
-    max-width: 60ch;
+    max-width: 52ch;
   }
-  .more {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    text-decoration: none;
-    font-weight: 550;
+  .way .arrow-link:hover {
+    color: var(--clay-deep);
   }
-  .more:hover {
-    color: var(--clay);
+  .lead {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    grid-row: 1 / span 3;
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    padding: clamp(2rem, 5vw, 3.5rem);
+    border: 0;
+    border-radius: var(--r-4);
+    background: var(--leaf);
+    color: #fff8f1;
+    min-height: 26rem;
   }
+  .lead-photo {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -2;
+    filter: grayscale(0.5) contrast(1.05);
+  }
+  /* Leaf over the photograph, heaviest where the text sits. */
+  .lead::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(
+      to bottom,
+      color-mix(in oklab, var(--leaf) 55%, transparent),
+      var(--leaf) 62%
+    );
+  }
+  .lead h2 {
+    font-size: var(--step-4);
+    margin-bottom: var(--s-4);
+  }
+  .lead h2 :global(svg) {
+    color: #cfe3d4;
+  }
+  .lead p {
+    color: color-mix(in oklab, #fff8f1 88%, var(--leaf));
+    font-size: var(--step-1);
+    line-height: 1.55;
+    margin-bottom: var(--s-6);
+  }
+  .lead .arrow-link {
+    font-size: var(--step-1);
+  }
+  .lead .arrow-link:hover {
+    color: inherit;
+  }
+  .lead :global(:focus-visible) {
+    outline-color: #fff8f1;
+  }
+
   .volunteer {
-    background: var(--leaf-wash);
-    border-block: 1px solid var(--rule);
+    background: var(--paper-sunk);
   }
   .vol-grid {
     display: grid;
-    grid-template-columns: 0.8fr 1.2fr;
-    gap: clamp(2rem, 5vw, 4.5rem);
+    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+    gap: clamp(2rem, 6vw, 5rem);
     align-items: start;
   }
-  .vol-grid h2 {
-    margin: var(--s-3) 0 var(--s-4);
-    max-width: 18ch;
+  .vol-copy {
+    position: sticky;
+    top: calc(var(--head-h) + var(--s-6));
   }
-  .vol-grid p {
+  .vol-copy h2 {
+    margin: var(--s-4) 0 var(--s-5);
+    font-size: var(--step-5);
+    max-width: 11ch;
+  }
+  .vol-copy p:not(.eyebrow) {
     color: var(--ink-2);
+    font-size: var(--step-1);
+    line-height: 1.55;
+    max-width: 40ch;
+  }
+  .form-panel {
+    background: var(--paper-raised);
+    border-radius: var(--r-4);
+    padding: clamp(1.5rem, 4vw, 3rem);
+    box-shadow: var(--shadow-lift);
   }
   @media (max-width: 62rem) {
+    .list,
     .vol-grid {
       grid-template-columns: 1fr;
     }
-    .list li {
-      grid-template-columns: 1fr;
-      gap: var(--s-2);
+    .lead {
+      grid-row: auto;
+      min-height: 0;
+      margin-bottom: var(--s-4);
+    }
+    .vol-copy {
+      position: static;
     }
   }
 </style>

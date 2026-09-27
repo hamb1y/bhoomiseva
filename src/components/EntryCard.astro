@@ -27,107 +27,160 @@ const meta = entry.date
     : null;
 ---
 
-<article class:list={["card", `accent-${program?.accent ?? "brand"}`]}>
-  {entry.image && (
-    <img
-      class="thumb"
-      src={entry.image}
-      alt={entry.imageAlt ? lx(entry.imageAlt, lang) : ""}
-      style={`object-position:${objectPosition(entry.imageFocal)}`}
-      loading="lazy"
-      decoding="async"
-    />
-  )}
+<div class="card-wrap">
+  <article
+    class:list={["card", `accent-${program?.accent ?? "brand"}`, { "no-image": !entry.image }]}
+  >
+    {entry.image && (
+      <div class="media">
+        <img
+          class="thumb"
+          src={entry.image}
+          alt={entry.imageAlt ? lx(entry.imageAlt, lang) : ""}
+          style={`object-position:${objectPosition(entry.imageFocal)}`}
+          loading="lazy"
+          decoding="async"
+        />
+        {showProgram && program && <span class="prog">{lx(program.kicker, lang)}</span>}
+      </div>
+    )}
 
-  <div class="meta">
-    <span class="date">{meta ?? t("common.dateUnknown")}</span>
-    {showAuthor && entry.author && <span class="author">{entry.author}</span>}
-    {showProgram && program && <span class="prog">{lx(program.kicker, lang)}</span>}
-  </div>
+    <div class="text">
+      <p class="meta">
+        <span class="date">{meta ?? t("common.dateUnknown")}</span>
+        {showAuthor && entry.author && <span class="author">{entry.author}</span>}
+        {!entry.image && showProgram && program && (
+          <span class="prog-inline">{lx(program.kicker, lang)}</span>
+        )}
+      </p>
 
-  <h3 class="title">
-    <a href={href}>
-      {lx(entry.title, lang)}
-      <ArrowUpRight size={17} stroke-width={1.6} aria-hidden="true" />
-    </a>
-  </h3>
+      <h3 class="title">
+        <a href={href}>
+          <span>{lx(entry.title, lang)}</span>
+          <ArrowUpRight size={20} stroke-width={1.8} aria-hidden="true" />
+        </a>
+      </h3>
 
-  <p class="summary">{lx(entry.summary, lang)}</p>
+      <p class="summary">{lx(entry.summary, lang)}</p>
 
-  {entry.location && <p class="place">{lx(entry.location, lang)}</p>}
-</article>
+      {entry.location && <p class="place">{lx(entry.location, lang)}</p>}
+    </div>
+  </article>
+</div>
 
 <style>
+  .card-wrap {
+    container-type: inline-size;
+    height: 100%;
+  }
   .card {
-    display: flex;
-    flex-direction: column;
-    gap: var(--s-3);
-    padding-block: var(--s-5);
-    border-top: 1px solid var(--rule);
     position: relative;
+    display: grid;
+    gap: var(--s-4);
+    align-content: start;
+    height: 100%;
+  }
+  .media {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--r-4);
+    background: var(--paper-sunk);
   }
   .thumb {
     width: 100%;
-    aspect-ratio: 3 / 2;
+    aspect-ratio: 4 / 3;
     object-fit: cover;
-    border: 1px solid var(--rule);
-    border-radius: var(--r-2);
-    background: var(--paper-sunk);
+    filter: var(--photo-filter);
+    transition: filter var(--dur-3) var(--ease-out);
+  }
+  .card:hover .thumb {
+    filter: saturate(1.05) contrast(1.04);
+  }
+  .prog {
+    position: absolute;
+    left: var(--s-3);
+    top: var(--s-3);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45em;
+    padding: 0.35em 0.75em 0.35em 0.6em;
+    border-radius: 999px;
+    background: var(--paper-raised);
+    color: var(--ink);
+    font-size: var(--step--1);
+    font-weight: 600;
+    line-height: 1.2;
+  }
+  .prog::before,
+  .prog-inline::before {
+    content: "";
+    width: 0.6em;
+    height: 0.6em;
+    border-radius: 50%;
+    background: var(--accent-fill);
+    flex: none;
+  }
+  .prog-inline {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45em;
+  }
+  .text {
+    display: grid;
+    gap: var(--s-3);
+    align-content: start;
   }
   .meta {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-    gap: var(--s-3);
+    gap: var(--s-2) var(--s-4);
+    margin: 0;
     font-family: var(--font-mono);
     font-size: var(--step--1);
-    color: var(--ink-3);
-  }
-  .date {
     color: var(--ink-2);
-  }
-  .author {
-    color: var(--ink-2);
-  }
-  .prog {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-  }
-  .prog::before {
-    content: "";
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: var(--accent);
-    flex: none;
   }
   .title {
     margin: 0;
     font-size: var(--step-2);
-    line-height: 1.12;
+    line-height: 1.1;
   }
   .title a {
     text-decoration: none;
-    display: inline;
-    background-image: linear-gradient(currentColor, currentColor);
+  }
+  /* The whole card is the link target; the title carries the accessible name. */
+  .title a::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: var(--r-4);
+  }
+  .title span {
+    background-image: linear-gradient(var(--accent-fill), var(--accent-fill));
     background-repeat: no-repeat;
     background-position: 0 100%;
-    background-size: 0% 1px;
-    transition: background-size var(--dur-2) var(--ease-out);
+    background-size: 0% 2px;
+    transition: background-size var(--dur-3) var(--ease-out);
   }
-  .title a:hover {
-    background-size: 100% 1px;
+  .card:hover .title span {
+    background-size: 100% 2px;
   }
-  .title svg {
+  .title :global(svg) {
     display: inline-block;
-    vertical-align: baseline;
-    margin-left: 0.15em;
+    vertical-align: -0.1em;
+    margin-left: 0.2em;
     color: var(--accent);
     transition: transform var(--dur-2) var(--ease-out);
   }
-  .title a:hover svg {
-    transform: translate(2px, -2px);
+  .card:hover .title :global(svg) {
+    transform: translate(3px, -3px);
+  }
+  .title a:focus-visible {
+    outline: none;
+  }
+  .title a:focus-visible::after {
+    outline: 2px solid var(--clay);
+    outline-offset: 4px;
   }
   .summary {
     margin: 0;
@@ -139,5 +192,29 @@ const meta = entry.date
     font-family: var(--font-mono);
     font-size: var(--step--1);
     color: var(--ink-3);
+  }
+  .no-image {
+    padding-top: var(--s-5);
+    border-top: 2px solid var(--accent-fill);
+  }
+
+  /* A card given the full width becomes a lead: photograph beside the text. */
+  @container (min-width: 46rem) {
+    .card:not(.no-image) {
+      grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+      gap: clamp(2rem, 4vw, 3.5rem);
+      align-items: center;
+    }
+    .thumb {
+      aspect-ratio: 3 / 2;
+    }
+    .title {
+      font-size: var(--step-4);
+      line-height: 1.02;
+    }
+    .summary {
+      font-size: var(--step-1);
+      line-height: 1.5;
+    }
   }
 </style>

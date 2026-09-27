@@ -4,6 +4,7 @@
   interface Item {
     label: string;
     href: string;
+    accent?: string;
   }
 
   let {
@@ -45,7 +46,7 @@
 <svelte:document onclick={onDocumentClick} />
 <svelte:window onkeydown={onKeydown} />
 
-<li class="has-menu" bind:this={root} onfocusout={onFocusOut}>
+<li class="has-menu" class:open bind:this={root} onfocusout={onFocusOut}>
   <a class="label" class:active {href} aria-current={active ? "page" : undefined}>{label}</a>
   <button
     class="toggle"
@@ -55,13 +56,19 @@
     aria-label={menuLabel}
     onclick={() => (open = !open)}
   >
-    <ChevronDown size={15} strokeWidth={1.8} aria-hidden="true" />
+    <ChevronDown size={15} strokeWidth={2} aria-hidden="true" />
   </button>
 
   {#if open}
     <ul class="menu">
       {#each items as item (item.href)}
-        <li><a href={item.href} onclick={() => (open = false)}>{item.label}</a></li>
+        <li>
+          <a
+            href={item.href}
+            class={item.accent ? `dot-${item.accent}` : ""}
+            onclick={() => (open = false)}>{item.label}</a
+          >
+        </li>
       {/each}
     </ul>
   {/if}
@@ -72,73 +79,100 @@
     position: relative;
     display: inline-flex;
     align-items: center;
-    gap: 0.15rem;
+    border-radius: var(--r-3);
+    transition: background var(--dur-1) var(--ease-out);
+  }
+  .has-menu:hover,
+  .has-menu.open {
+    background: var(--ink-wash);
   }
   .label {
-    position: relative;
     text-decoration: none;
     font-size: var(--step-0);
+    font-weight: 500;
     color: var(--ink-2);
-    padding-block: 0.35rem;
-  }
-  .label::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: 1px;
-    background: currentColor;
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform var(--dur-2) var(--ease-out);
+    padding: 0.45rem 0.2rem 0.45rem 0.75rem;
+    border-radius: var(--r-3);
   }
   .label:hover,
   .label.active {
     color: var(--ink);
   }
-  .label:hover::after,
-  .label.active::after {
-    transform: scaleX(1);
+  .label.active {
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.35em;
+    text-decoration-color: var(--clay);
   }
   .toggle {
     display: grid;
     place-items: center;
-    width: 1.4rem;
-    height: 1.4rem;
-    padding: 0;
+    width: 1.9rem;
+    height: 2.2rem;
+    padding: 0 0.35rem 0 0.1rem;
     border: 0;
     background: none;
     color: var(--ink-3);
-    border-radius: var(--r-1);
+    border-radius: var(--r-3);
+  }
+  .toggle :global(svg) {
+    transition: transform var(--dur-2) var(--ease-out);
+  }
+  .open .toggle :global(svg) {
+    transform: rotate(180deg);
   }
   .toggle:hover {
     color: var(--ink);
   }
   .menu {
     position: absolute;
-    top: calc(100% + 0.55rem);
-    left: -0.75rem;
-    min-width: 15rem;
+    top: calc(100% + 0.6rem);
+    left: 0;
+    min-width: 17rem;
     list-style: none;
     margin: 0;
     padding: var(--s-2);
     background: var(--paper-raised);
-    border: 1px solid var(--rule);
-    border-radius: var(--r-3);
-    box-shadow: var(--shadow-lift);
+    border-radius: var(--r-4);
+    box-shadow: var(--shadow-deep);
     z-index: 80;
+    animation: drop var(--dur-2) var(--ease-out);
+  }
+  @keyframes drop {
+    from {
+      opacity: 0;
+      translate: 0 -4px;
+    }
   }
   .menu a {
-    display: block;
-    padding: 0.5rem 0.7rem;
-    border-radius: var(--r-2);
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    padding: 0.65rem 0.8rem;
+    border-radius: var(--r-3);
     text-decoration: none;
-    color: var(--ink-2);
+    color: var(--ink);
     font-size: var(--step-0);
+    font-weight: 500;
+  }
+  .menu a::before {
+    content: "";
+    width: 0.6rem;
+    height: 0.6rem;
+    border-radius: 50%;
+    background: var(--dot, var(--clay));
+    flex: none;
+  }
+  .dot-education {
+    --dot: var(--turmeric);
+  }
+  .dot-farmers {
+    --dot: var(--leaf);
+  }
+  .dot-children {
+    --dot: var(--indigo);
   }
   .menu a:hover {
     background: var(--ink-wash);
-    color: var(--ink);
   }
 </style>

@@ -13,6 +13,7 @@ html {
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
   scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--head-h) + var(--s-4));
 }
 @media (prefers-reduced-motion: reduce) {
   html {
@@ -58,7 +59,7 @@ body {
   font-synthesis-weight: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 /* very subtle paper grain, base ground only */
@@ -68,36 +69,45 @@ body::before {
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  opacity: 0.035;
+  opacity: 0.04;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
 h1,
 h2,
 h3,
-h4 {
+h4,
+.display {
   font-family: var(--font-display);
+  font-optical-sizing: auto;
   font-variation-settings:
-    "opsz" 60,
     "WONK" 1,
-    "SOFT" 40;
-  font-weight: 560;
+    "SOFT" 50;
+  font-weight: 540;
   line-height: var(--leading-display);
-  letter-spacing: -0.015em;
+  letter-spacing: -0.02em;
   text-wrap: balance;
 }
 h1 {
   font-size: var(--step-5);
-  letter-spacing: -0.03em;
+  letter-spacing: -0.035em;
 }
 h2 {
   font-size: var(--step-4);
+  letter-spacing: -0.028em;
 }
 h3 {
   font-size: var(--step-2);
+  line-height: 1.12;
 }
 h4 {
   font-size: var(--step-1);
+  line-height: 1.2;
+}
+/* Kannada set in the same sizes wraps into very long words; ease it down. */
+:lang(kn) :is(h1, h2, .display) {
+  letter-spacing: 0;
+  line-height: 1.25;
 }
 p {
   text-wrap: pretty;
@@ -106,7 +116,7 @@ p {
 a {
   color: inherit;
   text-decoration-thickness: 1px;
-  text-underline-offset: 0.18em;
+  text-underline-offset: 0.2em;
 }
 
 strong {
@@ -115,7 +125,7 @@ strong {
 
 :focus-visible {
   outline: 2px solid var(--clay);
-  outline-offset: 2px;
+  outline-offset: 3px;
   border-radius: var(--r-1);
 }
 
@@ -137,30 +147,61 @@ strong {
   max-width: 46rem;
 }
 
-.grid {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  gap: var(--s-6);
-}
-
 section {
-  padding-block: clamp(3.5rem, 8vw, 7rem);
+  padding-block: var(--section);
 }
 
-/* ---------- ledger language ---------- */
+/* A full-width dark band. Everything inside flips to light-on-soil. */
+.soil {
+  --rule: var(--soil-rule);
+  --rule-strong: #5a4739;
+  --ink: var(--on-soil);
+  --ink-2: var(--on-soil-2);
+  --ink-3: var(--on-soil-3);
+  --paper-raised: var(--soil-2);
+  --ink-wash: color-mix(in oklab, var(--on-soil) 8%, var(--soil));
+  background: var(--soil);
+  color: var(--ink);
+}
+.soil ::selection {
+  background: color-mix(in oklab, var(--clay-bright) 55%, transparent);
+}
+.soil :focus-visible {
+  outline-color: var(--clay-bright);
+}
+
+/* ---------- labels ---------- */
 .eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55em;
   font-family: var(--font-body);
   font-size: var(--step--1);
   font-weight: 600;
   letter-spacing: 0.01em;
-  color: var(--accent, var(--ink-3));
+  color: var(--accent, var(--clay-deep));
 }
+.soil .eyebrow {
+  color: var(--accent-on-soil, var(--clay-bright));
+}
+/* The small sun: a filled dot keyed to the section's accent. */
+.eyebrow--dot::before {
+  content: "";
+  inline-size: 0.6em;
+  block-size: 0.6em;
+  border-radius: 50%;
+  background: currentColor;
+  flex: none;
+}
+.mono {
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  letter-spacing: 0;
+}
+
 .rule {
   border: 0;
   border-top: 1px solid var(--rule);
-}
-.rule--strong {
-  border-top-color: var(--rule-strong);
 }
 
 .ledger {
@@ -176,7 +217,6 @@ section {
   padding-block: var(--s-3);
   border-bottom: 1px solid var(--rule);
 }
-.ledger dt,
 .ledger .label {
   color: var(--ink-2);
 }
@@ -186,35 +226,83 @@ section {
   color: var(--ink);
 }
 
+/* ---------- photographs ---------- */
+.photo {
+  display: block;
+  width: 100%;
+  object-fit: cover;
+  border-radius: var(--r-4);
+  background: var(--paper-sunk);
+  filter: var(--photo-filter);
+}
+
+/* ---------- page head (every inner page) ---------- */
+.page-head {
+  padding-block: clamp(3rem, 7vw, 6rem) clamp(2.5rem, 5vw, 4.5rem);
+}
+.page-head__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+  gap: var(--s-5) clamp(2rem, 6vw, 5rem);
+  align-items: end;
+}
+.page-head h1 {
+  margin: var(--s-4) 0 0;
+  font-size: var(--step-5);
+  max-width: 14ch;
+}
+.page-head .lede {
+  margin: 0;
+  font-size: var(--step-1);
+  line-height: 1.5;
+  color: var(--ink-2);
+  max-width: 44ch;
+}
+@media (max-width: 56rem) {
+  .page-head__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* ---------- buttons ---------- */
 .btn {
   --btn-bg: var(--ink);
   --btn-fg: var(--paper-raised);
+  --btn-border: var(--btn-bg);
   display: inline-flex;
   align-items: center;
-  gap: var(--s-2);
-  padding: 0.7em 1.15em;
+  justify-content: center;
+  gap: 0.55em;
+  padding: 0.95em 1.45em;
   background: var(--btn-bg);
   color: var(--btn-fg);
-  border: 1px solid var(--btn-bg);
-  border-radius: var(--r-2);
+  border: 1.5px solid var(--btn-border);
+  border-radius: var(--r-3);
   font-family: var(--font-body);
   font-size: var(--step-0);
-  font-weight: 550;
+  font-weight: 600;
   line-height: 1;
   text-decoration: none;
+  white-space: nowrap;
   transition:
     background var(--dur-2) var(--ease-out),
     color var(--dur-2) var(--ease-out),
     border-color var(--dur-2) var(--ease-out),
-    transform var(--dur-2) var(--ease-out);
+    transform var(--dur-2) var(--ease-out),
+    box-shadow var(--dur-2) var(--ease-out);
 }
 .btn:hover {
-  transform: translateY(-1px);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px -14px rgba(36, 26, 19, 0.7);
+}
+.btn:active {
+  transform: translateY(0);
+  box-shadow: none;
 }
 .btn svg {
-  width: 1.05em;
-  height: 1.05em;
+  width: 1.1em;
+  height: 1.1em;
+  flex: none;
   transition: transform var(--dur-2) var(--ease-out);
 }
 .btn:hover svg {
@@ -222,7 +310,7 @@ section {
 }
 .btn--primary {
   --btn-bg: var(--clay);
-  --btn-fg: #fff6ee;
+  --btn-fg: #fff8f1;
 }
 .btn--primary:hover {
   --btn-bg: var(--clay-deep);
@@ -234,12 +322,19 @@ section {
 .btn--outline {
   --btn-bg: transparent;
   --btn-fg: var(--ink);
-  border-color: var(--rule-strong);
+  --btn-border: color-mix(in oklab, currentColor 35%, transparent);
 }
 .btn--outline:hover {
-  --btn-bg: var(--ink);
-  --btn-fg: var(--paper-raised);
-  border-color: var(--ink);
+  --btn-border: currentColor;
+  box-shadow: none;
+}
+.btn--light {
+  --btn-bg: var(--paper-raised);
+  --btn-fg: var(--ink);
+}
+.soil .btn--light {
+  --btn-bg: var(--on-soil);
+  --btn-fg: var(--soil);
 }
 .btn--text {
   --btn-bg: transparent;
@@ -251,24 +346,80 @@ section {
 }
 .btn--text:hover {
   --btn-fg: var(--clay);
+  box-shadow: none;
+}
+
+/* Text link with a trailing arrow that nudges on hover. */
+.arrow-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  font-weight: 600;
+  text-decoration: none;
+  color: inherit;
+  background-image: linear-gradient(currentColor, currentColor);
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 100% 1px;
+  padding-bottom: 0.15em;
+  transition: background-size var(--dur-2) var(--ease-out);
+}
+.arrow-link svg {
+  flex: none;
+  transition: transform var(--dur-2) var(--ease-out);
+}
+.arrow-link:hover {
+  background-size: 0% 1px;
+}
+.arrow-link:hover svg {
+  transform: translate(3px, 0);
 }
 
 /* ---------- pillar accents ---------- */
 .accent-education {
-  --accent: var(--turmeric);
+  --accent: #8a6112;
+  --accent-fill: var(--turmeric);
+  --accent-on-soil: #e3b458;
   --accent-wash: var(--turmeric-wash);
 }
 .accent-farmers {
   --accent: var(--leaf);
+  --accent-fill: var(--leaf);
+  --accent-on-soil: #8dbb9c;
   --accent-wash: var(--leaf-wash);
 }
 .accent-children {
   --accent: var(--indigo);
+  --accent-fill: var(--indigo);
+  --accent-on-soil: #93b3cf;
   --accent-wash: var(--indigo-wash);
 }
 .accent-brand {
-  --accent: var(--clay);
+  --accent: var(--clay-deep);
+  --accent-fill: var(--clay);
+  --accent-on-soil: var(--clay-bright);
   --accent-wash: var(--clay-wash);
+}
+
+/* ---------- reveal ----------
+   Movement only, never opacity: if the scroll timeline is inactive (a page
+   too short to scroll, a print, a screenshot) the content is still there. */
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .reveal {
+      animation: reveal linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 55%;
+    }
+  }
+}
+@keyframes reveal {
+  from {
+    translate: 0 1.5rem;
+  }
+  to {
+    translate: 0 0;
+  }
 }
 
 /* ---------- skip link ---------- */
@@ -285,4 +436,13 @@ section {
 }
 .skip:focus {
   top: var(--s-4);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
 }

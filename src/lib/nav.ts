@@ -3,6 +3,8 @@ import type { UIKey } from "../i18n/ui";
 export interface NavItem {
   key: UIKey;
   href: string;
+  /** Programme colour, for the dot beside a programme link. */
+  accent?: "education" | "farmers" | "children";
   children?: NavItem[];
 }
 
@@ -11,9 +13,9 @@ export const nav: NavItem[] = [
     key: "nav.work",
     href: "/work",
     children: [
-      { key: "nav.work.education", href: "/work/education" },
-      { key: "nav.work.farmers", href: "/work/farmers-environment" },
-      { key: "nav.work.children", href: "/work/children" },
+      { key: "nav.work.education", href: "/work/education", accent: "education" },
+      { key: "nav.work.farmers", href: "/work/farmers-environment", accent: "farmers" },
+      { key: "nav.work.children", href: "/work/children", accent: "children" },
     ],
   },
   { key: "nav.stories", href: "/stories" },

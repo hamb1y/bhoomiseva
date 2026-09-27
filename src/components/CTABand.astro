@@ -1,6 +1,7 @@
 ---
 import type { Lang } from "../i18n/ui";
 import { useTranslations, localePath } from "../i18n/utils";
+import { ArrowRight } from "lucide-astro";
 
 interface Props {
   lang: Lang;
@@ -13,15 +14,19 @@ const t = useTranslations(lang);
 ---
 
 <section class="cta">
+  <svg class="sun" viewBox="0 0 200 200" aria-hidden="true">
+    <circle cx="100" cy="100" r="100"></circle>
+  </svg>
   <div class="container inner">
     <div class="copy">
-      <p class="eyebrow">{kicker}</p>
+      <p class="kicker">{kicker}</p>
       <h2>{title}</h2>
       {body && <p class="body">{body}</p>}
     </div>
     <div class="actions">
-      <a class="btn btn--primary" href={localePath("/donate", lang)}>
+      <a class="btn btn--light" href={localePath("/donate", lang)}>
         {t("cta.donate")}
+        <ArrowRight size={18} stroke-width={1.8} aria-hidden="true" />
       </a>
       <a class="btn btn--outline" href={localePath("/get-involved", lang)}>
         {t("cta.volunteer")}
@@ -32,29 +37,68 @@ const t = useTranslations(lang);
 
 <style>
   .cta {
-    background: var(--clay-wash);
-    border-block: 1px solid var(--rule);
+    position: relative;
+    overflow: hidden;
+    background: var(--clay);
+    color: #fff8f1;
+    --ink: #fff8f1;
+  }
+  /* A setting sun on the horizon line — the shape of the logo mark. */
+  .sun {
+    position: absolute;
+    width: clamp(18rem, 42vw, 36rem);
+    right: -6vw;
+    bottom: calc(clamp(18rem, 42vw, 36rem) * -0.5);
+    fill: var(--clay-bright);
+    opacity: 0.55;
+    pointer-events: none;
   }
   .inner {
+    position: relative;
     display: grid;
-    grid-template-columns: 1.4fr 1fr;
+    grid-template-columns: minmax(0, 1.5fr) auto;
     gap: var(--s-7);
     align-items: end;
   }
+  .kicker {
+    margin: 0;
+    font-size: var(--step--1);
+    font-weight: 600;
+    color: color-mix(in oklab, #fff8f1 80%, var(--clay));
+  }
   h2 {
     margin: var(--s-3) 0 0;
-    max-width: 22ch;
+    font-size: var(--step-5);
+    max-width: 14ch;
   }
   .body {
-    margin: var(--s-4) 0 0;
-    color: var(--ink-2);
-    max-width: 46ch;
+    margin: var(--s-5) 0 0;
+    font-size: var(--step-1);
+    line-height: 1.5;
+    color: color-mix(in oklab, #fff8f1 88%, var(--clay));
+    max-width: 44ch;
   }
   .actions {
     display: flex;
     flex-wrap: wrap;
     gap: var(--s-3);
     justify-content: flex-end;
+  }
+  .btn--light {
+    --btn-bg: #fff8f1;
+    --btn-fg: var(--clay-deep);
+  }
+  .btn--outline {
+    --btn-fg: #fff8f1;
+    --btn-border: color-mix(in oklab, #fff8f1 55%, transparent);
+  }
+  .btn--outline:hover {
+    --btn-bg: #fff8f1;
+    --btn-fg: var(--clay-deep);
+    --btn-border: #fff8f1;
+  }
+  .cta :global(:focus-visible) {
+    outline-color: #fff8f1;
   }
   @media (max-width: 52rem) {
     .inner {

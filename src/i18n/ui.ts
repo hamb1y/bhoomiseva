@@ -85,6 +85,9 @@ export const ui = {
     "stories.count.one": "1 entry",
     "story.people": "People",
     "story.quoteLabel": "In their own words",
+    "story.record.date": "Date",
+    "story.record.place": "Place",
+    "story.record.author": "Author",
 
     "events.kicker": "Events",
     "events.title": "Events",
@@ -274,6 +277,9 @@ export const ui = {
     "stories.count.one": "1 ನಮೂದು",
     "story.people": "ವ್ಯಕ್ತಿಗಳು",
     "story.quoteLabel": "ಅವರದೇ ಮಾತಿನಲ್ಲಿ",
+    "story.record.date": "ದಿನಾಂಕ",
+    "story.record.place": "ಸ್ಥಳ",
+    "story.record.author": "ಲೇಖಕರು",
 
     "events.kicker": "ಕಾರ್ಯಕ್ರಮಗಳು",
     "events.title": "ಕಾರ್ಯಕ್ರಮಗಳು",

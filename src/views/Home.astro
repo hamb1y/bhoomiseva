@@ -3,8 +3,8 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import type { Lang } from "../i18n/ui";
 import { useTranslations, localePath, lx } from "../i18n/utils";
 import { pick, site } from "../data/site";
-import { programs } from "../data/programs";
-import { stories, featuredStory } from "../data/stories";
+import { programs, programById } from "../data/programs";
+import { stories, featuredStory, storyBySlug } from "../data/stories";
 import { programHref } from "../lib/paths";
 import { objectPosition } from "../utils/format";
 import CTABand from "../components/CTABand.astro";
@@ -23,11 +23,18 @@ const programLabel = (id: string) => {
 const yearOf = (s: (typeof stories)[number]) =>
   s.date ? s.date.slice(0, 4) : s.period ? lx(s.period, lang) : "";
 
-// The hero repeats the featured story's photograph, so the strip below it
-// starts with the next story to avoid showing the same frame twice.
+// The hero is a collage of the three programmes, one photograph each.
+const collage = (["children", "farmers", "education"] as const)
+  .map((id) => programById(id))
+  .filter((p): p is NonNullable<typeof p> => Boolean(p?.image));
+
+// "How we work" tells the Kurubarahalli Doddi family's story (the copy in
+// home.model.* is about them), so it links to that story specifically.
+const model = storyBySlug("sunita-kurubarahalli-doddi") ?? featuredStory;
+
 const strip = [...stories]
   .sort((a, b) => (b.date ?? "").localeCompare(a.date ?? ""))
-  .filter((s) => s.slug !== featuredStory.slug);
+  .filter((s) => s.slug !== model.slug);
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -42,34 +49,99 @@ const jsonLd = {
 ---
 
 <BaseLayout lang={lang} path="/" jsonLd={jsonLd}>
+  <!-- 1. Hero: the promise, set large, beside the three programmes in pictures -->
   <section class="hero">
-    {
-      featuredStory.image && (
-        <img
-          class="hero-img"
-          src={featuredStory.image}
-          alt={featuredStory.imageAlt ? lx(featuredStory.imageAlt, lang) : lx(featuredStory.title, lang)}
-        />
-      )
-    }
-    <div class="hero-block">
-      <p class="hero-kicker">{t("home.hero.kicker")}</p>
-      <h1>{t("site.tagline")}</h1>
-      <div class="hero-cta">
-        <a class="btn btn--primary" href={localePath("/donate", lang)}>
-          {t("cta.donate")}
-          <ArrowRight size={17} stroke-width={1.7} aria-hidden="true" />
-        </a>
-        <a class="hero-link" href={localePath("/stories", lang)}>{t("cta.readStories")}</a>
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow eyebrow--dot">{t("home.hero.kicker")}</p>
+        <h1>{t("site.tagline")}</h1>
+        <div class="hero-cta">
+          <a class="btn btn--primary" href={localePath("/donate", lang)}>
+            {t("cta.donate")}
+            <ArrowRight size={18} stroke-width={1.8} aria-hidden="true" />
+          </a>
+          <a class="arrow-link" href={localePath("/stories", lang)}>
+            {t("cta.readStories")}
+            <ArrowRight size={16} stroke-width={1.8} aria-hidden="true" />
+          </a>
+        </div>
+        <ul class="hero-programs" aria-label={t("home.pillars.title")}>
+          {programs.map((p) => (
+            <li class={`accent-${p.accent}`}>
+              <a href={localePath(programHref(p.id), lang)}>{lx(p.kicker, lang)}</a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="collage">
+        <svg class="sun" viewBox="0 0 200 200" aria-hidden="true">
+          <circle cx="100" cy="100" r="100"></circle>
+        </svg>
+        {collage.map((p, i) => (
+          <a
+            class:list={["shot", `shot-${i + 1}`, `accent-${p.accent}`]}
+            href={localePath(programHref(p.id), lang)}
+          >
+            <img
+              src={p.image}
+              alt={p.imageAlt ? lx(p.imageAlt, lang) : lx(p.title, lang)}
+              style={`object-position:${objectPosition(p.imageFocal)}`}
+              loading={i === 0 ? "eager" : "lazy"}
+              fetchpriority={i === 0 ? "high" : undefined}
+              decoding="async"
+            />
+            <span class="shot-tag">{lx(p.kicker, lang)}</span>
+          </a>
+        ))}
       </div>
     </div>
   </section>
 
-  <section class="pillars">
-    {
-      programs.map((p) => (
-        <article class:list={["pillar", `pillar-${p.accent}`]}>
+  <!-- 2. The mission, in the organisation's own words -->
+  <section class="mission">
+    <div class="container">
+      <div class="mission-grid">
+        <p class="eyebrow eyebrow--dot">{t("about.mission")}</p>
+        <p class="mission-text reveal">{pick(site.mission, lang)}</p>
+        <div class="mission-side reveal">
+          <p>{t("about.community.body")}</p>
+          <a class="arrow-link" href={localePath("/about", lang)}>
+            {t("nav.about")}
+            <ArrowRight size={16} stroke-width={1.8} aria-hidden="true" />
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Programmes: full-colour panels that stack as you scroll -->
+  <section class="pillars" aria-labelledby="pillars-title">
+    <div class="container">
+      <h2 id="pillars-title" class="pillars-title">
+        {t("home.pillars.title")}
+      </h2>
+    </div>
+    <div class="stack">
+      {programs.map((p, i) => (
+        <article class:list={["pillar", `pillar-${p.accent}`]} style={`--i:${i}`}>
           <div class="container pillar-inner">
+            <div class="pillar-copy">
+              <p class="pillar-kicker">{lx(p.kicker, lang)}</p>
+              <h3>
+                <a href={localePath(programHref(p.id), lang)}>{lx(p.title, lang)}</a>
+              </h3>
+              <p class="pillar-sum">{lx(p.summary, lang)}</p>
+              <ul class="activities">
+                {p.activities.map((a) => (
+                  <li>{lx(a.title, lang)}</li>
+                ))}
+              </ul>
+              <a class="pillar-more" href={localePath(programHref(p.id), lang)}>
+                {t("cta.learnMore")}
+                <ArrowUpRight size={18} stroke-width={1.8} aria-hidden="true" />
+              </a>
+            </div>
             <div class="pillar-media">
               {p.image && (
                 <img
@@ -81,43 +153,63 @@ const jsonLd = {
                 />
               )}
             </div>
-            <div class="pillar-copy">
-              <p class="pillar-kicker">{lx(p.kicker, lang)}</p>
-              <h2>
-                <a href={localePath(programHref(p.id), lang)}>{lx(p.title, lang)}</a>
-              </h2>
-              <p class="pillar-sum">{lx(p.summary, lang)}</p>
-              <ul class="activities">
-                {p.activities.map((a) => (
-                  <li>{lx(a.title, lang)}</li>
-                ))}
-              </ul>
-              <a class="pillar-more" href={localePath(programHref(p.id), lang)}>
-                {t("cta.learnMore")}
-                <ArrowUpRight size={15} stroke-width={1.7} aria-hidden="true" />
-              </a>
-            </div>
           </div>
         </article>
-      ))
-    }
+      ))}
+    </div>
   </section>
 
+  <!-- 4. How we work: one family, three kinds of help, and their own letter -->
+  {model && (
+    <section class="model soil accent-farmers">
+      <div class="container model-grid">
+        <div class="model-copy reveal">
+          <p class="eyebrow eyebrow--dot">{t("home.model.kicker")}</p>
+          <h2>{t("home.model.title")}</h2>
+          <p class="model-body">{t("home.model.body")}</p>
+          <a class="btn btn--light" href={localePath(`/stories/${model.slug}`, lang)}>
+            {t("common.readEntry")}
+            <ArrowRight size={18} stroke-width={1.8} aria-hidden="true" />
+          </a>
+        </div>
+        <figure class="model-letter reveal">
+          {model.image && (
+            <img
+              src={model.image}
+              alt={model.imageAlt ? lx(model.imageAlt, lang) : lx(model.title, lang)}
+              style={`object-position:${objectPosition(model.imageFocal)}`}
+              loading="lazy"
+              decoding="async"
+            />
+          )}
+          {model.quote && (
+            <div class="letter">
+              <p class="letter-label">{t("story.quoteLabel")}</p>
+              <blockquote>{lx(model.quote.text, lang)}</blockquote>
+              <figcaption>{lx(model.quote.attribution, lang)}</figcaption>
+            </div>
+          )}
+        </figure>
+      </div>
+    </section>
+  )}
+
+  <!-- 5. Recent stories, as a sideways strip of portraits -->
   <section class="strip-section">
     <div class="container">
       <div class="strip-head">
         <h2 class="section-title">{t("home.updates.title")}</h2>
-        <a class="more" href={localePath("/stories", lang)}>
+        <a class="arrow-link" href={localePath("/stories", lang)}>
           {t("cta.allStories")}
-          <ArrowRight size={16} stroke-width={1.7} aria-hidden="true" />
+          <ArrowRight size={16} stroke-width={1.8} aria-hidden="true" />
         </a>
       </div>
     </div>
     <ul class="strip">
-      {
-        strip.map((s) => (
-          <li>
-            <a href={localePath(`/stories/${s.slug}`, lang)}>
+      {strip.map((s) => (
+        <li class={`accent-${programById(s.program)?.accent ?? "brand"}`}>
+          <a href={localePath(`/stories/${s.slug}`, lang)}>
+            <span class="p-media">
               {s.image && (
                 <img
                   src={s.image}
@@ -127,15 +219,15 @@ const jsonLd = {
                   decoding="async"
                 />
               )}
-              <span class="p-name">{lx(s.title, lang)}</span>
-              <span class="p-meta">
-                {programLabel(s.program)}
-                {yearOf(s) ? ` · ${yearOf(s)}` : ""}
-              </span>
-            </a>
-          </li>
-        ))
-      }
+            </span>
+            <span class="p-meta">
+              {programLabel(s.program)}
+              {yearOf(s) ? <span class="p-year">{yearOf(s)}</span> : null}
+            </span>
+            <span class="p-name">{lx(s.title, lang)}</span>
+          </a>
+        </li>
+      ))}
     </ul>
   </section>
 
@@ -148,57 +240,238 @@ const jsonLd = {
 </BaseLayout>
 
 <style>
-  /* 1. The photograph leads; the headline sits on a solid block that overlaps
-     its bottom edge rather than on a scrim over the picture. */
+  /* ---------- 1. hero ---------- */
   .hero {
-    position: relative;
+    padding-block: clamp(2rem, 5vw, 4rem) clamp(4rem, 8vw, 7rem);
   }
-  .hero-img {
-    width: 100%;
-    height: clamp(24rem, 78vh, 46rem);
-    object-fit: cover;
-    display: block;
-    filter: saturate(0.94) sepia(0.06) contrast(1.02);
+  .hero-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+    gap: clamp(2.5rem, 6vw, 5rem);
+    align-items: center;
   }
-  .hero-block {
-    width: min(38rem, 88%);
-    margin: -4rem auto 0;
-    position: relative;
-    z-index: 1;
-    background: var(--clay);
-    color: var(--paper-raised);
-    border-radius: var(--r-3);
-    padding: clamp(1.5rem, 4vw, 2.75rem);
+  .hero-copy h1 {
+    margin: var(--s-5) 0 0;
+    font-size: min(var(--step-6), 6.4rem);
+    font-variation-settings:
+      "opsz" 144,
+      "WONK" 1,
+      "SOFT" 100;
+    font-weight: 560;
+    line-height: 0.92;
+    letter-spacing: -0.045em;
+    max-width: 11ch;
   }
-  .hero-kicker {
-    margin: 0;
-    font-weight: 600;
-    color: color-mix(in oklab, var(--paper-raised) 82%, var(--clay));
-  }
-  .hero-block h1 {
-    margin: 0.25em 0 0;
-    font-size: clamp(2.1rem, 1.1rem + 5vw, 5.5rem);
-    line-height: 0.98;
-    letter-spacing: -0.03em;
+  :global(:lang(kn)) .hero-copy h1 {
+    font-size: var(--step-5);
+    line-height: 1.2;
+    letter-spacing: 0;
     max-width: 14ch;
   }
   .hero-cta {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-    gap: var(--s-4);
-    margin-top: var(--s-6);
+    gap: var(--s-4) var(--s-6);
+    margin-top: var(--s-7);
   }
-  .hero-link {
-    color: var(--paper-raised);
+  .hero-programs {
+    list-style: none;
+    padding: 0;
+    margin: var(--s-7) 0 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s-2);
+  }
+  .hero-programs a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55em;
+    padding: 0.5em 0.95em 0.5em 0.75em;
+    border: 1px solid var(--rule-strong);
+    border-radius: 999px;
+    font-size: var(--step--1);
     font-weight: 600;
-    text-underline-offset: 0.25em;
+    text-decoration: none;
+    color: var(--ink);
+    transition:
+      background var(--dur-1) var(--ease-out),
+      border-color var(--dur-1) var(--ease-out);
+  }
+  .hero-programs a::before {
+    content: "";
+    width: 0.65em;
+    height: 0.65em;
+    border-radius: 50%;
+    background: var(--accent-fill);
+  }
+  .hero-programs a:hover {
+    background: var(--paper-raised);
+    border-color: var(--ink);
   }
 
-  /* 2. Each programme takes a full-width ground of its own colour, so the page
-     is blocks of colour rather than one long cream scroll. */
+  .collage {
+    position: relative;
+    aspect-ratio: 1 / 1.08;
+    min-height: 24rem;
+  }
+  /* The logo mark's sun, risen behind the photographs. */
+  .sun {
+    position: absolute;
+    width: 72%;
+    right: -4%;
+    top: 6%;
+    fill: var(--clay);
+  }
+  .shot {
+    position: absolute;
+    display: block;
+    border-radius: var(--r-4);
+    overflow: hidden;
+    box-shadow: var(--shadow-deep);
+    background: var(--paper-sunk);
+    outline-offset: 4px;
+  }
+  .shot img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: var(--photo-filter);
+  }
+  .shot-1 {
+    left: 18%;
+    top: 0;
+    width: 52%;
+    height: 72%;
+    z-index: 2;
+  }
+  .shot-2 {
+    left: 0;
+    bottom: 0;
+    width: 58%;
+    height: 40%;
+    z-index: 3;
+  }
+  .shot-3 {
+    right: 0;
+    bottom: 10%;
+    width: 38%;
+    height: 38%;
+    z-index: 1;
+  }
+  .shot-tag {
+    position: absolute;
+    left: var(--s-3);
+    bottom: var(--s-3);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45em;
+    padding: 0.3em 0.7em 0.3em 0.55em;
+    border-radius: 999px;
+    background: var(--paper-raised);
+    color: var(--ink);
+    font-size: 0.78rem;
+    font-weight: 600;
+    line-height: 1.2;
+    transition: transform var(--dur-2) var(--ease-out);
+  }
+  .shot-tag::before {
+    content: "";
+    width: 0.6em;
+    height: 0.6em;
+    border-radius: 50%;
+    background: var(--accent-fill);
+  }
+  .shot-1 .shot-tag {
+    top: var(--s-3);
+    bottom: auto;
+  }
+  .shot:hover .shot-tag {
+    transform: translateY(-3px);
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .shot {
+      animation: land 900ms var(--ease-out) both;
+    }
+    .shot-2 {
+      animation-delay: 120ms;
+    }
+    .shot-3 {
+      animation-delay: 240ms;
+    }
+    .sun {
+      animation: rise-sun 1200ms var(--ease-out) both;
+    }
+  }
+  @keyframes land {
+    from {
+      opacity: 0;
+      translate: 0 14px;
+    }
+  }
+  @keyframes rise-sun {
+    from {
+      translate: 0 12%;
+    }
+  }
+
+  /* ---------- 2. mission ---------- */
+  .mission {
+    padding-top: 0;
+  }
+  .mission-grid {
+    display: grid;
+    grid-template-columns: 12rem minmax(0, 1fr);
+    gap: var(--s-5) clamp(2rem, 5vw, 4rem);
+    padding-top: var(--s-7);
+    border-top: 1px solid var(--rule-strong);
+  }
+  .mission .eyebrow {
+    align-self: start;
+    padding-top: 0.6em;
+  }
+  .mission-text {
+    margin: 0;
+    font-family: var(--font-display);
+    font-variation-settings:
+      "opsz" 72,
+      "WONK" 1,
+      "SOFT" 60;
+    font-weight: 440;
+    font-size: var(--step-4);
+    line-height: 1.12;
+    letter-spacing: -0.025em;
+    max-width: 24ch;
+    text-wrap: balance;
+  }
+  :global(:lang(kn)) .mission-text {
+    font-size: var(--step-3);
+    line-height: 1.45;
+    letter-spacing: 0;
+  }
+  .mission-side {
+    grid-column: 2;
+    display: grid;
+    gap: var(--s-4);
+    justify-items: start;
+    max-width: 48ch;
+    color: var(--ink-2);
+  }
+  .mission-side p {
+    margin: 0;
+  }
+
+  /* ---------- 3. programmes ---------- */
+  .pillars {
+    padding-block: 0;
+  }
+  .pillars-title {
+    font-size: var(--step-5);
+    margin-bottom: var(--s-7);
+  }
   .pillar {
-    padding-block: clamp(3rem, 6vw, 5.5rem);
+    padding-block: clamp(3rem, 6vw, 5rem);
+    color: var(--paper-raised);
   }
   .pillar-education {
     background: var(--turmeric);
@@ -206,161 +479,305 @@ const jsonLd = {
   }
   .pillar-farmers {
     background: var(--leaf);
-    color: var(--paper-raised);
   }
   .pillar-children {
     background: var(--indigo);
-    color: var(--paper-raised);
+  }
+  .pillar-brand {
+    background: var(--clay);
+  }
+  /* Panels pin under the header and the next one slides over the last. Only
+     where there is room to show a whole panel; elsewhere they simply stack. */
+  @media (min-width: 62rem) and (min-height: 44rem) {
+    .pillar {
+      position: sticky;
+      top: calc(var(--head-h) + var(--i) * 1.25rem);
+      min-height: min(40rem, calc(100vh - var(--head-h) - 3rem));
+      display: grid;
+      align-items: center;
+      border-radius: var(--r-4) var(--r-4) 0 0;
+      box-shadow: 0 -18px 40px -30px rgba(20, 12, 6, 0.8);
+    }
   }
   .pillar-inner {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    gap: clamp(2rem, 5vw, 4rem);
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+    gap: clamp(2rem, 5vw, 4.5rem);
     align-items: center;
   }
   .pillar-media img {
     width: 100%;
     aspect-ratio: 4 / 3;
+    max-height: 30rem;
     object-fit: cover;
-    border-radius: var(--r-3);
+    border-radius: var(--r-4);
     display: block;
-    filter: saturate(0.94) sepia(0.06) contrast(1.02);
+    filter: var(--photo-filter);
   }
-  .pillar-copy a,
-  .pillar-copy .pillar-more {
+  .pillar-copy a {
     color: inherit;
   }
   .pillar-kicker {
     margin: 0;
+    font-size: var(--step--1);
     font-weight: 600;
     opacity: 0.85;
   }
-  .pillar-copy h2 {
-    margin: var(--s-2) 0 var(--s-3);
+  .pillar-copy h3 {
+    margin: var(--s-3) 0 var(--s-4);
     font-size: var(--step-4);
-    max-width: 18ch;
+    letter-spacing: -0.03em;
+    line-height: 1;
+    max-width: 14ch;
   }
-  .pillar-copy h2 a {
+  :global(:lang(kn)) .pillar-copy h3 {
+    line-height: 1.25;
+    letter-spacing: 0;
+  }
+  .pillar-copy h3 a {
     text-decoration: none;
   }
   .pillar-sum {
-    margin: 0 0 var(--s-4);
-    max-width: 52ch;
-    opacity: 0.92;
+    margin: 0 0 var(--s-5);
+    font-size: var(--step-1);
+    line-height: 1.5;
+    max-width: 44ch;
+    opacity: 0.95;
   }
   .activities {
     list-style: none;
     padding: 0;
-    margin: 0 0 var(--s-5);
+    margin: 0 0 var(--s-6);
     display: flex;
     flex-wrap: wrap;
-    gap: var(--s-2) var(--s-5);
+    gap: var(--s-2);
   }
   .activities li {
-    position: relative;
-    padding-left: 1rem;
     font-size: var(--step--1);
-    max-width: 40ch;
-    opacity: 0.92;
-  }
-  .activities li::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 0.55em;
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: currentColor;
+    line-height: 1.3;
+    padding: 0.4em 0.8em;
+    border-radius: 999px;
+    border: 1px solid color-mix(in oklab, currentColor 35%, transparent);
   }
   .pillar-more {
     display: inline-flex;
     align-items: center;
     gap: 0.4rem;
-    font-weight: 600;
+    font-weight: 650;
     text-decoration: none;
+    padding: 0.8em 1.2em;
+    border-radius: var(--r-3);
+    background: color-mix(in oklab, currentColor 14%, transparent);
+    transition: background var(--dur-2) var(--ease-out);
+  }
+  .pillar-more :global(svg) {
+    transition: transform var(--dur-2) var(--ease-out);
   }
   .pillar-more:hover {
-    text-decoration: underline;
-    text-underline-offset: 0.25em;
+    background: color-mix(in oklab, currentColor 24%, transparent);
+  }
+  .pillar-more:hover :global(svg) {
+    transform: translate(2px, -2px);
+  }
+  .pillar :global(:focus-visible) {
+    outline-color: currentColor;
   }
 
-  /* 4. People, not cards: tall portraits in a sideways strip. */
-  .strip-section {
-    padding-block: clamp(2.5rem, 5vw, 4rem);
+  /* ---------- 4. how we work ---------- */
+  .model-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+    gap: clamp(2.5rem, 6vw, 5rem);
+    align-items: start;
   }
+  .model-copy {
+    position: sticky;
+    top: calc(var(--head-h) + var(--s-6));
+  }
+  .model-copy h2 {
+    margin: var(--s-4) 0 var(--s-5);
+    font-size: var(--step-5);
+    max-width: 12ch;
+  }
+  .model-body {
+    margin: 0 0 var(--s-6);
+    font-size: var(--step-1);
+    line-height: 1.6;
+    color: var(--on-soil-2);
+    max-width: 48ch;
+  }
+  .model-letter {
+    margin: 0;
+  }
+  .model-letter img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-radius: var(--r-4) var(--r-4) 0 0;
+    filter: var(--photo-filter);
+  }
+  /* The letter, set on paper, as a document. */
+  .letter {
+    background: var(--paper);
+    color: #241a13;
+    padding: clamp(1.5rem, 4vw, 2.75rem);
+    border-radius: 0 0 var(--r-4) var(--r-4);
+  }
+  .letter-label {
+    margin: 0 0 var(--s-4);
+    font-size: var(--step--1);
+    font-weight: 600;
+    color: var(--leaf);
+  }
+  .letter blockquote {
+    margin: 0;
+    font-family: var(--font-display);
+    font-variation-settings:
+      "opsz" 24,
+      "WONK" 1,
+      "SOFT" 80;
+    font-weight: 400;
+    font-size: var(--step-1);
+    line-height: 1.55;
+  }
+  .letter figcaption {
+    margin-top: var(--s-5);
+    padding-top: var(--s-4);
+    border-top: 1px dashed #b9a88e;
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    color: #5c4b3d;
+  }
+
+  /* ---------- 5. story strip ---------- */
   .strip-head {
     display: flex;
-    align-items: baseline;
+    align-items: end;
     justify-content: space-between;
     gap: var(--s-5);
     flex-wrap: wrap;
-    margin-bottom: var(--s-5);
+    margin-bottom: var(--s-6);
   }
   .section-title {
-    font-size: var(--step-3);
+    font-size: var(--step-5);
     margin: 0;
-  }
-  .more {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    text-decoration: none;
-    font-weight: 600;
-    color: var(--ink);
-  }
-  .more:hover {
-    color: var(--clay);
   }
   .strip {
     list-style: none;
     margin: 0;
-    padding: 0 var(--gutter) var(--s-2);
+    padding: 0 max(var(--gutter), calc((100vw - var(--container)) / 2 + var(--gutter))) var(--s-4);
     display: grid;
     grid-auto-flow: column;
-    grid-auto-columns: minmax(13rem, 17rem);
+    grid-auto-columns: minmax(15rem, 19rem);
     gap: var(--s-5);
     overflow-x: auto;
     scroll-snap-type: x mandatory;
-    scroll-padding-inline: var(--gutter);
+    scroll-padding-inline: max(var(--gutter), calc((100vw - var(--container)) / 2 + var(--gutter)));
+    scrollbar-width: thin;
+    scrollbar-color: var(--rule-strong) transparent;
   }
   .strip li {
     scroll-snap-align: start;
   }
   .strip a {
     display: grid;
-    gap: var(--s-2);
+    gap: var(--s-3);
     text-decoration: none;
     color: var(--ink);
+  }
+  .p-media {
+    display: block;
+    border-radius: var(--r-4);
+    overflow: hidden;
+    background: var(--paper-sunk);
+    position: relative;
+  }
+  .p-media::after {
+    content: "";
+    position: absolute;
+    inset: auto 0 0 0;
+    height: 5px;
+    background: var(--accent-fill);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform var(--dur-3) var(--ease-out);
+  }
+  .strip a:hover .p-media::after {
+    transform: scaleX(1);
   }
   .strip img {
     width: 100%;
     aspect-ratio: 4 / 5;
     object-fit: cover;
-    border-radius: var(--r-3);
     display: block;
-    filter: saturate(0.94) sepia(0.06) contrast(1.02);
+    filter: var(--photo-filter);
+  }
+  .p-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    font-size: var(--step--1);
+    font-weight: 600;
+    color: var(--ink-2);
+  }
+  .p-meta::before {
+    content: "";
+    width: 0.6em;
+    height: 0.6em;
+    border-radius: 50%;
+    background: var(--accent-fill);
+  }
+  .p-year {
+    font-family: var(--font-mono);
+    font-weight: 400;
+    color: var(--ink-3);
+  }
+  .p-year::before {
+    content: "·";
+    margin-right: 0.5em;
   }
   .p-name {
     font-family: var(--font-display);
     font-variation-settings:
-      "opsz" 24,
-      "WONK" 1;
-    font-weight: 600;
+      "opsz" 30,
+      "WONK" 1,
+      "SOFT" 60;
+    font-weight: 560;
     font-size: var(--step-1);
     line-height: 1.15;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
   }
   .strip a:hover .p-name {
-    color: var(--clay);
-  }
-  .p-meta {
-    font-size: var(--step--1);
-    color: var(--ink-2);
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.2em;
+    text-decoration-color: var(--accent-fill);
   }
 
+  /* ---------- responsive ---------- */
   @media (max-width: 62rem) {
-    .pillar-inner {
+    .hero-grid,
+    .pillar-inner,
+    .model-grid {
       grid-template-columns: 1fr;
+    }
+    .collage {
+      max-width: 34rem;
+      width: 100%;
+      margin-inline: auto;
+    }
+    .pillar-media {
+      order: -1;
+    }
+    .model-copy {
+      position: static;
+    }
+    .mission-grid {
+      grid-template-columns: 1fr;
+    }
+    .mission-side {
+      grid-column: auto;
     }
   }
 </style>

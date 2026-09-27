@@ -79,13 +79,16 @@ const captionText = caption ?? alt;
 <style>
   .frame {
     margin: 0;
-    border: 1px solid var(--rule);
-    background: var(--paper-raised);
-    border-radius: var(--r-2);
-    overflow: hidden;
+  }
+  img,
+  .empty,
+  .trigger {
+    border-radius: var(--r-4);
   }
   img {
     display: block;
+    background: var(--paper-sunk);
+    filter: var(--photo-filter);
   }
   .trigger {
     display: block;
@@ -94,16 +97,16 @@ const captionText = caption ?? alt;
     border: 0;
     background: none;
     cursor: zoom-in;
+    overflow: hidden;
   }
   .trigger:hover img {
-    opacity: 0.94;
+    filter: saturate(1.05) contrast(1.04);
   }
   .empty {
     display: grid;
     place-items: center;
     background: var(--paper-sunk);
     color: var(--ink-3);
-    font-family: var(--font-mono);
     position: relative;
   }
   .empty::after {
@@ -111,14 +114,23 @@ const captionText = caption ?? alt;
     position: absolute;
     inset: 10px;
     border: 1px dashed color-mix(in oklab, var(--ink-3) 45%, transparent);
-    border-radius: var(--r-1);
+    border-radius: var(--r-2);
   }
   .caption {
+    display: flex;
+    gap: 0.6em;
+    align-items: baseline;
     font-family: var(--font-mono);
     font-size: var(--step--1);
-    color: var(--ink-3);
-    padding: var(--s-2) var(--s-3);
-    border-top: 1px solid var(--rule);
-    background: var(--paper-raised);
+    color: var(--ink-2);
+    padding-top: var(--s-3);
+  }
+  .caption::before {
+    content: "";
+    width: 1.5rem;
+    height: 1px;
+    background: currentColor;
+    flex: none;
+    translate: 0 -0.3em;
   }
 </style>

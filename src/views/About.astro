@@ -19,39 +19,48 @@ const hasLogo = existsSync("public/images/logo.webp");
 ---
 
 <BaseLayout lang={lang} path="/about" title={t("nav.about")} description={t("about.lede")}>
-  <section class="head">
-    <div class="container">
+  <header class="page-head">
+    <div class="container head-grid">
+      <div>
+        <p class="eyebrow eyebrow--dot">{t("about.kicker")}</p>
+        <h1>{t("about.title")}</h1>
+        <p class="lede head-lede">{t("about.lede")}</p>
+      </div>
       {hasLogo && (
-        <img
-          class="lockup"
-          src={asset("/images/logo.webp")}
-          alt="Bhoomi Seva"
-          width="240"
-          height="354"
-        />
+        <div class="lockup-wrap">
+          <svg class="sun" viewBox="0 0 200 200" aria-hidden="true">
+            <circle cx="100" cy="100" r="100"></circle>
+          </svg>
+          <img
+            class="lockup"
+            src={asset("/images/logo.webp")}
+            alt="Bhoomi Seva"
+            width="240"
+            height="354"
+          />
+        </div>
       )}
-      <p class="eyebrow">{t("about.kicker")}</p>
-      <h1>{t("about.title")}</h1>
-      <p class="lede measure">{t("about.lede")}</p>
     </div>
-  </section>
+  </header>
 
   <section class="intro">
-    <div class="container narrow">
-      {site.about.map((p) => (
-        <p>{pick(p, lang)}</p>
-      ))}
+    <div class="container">
+      <div class="intro-grid">
+        {site.about.map((p, i) => (
+          <p class:list={{ first: i === 0 }}>{pick(p, lang)}</p>
+        ))}
+      </div>
     </div>
   </section>
 
-  <section class="mv">
+  <section class="mv soil">
     <div class="container mv-grid">
       <div class="mv-block">
-        <p class="eyebrow">{t("about.mission")}</p>
+        <p class="eyebrow eyebrow--dot">{t("about.mission")}</p>
         <p class="mv-text">{pick(site.mission, lang)}</p>
       </div>
-      <div class="mv-block">
-        <p class="eyebrow">{t("about.vision")}</p>
+      <div class="mv-block accent-farmers">
+        <p class="eyebrow eyebrow--dot">{t("about.vision")}</p>
         <p class="mv-text">{pick(site.vision, lang)}</p>
       </div>
     </div>
@@ -62,22 +71,20 @@ const hasLogo = existsSync("public/images/logo.webp");
       <div class="team-head">
         <div>
           <h2>{t("about.team")}</h2>
-          <p class="sub measure">{t("about.team.lede")}</p>
+          <p class="sub">{t("about.team.lede")}</p>
         </div>
-        <div class="aside measure">
-          <Info size={18} stroke-width={1.6} aria-hidden="true" />
+        <div class="aside">
+          <Info size={20} stroke-width={1.7} aria-hidden="true" />
           <p>{t("about.disclaimer")}</p>
         </div>
       </div>
 
       <ul class="people">
-        {team.map((person, i) => (
-          <li>
-            <span class="n">{String(i + 1).padStart(2, "0")}</span>
-            <div class="who">
+        {team.map((person) => (
+          <li class="reveal">
+            <div class="portrait">
               {person.photo && (
                 <img
-                  class="avatar"
                   src={person.photo}
                   alt={person.name}
                   style={`object-position:${objectPosition(person.photoFocal)}`}
@@ -85,9 +92,9 @@ const hasLogo = existsSync("public/images/logo.webp");
                   decoding="async"
                 />
               )}
-              <h3>{person.name}</h3>
-              <p class="role">{lx(person.role, lang)}</p>
             </div>
+            <h3>{person.name}</h3>
+            <p class="role">{lx(person.role, lang)}</p>
             <p class="bio">{lx(person.bio, lang)}</p>
           </li>
         ))}
@@ -97,8 +104,10 @@ const hasLogo = existsSync("public/images/logo.webp");
 
   <section class="community">
     <div class="container">
-      <h2>{t("about.community")}</h2>
-      <p class="measure">{t("about.community.body")}</p>
+      <div class="community-inner">
+        <h2>{t("about.community")}</h2>
+        <p>{t("about.community.body")}</p>
+      </div>
     </div>
   </section>
 
@@ -111,88 +120,130 @@ const hasLogo = existsSync("public/images/logo.webp");
 </BaseLayout>
 
 <style>
-  .head {
-    padding-bottom: var(--s-7);
+  .head-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.5fr) minmax(0, 0.7fr);
+    gap: clamp(2rem, 6vw, 5rem);
+    align-items: center;
+  }
+  .page-head h1 {
+    max-width: 12ch;
+  }
+  .page-head .head-grid .head-lede {
+    margin-top: var(--s-6);
+    max-width: 52ch;
+  }
+  .lockup-wrap {
+    position: relative;
+    display: grid;
+    place-items: center;
+    padding: var(--s-6);
+  }
+  .sun {
+    position: absolute;
+    width: 100%;
+    max-width: 22rem;
+    fill: var(--paper-raised);
   }
   .lockup {
-    display: block;
-    width: clamp(9rem, 18vw, 13rem);
+    position: relative;
+    width: clamp(9rem, 16vw, 13rem);
     height: auto;
-    margin-bottom: var(--s-6);
-  }
-  h1 {
-    margin: var(--s-4) 0 0;
-    max-width: 18ch;
-  }
-  .lede {
-    margin-top: var(--s-5);
-    font-size: var(--step-1);
-    color: var(--ink-2);
   }
 
   .intro {
-    padding-bottom: var(--s-7);
+    padding-top: 0;
+  }
+  .intro-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--s-6) clamp(2rem, 5vw, 4rem);
+    padding-top: var(--s-7);
+    border-top: 1px solid var(--rule-strong);
   }
   .intro p {
-    margin: 0 0 var(--s-5);
+    margin: 0;
     color: var(--ink-2);
-    font-size: var(--step-1);
-    line-height: 1.6;
+    font-size: var(--step-0);
+    line-height: 1.7;
   }
-  .intro p:last-child {
-    margin-bottom: 0;
+  .intro p.first {
+    grid-column: 1 / -1;
+    font-family: var(--font-display);
+    font-variation-settings:
+      "opsz" 60,
+      "WONK" 1,
+      "SOFT" 60;
+    font-weight: 420;
+    font-size: var(--step-3);
+    line-height: 1.22;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    max-width: 30ch;
+  }
+  :global(:lang(kn)) .intro p.first {
+    font-size: var(--step-2);
+    line-height: 1.5;
+    letter-spacing: 0;
   }
 
-  .mv .container {
-    border-top: 1px solid var(--rule-strong);
-    padding-top: var(--s-6);
-  }
   .mv-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: clamp(2rem, 5vw, 4rem);
+    gap: clamp(2.5rem, 6vw, 5rem);
+  }
+  .mv-block + .mv-block {
+    padding-left: clamp(2.5rem, 6vw, 5rem);
+    border-left: 1px solid var(--soil-rule);
   }
   .mv-text {
     font-family: var(--font-display);
     font-variation-settings:
-      "opsz" 40,
+      "opsz" 60,
       "WONK" 1,
-      "SOFT" 40;
-    font-size: var(--step-1);
-    line-height: 1.35;
-    margin: var(--s-4) 0 0;
+      "SOFT" 60;
+    font-weight: 420;
+    font-size: var(--step-3);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    margin: var(--s-5) 0 0;
+    text-wrap: pretty;
+  }
+  :global(:lang(kn)) .mv-text {
+    font-size: var(--step-2);
+    line-height: 1.5;
+    letter-spacing: 0;
   }
 
   .team-head {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: start;
-    gap: var(--s-6);
-    border-top: 1px solid var(--rule-strong);
-    padding-top: var(--s-3);
+    display: grid;
+    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+    gap: var(--s-6) clamp(2rem, 5vw, 4rem);
+    align-items: end;
+    margin-bottom: var(--s-8);
   }
   .team-head h2 {
-    font-size: var(--step-3);
+    font-size: var(--step-5);
     margin: 0;
   }
   .sub {
     color: var(--ink-2);
-    margin-top: var(--s-3);
+    font-size: var(--step-1);
+    line-height: 1.5;
+    margin-top: var(--s-4);
+    max-width: 44ch;
   }
   .aside {
     display: flex;
     gap: var(--s-3);
-    max-width: 30rem;
-    border: 1px solid var(--rule);
-    border-radius: var(--r-2);
+    border-radius: var(--r-4);
     background: var(--turmeric-wash);
-    padding: var(--s-4);
+    padding: var(--s-5);
   }
-  .aside svg {
+  .aside :global(svg) {
     flex: none;
-    color: var(--turmeric);
-    margin-top: 0.2em;
+    color: #8a6112;
+    margin-top: 0.15em;
   }
   .aside p {
     margin: 0;
@@ -202,70 +253,79 @@ const hasLogo = existsSync("public/images/logo.webp");
 
   .people {
     list-style: none;
-    margin: var(--s-7) 0 0;
+    margin: 0;
     padding: 0;
-  }
-  .people li {
     display: grid;
-    grid-template-columns: 3rem 15rem 1fr;
-    gap: var(--s-5);
-    padding-block: var(--s-5);
-    border-top: 1px solid var(--rule);
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 15rem), 1fr));
+    gap: var(--s-8) var(--s-6);
   }
-  .people li:last-child {
-    border-bottom: 1px solid var(--rule);
-  }
-  .n {
-    font-family: var(--font-mono);
-    font-size: var(--step--1);
-    color: var(--clay);
-  }
-  .avatar {
-    width: 4.5rem;
-    height: 4.5rem;
-    object-fit: cover;
-    border-radius: 50%;
-    border: 1px solid var(--rule);
-    margin-bottom: var(--s-3);
+  .portrait {
+    border-radius: var(--r-4);
+    overflow: hidden;
     background: var(--paper-sunk);
+    margin-bottom: var(--s-4);
   }
-  .who h3 {
-    font-size: var(--step-1);
+  .portrait img {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    filter: var(--photo-filter);
+  }
+  .people h3 {
+    font-size: var(--step-2);
     margin: 0;
   }
   .role {
     font-family: var(--font-mono);
     font-size: var(--step--1);
-    color: var(--ink-3);
-    margin: var(--s-2) 0 0;
+    color: var(--clay-deep);
+    margin: var(--s-2) 0 var(--s-3);
   }
   .bio {
     margin: 0;
     color: var(--ink-2);
-    max-width: 60ch;
+    font-size: var(--step--1);
+    line-height: 1.6;
   }
 
-  .community .container {
-    border-top: 1px solid var(--rule);
-    padding-top: var(--s-6);
+  .community {
+    padding-top: 0;
+  }
+  .community-inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr);
+    gap: var(--s-5) clamp(2rem, 5vw, 4rem);
+    align-items: baseline;
+    padding: clamp(2rem, 5vw, 3.5rem);
+    background: var(--leaf-wash);
+    border-radius: var(--r-4);
   }
   .community h2 {
-    font-size: var(--step-2);
-    margin: 0 0 var(--s-4);
+    font-size: var(--step-4);
+    margin: 0;
   }
   .community p {
     color: var(--ink-2);
+    font-size: var(--step-1);
+    line-height: 1.55;
     margin: 0;
   }
   @media (max-width: 62rem) {
-    .mv-grid {
+    .head-grid,
+    .mv-grid,
+    .team-head,
+    .intro-grid,
+    .community-inner {
       grid-template-columns: 1fr;
     }
-    .people li {
-      grid-template-columns: 3rem 1fr;
+    .mv-block + .mv-block {
+      padding-left: 0;
+      border-left: 0;
+      padding-top: var(--s-6);
+      border-top: 1px solid var(--soil-rule);
     }
-    .bio {
-      grid-column: 2;
+    .lockup-wrap {
+      justify-self: start;
     }
   }
 </style>

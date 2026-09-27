@@ -6,7 +6,11 @@ import { useTranslations, lx } from "../../../i18n/utils";
 
 const lang = "kn" as const;
 const t = useTranslations(lang);
-const programOptions = programs.map((p) => ({ value: p.id, label: lx(p.kicker, lang) }));
+const programOptions = programs.map((p) => ({
+  value: p.id,
+  label: lx(p.kicker, lang),
+  accent: p.accent,
+}));
 ---
 
 <EntryIndex

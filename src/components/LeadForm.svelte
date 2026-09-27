@@ -96,7 +96,11 @@
 
 <form onsubmit={handleSubmit} novalidate>
   {#each fields as field (field.name)}
-    <div class="field" class:has-error={errors[field.name]}>
+    <div
+      class="field"
+      class:half={field.type !== "textarea" && fields.length > 3}
+      class:has-error={errors[field.name]}
+    >
       <label for={`${formName}-${field.name}`}>
         {field.label}{#if field.required}<span class="req" aria-hidden="true">*</span>{/if}
       </label>
@@ -168,19 +172,22 @@
 <style>
   form {
     display: grid;
-    gap: var(--s-5);
-    max-width: 42rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--s-5) var(--s-4);
   }
   .field {
     display: grid;
     gap: var(--s-2);
+    grid-column: 1 / -1;
+  }
+  /* Short single-line fields pair up on wide forms. */
+  .field.half {
+    grid-column: auto;
   }
   label {
-    font-family: var(--font-mono);
     font-size: var(--step--1);
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--ink-2);
+    font-weight: 600;
+    color: var(--ink);
   }
   .req {
     color: var(--clay);
@@ -190,31 +197,40 @@
   textarea,
   select {
     width: 100%;
-    background: var(--paper-raised);
-    border: 1px solid var(--rule-strong);
-    border-radius: var(--r-2);
-    padding: 0.7em 0.85em;
+    background: var(--paper);
+    border: 1.5px solid var(--rule);
+    border-radius: var(--r-3);
+    padding: 0.85em 1em;
     font-family: var(--font-body);
     font-size: var(--step-0);
     color: var(--ink);
-    transition: border-color var(--dur-1) var(--ease-out);
+    transition:
+      border-color var(--dur-1) var(--ease-out),
+      background var(--dur-1) var(--ease-out);
+  }
+  input:hover,
+  textarea:hover,
+  select:hover {
+    border-color: var(--rule-strong);
   }
   textarea {
     resize: vertical;
+    min-height: 8rem;
   }
   select {
     appearance: none;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%235c4b3d' stroke-width='1.5'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
-    background-position: right 0.9rem center;
-    padding-right: 2.4em;
+    background-position: right 1rem center;
+    padding-right: 2.6em;
   }
   input:focus-visible,
   textarea:focus-visible,
   select:focus-visible {
-    outline: 2px solid var(--clay);
-    outline-offset: 1px;
+    outline: 3px solid color-mix(in oklab, var(--clay) 30%, transparent);
+    outline-offset: 0;
     border-color: var(--clay);
+    background: var(--paper-raised);
   }
   .has-error input,
   .has-error textarea,
@@ -225,12 +241,15 @@
     margin: 0;
     color: var(--rose);
     font-size: var(--step--1);
+    font-weight: 600;
   }
   .submit-row {
+    grid-column: 1 / -1;
     display: flex;
     align-items: center;
     gap: var(--s-4);
     flex-wrap: wrap;
+    margin-top: var(--s-2);
   }
   .btn[disabled] {
     opacity: 0.6;
@@ -239,20 +258,29 @@
   .note {
     margin: 0;
     font-size: var(--step--1);
+    font-weight: 600;
+    padding: 0.6em 0.9em;
+    border-radius: var(--r-3);
   }
   .note.success {
     color: var(--leaf-deep);
+    background: var(--leaf-wash);
   }
   .note.error {
     color: var(--rose);
+    background: color-mix(in oklab, var(--rose) 10%, var(--paper));
   }
   .alt {
+    grid-column: 1 / -1;
     margin: 0;
+    padding-top: var(--s-4);
+    border-top: 1px solid var(--rule);
     font-size: var(--step--1);
-    color: var(--ink-3);
+    color: var(--ink-2);
   }
   .alt a {
-    color: var(--ink-2);
+    color: var(--ink);
+    font-weight: 600;
   }
   .hp {
     position: absolute;
@@ -260,5 +288,10 @@
     height: 1px;
     overflow: hidden;
     clip-path: inset(50%);
+  }
+  @media (max-width: 36rem) {
+    .field.half {
+      grid-column: 1 / -1;
+    }
   }
 </style>

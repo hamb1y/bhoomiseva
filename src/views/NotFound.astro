@@ -16,63 +16,115 @@ const links = nav.map((item) => ({ label: t(item.key), href: localePath(item.hre
 
 <BaseLayout lang={lang} path="/404" title="404">
   <section class="notfound">
-    <div class="container">
-      <p class="code">404</p>
-      <h1>{t("notfound.title")}</h1>
-      <p class="body measure">{t("notfound.body")}</p>
+    <div class="container grid">
+      <p class="code" aria-hidden="true">
+        4
+        <svg viewBox="0 0 200 200">
+          <circle cx="100" cy="100" r="100"></circle>
+          <path d="M0 132h200" />
+        </svg>
+        4
+      </p>
+      <div class="copy">
+        <p class="eyebrow eyebrow--dot">404</p>
+        <h1>{t("notfound.title")}</h1>
+        <p class="body">{t("notfound.body")}</p>
 
-      <ul class="links">
-        {links.map((link) => (
-          <li>
-            <a href={link.href}>
-              {link.label}
-              <ArrowRight size={15} stroke-width={1.7} aria-hidden="true" />
-            </a>
-          </li>
-        ))}
-      </ul>
+        <ul class="links">
+          {links.map((link) => (
+            <li>
+              <a href={link.href}>
+                {link.label}
+                <ArrowRight size={16} stroke-width={1.8} aria-hidden="true" />
+              </a>
+            </li>
+          ))}
+        </ul>
 
-      <a class="btn btn--primary" href={localePath("/", lang)}>
-        {t("notfound.home")}
-      </a>
+        <a class="btn btn--primary" href={localePath("/", lang)}>
+          {t("notfound.home")}
+        </a>
+      </div>
     </div>
   </section>
 </BaseLayout>
 
 <style>
   .notfound {
-    padding-block: clamp(3rem, 9vw, 7rem);
+    padding-block: clamp(3rem, 8vw, 7rem);
   }
+  .grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: clamp(2rem, 6vw, 5rem);
+    align-items: center;
+  }
+  /* The zero is the logo's sun, sitting on its horizon. */
   .code {
-    font-family: var(--font-mono);
-    font-size: var(--step-3);
-    color: var(--clay);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.04em;
     margin: 0;
+    font-family: var(--font-display);
+    font-variation-settings:
+      "opsz" 144,
+      "WONK" 1,
+      "SOFT" 100;
+    font-weight: 600;
+    font-size: clamp(7rem, 22vw, 17rem);
+    line-height: 1;
+    letter-spacing: -0.05em;
+    color: var(--ink);
+  }
+  .code svg {
+    width: 0.62em;
+    height: 0.62em;
+    fill: var(--clay);
+  }
+  .code path {
+    stroke: var(--paper);
+    stroke-width: 9;
   }
   h1 {
     margin: var(--s-4) 0 var(--s-5);
-    max-width: 16ch;
+    max-width: 14ch;
   }
   .body {
     color: var(--ink-2);
     font-size: var(--step-1);
+    max-width: 44ch;
   }
   .links {
     list-style: none;
     padding: 0;
     margin: var(--s-7) 0;
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--s-3) var(--s-6);
+    display: grid;
+    border-top: 1px solid var(--rule);
   }
   .links a {
-    display: inline-flex;
+    display: flex;
     align-items: center;
-    gap: 0.4rem;
+    justify-content: space-between;
+    gap: var(--s-4);
+    padding-block: var(--s-3);
+    border-bottom: 1px solid var(--rule);
     text-decoration: none;
-    font-weight: 550;
+    font-weight: 600;
+    transition:
+      color var(--dur-1) var(--ease-out),
+      padding var(--dur-2) var(--ease-out);
   }
   .links a:hover {
-    color: var(--clay);
+    color: var(--clay-deep);
+    padding-left: var(--s-2);
+  }
+  @media (max-width: 52rem) {
+    .grid {
+      grid-template-columns: 1fr;
+    }
+    .code {
+      justify-content: flex-start;
+    }
   }
 </style>
