@@ -17,7 +17,7 @@ const { kicker, title, lede, accent = "brand" } = Astro.props;
     <slot name="above" />
     <div class="page-head__grid">
       <div>
-        <p class="eyebrow eyebrow--dot">{kicker}</p>
+        {!title.toLowerCase().includes(kicker.toLowerCase()) && <p class="eyebrow">{kicker}</p>}
         <h1>{title}</h1>
       </div>
       {lede && <p class="lede">{lede}</p>}

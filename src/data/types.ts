@@ -104,6 +104,7 @@ export interface Site {
   vision: Localized;
   shortDescription: Localized;
   about: Localized[];
+  aboutPhotos: { image: string; caption: Localized; date: string }[];
   credit: string;
   creditUrl?: string;
 }

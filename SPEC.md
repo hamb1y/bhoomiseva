@@ -131,7 +131,7 @@ There is no sync step and no runtime dependency on a CMS. A content edit is a co
 
 ### Adding a story (editor workflow)
 
-1. Open `http://localhost:4321/admin/index.html` while `bun run dev` is running (or `/admin/` in production).
+1. Open `http://localhost:4322/admin/index.html` while `bun run dev` is running (or `/admin/` in production).
 2. In a Chromium browser choose **Work with Local Repository** and pick the project root, or sign in with GitHub.
 3. **Stories → New Story.** Fill in the title, summary and one paragraph per item.
 4. **Photo:** upload any image, then set **Photo position** so the subject survives the site's crop.

@@ -2,7 +2,7 @@
 #
 # Sveltia CMS — Git-based content editing for the Bhoomi Seva site.
 #
-# Open http://localhost:4321/admin/index.html while `bun run dev` is running.
+# Open http://localhost:4322/admin/index.html while `bun run dev` is running.
 # In a Chromium browser, choose “Work with Local Repository” to edit the files
 # in this repo directly. In production, the GitHub backend opens pull requests
 # or commits straight to the branch below.
@@ -45,6 +45,7 @@ collections:
       Longer narratives about a student, a farmer or a family. Always dated or
       given a period, and always located.
     folder: content/stories
+    create: true
     format: json
     i18n: true
     identifier_field: title
@@ -105,6 +106,7 @@ collections:
     label_singular: Event
     description: Short dated records of things that happened — training, distributions, donations, meals.
     folder: content/events
+    create: true
     format: json
     i18n: true
     identifier_field: title
@@ -152,6 +154,7 @@ collections:
       supporters; donee blogs are written by the people we work with. Both share
       one layout and are split by the Blogs menu on the site.
     folder: content/blogs
+    create: true
     format: json
     i18n: true
     identifier_field: title
@@ -320,6 +323,17 @@ collections:
             i18n: true
             label_singular: Paragraph
             field: { label: Paragraph, name: paragraph, widget: text }
+          - label: About photos
+            name: about_photos
+            widget: list
+            i18n: true
+            required: false
+            label_singular: Photo
+            hint: Photographs of recent work shown on the About page, newest first. The first one opens the page.
+            fields:
+              - { label: Photo, name: image, widget: image, i18n: duplicate }
+              - { label: Caption, name: caption, widget: string, i18n: true }
+              - { label: Month, name: date, widget: string, hint: "YYYY-MM", pattern: ['^\\d{4}-\\d{2}$', "Use YYYY-MM"], i18n: duplicate }
           - {
               label: Credit,
               name: credit,

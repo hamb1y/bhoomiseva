@@ -183,9 +183,8 @@ const jsonLd = {
     font-weight: 600;
     color: var(--ink-2);
     margin-bottom: var(--s-7);
-    padding: 0.45rem 0.9rem 0.45rem 0.7rem;
-    border: 1px solid var(--rule-strong);
-    border-radius: 999px;
+    text-decoration: underline;
+    text-underline-offset: 0.3em;
     transition:
       color var(--dur-1) var(--ease-out),
       border-color var(--dur-1) var(--ease-out);
@@ -249,19 +248,6 @@ const jsonLd = {
     font-size: var(--step--1);
     color: var(--ink);
     line-height: 1.45;
-  }
-  dd.dot {
-    display: flex;
-    align-items: baseline;
-    gap: 0.5em;
-  }
-  dd.dot::before {
-    content: "";
-    width: 0.6em;
-    height: 0.6em;
-    border-radius: 50%;
-    background: var(--accent-fill);
-    flex: none;
   }
   @media (max-width: 40rem) {
     .record > div + div {
@@ -373,11 +359,8 @@ const jsonLd = {
     color: var(--ink-3);
     margin-right: var(--s-2);
   }
-  .person {
-    padding: 0.3em 0.8em;
-    border-radius: 999px;
-    background: var(--paper-sunk);
-    color: var(--ink);
+  .person:not(:last-child)::after {
+    content: ",";
   }
   .related h2 {
     font-size: var(--step-3);

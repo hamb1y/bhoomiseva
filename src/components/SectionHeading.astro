@@ -10,7 +10,7 @@ const { kicker, title, lede, id, strong = true } = Astro.props;
 ---
 
 <div class="sec-head" id={id}>
-  {kicker && <p class="eyebrow">{kicker}</p>}
+  {kicker && !title.toLowerCase().includes(kicker.toLowerCase()) && <p class="eyebrow">{kicker}</p>}
   <h2 class:list={{ strong }}>{title}</h2>
   {lede && <p class="lede">{lede}</p>}
 </div>

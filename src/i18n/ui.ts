@@ -75,8 +75,6 @@ export const ui = {
 
     "stories.kicker": "Archive",
     "stories.title": "Stories and updates",
-    "stories.lede":
-      "Documented work from Bhoomi Seva, dated and located where the records allow. Some entries are recent; others are kept as archive.",
     "stories.filter.programme": "Programme",
     "stories.filter.year": "Year",
     "stories.filter.all": "All",
@@ -113,6 +111,8 @@ export const ui = {
     "about.title": "About Bhoomi Seva",
     "about.lede":
       "Bhoomi Seva is a volunteer-led social initiative working with rural communities in Karnataka. It runs education support, farmer training and desi cow donations, and practical support for children's homes.",
+    "about.record": "The work, in photographs",
+    "about.record.lede": "Recent donations, scholarships and visits, as they were recorded.",
     "about.mission": "Mission",
     "about.vision": "Vision",
     "about.team": "The people",
@@ -120,14 +120,12 @@ export const ui = {
       "Bhoomi Seva is run by volunteers and advisers who also work and live outside the organisation.",
     "about.community": "Our volunteers",
     "about.community.body":
-      "Bhoomi Seva has a group of volunteers who teach, coach and mentor underprivileged students. It also has around 95–110 volunteers who donate in support of various initiatives.",
-    "about.disclaimer":
-      "We try to keep this page accurate. Where something is small-scale, or was done once, we say so.",
+      "Bhoomi Seva has 10+ volunteers who teach, coach and mentor underprivileged students, and has supported 250+ donees.",
 
     "involved.kicker": "Get involved",
     "involved.title": "Get involved",
     "involved.lede":
-      "You can teach, mentor, coordinate, give goods, or fund a specific programme. Every bit of it reaches a student, farmer or child.",
+      "Teach, mentor, coordinate, give goods, or fund a programme of your choice.",
     "involved.volunteer.title": "Volunteer",
     "involved.volunteer.body":
       "We have volunteering opportunities in online teaching, and in online or offline coordination for various initiatives. Contact us to know more.",
@@ -174,8 +172,13 @@ export const ui = {
       "You can get confirmation of your transferred amount by sending a WhatsApp message to Bhoomi Seva (+91 9900103178), or by emailing bhoomiseva.org@gmail.com. We record every contribution by name and purpose.",
     "donate.unverified":
       "We are confirming that the payment details below are still current. Please message us before transferring, or ask us for the latest details.",
-    "donate.otherMethods": "Other ways to pay",
-    "donate.causeNote": "The purpose travels with the payment automatically.",
+    "donate.from": "Your name or phone number",
+    "donate.message": "Anything else you'd like us to know?",
+    "donate.optional": "optional",
+    "donate.supported":
+      "Paytm, Google Pay, PhonePe, BHIM, CRED and any other UPI app are supported.",
+    "donate.causeNote":
+      "The purpose, amount, your name and your note travel with the payment automatically.",
 
     "cause.education": "Education",
     "cause.farmers": "Farmer support",
@@ -204,7 +207,7 @@ export const ui = {
     "footer.explore": "Explore",
     "footer.follow": "Follow",
     "footer.credit": "Website by",
-    "footer.legal": "Source-available under CWSL-1.0",
+    "footer.legal": "Source-available under CWSL-1.1",
   },
 
   kn: {
@@ -232,8 +235,8 @@ export const ui = {
     "nav.contact": "ಸಂಪರ್ಕ",
     "nav.events": "ಕಾರ್ಯಕ್ರಮಗಳು",
     "nav.blogs": "ಬ್ಲಾಗ್‌ಗಳು",
-    "nav.blogs.donors": "ಡೊನರ್ ಬ್ಲಾಗ್",
-    "nav.blogs.donees": "ಡೊನಿ ಬ್ಲಾಗ್",
+    "nav.blogs.donors": "ದಾನಿಗಳ ಬ್ಲಾಗ್",
+    "nav.blogs.donees": "ಫಲಾನುಭವಿಗಳ ಬ್ಲಾಗ್",
     "nav.menu": "ಮೆನು",
     "nav.close": "ಮುಚ್ಚಿ",
 
@@ -250,7 +253,7 @@ export const ui = {
     "home.model.kicker": "ನಾವು ಹೇಗೆ ಕೆಲಸ ಮಾಡುತ್ತೇವೆ",
     "home.model.title": "ಒಂದು ಹಸು, ಒಂದು ಹೊಲಿಗೆ ಯಂತ್ರ ಮತ್ತು ಶಾಲಾ ಶುಲ್ಕ",
     "home.model.body":
-      "ಕಬ್ಬಾಳು ಸಮೀಪದ ಕುರುಬರಹಳ್ಳಿ ದೊಡ್ಡಿಯ ಸುನೀತ ಕುಮಾರ ಸ್ವಾಮಿ ಅವರ ಕುಟುಂಬಕ್ಕೆ ಒಂದಕ್ಕಿಂತ ಹೆಚ್ಚು ಬೇಕಿತ್ತು. ಮಗಳ ಶಾಲಾ ಶುಲ್ಕ ಭರಿಸುವುದು ಕಷ್ಟವಾಗಿತ್ತು, ಮತ್ತು ಕುಟುಂಬ ಒಂದೇ ಆದಾಯದ ಮೂಲದ ಮೇಲೆ ನಡೆಯುತ್ತಿತ್ತು. ಭೂಮಿ ಸೇವಾ ಮೂರಕ್ಕೂ ನೆರವಾಯಿತು: ಮಗಳಿಗೆ ವಿದ್ಯಾರ್ಥಿವೇತನ ಮತ್ತು ಶುಲ್ಕ ಪಾವತಿ, ಕುಟುಂಬದ ಜಮೀನು ಮತ್ತು ಹಾಲಿನ ಆದಾಯಕ್ಕೆ ಒಂದು ದೇಸಿ ಹಸು, ಮತ್ತು ಇನ್ನೊಂದು ಆದಾಯಕ್ಕೆ ಒಂದು ಹೊಲಿಗೆ ಯಂತ್ರ.",
+      "ಕಬ್ಬಾಳು ಸಮೀಪದ ಕುರುಬರಹಳ್ಳಿ ದೊಡ್ಡಿಯ ಸುನೀತಾ ಕುಮಾರ ಸ್ವಾಮಿ ಅವರ ಕುಟುಂಬಕ್ಕೆ ಏಕಕಾಲದಲ್ಲಿ ಒಂದಕ್ಕಿಂತ ಹೆಚ್ಚು ನೆರವು ಬೇಕಿತ್ತು. ಮಗಳ ಶಾಲಾ ಶುಲ್ಕ ಭರಿಸುವುದು ಕಷ್ಟವಾಗಿತ್ತು, ಮತ್ತು ಕುಟುಂಬ ಒಂದೇ ಆದಾಯದ ಮೂಲದ ಮೇಲೆ ನಡೆಯುತ್ತಿತ್ತು. ಭೂಮಿ ಸೇವಾ ಮೂರಕ್ಕೂ ನೆರವಾಯಿತು: ಮಗಳಿಗೆ ವಿದ್ಯಾರ್ಥಿವೇತನ ಮತ್ತು ಶುಲ್ಕ ಪಾವತಿ, ಕುಟುಂಬದ ಜಮೀನು ಮತ್ತು ಹಾಲಿನ ಆದಾಯಕ್ಕೆ ಒಂದು ದೇಸಿ ಹಸು, ಮತ್ತು ಇನ್ನೊಂದು ಆದಾಯಕ್ಕೆ ಒಂದು ಹೊಲಿಗೆ ಯಂತ್ರ.",
     "home.updates.title": "ಇತ್ತೀಚಿನ ಕಥೆಗಳು",
     "home.impact.kicker": "ನಮ್ಮ ಕೆಲಸಕ್ಕೆ ಬೆಂಬಲ",
     "home.impact.title": "ದೇಣಿಗೆ ನೀಡಿ ಅಥವಾ ಸ್ವಯಂಸೇವೆ ಮಾಡಿ",
@@ -267,8 +270,6 @@ export const ui = {
 
     "stories.kicker": "ಸಂಗ್ರಹ",
     "stories.title": "ಕಥೆಗಳು ಮತ್ತು ಮಾಹಿತಿ",
-    "stories.lede":
-      "ಭೂಮಿ ಸೇವಾದ ದಾಖಲಿತ ಕೆಲಸ, ದಾಖಲೆ ಇರುವಲ್ಲಿ ದಿನಾಂಕ ಮತ್ತು ಸ್ಥಳದೊಂದಿಗೆ. ಕೆಲವು ನಮೂದುಗಳು ಇತ್ತೀಚಿನವು; ಇನ್ನು ಕೆಲವು ಸಂಗ್ರಹವಾಗಿ ಉಳಿದಿವೆ.",
     "stories.filter.programme": "ಕಾರ್ಯಕ್ರಮ",
     "stories.filter.year": "ವರ್ಷ",
     "stories.filter.all": "ಎಲ್ಲಾ",
@@ -292,18 +293,20 @@ export const ui = {
     "blogs.lede":
       "ಈ ಕೆಲಸದಲ್ಲಿ ಭಾಗಿಯಾದವರ ಬರಹಗಳು — ಹಣ ನೀಡುವ ದಾನಿಗಳು, ಮತ್ತು ನಾವು ಕೆಲಸ ಮಾಡುವ ವಿದ್ಯಾರ್ಥಿಗಳು, ರೈತರು ಹಾಗೂ ಕುಟುಂಬಗಳು.",
     "blogs.empty": "ಇನ್ನೂ ಬ್ಲಾಗ್ ಬರಹಗಳಿಲ್ಲ.",
-    "blogs.donors.title": "ಡೊನರ್ ಬ್ಲಾಗ್",
+    "blogs.donors.title": "ದಾನಿಗಳ ಬ್ಲಾಗ್",
     "blogs.donors.lede": "ಈ ಕೆಲಸಕ್ಕೆ ಹಣ ನೀಡುವ ಮತ್ತು ಸ್ವಯಂಸೇವೆ ಮಾಡುವವರ ಬರಹಗಳು.",
-    "blogs.donors.empty": "ಇನ್ನೂ ಡೊನರ್ ಬ್ಲಾಗ್ ಬರಹಗಳಿಲ್ಲ.",
-    "blogs.donees.title": "ಡೊನಿ ಬ್ಲಾಗ್",
+    "blogs.donors.empty": "ಇನ್ನೂ ದಾನಿಗಳ ಬ್ಲಾಗ್ ಬರಹಗಳಿಲ್ಲ.",
+    "blogs.donees.title": "ಫಲಾನುಭವಿಗಳ ಬ್ಲಾಗ್",
     "blogs.donees.lede": "ನಾವು ಕೆಲಸ ಮಾಡುವ ವಿದ್ಯಾರ್ಥಿಗಳು, ರೈತರು ಮತ್ತು ಕುಟುಂಬಗಳ ಬರಹಗಳು.",
-    "blogs.donees.empty": "ಇನ್ನೂ ಡೊನಿ ಬ್ಲಾಗ್ ಬರಹಗಳಿಲ್ಲ.",
+    "blogs.donees.empty": "ಇನ್ನೂ ಫಲಾನುಭವಿಗಳ ಬ್ಲಾಗ್ ಬರಹಗಳಿಲ್ಲ.",
     "blogs.related": "ಇತರ ಬರಹಗಳು",
 
     "about.kicker": "ನಮ್ಮ ಬಗ್ಗೆ",
     "about.title": "ಭೂಮಿ ಸೇವಾ ಬಗ್ಗೆ",
     "about.lede":
       "ಭೂಮಿ ಸೇವಾ ಕರ್ನಾಟಕದ ಗ್ರಾಮೀಣ ಸಮುದಾಯಗಳೊಂದಿಗೆ ಕೆಲಸ ಮಾಡುವ ಸ್ವಯಂಸೇವಕರ ಸಾಮಾಜಿಕ ಉಪಕ್ರಮ. ಇದು ಶಿಕ್ಷಣ ಬೆಂಬಲ, ರೈತ ತರಬೇತಿ ಮತ್ತು ದೇಸಿ ಹಸು ದಾನ, ಮತ್ತು ಮಕ್ಕಳ ಮನೆಗಳಿಗೆ ಪ್ರಾಯೋಗಿಕ ಸಹಾಯ ನಡೆಸುತ್ತದೆ.",
+    "about.record": "ಕೆಲಸ, ಚಿತ್ರಗಳಲ್ಲಿ",
+    "about.record.lede": "ಇತ್ತೀಚಿನ ದಾನಗಳು, ವಿದ್ಯಾರ್ಥಿವೇತನಗಳು ಮತ್ತು ಭೇಟಿಗಳು — ದಾಖಲಾದಂತೆಯೇ.",
     "about.mission": "ಧ್ಯೇಯ",
     "about.vision": "ದೃಷ್ಟಿ",
     "about.team": "ಜನರು",
@@ -311,14 +314,12 @@ export const ui = {
       "ಭೂಮಿ ಸೇವಾವನ್ನು ಸ್ವಯಂಸೇವಕರು ಮತ್ತು ಸಲಹೆಗಾರರು ನಡೆಸುತ್ತಾರೆ; ಅವರು ಸಂಸ್ಥೆಯ ಹೊರಗೆಯೂ ಕೆಲಸ ಮಾಡುತ್ತಾರೆ ಮತ್ತು ಬದುಕುತ್ತಾರೆ.",
     "about.community": "ನಮ್ಮ ಸ್ವಯಂಸೇವಕರು",
     "about.community.body":
-      "ಭೂಮಿ ಸೇವಾದಲ್ಲಿ ವಿದ್ಯಾರ್ಥಿಗಳಿಗೆ ಪಾಠ ಮಾಡುವ, ತರಬೇತಿ ಮತ್ತು ಮಾರ್ಗದರ್ಶನ ನೀಡುವ ಸ್ವಯಂಸೇವಕರ ಗುಂಪಿದೆ. ಜೊತೆಗೆ ವಿವಿಧ ಉಪಕ್ರಮಗಳಿಗೆ ದೇಣಿಗೆ ನೀಡುವ ಸುಮಾರು 95–110 ಸ್ವಯಂಸೇವಕರೂ ಇದ್ದಾರೆ.",
-    "about.disclaimer":
-      "ಈ ಪುಟವನ್ನು ನಿಖರವಾಗಿ ಇಟ್ಟುಕೊಳ್ಳಲು ನಾವು ಪ್ರಯತ್ನಿಸುತ್ತೇವೆ. ಏನಾದರೂ ಸಣ್ಣ ಪ್ರಮಾಣದ್ದಾಗಿದ್ದರೆ, ಅಥವಾ ಒಮ್ಮೆ ಮಾತ್ರ ಮಾಡಿದ್ದಾಗಿದ್ದರೆ, ಅದನ್ನು ನಾವು ಸ್ಪಷ್ಟವಾಗಿ ಹೇಳುತ್ತೇವೆ.",
+      "ಭೂಮಿ ಸೇವಾದಲ್ಲಿ ಹಿಂದುಳಿದ ವಿದ್ಯಾರ್ಥಿಗಳಿಗೆ ಪಾಠ, ತರಬೇತಿ ಮತ್ತು ಮಾರ್ಗದರ್ಶನ ನೀಡುವ 10+ ಸ್ವಯಂಸೇವಕರಿದ್ದಾರೆ; ಇದುವರೆಗೆ 250+ ಫಲಾನುಭವಿಗಳಿಗೆ ನೆರವಾಗಿದೆ.",
 
     "involved.kicker": "ಭಾಗಿಯಾಗಿ",
     "involved.title": "ಭಾಗಿಯಾಗಿ",
     "involved.lede":
-      "ನೀವು ಪಾಠ ಮಾಡಬಹುದು, ಮಾರ್ಗದರ್ಶನ ನೀಡಬಹುದು, ಸಂಯೋಜನೆ ಮಾಡಬಹುದು, ವಸ್ತುಗಳನ್ನು ನೀಡಬಹುದು, ಅಥವಾ ಒಂದು ನಿರ್ದಿಷ್ಟ ಕಾರ್ಯಕ್ರಮಕ್ಕೆ ಹಣ ನೀಡಬಹುದು. ಇದರ ಪ್ರತಿಯೊಂದು ಭಾಗವೂ ಒಬ್ಬ ವಿದ್ಯಾರ್ಥಿ, ರೈತ ಅಥವಾ ಮಗುವನ್ನು ತಲುಪುತ್ತದೆ.",
+      "ಪಾಠ ಮಾಡಿ, ಮಾರ್ಗದರ್ಶನ ನೀಡಿ, ಸಂಯೋಜಿಸಿ, ವಸ್ತುಗಳನ್ನು ನೀಡಿ, ಅಥವಾ ನಿಮ್ಮ ಆಯ್ಕೆಯ ಕಾರ್ಯಕ್ರಮಕ್ಕೆ ಹಣ ನೀಡಿ.",
     "involved.volunteer.title": "ಸ್ವಯಂಸೇವೆ",
     "involved.volunteer.body":
       "ಆನ್‌ಲೈನ್ ಪಾಠ, ಮತ್ತು ವಿವಿಧ ಉಪಕ್ರಮಗಳಿಗೆ ಆನ್‌ಲೈನ್ ಅಥವಾ ಸ್ಥಳೀಯ ಸಂಯೋಜನೆಯಲ್ಲಿ ಸ್ವಯಂಸೇವೆ ಮಾಡುವ ಅವಕಾಶಗಳಿವೆ. ಹೆಚ್ಚಿನ ಮಾಹಿತಿಗೆ ನಮ್ಮನ್ನು ಸಂಪರ್ಕಿಸಿ.",
@@ -345,7 +346,7 @@ export const ui = {
     "form.success": "ಧನ್ಯವಾದ — ನಿಮ್ಮ ಸಂದೇಶ ನಮಗೆ ಸಿಕ್ಕಿದೆ; ನಾವು ಸಂಪರ್ಕಿಸುತ್ತೇವೆ.",
     "form.error": "ಏನೋ ತಪ್ಪಾಗಿದೆ. ದಯವಿಟ್ಟು ವಾಟ್ಸಾಪ್ ಅಥವಾ ಇಮೇಲ್ ಮೂಲಕ ಪ್ರಯತ್ನಿಸಿ.",
     "form.invalidEmail": "ದಯವಿಟ್ಟು ಸರಿಯಾದ ಇಮೇಲ್ ವಿಳಾಸ ನಮೂದಿಸಿ.",
-    "form.orContact": "ಅಫಾರ್ಮ್ ಬಳಸಲು ಇಷ್ಟವಿಲ್ಲವೇ?",
+    "form.orContact": "ಫಾರ್ಮ್ ಬಳಸಲು ಇಷ್ಟವಿಲ್ಲವೇ?",
 
     "donate.kicker": "ದೇಣಿಗೆ",
     "donate.title": "ಭೂಮಿ ಸೇವಾಗೆ ದೇಣಿಗೆ",
@@ -365,8 +366,13 @@ export const ui = {
       "ನಿಮ್ಮ ವರ್ಗಾವಣೆಯ ದೃಢೀಕರಣವನ್ನು ಭೂಮಿ ಸೇವಾಗೆ (+91 9900103178) ವಾಟ್ಸಾಪ್ ಸಂದೇಶ ಕಳುಹಿಸಿ ಪಡೆಯಬಹುದು, ಅಥವಾ bhoomiseva.org@gmail.com ಗೆ ಇಮೇಲ್ ಮಾಡಬಹುದು. ಪ್ರತಿ ಕೊಡುಗೆಯನ್ನೂ ಹೆಸರು ಮತ್ತು ಉದ್ದೇಶದೊಂದಿಗೆ ದಾಖಲಿಸುತ್ತೇವೆ.",
     "donate.unverified":
       "ಕೆಳಗಿನ ಪಾವತಿ ವಿವರಗಳು ಇನ್ನೂ ಜಾರಿಯಲ್ಲಿವೆಯೇ ಎಂದು ನಾವು ದೃಢಪಡಿಸುತ್ತಿದ್ದೇವೆ. ಹಣ ವರ್ಗಾಯಿಸುವ ಮೊದಲು ನಮಗೆ ಸಂದೇಶ ಕಳುಹಿಸಿ, ಅಥವಾ ಇತ್ತೀಚಿನ ವಿವರಗಳನ್ನು ಕೇಳಿ.",
-    "donate.otherMethods": "ಪಾವತಿಸಲು ಇತರ ದಾರಿಗಳು",
-    "donate.causeNote": "ಉದ್ದೇಶವು ಪಾವತಿಯೊಂದಿಗೆ ತಾನಾಗಿಯೇ ಹೋಗುತ್ತದೆ.",
+    "donate.from": "ನಿಮ್ಮ ಹೆಸರು ಅಥವಾ ಫೋನ್ ಸಂಖ್ಯೆ",
+    "donate.message": "ನಮಗೆ ತಿಳಿಸಬೇಕಾದ ಬೇರೆ ಏನಾದರೂ ಇದೆಯೇ?",
+    "donate.optional": "ಐಚ್ಛಿಕ",
+    "donate.supported":
+      "Paytm, Google Pay, PhonePe, BHIM, CRED ಮತ್ತು ಯಾವುದೇ ಇತರ ಯುಪಿಐ ಆ್ಯಪ್ ಬಳಸಬಹುದು.",
+    "donate.causeNote":
+      "ಉದ್ದೇಶ, ಮೊತ್ತ, ನಿಮ್ಮ ಹೆಸರು ಮತ್ತು ಟಿಪ್ಪಣಿ ಪಾವತಿಯೊಂದಿಗೆ ತಾನಾಗಿಯೇ ಹೋಗುತ್ತವೆ.",
 
     "cause.education": "ಶಿಕ್ಷಣ",
     "cause.farmers": "ರೈತ ಬೆಂಬಲ",
@@ -395,7 +401,7 @@ export const ui = {
     "footer.explore": "ಅನ್ವೇಷಿಸಿ",
     "footer.follow": "ಅನುಸರಿಸಿ",
     "footer.credit": "ವೆಬ್‌ಸೈಟ್ ನಿರ್ಮಾಣ",
-    "footer.legal": "CWSL-1.0 ಅಡಿಯಲ್ಲಿ ಮೂಲ ಲಭ್ಯ",
+    "footer.legal": "CWSL-1.1 ಅಡಿಯಲ್ಲಿ ಮೂಲ ಲಭ್ಯ",
   },
 } as const;
 

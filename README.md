@@ -122,4 +122,8 @@ Work through the checklist in [SPEC.md §14](./SPEC.md). In particular: confirm 
 
 ## License
 
-Source-available under the **Controlled Website Source License 1.0 (CWSL-1.0)** © 2026 Bhoomi Seva. The code may be viewed, studied and evaluated, and Bhoomi Seva may deploy and modify it; it may not be redistributed, templated, or commercially exploited. Content and photographs remain the property of Bhoomi Seva. See [LICENSE](./LICENSE). This is not an OSI-approved open-source license.
+Source-available under the **Controlled Website Source License 1.1 (CWSL-1.1)** © 2026 Rishi Malnad. Anyone may view, study and privately evaluate the code; it may not be redistributed, publicly deployed, modified for use, used as a template, commercially exploited, or used for AI training.
+
+**Bhoomi Seva** is the Authorized Recipient of this website under Section 4 of the License. It may operate the site, change its content, settings and hosting, and make only the code changes strictly needed to keep it working. This authorization is revocable.
+
+Content and photographs belong to Bhoomi Seva and are not licensed for any reuse. See [LICENSE](./LICENSE). This is not an OSI-approved open-source license.

@@ -128,49 +128,28 @@
   .chip {
     position: relative;
     display: inline-flex;
-    align-items: center;
-    gap: 0.5em;
-    border: 1px solid var(--rule-strong);
-    border-radius: 999px;
-    padding: 0.55em 1.05em;
     cursor: pointer;
-    font-size: var(--step--1);
+    padding: 0.35em 0;
+    margin-right: var(--s-4);
+    font-size: var(--step-0);
     font-weight: 600;
     line-height: 1.2;
     color: var(--ink-2);
-    background: var(--paper-raised);
+    text-decoration: underline;
+    text-decoration-color: transparent;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.4em;
     transition:
-      background var(--dur-1) var(--ease-out),
-      border-color var(--dur-1) var(--ease-out),
-      color var(--dur-1) var(--ease-out);
-  }
-  .chip[data-accent]::before {
-    content: "";
-    width: 0.6em;
-    height: 0.6em;
-    border-radius: 50%;
-    background: var(--dot);
-  }
-  .chip[data-accent="education"] {
-    --dot: var(--turmeric);
-  }
-  .chip[data-accent="farmers"] {
-    --dot: var(--leaf);
-  }
-  .chip[data-accent="children"] {
-    --dot: var(--indigo);
+      color var(--dur-1) var(--ease-out),
+      text-decoration-color var(--dur-1) var(--ease-out);
   }
   .chip:hover {
-    border-color: var(--ink);
     color: var(--ink);
+    text-decoration-color: var(--rule-strong);
   }
   .chip.active {
-    background: var(--ink);
-    border-color: var(--ink);
-    color: var(--paper-raised);
-  }
-  .chip.active[data-accent]::before {
-    box-shadow: 0 0 0 2px var(--paper-raised);
+    color: var(--ink);
+    text-decoration-color: var(--clay);
   }
   .chip input {
     position: absolute;
@@ -187,7 +166,7 @@
       url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%235c4b3d' stroke-width='1.5'/%3E%3C/svg%3E")
       no-repeat right 0.9rem center;
     border: 1px solid var(--rule-strong);
-    border-radius: 999px;
+    border-radius: var(--r-2);
     padding: 0.55em 2.4em 0.55em 1.05em;
     font-family: var(--font-body);
     font-size: var(--step--1);

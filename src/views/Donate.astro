@@ -55,7 +55,10 @@ const labels = {
   confirmBody: t("donate.confirm.body"),
   causeNote: t("donate.causeNote"),
   unverified: t("donate.unverified"),
-  otherMethods: t("donate.otherMethods"),
+  from: t("donate.from"),
+  message: t("donate.message"),
+  optional: t("donate.optional"),
+  supported: t("donate.supported"),
   whatsapp: t("cta.whatsapp"),
 };
 ---
@@ -71,8 +74,6 @@ const labels = {
         labels={labels}
         upi={site.payment.upi}
         payeeName={site.name}
-        paytm={site.payment.paytm}
-        gpay={site.payment.gpay}
         verified={site.payment.verified}
         whatsapp={site.whatsapp}
         email={site.email}

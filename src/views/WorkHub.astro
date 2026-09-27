@@ -35,7 +35,7 @@ const t = useTranslations(lang);
             />
           </a>
           <div class="main">
-            <p class="eyebrow eyebrow--dot">{lx(p.kicker, lang)}</p>
+            {lx(p.kicker, lang).toLowerCase() !== lx(p.title, lang).toLowerCase() && <p class="eyebrow">{lx(p.kicker, lang)}</p>}
             <h2>
               <a href={localePath(programHref(p.id), lang)}>{lx(p.title, lang)}</a>
             </h2>

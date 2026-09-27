@@ -91,7 +91,6 @@ const jsonLd = {
               fetchpriority={i === 0 ? "high" : undefined}
               decoding="async"
             />
-            <span class="shot-tag">{lx(p.kicker, lang)}</span>
           </a>
         ))}
       </div>
@@ -127,7 +126,7 @@ const jsonLd = {
         <article class:list={["pillar", `pillar-${p.accent}`]} style={`--i:${i}`}>
           <div class="container pillar-inner">
             <div class="pillar-copy">
-              <p class="pillar-kicker">{lx(p.kicker, lang)}</p>
+              {lx(p.kicker, lang).toLowerCase() !== lx(p.title, lang).toLowerCase() && <p class="pillar-kicker">{lx(p.kicker, lang)}</p>}
               <h3>
                 <a href={localePath(programHref(p.id), lang)}>{lx(p.title, lang)}</a>
               </h3>
@@ -281,29 +280,15 @@ const jsonLd = {
     margin: var(--s-7) 0 0;
     display: flex;
     flex-wrap: wrap;
-    gap: var(--s-2);
+    gap: var(--s-2) var(--s-5);
   }
   .hero-programs a {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.55em;
-    padding: 0.5em 0.95em 0.5em 0.75em;
-    border: 1px solid var(--rule-strong);
-    border-radius: 999px;
-    font-size: var(--step--1);
     font-weight: 600;
-    text-decoration: none;
     color: var(--ink);
-    transition:
-      background var(--dur-1) var(--ease-out),
-      border-color var(--dur-1) var(--ease-out);
-  }
-  .hero-programs a::before {
-    content: "";
-    width: 0.65em;
-    height: 0.65em;
-    border-radius: 50%;
-    background: var(--accent-fill);
+    text-decoration: underline;
+    text-decoration-color: var(--accent-fill, var(--rule-strong));
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.3em;
   }
   .hero-programs a:hover {
     background: var(--paper-raised);
@@ -358,36 +343,6 @@ const jsonLd = {
     width: 38%;
     height: 38%;
     z-index: 1;
-  }
-  .shot-tag {
-    position: absolute;
-    left: var(--s-3);
-    bottom: var(--s-3);
-    display: inline-flex;
-    align-items: center;
-    gap: 0.45em;
-    padding: 0.3em 0.7em 0.3em 0.55em;
-    border-radius: 999px;
-    background: var(--paper-raised);
-    color: var(--ink);
-    font-size: 0.78rem;
-    font-weight: 600;
-    line-height: 1.2;
-    transition: transform var(--dur-2) var(--ease-out);
-  }
-  .shot-tag::before {
-    content: "";
-    width: 0.6em;
-    height: 0.6em;
-    border-radius: 50%;
-    background: var(--accent-fill);
-  }
-  .shot-1 .shot-tag {
-    top: var(--s-3);
-    bottom: auto;
-  }
-  .shot:hover .shot-tag {
-    transform: translateY(-3px);
   }
   @media (prefers-reduced-motion: no-preference) {
     .shot {
@@ -553,11 +508,13 @@ const jsonLd = {
     gap: var(--s-2);
   }
   .activities li {
-    font-size: var(--step--1);
-    line-height: 1.3;
-    padding: 0.4em 0.8em;
-    border-radius: 999px;
-    border: 1px solid color-mix(in oklab, currentColor 35%, transparent);
+    font-size: var(--step-0);
+    line-height: 1.4;
+  }
+  .activities li:not(:last-child)::after {
+    content: "/";
+    margin-left: var(--s-2);
+    opacity: 0.5;
   }
   .pillar-more {
     display: inline-flex;
@@ -714,22 +671,15 @@ const jsonLd = {
   }
   .p-meta {
     display: flex;
-    align-items: center;
-    gap: 0.5em;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0 0.5em;
     font-size: var(--step--1);
     font-weight: 600;
-    color: var(--ink-2);
-  }
-  .p-meta::before {
-    content: "";
-    width: 0.6em;
-    height: 0.6em;
-    border-radius: 50%;
-    background: var(--accent-fill);
+    color: var(--accent, var(--ink-2));
   }
   .p-year {
-    font-family: var(--font-mono);
-    font-weight: 400;
+    font-weight: 500;
     color: var(--ink-3);
   }
   .p-year::before {

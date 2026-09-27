@@ -46,7 +46,7 @@ const photoCaption = {
   <section class:list={["head", `head-${program.accent}`, `accent-${program.accent}`]}>
     <div class="container head-grid">
       <div class="head-copy">
-        <p class="head-kicker">{lx(program.kicker, lang)}</p>
+        {lx(program.kicker, lang) !== lx(program.title, lang) && <p class="head-kicker">{lx(program.kicker, lang)}</p>}
         <h1>{lx(program.title, lang)}</h1>
         <p class="lede">{lx(program.lede, lang)}</p>
       </div>

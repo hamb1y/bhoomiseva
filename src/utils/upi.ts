@@ -23,10 +23,11 @@ export function upiLink({ upi, payeeName, amount, note }: UpiDetails): string {
 
   // Payment apps render `tn` as plain text; keep it short and safe.
   const cleanNote = (note ?? "")
-    .replace(/[^\p{L}\p{N} .'-]/gu, " ")
+    .replace(/[^\p{L}\p{N} .,'@|-]/gu, " ")
     .replace(/\s+/g, " ")
     .trim()
-    .slice(0, 48);
+    .slice(0, 80)
+    .trim();
   if (cleanNote) params.set("tn", cleanNote);
 
   // URLSearchParams writes spaces as "+", which some UPI apps do not decode.

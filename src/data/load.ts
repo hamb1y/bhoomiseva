@@ -202,6 +202,14 @@ export function toSite(file: ContentFile): Site {
     vision: text(file, "vision") ?? { en: "" },
     shortDescription: text(file, "short_description") ?? { en: "" },
     about: textList(file, "about"),
+    aboutPhotos: ((shared<any[]>(file, "about_photos") ?? []) as any[]).map((photo, i) => ({
+      image: photo.image ?? "",
+      date: photo.date ?? "",
+      caption: {
+        en: photo.caption ?? "",
+        kn: (file as any).kn?.about_photos?.[i]?.caption || undefined,
+      },
+    })),
     credit: shared<string>(file, "credit") ?? "",
     creditUrl: shared<string>(file, "credit_url"),
   } as Site;

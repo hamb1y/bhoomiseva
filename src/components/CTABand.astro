@@ -19,7 +19,7 @@ const t = useTranslations(lang);
   </svg>
   <div class="container inner">
     <div class="copy">
-      <p class="kicker">{kicker}</p>
+      {!title.toLowerCase().includes(kicker.toLowerCase()) && <p class="kicker">{kicker}</p>}
       <h2>{title}</h2>
       {body && <p class="body">{body}</p>}
     </div>

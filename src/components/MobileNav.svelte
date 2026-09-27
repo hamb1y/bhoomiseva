@@ -193,13 +193,6 @@
     text-decoration: none;
     padding: var(--s-2) 0;
   }
-  .sub a::before {
-    content: "";
-    width: 0.6rem;
-    height: 0.6rem;
-    border-radius: 50%;
-    background: var(--dot, var(--clay-bright));
-  }
   .dot-education {
     --dot: var(--turmeric);
   }
@@ -235,7 +228,7 @@
     color: var(--on-soil);
     text-decoration: none;
     padding: 0.5rem 0.9rem;
-    border: 1px solid var(--soil-rule);
-    border-radius: 999px;
+    text-decoration: underline;
+    text-underline-offset: 0.3em;
   }
 </style>

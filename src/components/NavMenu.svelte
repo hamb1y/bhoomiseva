@@ -88,6 +88,7 @@
   }
   .label {
     text-decoration: none;
+    white-space: nowrap;
     font-size: var(--step-0);
     font-weight: 500;
     color: var(--ink-2);
@@ -154,14 +155,6 @@
     color: var(--ink);
     font-size: var(--step-0);
     font-weight: 500;
-  }
-  .menu a::before {
-    content: "";
-    width: 0.6rem;
-    height: 0.6rem;
-    border-radius: 50%;
-    background: var(--dot, var(--clay));
-    flex: none;
   }
   .dot-education {
     --dot: var(--turmeric);

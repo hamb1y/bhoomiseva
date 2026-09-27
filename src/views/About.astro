@@ -6,39 +6,36 @@ import { pick, site } from "../data/site";
 import { team } from "../data/team";
 import CTABand from "../components/CTABand.astro";
 import { objectPosition } from "../utils/format";
-import { Info } from "lucide-astro";
-import { existsSync } from "node:fs";
-import { asset } from "../utils/url";
 
 interface Props {
   lang: Lang;
 }
 const { lang } = Astro.props;
 const t = useTranslations(lang);
-const hasLogo = existsSync("public/images/logo.webp");
+const [lead, ...record] = site.aboutPhotos;
+const month = (value: string) =>
+  value
+    ? new Date(`${value}-01T00:00:00`).toLocaleDateString(lang === "kn" ? "kn-IN" : "en-IN", {
+        month: "long",
+        year: "numeric",
+      })
+    : "";
 ---
 
 <BaseLayout lang={lang} path="/about" title={t("nav.about")} description={t("about.lede")}>
   <header class="page-head">
     <div class="container head-grid">
       <div>
-        <p class="eyebrow eyebrow--dot">{t("about.kicker")}</p>
         <h1>{t("about.title")}</h1>
         <p class="lede head-lede">{t("about.lede")}</p>
       </div>
-      {hasLogo && (
-        <div class="lockup-wrap">
-          <svg class="sun" viewBox="0 0 200 200" aria-hidden="true">
-            <circle cx="100" cy="100" r="100"></circle>
-          </svg>
-          <img
-            class="lockup"
-            src={asset("/images/logo.webp")}
-            alt="Bhoomi Seva"
-            width="240"
-            height="354"
-          />
-        </div>
+      {lead && (
+        <figure class="lead">
+          <img src={lead.image} alt={lx(lead.caption, lang)} width="1280" height="960" />
+          <figcaption>
+            {lx(lead.caption, lang)} <span>{month(lead.date)}</span>
+          </figcaption>
+        </figure>
       )}
     </div>
   </header>
@@ -53,14 +50,37 @@ const hasLogo = existsSync("public/images/logo.webp");
     </div>
   </section>
 
+  {record.length > 0 && (
+    <section class="record">
+      <div class="container">
+        <div class="record-head">
+          <h2>{t("about.record")}</h2>
+          <p>{t("about.record.lede")}</p>
+        </div>
+        <ul class="mosaic">
+          {record.map((photo) => (
+            <li>
+              <figure>
+                <img src={photo.image} alt={lx(photo.caption, lang)} loading="lazy" decoding="async" />
+                <figcaption>
+                  {lx(photo.caption, lang)} <span>{month(photo.date)}</span>
+                </figcaption>
+              </figure>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  )}
+
   <section class="mv soil">
     <div class="container mv-grid">
       <div class="mv-block">
-        <p class="eyebrow eyebrow--dot">{t("about.mission")}</p>
+        <p class="eyebrow">{t("about.mission")}</p>
         <p class="mv-text">{pick(site.mission, lang)}</p>
       </div>
       <div class="mv-block accent-farmers">
-        <p class="eyebrow eyebrow--dot">{t("about.vision")}</p>
+        <p class="eyebrow">{t("about.vision")}</p>
         <p class="mv-text">{pick(site.vision, lang)}</p>
       </div>
     </div>
@@ -72,10 +92,6 @@ const hasLogo = existsSync("public/images/logo.webp");
         <div>
           <h2>{t("about.team")}</h2>
           <p class="sub">{t("about.team.lede")}</p>
-        </div>
-        <div class="aside">
-          <Info size={20} stroke-width={1.7} aria-hidden="true" />
-          <p>{t("about.disclaimer")}</p>
         </div>
       </div>
 
@@ -115,14 +131,14 @@ const hasLogo = existsSync("public/images/logo.webp");
     lang={lang}
     kicker={t("involved.kicker")}
     title={t("involved.title")}
-    body={t("involved.lede")}
+    body={t("home.impact.body")}
   />
 </BaseLayout>
 
 <style>
   .head-grid {
     display: grid;
-    grid-template-columns: minmax(0, 1.5fr) minmax(0, 0.7fr);
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
     gap: clamp(2rem, 6vw, 5rem);
     align-items: center;
   }
@@ -133,22 +149,72 @@ const hasLogo = existsSync("public/images/logo.webp");
     margin-top: var(--s-6);
     max-width: 52ch;
   }
-  .lockup-wrap {
-    position: relative;
-    display: grid;
-    place-items: center;
-    padding: var(--s-6);
+  .lead {
+    margin: 0;
   }
-  .sun {
-    position: absolute;
+  .lead img,
+  .mosaic img {
+    display: block;
     width: 100%;
-    max-width: 22rem;
-    fill: var(--paper-raised);
+    object-fit: cover;
+    border-radius: var(--r-4);
+    filter: var(--photo-filter);
   }
-  .lockup {
-    position: relative;
-    width: clamp(9rem, 16vw, 13rem);
+  .lead img {
     height: auto;
+    aspect-ratio: 4 / 3;
+  }
+  figcaption {
+    margin-top: var(--s-3);
+    font-size: var(--step--1);
+    font-weight: 600;
+    color: var(--ink);
+  }
+  figcaption span {
+    font-weight: 400;
+    color: var(--ink-3);
+    margin-left: 0.4em;
+  }
+
+  .record-head {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: var(--s-4) clamp(2rem, 5vw, 4rem);
+    align-items: end;
+    margin-bottom: var(--s-7);
+  }
+  .record-head h2 {
+    font-size: var(--step-5);
+    margin: 0;
+    max-width: 14ch;
+  }
+  .record-head p {
+    margin: 0;
+    color: var(--ink-2);
+    font-size: var(--step-1);
+    max-width: 40ch;
+  }
+  .mosaic {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: var(--s-6) var(--s-5);
+  }
+  .mosaic figure {
+    margin: 0;
+  }
+  /* Two wide photographs, then rows of four, so the rhythm changes as you read. */
+  .mosaic li {
+    grid-column: span 3;
+  }
+  .mosaic li:nth-child(1),
+  .mosaic li:nth-child(2) {
+    grid-column: span 6;
+  }
+  .mosaic img {
+    aspect-ratio: 4 / 3;
   }
 
   .intro {
@@ -233,23 +299,6 @@ const hasLogo = existsSync("public/images/logo.webp");
     margin-top: var(--s-4);
     max-width: 44ch;
   }
-  .aside {
-    display: flex;
-    gap: var(--s-3);
-    border-radius: var(--r-4);
-    background: var(--turmeric-wash);
-    padding: var(--s-5);
-  }
-  .aside :global(svg) {
-    flex: none;
-    color: #8a6112;
-    margin-top: 0.15em;
-  }
-  .aside p {
-    margin: 0;
-    font-size: var(--step--1);
-    color: var(--ink-2);
-  }
 
   .people {
     list-style: none;
@@ -267,7 +316,7 @@ const hasLogo = existsSync("public/images/logo.webp");
   }
   .portrait img {
     width: 100%;
-    aspect-ratio: 4 / 5;
+    aspect-ratio: 2 / 3;
     object-fit: cover;
     filter: var(--photo-filter);
   }
@@ -276,8 +325,8 @@ const hasLogo = existsSync("public/images/logo.webp");
     margin: 0;
   }
   .role {
-    font-family: var(--font-mono);
     font-size: var(--step--1);
+    font-weight: 600;
     color: var(--clay-deep);
     margin: var(--s-2) 0 var(--s-3);
   }
@@ -324,8 +373,19 @@ const hasLogo = existsSync("public/images/logo.webp");
       padding-top: var(--s-6);
       border-top: 1px solid var(--soil-rule);
     }
-    .lockup-wrap {
-      justify-self: start;
+    .record-head {
+      grid-template-columns: 1fr;
+    }
+    .mosaic {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .mosaic li,
+    .mosaic li:nth-child(1),
+    .mosaic li:nth-child(2) {
+      grid-column: span 1;
+    }
+    .mosaic li:first-child {
+      grid-column: 1 / -1;
     }
   }
 </style>

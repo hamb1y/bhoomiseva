@@ -23,7 +23,10 @@
     confirmBody: string;
     causeNote: string;
     unverified: string;
-    otherMethods: string;
+    from: string;
+    message: string;
+    optional: string;
+    supported: string;
     whatsapp: string;
   }
 
@@ -32,8 +35,6 @@
     labels,
     upi,
     payeeName,
-    paytm,
-    gpay,
     verified,
     whatsapp,
     email,
@@ -42,8 +43,6 @@
     labels: Labels;
     upi: string;
     payeeName: string;
-    paytm: string;
-    gpay: string;
     verified: boolean;
     whatsapp: string;
     email: string;
@@ -55,6 +54,8 @@
   let amount = $state<number | null>(fallback?.amounts[1] ?? null);
   let custom = $state("");
   let copied = $state(false);
+  let from = $state("");
+  let message = $state("");
 
   const activeCause = $derived(causes.find((c) => c.value === cause));
   const chosenAmount = $derived(custom ? Number(custom) : amount);
@@ -75,6 +76,19 @@
     }
   }
 
+  // The note the payee sees in their UPI app: purpose, amount, who, and anything
+  // else the donor wrote. Payment apps cut long notes, so it is built in that order.
+  const paymentNote = $derived(
+    [
+      activeCause?.label,
+      chosenAmount ? `Rs ${chosenAmount}` : null,
+      from.trim() ? `From ${from.trim()}` : null,
+      message.trim() || null,
+    ]
+      .filter(Boolean)
+      .join(" | "),
+  );
+
   // One link drives both the QR code and the pay button, so they can never
   // disagree. The purpose is carried in the transaction note.
   const link = $derived(
@@ -82,10 +96,11 @@
       upi,
       payeeName,
       amount: chosenAmount,
-      note: activeCause?.label ?? "",
+      note: paymentNote,
     }),
   );
-  const qrSvg = $derived(renderSVG(link, { border: 0 }));
+  // Medium error correction and the standard quiet zone, so every scanner reads it.
+  const qrSvg = $derived(renderSVG(link, { ecc: "M", border: 4 }));
 
   const format = (n: number) => `₹${n.toLocaleString("en-IN")}`;
   const payLabel = $derived(
@@ -97,6 +112,8 @@
       "Donation",
       `Cause: ${activeCause?.label ?? cause}`,
       chosenAmount ? `Amount: ₹${chosenAmount}` : null,
+      from.trim() ? `From: ${from.trim()}` : null,
+      message.trim() ? `Note: ${message.trim()}` : null,
     ].filter(Boolean);
     return `${whatsapp}?text=${encodeURIComponent(parts.join("\n"))}`;
   });
@@ -111,7 +128,6 @@
           <li>
             <label class:active={cause === c.value} data-cause={c.value}>
               <input type="radio" name="cause" value={c.value} bind:group={cause} />
-              <span class="opt-dot" aria-hidden="true"></span>
               <span class="opt-label">{c.label}</span>
               <span class="opt-tick" aria-hidden="true"></span>
             </label>
@@ -155,6 +171,17 @@
       </ul>
     </div>
 
+    <div class="field">
+      <label class="text-field">
+        <span class="field-label">{labels.from} <em>({labels.optional})</em></span>
+        <input type="text" bind:value={from} maxlength="40" autocomplete="name" />
+      </label>
+      <label class="text-field">
+        <span class="field-label">{labels.message} <em>({labels.optional})</em></span>
+        <textarea bind:value={message} maxlength="120" rows="2"></textarea>
+      </label>
+    </div>
+
     <div class="after">
       <h2>{labels.confirmTitle}</h2>
       <p>{labels.confirmBody}</p>
@@ -176,22 +203,20 @@
     <a class="pay-btn" href={link}>{payLabel}</a>
 
     <div class="pay">
+      <span class="qr-cap">{labels.qr}</span>
       <div class="qr" role="img" aria-label={labels.qr}>
         {@html qrSvg}
       </div>
-      <div class="pay-side">
-        <span class="qr-cap">{labels.qr}</span>
-        <p class="side-label">{labels.upi}</p>
-        <p class="upi-row">
-          <code>{upi}</code>
-          <button type="button" class="copy" onclick={copyUpi} aria-live="polite">
-            {copied ? labels.copied : labels.copy}
-          </button>
-        </p>
-      </div>
+      <p class="side-label">{labels.upi}</p>
+      <p class="upi-row">
+        <span class="upi-id">{upi}</span>
+        <button type="button" class="copy" onclick={copyUpi} aria-live="polite">
+          {copied ? labels.copied : labels.copy}
+        </button>
+      </p>
     </div>
 
-    <p class="alt">{labels.otherMethods}: Paytm {paytm} · Google Pay {gpay}</p>
+    <p class="alt">{labels.supported}</p>
 
     {#if !verified}
       <p class="notice" role="note">{labels.unverified}</p>
@@ -268,23 +293,6 @@
   .amounts label {
     justify-content: center;
     font-size: var(--step-1);
-  }
-  .opt-dot {
-    inline-size: 0.7rem;
-    block-size: 0.7rem;
-    border-radius: 50%;
-    background: var(--dot, var(--clay));
-    flex: none;
-  }
-  [data-cause="education"] {
-    --dot: var(--turmeric);
-  }
-  [data-cause="farmers"],
-  [data-cause="cow"] {
-    --dot: var(--leaf);
-  }
-  [data-cause="children"] {
-    --dot: var(--indigo);
   }
   .opt-label {
     flex: 1;
@@ -378,19 +386,16 @@
     color: var(--on-soil-3);
   }
   .total strong {
-    font-family: var(--font-display);
-    font-variation-settings:
-      "opsz" 144,
-      "WONK" 1,
-      "SOFT" 80;
-    font-weight: 560;
-    font-size: clamp(3rem, 2rem + 4vw, 5rem);
-    letter-spacing: -0.04em;
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: clamp(2.6rem, 2rem + 3vw, 4rem);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.02em;
     line-height: 1;
   }
   .total-cause {
-    font-family: var(--font-mono);
     font-size: var(--step--1);
+    font-weight: 600;
     color: var(--clay-bright);
   }
   .pay-btn {
@@ -414,44 +419,43 @@
   }
   .pay {
     display: grid;
-    grid-template-columns: auto minmax(0, 1fr);
-    gap: var(--s-5);
-    align-items: center;
+    justify-items: center;
+    text-align: center;
+    gap: var(--s-3);
   }
   .qr {
-    inline-size: 8.5rem;
-    padding: var(--s-3);
+    inline-size: min(100%, 16rem);
     background: #fff;
     border-radius: var(--r-3);
+    line-height: 0;
   }
   .qr :global(svg) {
     inline-size: 100%;
     block-size: auto;
+    shape-rendering: crispEdges;
   }
   .qr-cap {
-    display: block;
     font-weight: 600;
-    margin-bottom: var(--s-4);
   }
   .side-label {
     font-size: var(--step--1);
     color: var(--on-soil-3);
-    margin: 0 0 var(--s-2);
+    margin: var(--s-2) 0 0;
   }
   .upi-row {
     display: flex;
     align-items: center;
-    gap: var(--s-2);
+    justify-content: center;
+    gap: var(--s-3);
     flex-wrap: wrap;
     margin: 0;
   }
-  .upi-row code {
-    font-family: var(--font-mono);
-    font-size: var(--step--1);
-    background: var(--soil-2);
-    border: 1px solid var(--soil-rule);
-    padding: 0.35em 0.6em;
-    border-radius: var(--r-2);
+  .upi-id {
+    font-size: var(--step-1);
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.01em;
+    overflow-wrap: anywhere;
   }
   .copy {
     border: 1px solid var(--on-soil-3);
@@ -469,8 +473,38 @@
   }
   .alt {
     margin: 0;
+    text-align: center;
     font-size: var(--step--1);
     color: var(--on-soil-3);
+  }
+  .text-field {
+    display: grid;
+    gap: var(--s-2);
+    margin-bottom: var(--s-5);
+  }
+  .field-label {
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .field-label em {
+    font-style: normal;
+    font-weight: 400;
+    color: var(--ink-3);
+  }
+  .text-field input,
+  .text-field textarea {
+    font: inherit;
+    color: var(--ink);
+    background: var(--paper-raised);
+    border: 1.5px solid var(--rule);
+    border-radius: var(--r-4);
+    padding: var(--s-3) var(--s-4);
+    resize: vertical;
+  }
+  .text-field input:focus-visible,
+  .text-field textarea:focus-visible {
+    outline: 0;
+    border-color: var(--clay);
   }
   .slip :global(:focus-visible) {
     outline-color: var(--clay-bright);
@@ -550,14 +584,6 @@
   @media (max-width: 40rem) {
     .pay-btn {
       display: none;
-    }
-    .pay {
-      grid-template-columns: 1fr;
-      justify-items: center;
-      text-align: center;
-    }
-    .upi-row {
-      justify-content: center;
     }
     .paybar {
       display: block;

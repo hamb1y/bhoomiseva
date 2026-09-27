@@ -13,7 +13,7 @@ Living plan. Legend: `[ ]` todo · `[~]` in progress · `[x]` done.
 - [x] Design tokens + global styles
 - [x] i18n config (`en` default, `kn` at `/kn/`) + UI dictionary + helpers
 - [x] Docs: DESIGN.md, SPEC.md, AGENTS.md, README.md, TODO.md
-- [x] License: Controlled Website Source License 1.0 (CWSL-1.0)
+- [x] License: Controlled Website Source License 1.1 (CWSL-1.1)
 - [x] `site.ts` org data incl. `payment.verified` gate
 
 ## Phase 1 — Content layer ✅
@@ -98,7 +98,7 @@ Living plan. Legend: `[ ]` todo · `[~]` in progress · `[x]` done.
 
 ## Open questions / decisions
 
-- Copyright holder for CWSL-1.0 set to **Bhoomi Seva** — confirm this is intended (vs. the developer/volunteer).
+- CWSL-1.1: copyright holder is **Rishi Malnad**; Bhoomi Seva is named Authorized Recipient in README. Still needed: a short signed note from Bhoomi Seva confirming Rishi owns the code, since some commits were made from the Bhoomi Seva account.
 - Payment/social details unverified; the donate page shows a "to be confirmed" notice until `payment.verified = true` in the CMS.
 - Form submission endpoint not configured; forms fall back to a prefilled WhatsApp message.
 - Kannada copy is written by the assistant and should be spot-checked by a native speaker (the site owner).

@@ -19,13 +19,21 @@ export const nav: NavItem[] = [
     ],
   },
   { key: "nav.stories", href: "/stories" },
+  { key: "nav.events", href: "/events" },
+  {
+    key: "nav.blogs",
+    href: "/blogs",
+    children: [
+      { key: "nav.blogs.donors", href: "/blogs/donors" },
+      { key: "nav.blogs.donees", href: "/blogs/donees" },
+    ],
+  },
   { key: "nav.about", href: "/about" },
   { key: "nav.involved", href: "/get-involved" },
 ];
 
 /**
- * The footer carries the full set. The top bar stays at four links plus Donate,
- * so Events, Blogs and Contact live here rather than in the primary navigation.
+ * The footer carries the full set, plus Contact.
  */
 export const footerNav: NavItem[] = [
   { key: "nav.work", href: "/work" },

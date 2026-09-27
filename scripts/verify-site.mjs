@@ -1,6 +1,6 @@
 // Checks every route and the interactive islands against a running dev server.
 //
-//   bun run dev --port 4321     # in one terminal
+//   bun run dev                  # in one terminal
 //   bun run verify              # in another
 //   bun run verify --shots      # also writes full-page screenshots to .verify/
 //
@@ -215,7 +215,7 @@ await interaction("donate widget", "/donate", async (page) => {
   const result = await page.evaluate(() => {
     const pay = document.querySelector(".receipt .pay-btn")?.getAttribute("href") ?? "";
     return {
-      upi: document.querySelector(".receipt .upi-row code")?.textContent ?? "",
+      upi: document.querySelector(".receipt .upi-id")?.textContent ?? "",
       pay,
       qr: Boolean(document.querySelector(".receipt .qr svg")),
       whatsapp: Boolean(

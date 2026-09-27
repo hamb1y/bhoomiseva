@@ -32,7 +32,7 @@ Manage it with `astro dev stop`, `astro dev status`, and `astro dev logs`.
 
 ```
 bun install            # dependencies
-bun run dev            # dev server on :4321
+bun run dev            # dev server on :4322
 bun run build          # production build to dist/
 bun run check          # astro check (types + diagnostics)
 bun run verify         # browser check over every route + interaction
@@ -45,7 +45,7 @@ bun run format         # prettier
 
 ### Editing content
 
-Content lives in `content/` as JSON. Edit it through the CMS — `http://localhost:4321/admin/index.html` in a Chromium browser, choosing _Work with Local Repository_ — or by hand if the change is trivial.
+Content lives in `content/` as JSON. Edit it through the CMS — `http://localhost:4322/admin/index.html` in a Chromium browser, choosing _Work with Local Repository_ — or by hand if the change is trivial.
 
 ## Repository layout
 
