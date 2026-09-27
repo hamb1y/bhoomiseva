@@ -1,143 +1,172 @@
-# Controlled Website Source License 1.0
+# Controlled Website Source License 1.1
 
-## CWSL-1.0
+SPDX identifier: `LicenseRef-CWSL-1.1`
 
-Copyright (c) 2026 Bhoomi Seva
+Copyright (c) 2026 Rishi Malnad
 
 All rights reserved except as expressly granted under this License.
 
-This license governs the source code, website design, layouts, components, styles, scripts, configuration, documentation, and other original materials distributed with this website or project (collectively, the **"Licensed Materials"**).
+This is a source-available license. It is not an open-source or free-software license, and it must not be described as one.
 
-This License does not apply to third-party software, libraries, fonts, images, media, trademarks, logos, text, or other materials that are separately licensed or owned by another party (**"Third-Party Materials"**). Those materials remain subject to their respective terms.
+## 1. Definitions
 
-Content supplied by or belonging to the organization, individual, or entity for whom the website was created (**"Recipient Content"**) remains the property of its respective owner and is not relicensed under this License.
+**"Licensor"** means the copyright holder named in the copyright notice accompanying the Licensed Materials.
 
-## 1. Source Availability
+**"Licensed Materials"** means the original source code, website design as expressed in that code, layouts, components, styles, scripts, configuration, build tooling, and documentation distributed with this License, in any form. This includes source form, compiled, bundled, minified, or otherwise built output, and the code as served to visitors of a deployed website. It excludes Third-Party Materials and Recipient Content.
 
-The Licensed Materials may be made publicly available in source form for inspection, education, security review, archival purposes, and evaluation.
+**"Third-Party Materials"** means software, libraries, fonts, icons, images, media, trademarks, and other material owned by someone other than the Licensor and licensed separately.
 
-Making the source code publicly accessible does not place it in the public domain and does not constitute a grant of rights except those expressly provided by this License.
+**"Recipient Content"** means text, photographs, video, logos, names, data, and other material supplied by or belonging to an Authorized Recipient. This includes every image or likeness of an identifiable person.
 
-Except for an Authorized Recipient as described in Section 2, you may:
+**"Authorized Recipient"** means a person or organization for whom the Licensor has created or supplied a particular website or project and whom the Licensor has named as an Authorized Recipient in writing.
 
-a. view and inspect the Licensed Materials;
+**"Project"** means the particular website or project for which an Authorized Recipient was supplied the Licensed Materials.
 
-b. download or copy the Licensed Materials for personal archival, research, educational, or evaluation purposes; and
+**"Authorized Agent"** means an employee, volunteer, member, or hosting provider acting on behalf of an Authorized Recipient, solely for that Recipient's purposes.
 
-c. run the Licensed Materials privately for testing or evaluation.
+**"Necessary Maintenance"** means a change to the Licensed Materials that is strictly required to keep the Project functioning as supplied. It is limited to:
 
-These permissions do not include a right to publicly deploy, redistribute, publish, sublicense, sell, commercially exploit, or provide the Licensed Materials to third parties.
+- repairing breakage;
+- applying security fixes;
+- updating dependencies where required for security or continued operation; and
+- adapting to changes in hosting, platforms, or external services.
 
-## 2. Authorized Recipient License
+It does not include new features, redesigns, visual or layout changes, restructuring, or any other improvement.
 
-An **"Authorized Recipient"** is a person or organization for whom the copyright holder has specifically created, supplied, transferred, or authorized a particular website or deployment.
+**"Distribute"** means to give, transfer, publish, or make available a copy of the Licensed Materials, or any part or modified version of them, to any other person, other than through a Public Deployment.
 
-An Authorized Recipient is granted a non-exclusive, royalty-free license to:
+**"Public Deployment"** means making the Licensed Materials, or any website or software built from them, accessible over a network to anyone other than you and, if you are an Authorized Recipient, your Authorized Agents.
 
-a. operate and publicly deploy the Licensed Materials as part of the website or project for which they were supplied;
+**"Non-Production Use"** means running the Licensed Materials only on your own devices or in an environment accessible only to you, for learning, evaluation, or testing, and not for any operational, business, organizational, or internal production purpose. An internal or intranet website is not Non-Production Use.
 
-b. use that website in connection with the Authorized Recipient's ordinary activities, including commercial activity, fundraising, advertising, membership activities, sales, or other organizational purposes;
+**"Template Use"** means using the Licensed Materials, any part of them, or any version derived from them as a template, theme, starter, framework, component library, or basis for any website, application, or product other than the Project.
 
-c. create reasonable backups of the Licensed Materials; and
+**"You"** means the person or organization exercising rights under this License.
 
-d. make changes to content, configuration, deployment settings, credentials, factual information, and other material reasonably necessary for normal operation of the website.
+## 2. Source Availability
 
-This permission applies only to the website or project for which the Licensed Materials were supplied.
+The Licensor may make the Licensed Materials publicly available for inspection, education, security review, archival, and evaluation. Making them publicly available does not place them in the public domain and grants no rights except those in this License.
 
-It does not grant the Authorized Recipient the right to use the Licensed Materials as a general-purpose template, theme, framework, website-building product, or basis for websites created for unrelated third parties.
+Anyone may:
+
+a. view, read, and study the Licensed Materials;
+
+b. download or clone them, and fork them within a hosting platform where that platform's terms permit forking, for personal archival, research, educational, or evaluation purposes only; and
+
+c. run and modify them for Non-Production Use.
+
+No other right is granted. A fork, clone, or download is a copy held only for the purposes above. It gives no right to Distribute, to make a Public Deployment, or to engage in Template Use.
 
 ## 3. Restrictions
 
-Except with specific prior written permission from the copyright holder, you may not:
+Except as granted to an Authorized Recipient in Section 4, or by separate written permission from the Licensor, you may not:
 
-a. sell, rent, sublicense, commercially distribute, or otherwise commercially exploit the Licensed Materials themselves;
+a. Distribute the Licensed Materials, whether modified or not. The fact that the Licensor has published them publicly grants no right to republish them;
 
-b. use the Licensed Materials, substantially similar portions of them, or derivative versions of them to provide website-development, template, theme, hosting, software-as-a-service, or similar services to third parties;
+b. make a Public Deployment of the Licensed Materials or of any version of them;
 
-c. redistribute or publicly publish copies of the Licensed Materials, whether modified or unmodified, except where the copyright holder has already made those Materials publicly available;
+c. modify the Licensed Materials for any purpose other than Non-Production Use;
 
-d. distribute, publish, sublicense, or publicly deploy a modified or derivative version of the Licensed Materials, except for modifications expressly permitted to an Authorized Recipient under Section 2 or separately authorized in writing;
+d. engage in Template Use;
 
-e. remove, falsify, or obscure copyright notices, license notices, or authorship notices contained within the source code or accompanying files;
+e. sell, rent, lease, sublicense, or otherwise commercially exploit the Licensed Materials, or offer them as part of a paid or hosted product or service, including website-development, template, theme, hosting, or software-as-a-service offerings;
 
-f. represent yourself as the original author of the Licensed Materials; or
+f. use the Licensed Materials, in whole or in part, to train, fine-tune, or evaluate a machine-learning or artificial-intelligence model, to build a dataset for such use, or for any other text and data mining. The Licensor expressly reserves these rights, including for the purposes of Article 4(3) of Directive (EU) 2019/790. This restriction does not prevent the use of software tools to read or analyze the Licensed Materials for a purpose this License permits;
 
-g. use the name, trademarks, logos, or identity of the copyright holder or contributors to imply endorsement, sponsorship, or affiliation without specific prior written permission.
+g. remove, alter, or obscure any copyright, license, or authorship notice in the Licensed Materials, in any form;
 
-## 4. No Public Attribution Requirement
+h. claim or imply that you are the author of the Licensed Materials; or
 
-This License does not require a visible credit, attribution notice, badge, footer link, or other public acknowledgment on a website using the Licensed Materials.
+i. use the name, trademarks, logos, or identity of the Licensor to imply endorsement, sponsorship, or affiliation.
 
-Copyright and license notices contained in source files or accompanying documentation must, however, be preserved where reasonably practicable.
+## 4. Authorized Recipient License
 
-Nothing in this section grants permission to falsely claim authorship of the Licensed Materials.
+### 4.1 Grant
 
-## 5. Modifications
+Subject to this License, the Licensor grants each Authorized Recipient a non-exclusive, non-transferable, royalty-free, revocable license, for the Project only, to:
 
-Unless you are an Authorized Recipient exercising the limited rights provided by Section 2, you may create modified versions of the Licensed Materials only for private, non-commercial experimentation and evaluation.
+a. operate and make a Public Deployment of the Licensed Materials as supplied;
 
-You may not distribute, publish, publicly deploy, sublicense, sell, or otherwise provide such modified versions to another person without prior written permission from the copyright holder.
+b. use the Project in connection with the Recipient's ordinary activities, including commercial activity, fundraising, advertising, and membership activity;
 
-Modifications made privately do not transfer ownership of the original Licensed Materials.
+c. change Recipient Content, configuration values, deployment and hosting settings, domains, and credentials;
 
-## 6. Commercial Exploitation
+d. make Necessary Maintenance changes; and
 
-For purposes of this License, **"Commercial Exploitation"** includes selling, licensing, renting, sublicensing, monetizing, or providing the Licensed Materials, or substantial portions of them, as a product or service.
+e. make backups reasonably needed for the above.
 
-Commercial Exploitation also includes using the Licensed Materials as a reusable template, theme, framework, or development base in return for money or other commercial benefit.
+### 4.2 No Other Modification
 
-Merely operating an authorized website for a business, charity, school, organization, or other Authorized Recipient does not constitute Commercial Exploitation of the Licensed Materials under this section.
+An Authorized Recipient may not modify the Licensed Materials in any way other than as permitted by Sections 4.1(c) and 4.1(d). Any other modification, including any addition, removal, redesign, or improvement, requires prior written permission from the Licensor.
 
-## 7. Separate Permissions
+### 4.3 Agents
 
-The copyright holder may grant additional permissions, commercial licenses, modification rights, redistribution rights, or other exceptions in writing.
+An Authorized Recipient may exercise its rights through its Authorized Agents, and is responsible for their compliance with this License. An Authorized Agent gains no rights of its own. It may not keep, copy, or use the Licensed Materials for anyone other than the Recipient, and must delete its copies when it stops acting for the Recipient.
 
-Such permissions apply only to the person, organization, project, or use specified in that authorization and do not modify this License for anyone else.
+### 4.4 Scope and Transfer
 
-The copyright holder is free to license the same or similar Licensed Materials to other parties under different terms.
+This license covers the Project only. It does not permit Template Use or the use of the Licensed Materials for any other website, project, or organization. It may not be assigned, transferred, or sublicensed, including to a successor organization, without the Licensor's prior written consent.
+
+### 4.5 Modifications
+
+Every change an Authorized Recipient or its Authorized Agents make to the Licensed Materials remains subject to this License, may be used only as part of the Project, and may not be Distributed. The Authorized Recipient grants the Licensor a perpetual, worldwide, royalty-free, irrevocable license to use, modify, sublicense, and relicense any such change.
+
+## 5. Revocation and Termination
+
+a. **Revocation.** The Licensor may revoke an Authorized Recipient's license at any time by written notice. Revocation takes effect on the date stated in the notice, or immediately if no date is stated.
+
+b. **Termination for breach.** All rights granted to you under this License terminate automatically if you breach any of its conditions. If you cure the breach within 30 days after becoming aware of it, the Licensor may, at its discretion, reinstate your rights in writing.
+
+c. **Effect.** When your rights end, you must stop all use and Public Deployment of the Licensed Materials and delete all copies in your possession or control, except copies you are required by law to keep.
+
+d. **Survival.** Sections 1, 3, 4.5, 5(c), 6, 7, 8, 9, 10, 11, and 12 survive revocation or termination.
+
+## 6. Notices
+
+Every copyright, license, and authorship notice in the Licensed Materials must be kept intact and legible in every copy and in every form, including compiled, bundled, minified, and deployed output. Build processes must be configured to preserve them.
+
+No visible credit, badge, or footer link is required on the public pages of a deployed website.
+
+## 7. Recipient Content
+
+Recipient Content belongs to its respective owners and is not licensed to anyone under this License. Images and likenesses of identifiable people in particular may not be copied, reused, republished, or used for any purpose outside the Project, including the purposes in Section 3(f).
 
 ## 8. Third-Party Materials
 
-Third-Party Materials included with or used by the project remain governed by their respective licenses.
+Third-Party Materials remain governed by their own licenses. Where those licenses conflict with this License with respect to those materials, they prevail. Nothing in this License limits rights you hold under them.
 
-Nothing in this License limits rights independently granted under a third-party license, nor does this License grant rights in third-party trademarks, copyrighted works, or other intellectual property.
+## 9. Contributions
 
-Where the terms of this License conflict with the applicable license for Third-Party Materials, the third-party license controls with respect to those materials.
+If you submit code, documentation, or other material to the Licensor for inclusion in the Licensed Materials, you grant the Licensor a perpetual, worldwide, royalty-free, irrevocable license to use, modify, sublicense, and relicense that material. You confirm that you have the right to grant this license.
 
-## 9. Termination
+## 10. Ownership, Trademarks, and Separate Permissions
 
-The rights granted under this License automatically terminate if you materially violate its conditions.
+The Licensor retains ownership of the Licensed Materials and all rights not expressly granted. Creating, supplying, deploying, or giving access to a website does not transfer copyright in the Licensed Materials.
 
-If the violation is corrected within 30 days after you become aware of it, the copyright holder may, at their discretion, restore the rights granted under this License.
+This License grants no rights in any trademark, service mark, name, logo, domain, or trade dress.
 
-Termination of rights under this License does not affect rights that you possess independently under applicable law or under another valid agreement with the copyright holder.
+The Licensor may grant additional permissions, commercial licenses, or other exceptions in writing. Such a grant applies only to the person, organization, and use it names, and does not modify this License for anyone else. The Licensor may license the same or similar materials to others on different terms. If a signed written agreement between the Licensor and any person conflicts with this License, that agreement prevails for that person.
 
-## 10. No Trademark License
+## 11. Rights Under Law
 
-This License grants rights in copyrightable Licensed Materials only.
+Nothing in this License restricts any use that does not require the Licensor's permission under applicable law, including fair dealing and other statutory exceptions to copyright.
 
-No permission is granted to use any trademark, service mark, organization name, logo, domain name, trade dress, or other identifier except as necessary to identify the origin of the Licensed Materials or as separately authorized.
+## 12. Disclaimer and Limitation of Liability
 
-## 11. Exceptions and Limitations
+THE LICENSED MATERIALS ARE PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE, AND NON-INFRINGEMENT.
 
-Nothing in this License is intended to restrict uses that do not require permission from the copyright holder under applicable law, including applicable copyright exceptions and limitations.
+TO THE MAXIMUM EXTENT PERMITTED BY LAW, THE LICENSOR AND CONTRIBUTORS ARE NOT LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES ARISING FROM OR RELATED TO THE LICENSED MATERIALS OR THEIR USE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
 
-## 12. Disclaimer of Warranty
+## 13. General
 
-THE LICENSED MATERIALS ARE PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE, AND NON-INFRINGEMENT.
+a. **Governing law.** This License is governed by the laws of India.
 
-TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, THE COPYRIGHT HOLDER AND CONTRIBUTORS SHALL NOT BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES ARISING FROM OR RELATED TO THE LICENSED MATERIALS OR THEIR USE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+b. **Severability.** If any provision is held unenforceable, it is limited to the minimum extent necessary, and the remaining provisions stay in effect.
 
-## 13. No Transfer of Ownership
+c. **No waiver.** A failure or delay in enforcing any provision is not a waiver of it.
 
-Except where expressly agreed otherwise in writing, providing, deploying, or giving access to a website does not transfer ownership of the copyright in the Licensed Materials.
-
-The Authorized Recipient owns its Recipient Content and retains whatever rights they independently hold in their trademarks, branding, data, and other materials.
-
-The copyright holder retains ownership of the Licensed Materials and all rights not expressly granted by this License.
+d. **Versions.** The Licensor may publish new versions of this License. Materials released under this version remain under this version unless the Licensor relicenses them.
 
 ---
 
-**CWSL-1.0 — Controlled Website Source License 1.0**
-
-This is a source-available license. It is not an open-source or free-software license and should not be represented as BSD-3-Clause, a Creative Commons license, or an OSI-approved license.
+**CWSL-1.1: Controlled Website Source License 1.1.** Source-available. Not open source, not free software, and not a Creative Commons or OSI-approved license.
